@@ -270,18 +270,21 @@ def run_scan() -> List[Opportunity]:
             logger.info("No new or significant opportunities — immediate alert suppressed")
 
         # ── 7. Daily summary — once per day ──────────────────────────────
-        if should_send_daily_summary():
-            logger.info("Sending daily summary")
-            sent = send_daily_summary(
-                all_opportunities = opportunities,
-                total_scanned     = len(books),
-                api_health        = api_health,
-                csv_path          = csv_path,
-            )
-            if sent:
-                mark_daily_summary_sent()
+       if config.DAILY_SUMMARY_ENABLED:
+            if should_send_daily_summary() or config.ALWAYS_SEND_SUMMARY:
+                logger.info("Sending run summary email")
+                sent = send_daily_summary(
+                    all_opportunities = opportunities,
+                    total_scanned     = len(books),
+                    api_health        = api_health,
+                    csv_path          = csv_path,
+                )
+                if sent:
+                    mark_daily_summary_sent()
+            else:
+                logger.info("Daily summary not due this run")
         else:
-            logger.info("Daily summary not due this run")
+            logger.info("Summary email disabled (DAILY_SUMMARY_ENABLED=False)")
 
         logger.info(
             f"SCAN DONE — {len(new_opps)} new | "

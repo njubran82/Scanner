@@ -1,0 +1,20 @@
+# Secrets — NEVER commit
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# State file — persists between runs locally, excluded from git
+# (GitHub Actions runners are ephemeral — state won't survive between runs anyway)
+scanner_state.json
+
+# Scan output CSVs — excluded to keep repo clean
+# Remove this line if you want git to track scan history
+scan_results/*.csv
+
+# OS junk
+.DS_Store
+Thumbs.db

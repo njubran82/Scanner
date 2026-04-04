@@ -64,7 +64,7 @@ EBAY_APP_ID   = os.getenv("EBAY_APP_ID",  "")   # Client ID
 EBAY_CERT_ID  = os.getenv("EBAY_CERT_ID", "")   # Client Secret — REQUIRED for Browse API
 
 EBAY_MAX_RESULTS     = 50      # Listings to fetch per book (Browse API max per page)
-EBAY_REQUEST_DELAY   = 0.4     # Seconds between API calls (avoid 429 rate limits)
+EBAY_REQUEST_DELAY = 0.8   # slower — reduces rate limit risk
 
 # Discount applied to active listing median to estimate expected sell price.
 # Active prices are typically 10–20% above what books actually sell for.

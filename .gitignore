@@ -9,7 +9,7 @@ __pycache__/
 
 # State file — persists between runs locally, excluded from git
 # (GitHub Actions runners are ephemeral — state won't survive between runs anyway)
-scanner_state.json
+
 
 # Scan output CSVs — excluded to keep repo clean
 # Remove this line if you want git to track scan history

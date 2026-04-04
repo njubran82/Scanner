@@ -140,25 +140,48 @@ def analyze_book(book: Book) -> Opportunity:
     opp = Opportunity(book=book)
 
     # ── 1. Fetch market data ─────────────────────────────────────────────
-    result = get_market_data(isbn13=book.isbn13, isbn10=book.isbn10)
-
-    # Populate active listing fields on Opportunity
-    opp.ebay_active_listings = result.listings
-    opp.ebay_active_count    = len(result.listings)
-    opp.ebay_active_median   = (
-        result.price_summary.median if result.price_summary else None
-    )
-    opp.price_spread_pct = (
-        result.price_summary.spread_pct if result.price_summary else None
+    result = get_market_data(
+        isbn13     = book.isbn13,
+        isbn10     = book.isbn10,
+        book_title = book.title,
     )
 
-    # eBay Browse API doesn't provide sold data — zero out sold fields
-    opp.ebay_sold_listings = []
-    opp.ebay_sold_count    = 0
-    opp.ebay_sold_median   = None
+    # Route results based on listing type (sold vs active)
+    from market_data.models import LISTING_SOLD
+    is_sold_result = result.listing_type == LISTING_SOLD and result.listings
+
+    if is_sold_result:
+        # Sold comps — populate sold fields
+        opp.ebay_sold_listings  = result.listings
+        opp.ebay_sold_count     = len(result.listings)
+        opp.ebay_sold_median    = result.price_summary.median if result.price_summary else None
+        opp.price_spread_pct    = result.price_summary.spread_pct if result.price_summary else None
+        opp.ebay_active_listings = []
+        opp.ebay_active_count    = 0
+        opp.ebay_active_median   = None
+    else:
+        # Active listings
+        opp.ebay_active_listings = result.listings
+        opp.ebay_active_count    = len(result.listings)
+        opp.ebay_active_median   = result.price_summary.median if result.price_summary else None
+        opp.price_spread_pct     = result.price_summary.spread_pct if result.price_summary else None
+        opp.ebay_sold_listings   = []
+        opp.ebay_sold_count      = 0
+        opp.ebay_sold_median     = None
 
     # ── 2. Choose revenue estimate ───────────────────────────────────────
-    if result.is_usable():
+    if result.is_usable() and is_sold_result:
+        # Sold comps — use median directly, no discount needed
+        raw_median           = result.price_summary.median
+        opp.revenue_estimate = raw_median
+        opp.revenue_source   = "ebay_sold"
+        opp.confidence       = _map_confidence(result.market_confidence, bool(book.amazon_price))
+        logger.info(
+            f"Revenue: eBay SOLD median ${raw_median:.2f} "
+            f"({opp.ebay_sold_count} comps) — '{book.title[:45]}'"
+        )
+
+    elif result.is_usable():
         # Active listing median, discounted to estimate sell price
         discount             = getattr(config, "EBAY_ACTIVE_PRICE_DISCOUNT", 0.10)
         raw_median           = result.price_summary.median

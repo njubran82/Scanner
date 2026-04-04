@@ -143,9 +143,12 @@ SIGNIFICANT_ROI_INCREASE_PCT    = 0.15   # 15% ROI improvement triggers re-alert
 #
 # Set DAILY_SUMMARY_ENABLED = False to disable the daily digest entirely.
 DAILY_SUMMARY_ENABLED = True
-DAILY_SUMMARY_HOUR    = 18   # 6 PM UTC — adjust to your preferred time
-ALWAYS_SEND_SUMMARY   = True  # Always send on weekly runs regardless of hour
-ALWAYS_SEND_SUMMARY   = True  # Always send on weekly runs
+DAILY_SUMMARY_HOUR    = 18   # 6 PM UTC — only relevant when running multiple times/day
+
+# Set True when running on a weekly schedule (GitHub Actions once/Monday).
+# Ensures the summary email is always sent regardless of DAILY_SUMMARY_HOUR.
+# Set False if running hourly/frequently and you only want one digest per day.
+ALWAYS_SEND_SUMMARY   = True
 
 
 # ─── Alerts ──────────────────────────────────────────────────────────────────

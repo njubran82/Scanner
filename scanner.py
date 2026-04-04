@@ -269,8 +269,10 @@ def run_scan() -> List[Opportunity]:
         else:
             logger.info("No new or significant opportunities — immediate alert suppressed")
 
-      # ── 7. Summary email ─────────────────────────────────────────────
+        # ── 7. Summary email ─────────────────────────────────────────────
         # Weekly schedule: every run IS the weekly summary, so always send.
+        # should_send_daily_summary() still prevents spam if this is ever
+        # run multiple times per day on a local server.
         if config.DAILY_SUMMARY_ENABLED:
             if should_send_daily_summary() or config.ALWAYS_SEND_SUMMARY:
                 logger.info("Sending run summary email")
@@ -283,7 +285,7 @@ def run_scan() -> List[Opportunity]:
                 if sent:
                     mark_daily_summary_sent()
             else:
-                logger.info("Daily summary not due this run")
+                logger.info("Summary already sent today — skipping")
         else:
             logger.info("Summary email disabled (DAILY_SUMMARY_ENABLED=False)")
 

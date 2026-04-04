@@ -1,75 +1,54 @@
 """
-market_data/ebay_browse.py — eBay Browse API market data source.
+market_data/ebay_browse.py — eBay market data: sold comps + active listings.
 
-═══════════════════════════════════════════════════════════════════════════════
-ARCHITECTURE NOTE — WHY BROWSE API, NOT FINDING API
-═══════════════════════════════════════════════════════════════════════════════
+SEARCH STRATEGY (in order of preference):
+    1. findCompletedItems (Finding API) by ISBN-13
+       → Real sold transactions. Best revenue signal.
+       → Confidence: SOLD_STRONG (3+) or SOLD_WEAK (1-2)
 
-The legacy eBay Finding API (findCompletedItems / findItemsByKeywords) uses
-App-ID-only authentication and an older XML-style endpoint. eBay has been
-deprecating it since ~2022. The 181 failures in your scan are consistent
-with eBay revoking Finding API access for new or inactive developer accounts.
+    2. findCompletedItems by ISBN-10 (if valid)
+       → Same as above, ISBN-10 fallback
 
-The eBay Browse API is the current supported replacement:
-    - Full OAuth 2.0 (Client Credentials flow)
-    - RESTful JSON — clean and well-documented
-    - Actively maintained, eBay's stated long-term direction
-    - Supports GTIN/ISBN search natively
+    3. Browse API active listings by ISBN-13
+       → Currently listed prices. Discount applied to estimate sell price.
+       → Confidence: ACTIVE_STRONG/MEDIUM/WEAK depending on count
 
-═══════════════════════════════════════════════════════════════════════════════
-THE CRITICAL LIMITATION: NO SOLD DATA
-═══════════════════════════════════════════════════════════════════════════════
+    4. Browse API active listings by ISBN-10 (if valid)
+       → Same as above, ISBN-10 fallback
 
-This is the most important thing to understand about eBay's API landscape:
+    5. Browse API keyword search by title
+       → Used when all ISBN searches return 0 results.
+       → Results filtered by title similarity before use.
+       → Confidence: ACTIVE_WEAK at best
 
-    Browse API         → Active listings only. No sold data.
-    Finding API        → Deprecated. findCompletedItems is unreliable.
-    Marketplace Insights API → DOES provide sold data, but requires special
-                               access approval from eBay. It is not available
-                               to standard developer accounts.
+JUNK DETECTION:
+    ISBN-10 fields sometimes contain Amazon ASINs (e.g. B0C1XZ6GMB).
+    These are 10-char alphanumeric codes starting with B — not valid ISBNs.
+    Using them as GTINs returns massive unrelated listing pools.
+    We validate ISBN-10 format before any search.
 
-THE WORKAROUND USED HERE:
-    1. Fetch active listings via Browse API (reliable, supported)
-    2. Apply a configurable discount factor (default 10–15%) to convert
-       active "asking prices" to estimated "sell prices"
-    3. Label confidence as MEDIUM/LOW (not HIGH) to flag this limitation
-    4. Log clearly when estimates are active-based, not sold-based
+    We also reject result sets where:
+        - Total results > 50,000 AND median price < $3.00
+          (generic used book pools — not the specific title)
 
-HOW TO GET SOLD DATA (future path):
-    Apply for Marketplace Insights API access at developer.ebay.com.
-    Email developer-relations@ebay.com with your use case. If approved,
-    implement EbayInsightsSource (see amazon_stub.py for the pattern)
-    and register it in __init__.py. No other code changes required.
+TITLE SIMILARITY:
+    After any search, we check that returned listings actually match
+    the book. We extract significant words from the supplier title
+    and require at least 40% overlap with each listing title.
+    Listings that don't match are dropped before price calculation.
 
-═══════════════════════════════════════════════════════════════════════════════
-CREDENTIALS REQUIRED
-═══════════════════════════════════════════════════════════════════════════════
-
-The Browse API uses OAuth 2.0 Client Credentials flow. You need TWO credentials
-(unlike the Finding API which only needed the App ID):
-
-    EBAY_APP_ID   — Client ID   (already in your .env and GitHub Secrets)
-    EBAY_CERT_ID  — Client Secret (NEW — add to .env and GitHub Secrets)
-
-Both are found at: developer.ebay.com → My Account → Application Keys
-Use the PRODUCTION keys (the ones labeled "PRD", not "SBX").
-The Client Secret is the long alphanumeric string in the "Cert ID" column.
-
-═══════════════════════════════════════════════════════════════════════════════
-TOKEN CACHING
-═══════════════════════════════════════════════════════════════════════════════
-
-OAuth tokens expire after 7200 seconds (2 hours). We cache the token
-in memory and reuse it until 60 seconds before expiry. On GitHub Actions
-each run is a fresh process so a new token is fetched each time (fine).
-On Oracle Cloud the token is reused across multiple scans (efficient).
+CREDENTIALS:
+    Browse API:   EBAY_APP_ID + EBAY_CERT_ID (OAuth 2.0)
+    Finding API:  EBAY_APP_ID only (no CERT_ID needed)
 """
 
 import base64
 import logging
+import re
 import time
 from datetime import datetime, timedelta, timezone
-from typing import Optional, List, Tuple
+from statistics import median
+from typing import List, Optional, Set, Tuple
 
 import requests
 
@@ -79,104 +58,213 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from market_data.base import AbstractMarketSource
 from market_data.models import (
     MarketListing, MarketResult, PriceSummary,
-    LISTING_ACTIVE, SOURCE_EBAY_BROWSE,
-    MCONF_ACTIVE_STRONG, MCONF_ACTIVE_MEDIUM, MCONF_ACTIVE_WEAK, MCONF_NONE,
+    LISTING_ACTIVE, LISTING_SOLD,
+    SOURCE_EBAY_BROWSE,
+    MCONF_SOLD_STRONG, MCONF_SOLD_WEAK,
+    MCONF_ACTIVE_STRONG, MCONF_ACTIVE_MEDIUM, MCONF_ACTIVE_WEAK,
+    MCONF_NONE,
 )
 import config
 
 logger = logging.getLogger(__name__)
 
-# ── eBay API endpoints ────────────────────────────────────────────────────────
-_OAUTH_URL  = "https://api.ebay.com/identity/v1/oauth2/token"
-_BROWSE_URL = "https://api.ebay.com/buy/browse/v1/item_summary/search"
-_OAUTH_SCOPE = "https://api.ebay.com/oauth/api_scope"
+# ── eBay endpoints ────────────────────────────────────────────────────────────
+_OAUTH_URL    = "https://api.ebay.com/identity/v1/oauth2/token"
+_BROWSE_URL   = "https://api.ebay.com/buy/browse/v1/item_summary/search"
+_FINDING_URL  = "https://svcs.ebay.com/services/search/FindingService/v1"
+_OAUTH_SCOPE  = "https://api.ebay.com/oauth/api_scope"
+_BOOKS_CAT    = "267"
+_USED_CONDS   = "2000|2500|3000|4000|5000"
 
-# eBay Books & Magazines category ID
-_BOOKS_CATEGORY_ID = "267"
+# ── Junk detection thresholds ──────────────────────────────────────────────────
+_JUNK_TOTAL_THRESHOLD  = 50_000   # Result sets this large are almost certainly generic
+_JUNK_PRICE_CEILING    = 3.00     # Median below this = commodity junk pool
+_MIN_TITLE_SIMILARITY  = 0.35     # Fraction of title words that must match listing
 
-# eBay condition IDs for used books (exclude new to focus on used market comps)
-# 1000=New, 2000=Excellent, 2500=Very Good, 3000=Good, 4000=Acceptable, 5000=Used
-_USED_CONDITION_IDS = "2000|2500|3000|4000|5000"
+# ── Token cache ────────────────────────────────────────────────────────────────
+_token_cache: dict = {"access_token": None, "expires_at": None}
 
-# ── Module-level OAuth token cache ────────────────────────────────────────────
-_token_cache: dict = {
-    "access_token": None,
-    "expires_at":   None,   # datetime
-}
-
-# ── Module-level run health counters (reset per scan via reset_stats()) ───────
+# ── Health counters ────────────────────────────────────────────────────────────
 _stats: dict = {
-    "token_ok":      False,
-    "token_failed":  False,
-    "api_calls":     0,
-    "api_ok":        0,
-    "api_failed":    0,
-    "zero_results":  0,
-    "isbn13_hits":   0,
-    "isbn10_hits":   0,
+    "token_ok": False, "token_failed": False,
+    "browse_calls": 0, "browse_ok": 0, "browse_failed": 0,
+    "finding_calls": 0, "finding_ok": 0, "finding_failed": 0,
+    "sold_results": 0, "active_results": 0,
+    "zero_results": 0, "junk_rejected": 0,
+    "title_filtered": 0, "keyword_fallback_used": 0,
+    "isbn13_hits": 0, "isbn10_hits": 0,
+    "api_ok": 0, "api_failed": 0,  # kept for backward compat
 }
 
 
 def reset_stats() -> None:
-    """Reset health counters. Call at the start of each scan run."""
-    global _stats, _token_cache
+    global _stats
     _stats = {k: (False if isinstance(v, bool) else 0) for k, v in _stats.items()}
-    # Don't reset token cache — reuse valid tokens across scans
 
 
 def get_health_summary() -> dict:
-    """
-    Return a dict summarising eBay API usage for the current run.
-    Used by scanner.py to determine run_mode and build email header.
-    """
-    s     = dict(_stats)
-    total = s["api_calls"]
+    s = dict(_stats)
+    total = s["browse_calls"] + s["finding_calls"]
 
-    s["success_rate"] = round(s["api_ok"] / total * 100, 1) if total else 0.0
+    s["sold_successes"]  = s["finding_ok"]
+    s["sold_failures"]   = s["finding_failed"]
+    s["api_ok"]          = s["browse_ok"] + s["finding_ok"]
+    s["api_failed"]      = s["browse_failed"] + s["finding_failed"]
+    s["success_rate"]    = round(s["api_ok"] / total * 100, 1) if total else 0.0
+    s["api_key_missing"] = not bool(getattr(config, "EBAY_APP_ID", ""))
 
     if not s["token_ok"] and s["token_failed"]:
-        s["run_mode"]        = "FALLBACK_ONLY"
-        s["run_mode_reason"] = "eBay OAuth token request failed — check EBAY_APP_ID and EBAY_CERT_ID"
+        s["run_mode"] = "FALLBACK_ONLY"
+        s["run_mode_reason"] = "eBay OAuth failed — check EBAY_APP_ID and EBAY_CERT_ID"
     elif total == 0:
-        s["run_mode"]        = "FALLBACK_ONLY"
+        s["run_mode"] = "FALLBACK_ONLY"
         s["run_mode_reason"] = "No eBay API calls made — credentials not configured"
     elif s["api_failed"] > 0 and s["api_ok"] == 0:
-        s["run_mode"]        = "FALLBACK_ONLY"
-        s["run_mode_reason"] = f"All {s['api_failed']} eBay API calls failed"
-    elif s["api_failed"] > 0 or s["zero_results"] > 0:
-        s["run_mode"]        = "MIXED"
+        s["run_mode"] = "FALLBACK_ONLY"
+        s["run_mode_reason"] = "All eBay API calls failed"
+    elif s["sold_results"] > 0 and s["active_results"] == 0:
+        s["run_mode"] = "EBAY_CONFIRMED"
         s["run_mode_reason"] = (
-            f"{s['api_ok']} eBay calls OK | "
-            f"{s['api_failed']} failed | "
-            f"{s['zero_results']} no results | "
-            f"(active listings — not sold data)"
+            f"{s['finding_ok']} sold comp searches OK | "
+            f"{s['sold_results']} books with sold data"
+        )
+    elif s["sold_results"] > 0:
+        s["run_mode"] = "EBAY_CONFIRMED"
+        s["run_mode_reason"] = (
+            f"{s['sold_results']} eBay sold | "
+            f"{s['active_results']} active only | "
+            f"{s['zero_results']} no data | "
+            f"{s['junk_rejected']} junk rejected"
         )
     else:
-        s["run_mode"]        = "EBAY_ACTIVE"   # Better label than EBAY_CONFIRMED
+        s["run_mode"] = "MIXED"
         s["run_mode_reason"] = (
-            f"{s['api_ok']} eBay Browse API calls OK "
-            f"(active listings — apply discount for sell-price estimate)"
+            f"{s['browse_ok']} Browse calls OK | "
+            f"{s['active_results']} active results | "
+            f"{s['zero_results']} no results | "
+            f"{s['junk_rejected']} junk rejected | "
+            f"{s['keyword_fallback_used']} keyword fallbacks"
         )
-
-    # sold_successes kept for backward compat with scanner.py / notifier.py
-    s["sold_successes"] = s["api_ok"]
-    s["sold_failures"]  = s["api_failed"]
-    s["api_key_missing"] = not bool(getattr(config, "EBAY_APP_ID", ""))
 
     return s
 
 
-# ── OAuth 2.0 Client Credentials ──────────────────────────────────────────────
+# ── ISBN-10 validation ────────────────────────────────────────────────────────
+
+def _is_valid_isbn10(value: str) -> bool:
+    """
+    Return True only if value looks like a real ISBN-10.
+
+    Rejects:
+        - Amazon ASINs: 10-char alphanumeric starting with 'B' (e.g. B0C1XZ6GMB)
+        - Non-ISBN formats: contains spaces, slashes, or other invalid chars
+        - Too short or too long
+        - Clearly non-numeric (ISBN-10 is 9 digits + optional X check digit)
+    """
+    if not value or value in ("nan", "", "N/A"):
+        return False
+
+    v = value.strip()
+
+    # Must be 10 characters
+    if len(v) != 10:
+        return False
+
+    # Amazon ASIN pattern: starts with B, all alphanumeric
+    if v.upper().startswith("B") and v.isalnum():
+        return False
+
+    # Must be 9 digits followed by digit or X
+    if not re.match(r"^\d{9}[\dXx]$", v):
+        return False
+
+    return True
+
+
+# ── Title similarity ──────────────────────────────────────────────────────────
+
+_STOP_WORDS: Set[str] = {
+    "a", "an", "the", "and", "or", "of", "in", "to", "for", "by",
+    "with", "on", "at", "from", "edition", "ed", "vol", "volume",
+    "revised", "updated", "new", "isbn", "paperback", "hardcover",
+    "softcover", "spiral", "bound", "us", "ebook", "digital"
+}
+
+
+def _title_words(title: str) -> Set[str]:
+    """Extract significant lowercase words from a title, dropping stop words."""
+    words = re.findall(r"[a-z0-9]+", title.lower())
+    return {w for w in words if w not in _STOP_WORDS and len(w) > 2}
+
+
+def _title_similarity(book_title: str, listing_title: str) -> float:
+    """
+    Return fraction of book title words found in listing title.
+    Range: 0.0 (no overlap) to 1.0 (all book words in listing).
+    """
+    book_words    = _title_words(book_title)
+    listing_words = _title_words(listing_title)
+
+    if not book_words:
+        return 0.0
+
+    overlap = book_words & listing_words
+    return len(overlap) / len(book_words)
+
+
+def _filter_by_title(
+    listings: List[MarketListing],
+    book_title: str,
+    threshold: float = _MIN_TITLE_SIMILARITY,
+) -> Tuple[List[MarketListing], int]:
+    """
+    Filter listings to those that match the book title.
+    Returns (filtered_list, dropped_count).
+    """
+    if not book_title:
+        return listings, 0
+
+    filtered = [
+        l for l in listings
+        if _title_similarity(book_title, l.title) >= threshold
+    ]
+    dropped = len(listings) - len(filtered)
+
+    if dropped > 0:
+        logger.debug(
+            f"Title filter: kept {len(filtered)}/{len(listings)} listings "
+            f"(dropped {dropped} low-similarity) for '{book_title[:50]}'"
+        )
+
+    return filtered, dropped
+
+
+# ── Junk detection ────────────────────────────────────────────────────────────
+
+def _is_junk_result_set(total_count: int, listings: List[MarketListing]) -> bool:
+    """
+    Return True if this result set looks like a generic commodity pool
+    rather than a specific book's listings.
+
+    Signal: extremely high total count + very low prices.
+    This pattern appears when an ISBN-10 that's actually an ASIN slips
+    through validation, or when eBay returns generic 'used book' lots.
+    """
+    if total_count > _JUNK_TOTAL_THRESHOLD and listings:
+        prices = [l.total_price for l in listings]
+        med    = median(prices)
+        if med < _JUNK_PRICE_CEILING:
+            logger.warning(
+                f"Junk result set detected: {total_count:,} total listings, "
+                f"median price ${med:.2f} — rejecting"
+            )
+            return True
+    return False
+
+
+# ── OAuth token ───────────────────────────────────────────────────────────────
 
 def _get_oauth_token() -> Optional[str]:
-    """
-    Return a valid OAuth access token, using cache when possible.
-
-    Flow: POST to /identity/v1/oauth2/token with Basic Auth
-          (base64 of "app_id:cert_id") and client_credentials grant.
-
-    Returns the token string, or None if auth fails.
-    """
     global _token_cache
 
     now = datetime.now(timezone.utc)
@@ -185,195 +273,329 @@ def _get_oauth_token() -> Optional[str]:
         and _token_cache["expires_at"]
         and now < _token_cache["expires_at"]
     ):
-        logger.debug("Using cached eBay OAuth token")
         return _token_cache["access_token"]
 
     app_id  = getattr(config, "EBAY_APP_ID",  "")
     cert_id = getattr(config, "EBAY_CERT_ID", "")
 
     if not app_id or not cert_id:
-        missing = []
-        if not app_id:  missing.append("EBAY_APP_ID")
-        if not cert_id: missing.append("EBAY_CERT_ID")
+        missing = [k for k, v in [("EBAY_APP_ID", app_id), ("EBAY_CERT_ID", cert_id)] if not v]
         logger.error(
-            f"Cannot get eBay OAuth token — missing credentials: {missing}. "
-            f"Both EBAY_APP_ID and EBAY_CERT_ID are required for the Browse API. "
-            f"Get EBAY_CERT_ID from developer.ebay.com → Application Keys → "
-            f"Production 'Cert ID' column."
+            f"Cannot get eBay OAuth token — missing: {missing}. "
+            f"Both EBAY_APP_ID and EBAY_CERT_ID required for Browse API."
         )
         _stats["token_failed"] = True
         return None
 
-    credentials = base64.b64encode(f"{app_id}:{cert_id}".encode()).decode()
+    creds = base64.b64encode(f"{app_id}:{cert_id}".encode()).decode()
 
     try:
-        logger.debug("Requesting new eBay OAuth token")
         resp = requests.post(
             _OAUTH_URL,
             headers={
-                "Authorization":  f"Basic {credentials}",
-                "Content-Type":   "application/x-www-form-urlencoded",
+                "Authorization": f"Basic {creds}",
+                "Content-Type":  "application/x-www-form-urlencoded",
             },
-            data={
-                "grant_type": "client_credentials",
-                "scope":      _OAUTH_SCOPE,
-            },
+            data={"grant_type": "client_credentials", "scope": _OAUTH_SCOPE},
             timeout=15,
         )
 
         if resp.status_code == 401:
             logger.error(
                 "eBay OAuth 401 — credentials rejected. "
-                "Verify EBAY_APP_ID and EBAY_CERT_ID are both from the "
-                "PRODUCTION column at developer.ebay.com (not Sandbox)."
+                "Verify EBAY_APP_ID and EBAY_CERT_ID are from the PRODUCTION column."
             )
             _stats["token_failed"] = True
             return None
 
         if resp.status_code != 200:
-            logger.error(
-                f"eBay OAuth failed: HTTP {resp.status_code} — {resp.text[:200]}"
-            )
+            logger.error(f"eBay OAuth failed: HTTP {resp.status_code} — {resp.text[:200]}")
             _stats["token_failed"] = True
             return None
 
-        data        = resp.json()
-        token       = data.get("access_token")
-        expires_in  = int(data.get("expires_in", 7200))
-
+        data                         = resp.json()
+        token                        = data.get("access_token")
+        expires_in                   = int(data.get("expires_in", 7200))
         _token_cache["access_token"] = token
         _token_cache["expires_at"]   = now + timedelta(seconds=expires_in - 60)
         _stats["token_ok"]           = True
-
         logger.info(
-            f"eBay OAuth token obtained (expires in {expires_in}s, "
-            f"cached until {_token_cache['expires_at'].strftime('%H:%M:%S UTC')})"
+            f"eBay OAuth token obtained "
+            f"(expires in {expires_in}s, cached until "
+            f"{_token_cache['expires_at'].strftime('%H:%M:%S UTC')})"
         )
         return token
 
     except requests.RequestException as e:
-        logger.error(f"eBay OAuth token request failed: {e}")
+        logger.error(f"eBay OAuth request failed: {e}")
         _stats["token_failed"] = True
         return None
 
 
-# ── Browse API search ──────────────────────────────────────────────────────────
+# ── Finding API: sold comps ───────────────────────────────────────────────────
 
-def _search_by_isbn(
-    token: str,
-    isbn: str,
-    limit: int = 50,
-) -> Tuple[int, list]:
+def _finding_search(isbn: str) -> Tuple[int, list]:
     """
-    Call the Browse API search endpoint for one ISBN.
+    Call the eBay Finding API findCompletedItems endpoint.
+    Returns (count, raw_items). Only needs EBAY_APP_ID (no cert needed).
+    """
+    app_id = getattr(config, "EBAY_APP_ID", "")
+    if not app_id:
+        return 0, []
 
-    Returns (total_count, raw_item_list).
-    total_count is the full result count from eBay (may exceed limit).
-    """
     params = {
-        "gtin":          isbn,            # GTIN = ISBN-13 (EAN-13 format)
-        "category_ids":  _BOOKS_CATEGORY_ID,
-        "filter":        f"buyingOptions:{{FIXED_PRICE}},conditionIds:{{{_USED_CONDITION_IDS}}}",
-        "sort":          "price",         # Cheapest first — helps p25/median calc
-        "limit":         str(limit),
+        "OPERATION-NAME":                 "findCompletedItems",
+        "SERVICE-VERSION":                "1.0.0",
+        "SECURITY-APPNAME":               app_id,
+        "RESPONSE-DATA-FORMAT":           "JSON",
+        "REST-PAYLOAD":                   "",
+        "keywords":                       isbn,
+        "categoryId":                     _BOOKS_CAT,
+        "itemFilter(0).name":             "SoldItemsOnly",
+        "itemFilter(0).value":            "true",
+        "itemFilter(1).name":             "ListingType",
+        "itemFilter(1).value":            "FixedPrice",
+        "sortOrder":                      "EndTimeSoonest",
+        "paginationInput.entriesPerPage": "25",
+        "paginationInput.pageNumber":     "1",
     }
 
-    headers = {
-        "Authorization":            f"Bearer {token}",
-        "X-EBAY-C-MARKETPLACE-ID":  "EBAY_US",
-        "X-EBAY-C-ENDUSERCTX":      "contextualLocation=country=US,zip=10001",
-        "Content-Type":             "application/json",
-    }
-
-    _stats["api_calls"] += 1
+    _stats["finding_calls"] += 1
 
     try:
-        resp = requests.get(
-            _BROWSE_URL,
-            params=params,
-            headers=headers,
-            timeout=15,
+        time.sleep(getattr(config, "EBAY_REQUEST_DELAY", 0.4))
+        resp = requests.get(_FINDING_URL, params=params, timeout=12)
+
+        if resp.status_code != 200:
+            logger.debug(f"Finding API HTTP {resp.status_code} for ISBN {isbn}")
+            _stats["finding_failed"] += 1
+            return 0, []
+
+        data = resp.json()
+        result = data.get("findCompletedItemsResponse", [{}])[0]
+
+        # Check eBay ack
+        ack = result.get("ack", [""])[0]
+        if ack not in ("Success", "Warning"):
+            error_msg = ""
+            try:
+                error_msg = result["errorMessage"][0]["error"][0]["message"][0]
+            except (KeyError, IndexError):
+                pass
+            logger.debug(f"Finding API ack={ack} for ISBN {isbn}: {error_msg}")
+            _stats["finding_failed"] += 1
+            return 0, []
+
+        search_result = result.get("searchResult", [{}])[0]
+        count = int(search_result.get("@count", 0))
+        items = search_result.get("item", []) if count > 0 else []
+        _stats["finding_ok"] += 1
+        return count, items
+
+    except (requests.RequestException, KeyError, IndexError, ValueError) as e:
+        logger.debug(f"Finding API error for ISBN {isbn}: {e}")
+        _stats["finding_failed"] += 1
+        return 0, []
+
+
+def _parse_finding_item(raw: dict) -> Optional[MarketListing]:
+    """Parse one item from Finding API response into a MarketListing."""
+    try:
+        price      = float(raw["sellingStatus"][0]["currentPrice"][0]["__value__"])
+        if price <= 0:
+            return None
+
+        ship_raw   = (
+            raw.get("shippingInfo", [{}])[0]
+               .get("shippingServiceCost", [{}])[0]
+               .get("__value__", "0")
         )
+        shipping   = float(ship_raw or 0)
+        title      = raw.get("title", [""])[0]
+        url        = raw.get("viewItemURL", [""])[0]
+        end_str    = raw.get("listingInfo", [{}])[0].get("endTime", [""])[0]
+        sold_date  = None
+        if end_str:
+            try:
+                sold_date = datetime.fromisoformat(end_str.replace("Z", "+00:00"))
+            except ValueError:
+                pass
+
+        condition_raw = raw.get("condition", [{}])[0]
+        condition     = condition_raw.get("conditionDisplayName", ["Unknown"])[0]
+        condition_id  = condition_raw.get("conditionId", [""])[0]
+
+        return MarketListing(
+            item_id       = raw.get("itemId", [""])[0],
+            title         = title,
+            price         = round(price, 2),
+            shipping      = round(shipping, 2),
+            total_price   = round(price + shipping, 2),
+            condition     = condition,
+            condition_id  = str(condition_id),
+            listing_type  = LISTING_SOLD,
+            source        = SOURCE_EBAY_BROWSE,
+            listing_url   = url,
+            sold_date     = sold_date,
+            retrieved_at  = datetime.now(),
+        )
+    except (KeyError, IndexError, ValueError, TypeError) as e:
+        logger.debug(f"Skipping malformed Finding API item: {e}")
+        return None
+
+
+def _get_sold_comps(isbn: str, book_title: str) -> Tuple[List[MarketListing], int]:
+    """
+    Fetch sold comps via Finding API for one ISBN.
+    Applies title filtering and junk detection.
+    Returns (listings, raw_total).
+    """
+    total, raw_items = _finding_search(isbn)
+    if not raw_items:
+        return [], 0
+
+    listings = [_parse_finding_item(r) for r in raw_items]
+    listings = [l for l in listings if l is not None]
+
+    if _is_junk_result_set(total, listings):
+        _stats["junk_rejected"] += 1
+        return [], 0
+
+    if book_title:
+        listings, dropped = _filter_by_title(listings, book_title)
+        if dropped > 0:
+            _stats["title_filtered"] += dropped
+
+    return listings, total
+
+
+# ── Browse API: active listings ───────────────────────────────────────────────
+
+def _browse_search_isbn(token: str, isbn: str, limit: int = 50) -> Tuple[int, list]:
+    """Browse API search by GTIN (ISBN). Returns (total, raw_items)."""
+    params = {
+        "gtin":          isbn,
+        "category_ids":  _BOOKS_CAT,
+        "filter":        f"buyingOptions:{{FIXED_PRICE}},conditionIds:{{{_USED_CONDS}}}",
+        "sort":          "price",
+        "limit":         str(limit),
+    }
+    headers = {
+        "Authorization":           f"Bearer {token}",
+        "X-EBAY-C-MARKETPLACE-ID": "EBAY_US",
+        "X-EBAY-C-ENDUSERCTX":    "contextualLocation=country=US,zip=10001",
+        "Content-Type":            "application/json",
+    }
+
+    _stats["browse_calls"] += 1
+
+    try:
+        time.sleep(getattr(config, "EBAY_REQUEST_DELAY", 0.4))
+        resp = requests.get(_BROWSE_URL, params=params, headers=headers, timeout=15)
 
         if resp.status_code == 401:
-            # Token may have expired mid-run — clear cache so next call re-fetches
             _token_cache["access_token"] = None
             _token_cache["expires_at"]   = None
-            logger.warning("eBay Browse API 401 — token expired mid-run, will retry")
-            _stats["api_failed"] += 1
+            logger.warning("Browse API 401 — token expired, will retry on next call")
+            _stats["browse_failed"] += 1
             return 0, []
 
         if resp.status_code == 403:
             logger.error(
-                "eBay Browse API 403 Forbidden — "
-                "App ID may not have Browse API access. "
-                "Verify at developer.ebay.com that your production app "
-                "has 'Buy APIs' enabled."
+                "Browse API 403 — check that your app has 'Buy APIs' enabled "
+                "at developer.ebay.com"
             )
-            _stats["api_failed"] += 1
+            _stats["browse_failed"] += 1
             return 0, []
 
         if resp.status_code == 429:
-            logger.warning("eBay Browse API rate limit hit (429) — backing off 5s")
+            logger.warning("Browse API rate limit (429) — backing off 5s")
             time.sleep(5)
-            _stats["api_failed"] += 1
+            _stats["browse_failed"] += 1
             return 0, []
 
         if resp.status_code != 200:
-            logger.error(
-                f"eBay Browse API HTTP {resp.status_code} "
-                f"for ISBN {isbn}: {resp.text[:300]}"
-            )
-            _stats["api_failed"] += 1
+            logger.error(f"Browse API HTTP {resp.status_code} for ISBN {isbn}: {resp.text[:200]}")
+            _stats["browse_failed"] += 1
             return 0, []
 
         data  = resp.json()
         total = int(data.get("total", 0))
         items = data.get("itemSummaries", [])
-        _stats["api_ok"] += 1
+        _stats["browse_ok"] += 1
         return total, items
 
     except requests.exceptions.Timeout:
-        logger.warning(f"eBay Browse API timeout for ISBN {isbn}")
-        _stats["api_failed"] += 1
+        logger.warning(f"Browse API timeout for ISBN {isbn}")
+        _stats["browse_failed"] += 1
         return 0, []
     except requests.RequestException as e:
-        logger.error(f"eBay Browse API request error for ISBN {isbn}: {e}")
-        _stats["api_failed"] += 1
+        logger.error(f"Browse API request error for ISBN {isbn}: {e}")
+        _stats["browse_failed"] += 1
         return 0, []
 
 
-def _parse_item(raw: dict) -> Optional[MarketListing]:
+def _browse_search_keywords(token: str, title: str, limit: int = 20) -> Tuple[int, list]:
     """
-    Parse one item from Browse API response into a MarketListing.
-    Returns None if required fields are missing or price is zero.
+    Browse API keyword search by title — used when ISBN search returns 0.
+    Uses first 80 characters of title to avoid overly long queries.
     """
+    query = title[:80].strip()
+    params = {
+        "q":            query,
+        "category_ids": _BOOKS_CAT,
+        "filter":       f"buyingOptions:{{FIXED_PRICE}},conditionIds:{{{_USED_CONDS}}}",
+        "sort":         "price",
+        "limit":        str(limit),
+    }
+    headers = {
+        "Authorization":           f"Bearer {token}",
+        "X-EBAY-C-MARKETPLACE-ID": "EBAY_US",
+        "X-EBAY-C-ENDUSERCTX":    "contextualLocation=country=US,zip=10001",
+        "Content-Type":            "application/json",
+    }
+
+    _stats["browse_calls"] += 1
+
     try:
-        # Price
-        price_info = raw.get("price", {})
-        price      = float(price_info.get("value", 0) or 0)
+        time.sleep(getattr(config, "EBAY_REQUEST_DELAY", 0.4))
+        resp = requests.get(_BROWSE_URL, params=params, headers=headers, timeout=15)
+
+        if resp.status_code != 200:
+            logger.debug(f"Browse keyword search HTTP {resp.status_code} for '{query[:40]}'")
+            _stats["browse_failed"] += 1
+            return 0, []
+
+        data  = resp.json()
+        total = int(data.get("total", 0))
+        items = data.get("itemSummaries", [])
+        _stats["browse_ok"] += 1
+        return total, items
+
+    except requests.RequestException as e:
+        logger.debug(f"Browse keyword search error: {e}")
+        _stats["browse_failed"] += 1
+        return 0, []
+
+
+def _parse_browse_item(raw: dict) -> Optional[MarketListing]:
+    """Parse one Browse API item into a MarketListing."""
+    try:
+        price = float(raw.get("price", {}).get("value", 0) or 0)
         if price <= 0:
             return None
 
-        # Shipping (first available shipping option)
-        shipping = 0.0
-        shipping_options = raw.get("shippingOptions", [])
-        if shipping_options:
-            shipping_cost = shipping_options[0].get("shippingCost", {})
-            shipping      = float(shipping_cost.get("value", 0) or 0)
+        ship_opts = raw.get("shippingOptions", [])
+        shipping  = 0.0
+        if ship_opts:
+            shipping = float(ship_opts[0].get("shippingCost", {}).get("value", 0) or 0)
 
-        # Seller
-        seller_info = raw.get("seller", {})
-        fb_pct_str  = seller_info.get("feedbackPercentage", "")
-        fb_pct      = float(fb_pct_str) if fb_pct_str else None
-        fb_score    = seller_info.get("feedbackScore")
+        seller = raw.get("seller", {})
+        fb_pct_str = seller.get("feedbackPercentage", "")
+        fb_pct     = float(fb_pct_str) if fb_pct_str else None
+        fb_score   = seller.get("feedbackScore")
 
-        # Condition
-        condition    = raw.get("condition", "Unknown")
-        condition_id = raw.get("conditionId", "")
-
-        # Image
-        image = raw.get("image", {})
+        image     = raw.get("image", {})
         image_url = image.get("imageUrl") if image else None
 
         return MarketListing(
@@ -382,8 +604,8 @@ def _parse_item(raw: dict) -> Optional[MarketListing]:
             price                 = round(price, 2),
             shipping              = round(shipping, 2),
             total_price           = round(price + shipping, 2),
-            condition             = condition,
-            condition_id          = str(condition_id),
+            condition             = raw.get("condition", "Unknown"),
+            condition_id          = str(raw.get("conditionId", "")),
             listing_type          = LISTING_ACTIVE,
             source                = SOURCE_EBAY_BROWSE,
             listing_url           = raw.get("itemWebUrl", ""),
@@ -394,11 +616,104 @@ def _parse_item(raw: dict) -> Optional[MarketListing]:
             retrieved_at          = datetime.now(),
         )
     except (ValueError, TypeError, KeyError) as e:
-        logger.debug(f"Skipping malformed eBay item: {e} — raw: {str(raw)[:120]}")
+        logger.debug(f"Skipping malformed Browse item: {e}")
         return None
 
 
-def _assign_confidence(count: int) -> str:
+def _get_active_listings(
+    token: str,
+    isbn13: str,
+    isbn10: str,
+    book_title: str,
+) -> Tuple[List[MarketListing], int, str]:
+    """
+    Fetch active listings via Browse API.
+    Tries ISBN-13, then valid ISBN-10, then keyword fallback.
+    Returns (listings, raw_total, search_method_used).
+    """
+    searches = [("isbn13", isbn13)]
+
+    if _is_valid_isbn10(isbn10):
+        searches.append(("isbn10", isbn10))
+    else:
+        if isbn10 and isbn10 not in ("", "nan"):
+            logger.debug(
+                f"Skipping invalid ISBN-10 '{isbn10}' for Browse search "
+                f"(looks like ASIN or malformed)"
+            )
+
+    for method, value in searches:
+        total, raw_items = _browse_search_isbn(token, value)
+
+        if not raw_items:
+            continue
+
+        listings = [_parse_browse_item(r) for r in raw_items]
+        listings = [l for l in listings if l is not None]
+
+        if _is_junk_result_set(total, listings):
+            _stats["junk_rejected"] += 1
+            logger.warning(
+                f"Junk rejected for {method}={value} "
+                f"({total:,} total, low median)"
+            )
+            continue
+
+        # Title filter
+        if book_title:
+            listings, dropped = _filter_by_title(listings, book_title)
+            if dropped > 0:
+                _stats["title_filtered"] += dropped
+            if not listings:
+                logger.debug(
+                    f"All {len(raw_items)} Browse results failed title filter "
+                    f"for '{book_title[:45]}' — trying next search"
+                )
+                continue
+
+        if listings:
+            if method == "isbn10":
+                _stats["isbn10_hits"] += 1
+            else:
+                _stats["isbn13_hits"] += 1
+            return listings, total, method
+
+    # All ISBN searches failed — try keyword fallback
+    if book_title:
+        logger.info(
+            f"ISBN searches returned no usable results for '{book_title[:50]}' "
+            f"— trying keyword fallback"
+        )
+        total, raw_items = _browse_search_keywords(token, book_title)
+
+        if raw_items:
+            listings = [_parse_browse_item(r) for r in raw_items]
+            listings = [l for l in listings if l is not None]
+
+            if book_title:
+                listings, dropped = _filter_by_title(listings, book_title, threshold=0.5)
+                _stats["title_filtered"] += dropped
+
+            if listings:
+                _stats["keyword_fallback_used"] += 1
+                logger.info(
+                    f"Keyword fallback: {len(listings)} usable listings "
+                    f"for '{book_title[:45]}'"
+                )
+                return listings, total, "keyword"
+
+    return [], 0, "none"
+
+
+def _assign_sold_confidence(count: int) -> str:
+    if count >= 3:
+        return MCONF_SOLD_STRONG
+    if count >= 1:
+        return MCONF_SOLD_WEAK
+    return MCONF_NONE
+
+
+def _assign_active_confidence(count: int) -> str:
     if count >= 10:
         return MCONF_ACTIVE_STRONG
     if count >= 5:
@@ -408,32 +723,13 @@ def _assign_confidence(count: int) -> str:
     return MCONF_NONE
 
 
-# ── Public interface ───────────────────────────────────────────────────────────
+# ── Public source class ───────────────────────────────────────────────────────
 
 class EbayBrowseSource(AbstractMarketSource):
     """
-    eBay market data via Browse API (active listings only).
+    eBay market data using both Finding API (sold comps) and Browse API (active).
 
-    WHAT THIS PROVIDES:
-        Currently listed used books on eBay.com, priced fixed-price only.
-        Sorted by price ascending. Returns up to 50 listings per query.
-
-    WHAT THIS DOES NOT PROVIDE:
-        Sold/completed listing history. The Browse API has no endpoint for
-        sold data. That requires the Marketplace Insights API (restricted).
-
-    REVENUE ESTIMATE STRATEGY:
-        Active listing median = typical asking price.
-        profit_analyzer applies config.EBAY_ACTIVE_PRICE_DISCOUNT (default 10%)
-        to convert asking price → estimated sell price. This accounts for:
-            - Not all listed books sell
-            - Price negotiation / Best Offer
-            - Seasonality and demand fluctuations
-
-    SEARCH STRATEGY:
-        1. Try ISBN-13 via gtin= parameter (structured product lookup)
-        2. If 0 results, try ISBN-10 via gtin= (some older listings use ISBN-10)
-        3. If still 0, return empty result (profit_analyzer uses Amazon fallback)
+    Priority: sold comps > active listings > keyword fallback > empty
     """
 
     @property
@@ -441,59 +737,85 @@ class EbayBrowseSource(AbstractMarketSource):
         return SOURCE_EBAY_BROWSE
 
     def is_available(self) -> bool:
-        return bool(
-            getattr(config, "EBAY_APP_ID",  "") and
-            getattr(config, "EBAY_CERT_ID", "")
-        )
+        return bool(getattr(config, "EBAY_APP_ID", ""))
 
-    def get_active_listings(self, isbn13: str, isbn10: str = "") -> MarketResult:
+    def get_active_listings(
+        self,
+        isbn13: str,
+        isbn10: str = "",
+        book_title: str = "",
+    ) -> MarketResult:
         """
-        Fetch active eBay listings for a book by ISBN.
-        Returns MarketResult (never raises).
+        Full search pipeline: sold comps first, active listings if no sold data.
+        Returns a MarketResult with the best available data.
+
+        Note: book_title is an optional extension to the base interface signature.
+        The market_data/__init__.py passes it through when available.
         """
-        # Authenticate
+        # ── 1. Sold comps via Finding API ─────────────────────────────────
+        sold_listings = []
+
+        for isbn, label in [(isbn13, "13"), (isbn10, "10")]:
+            if not isbn or isbn in ("", "nan"):
+                continue
+            if label == "10" and not _is_valid_isbn10(isbn):
+                logger.debug(f"Skipping invalid ISBN-10 '{isbn}' for Finding API")
+                continue
+
+            comps, total = _get_sold_comps(isbn, book_title)
+            if comps:
+                sold_listings = comps
+                logger.info(
+                    f"Sold comps: {len(comps)} listings via Finding API "
+                    f"(ISBN-{label}={isbn}) for '{book_title[:45]}'"
+                )
+                _stats["sold_results"] += 1
+                break
+
+        if sold_listings:
+            price_summary = PriceSummary.from_listings(sold_listings)
+            confidence    = _assign_sold_confidence(len(sold_listings))
+
+            if price_summary:
+                logger.info(
+                    f"SOLD comps: {len(sold_listings)} | "
+                    f"median=${price_summary.median:.2f} | "
+                    f"range=${price_summary.low:.2f}–${price_summary.high:.2f} | "
+                    f"conf={confidence}"
+                )
+
+            return MarketResult(
+                isbn13            = isbn13,
+                isbn10            = isbn10,
+                source            = SOURCE_EBAY_BROWSE,
+                listing_type      = LISTING_SOLD,
+                listings          = sold_listings,
+                price_summary     = price_summary,
+                raw_total         = len(sold_listings),
+                market_confidence = confidence,
+            )
+
+        # ── 2. Active listings via Browse API ─────────────────────────────
         token = _get_oauth_token()
         if not token:
             return MarketResult(
-                isbn13       = isbn13,
-                isbn10       = isbn10,
-                source       = SOURCE_EBAY_BROWSE,
-                listing_type = LISTING_ACTIVE,
-                error        = "OAuth token unavailable — check EBAY_APP_ID and EBAY_CERT_ID",
+                isbn13            = isbn13,
+                isbn10            = isbn10,
+                source            = SOURCE_EBAY_BROWSE,
+                listing_type      = LISTING_ACTIVE,
+                error             = "OAuth token unavailable",
                 market_confidence = MCONF_NONE,
             )
 
-        time.sleep(getattr(config, "EBAY_REQUEST_DELAY", 0.4))
+        active_listings, raw_total, method = _get_active_listings(
+            token, isbn13, isbn10, book_title
+        )
 
-        # Try ISBN-13 first, fall back to ISBN-10
-        fallback_used = False
-        isbns_to_try  = [(isbn13, False)]
-        if isbn10 and isbn10 not in ("", "nan"):
-            isbns_to_try.append((isbn10, True))
-
-        total_count = 0
-        raw_items   = []
-
-        for isbn, is_fallback in isbns_to_try:
-            if not isbn or isbn == "nan":
-                continue
-            logger.debug(
-                f"eBay Browse search: ISBN {'10' if is_fallback else '13'}={isbn}"
-            )
-            total_count, raw_items = _search_by_isbn(token, isbn)
-            if raw_items:
-                fallback_used = is_fallback
-                logger.info(
-                    f"eBay Browse: {len(raw_items)}/{total_count} listings "
-                    f"(ISBN{'10' if is_fallback else '13'}={isbn})"
-                )
-                break
-
-        if not raw_items:
+        if not active_listings:
             _stats["zero_results"] += 1
             logger.info(
-                f"eBay Browse: 0 results "
-                f"(ISBN-13={isbn13}, ISBN-10={isbn10 or 'n/a'})"
+                f"No usable eBay data for '{book_title[:55]}' "
+                f"(ISBN-13={isbn13}) — all searches exhausted"
             )
             return MarketResult(
                 isbn13            = isbn13,
@@ -502,28 +824,18 @@ class EbayBrowseSource(AbstractMarketSource):
                 listing_type      = LISTING_ACTIVE,
                 raw_total         = 0,
                 market_confidence = MCONF_NONE,
-                fallback_used     = fallback_used,
             )
 
-        # Parse all items
-        listings = [_parse_item(r) for r in raw_items]
-        listings = [l for l in listings if l is not None]
-
-        if is_fallback and raw_items:
-            _stats["isbn10_hits"] += 1
-        elif raw_items:
-            _stats["isbn13_hits"] += 1
-
-        price_summary = PriceSummary.from_listings(listings)
-        confidence    = _assign_confidence(len(listings))
+        _stats["active_results"] += 1
+        price_summary = PriceSummary.from_listings(active_listings)
+        confidence    = _assign_active_confidence(len(active_listings))
 
         if price_summary:
             logger.info(
-                f"eBay Browse: {len(listings)} listings | "
+                f"ACTIVE ({method}): {len(active_listings)} listings | "
                 f"median=${price_summary.median:.2f} | "
-                f"range=${price_summary.low:.2f}–${price_summary.high:.2f} | "
                 f"spread={price_summary.spread_pct:.0f}% | "
-                f"confidence={confidence}"
+                f"conf={confidence} | '{book_title[:40]}'"
             )
 
         return MarketResult(
@@ -531,21 +843,16 @@ class EbayBrowseSource(AbstractMarketSource):
             isbn10            = isbn10,
             source            = SOURCE_EBAY_BROWSE,
             listing_type      = LISTING_ACTIVE,
-            listings          = listings,
+            listings          = active_listings,
             price_summary     = price_summary,
-            raw_total         = total_count,
+            raw_total         = raw_total,
             market_confidence = confidence,
-            fallback_used     = fallback_used,
+            fallback_used     = (method == "keyword"),
         )
 
     def get_sold_listings(self, isbn13: str, isbn10: str = "") -> Optional[MarketResult]:
         """
-        Sold listings are not available via Browse API.
-        Returns None. To get sold data, apply for Marketplace Insights API access.
+        Sold listings are now attempted via Finding API inside get_active_listings().
+        This method exists for interface compliance only.
         """
-        logger.debug(
-            "get_sold_listings() called on EbayBrowseSource — "
-            "sold data is not available via Browse API. "
-            "Apply for Marketplace Insights API for sold comps."
-        )
         return None

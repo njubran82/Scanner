@@ -269,8 +269,9 @@ def run_scan() -> List[Opportunity]:
         else:
             logger.info("No new or significant opportunities — immediate alert suppressed")
 
-        # ── 7. Daily summary — once per day ──────────────────────────────
-       if config.DAILY_SUMMARY_ENABLED:
+      # ── 7. Summary email ─────────────────────────────────────────────
+        # Weekly schedule: every run IS the weekly summary, so always send.
+        if config.DAILY_SUMMARY_ENABLED:
             if should_send_daily_summary() or config.ALWAYS_SEND_SUMMARY:
                 logger.info("Sending run summary email")
                 sent = send_daily_summary(

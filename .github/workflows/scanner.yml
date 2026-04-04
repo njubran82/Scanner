@@ -40,12 +40,16 @@ jobs:
           TWILIO_TO_NUMBER:     ${{ secrets.TWILIO_TO_NUMBER }}
         run: python run_scanner.py
 
-      - name: Commit state file
+    - name: Commit state file
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin "$GITHUB_REF_NAME"
+          STATE=$(cat scanner_state.json 2>/dev/null || echo '{}')
+          git checkout -- . 2>/dev/null || true
+          git clean -fd 2>/dev/null || true
+          git pull origin "$GITHUB_REF_NAME"
+          echo "$STATE" > scanner_state.json
           git add scanner_state.json
           git diff --staged --quiet || git commit -m "chore: update scanner state [skip ci]"
           git push

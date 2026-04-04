@@ -31,7 +31,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from suppliers import get_supplier
 from profit_analyzer import analyze_all
-from ebay_searcher import get_api_health_summary
+from market_data import get_health_summary as get_api_health_summary
 from state_tracker import (
     classify_opportunities,
     should_send_daily_summary,

@@ -2,9 +2,11 @@ name: BooksGoat Scanner
 
 on:
   schedule:
-    # Every Monday at 8:00 AM UTC (aligns with weekly BooksGoat sheet refresh on Sundays)
     - cron: "0 8 * * 1"
-  workflow_dispatch:   # Manual "Run workflow" button in GitHub UI — use this for testing
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   scan:
@@ -37,3 +39,13 @@ jobs:
           TWILIO_FROM_NUMBER:   ${{ secrets.TWILIO_FROM_NUMBER }}
           TWILIO_TO_NUMBER:     ${{ secrets.TWILIO_TO_NUMBER }}
         run: python run_scanner.py
+
+      - name: Commit state file
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git add scanner_state.json
+          git diff --staged --quiet || git commit -m "chore: update scanner state [skip ci]"
+          git push

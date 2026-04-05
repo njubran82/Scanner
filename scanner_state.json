@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_daily_summary_date": "2026-04-04"
+    "last_daily_summary_date": "2026-04-05"
   },
   "9780197574591": {
     "isbn13": "9780197574591",
@@ -411,16 +411,16 @@
   "9781305100558": {
     "isbn13": "9781305100558",
     "title": "Milady Standard Barbering, 6th edition by Milady",
-    "profit": 99.42,
-    "roi": 1.2913,
-    "last_alerted_profit": 99.42,
-    "last_alerted_roi": 1.2913,
-    "revenue_estimate": 203.35,
+    "profit": 116.59,
+    "roi": 1.5144,
+    "last_alerted_profit": 116.59,
+    "last_alerted_roi": 1.5144,
+    "revenue_estimate": 223.15,
     "revenue_source": "ebay_active",
     "confidence": "LOW",
     "first_seen": "2026-04-04T13:26:51.326318+00:00",
-    "last_alerted": "2026-04-04T18:07:53.933748+00:00",
-    "alert_count": 2
+    "last_alerted": "2026-04-05T17:16:47.858438+00:00",
+    "alert_count": 3
   },
   "9781683674405": {
     "isbn13": "9781683674405",
@@ -733,16 +733,16 @@
   "9780323988131": {
     "isbn13": "9780323988131",
     "title": "A Workbook of Ethical Case Scenarios in Applied Behavior Analysis",
-    "profit": 20.59,
-    "roi": 1.03,
-    "last_alerted_profit": 20.59,
-    "last_alerted_roi": 1.03,
-    "revenue_estimate": 46.78,
+    "profit": 23.69,
+    "roi": 1.1851,
+    "last_alerted_profit": 23.69,
+    "last_alerted_roi": 1.1851,
+    "revenue_estimate": 50.35,
     "revenue_source": "ebay_active",
     "confidence": "LOW",
     "first_seen": "2026-04-04T18:07:53.933748+00:00",
-    "last_alerted": "2026-04-04T18:07:53.933748+00:00",
-    "alert_count": 1
+    "last_alerted": "2026-04-05T17:16:47.858438+00:00",
+    "alert_count": 2
   },
   "9798350705218": {
     "isbn13": "9798350705218",

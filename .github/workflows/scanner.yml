@@ -10,7 +10,6 @@ permissions:
 jobs:
   scan:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -53,3 +52,30 @@ jobs:
           git add scanner_state.json scanner_results.csv
           git diff --staged --quiet || git commit -m "chore: update scanner state [skip ci]"
           git push
+
+  list:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv
+
+      - name: Pull latest scanner results
+        run: git pull origin main
+
+      - name: Run lister
+        env:
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+        run: python lister.py

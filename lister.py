@@ -1,271 +1,150 @@
 # ============================================================
 # lister.py
-# Reads scanner_results.csv, filters profitable opportunities,
-# and creates eBay listings via the Inventory API.
-#
-# HOW TO USE:
-#   1. Run ebay_auth_setup.py once to authorize your account
-#   2. Fill in your policy IDs in lister_config.py
-#   3. Set DRY_RUN = True in lister_config.py to preview first
-#   4. Run: python lister.py
-#   5. When happy, set DRY_RUN = False and run again to go live
+# Lists profitable books on eBay from scanner_results.csv.
+# Strategy: list any book profitable after fees, price
+# competitively near eBay active lower end to sell faster.
+# lister_state.json is the unified registry used by tracker.
 # ============================================================
 
-import csv
-import json
-import os
-import sys
-import time
-import requests
+import csv, json, os, sys, time, requests
 from datetime import datetime
 
-# Fix Windows console encoding for emoji characters
-if sys.stdout.encoding != 'utf-8':
+if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 import lister_config as cfg
 from lister_auth import get_auth_headers
 
-# eBay Inventory API base URL
 BASE_URL = "https://api.ebay.com/sell/inventory/v1"
 
 
-# ==============================================================
-# SECTION 1: Load & filter scanner CSV
-# ==============================================================
-
-def load_opportunities(csv_path):
-    """
-    Reads scanner_results.csv and returns a list of rows
-    that pass the profit, margin, confidence, and concern filters.
-    """
-    if not os.path.exists(csv_path):
-        print(f"❌ Scanner CSV not found: {csv_path}")
-        return []
-
-    opportunities = []
-    skipped = []
-
-    with open(csv_path, newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            skip_reason = should_skip(row)
-            if skip_reason:
-                skipped.append((row.get("Title", "Unknown"), skip_reason))
-            else:
-                opportunities.append(row)
-
-    print(f"\n📋 Scanner CSV loaded: {len(opportunities)} opportunities pass filters, {len(skipped)} skipped.")
-    if skipped:
-        print(f"\n⏭️  Skipped:")
-        for title, reason in skipped[:10]:  # Show first 10 to avoid spam
-            print(f"   - {title[:55]}: {reason}")
-        if len(skipped) > 10:
-            print(f"   ... and {len(skipped) - 10} more.")
-
-    return opportunities
-
+# ── Filtering ─────────────────────────────────────────────
 
 def should_skip(row):
-    """
-    Returns a skip reason string if this row should be excluded,
-    or None if it should be listed.
-    """
-    # --- Confidence filter ---
-    raw_confidence = row.get("Confidence", "").strip()
-    # Strip emoji prefixes like "🟠 LOW" → "LOW"
-    confidence = raw_confidence.split()[-1] if raw_confidence else ""
-    if confidence not in cfg.ALLOWED_CONFIDENCE:
-        return f"Confidence '{confidence}' not in allowed list"
-
-    # --- Profit filter ---
-    try:
-        profit = float(row.get("Profit", "0").replace("$", "").replace(",", ""))
-        if profit < cfg.MIN_PROFIT:
-            return f"Profit ${profit:.2f} below minimum ${cfg.MIN_PROFIT}"
-    except ValueError:
-        return "Could not parse Profit value"
-
-    # --- Margin filter ---
-    try:
-        margin_str = row.get("Margin", "0").replace("%", "").strip()
-        margin = float(margin_str)
-        if margin < cfg.MIN_MARGIN:
-            return f"Margin {margin:.1f}% below minimum {cfg.MIN_MARGIN}%"
-    except ValueError:
-        return "Could not parse Margin value"
-
-    # --- Concern flags filter ---
-    concerns = row.get("Concerns", "")
-    for bad_flag in cfg.SKIP_IF_CONCERNS:
-        if bad_flag in concerns:
-            return f"Has concern flag: {bad_flag}"
-
-    # --- ISBN required ---
     isbn = row.get("ISBN-13", "").strip()
     if not isbn or len(isbn) < 10:
-        return "Missing or invalid ISBN-13"
-
-    return None  # All good — include this one
-
-
-# ==============================================================
-# SECTION 2: Load state (to avoid re-listing duplicates)
-# ==============================================================
-
-def load_state():
-    """
-    Loads lister state from disk.
-    'listed_isbns' = flat list for quick duplicate checks.
-    'listings'     = dict of ISBN → offer/listing details (used by auto_delist).
-    """
-    if os.path.exists(cfg.LISTER_STATE):
-        with open(cfg.LISTER_STATE, "r") as f:
-            state = json.load(f)
-        # Ensure listings dict exists for older state files
-        if "listings" not in state:
-            state["listings"] = {}
-        return state
-    return {"listed_isbns": [], "listings": {}, "last_run": None}
-
-
-
-def save_state(state):
-    """Saves updated state back to disk."""
-    with open(cfg.LISTER_STATE, "w") as f:
-        json.dump(state, f, indent=2)
-
-
-# ==============================================================
-# SECTION 3: Build eBay API payloads
-# ==============================================================
-
-def calculate_price(row):
-    """
-    Determine the listing price based on PRICING_MODE in config.
-    Either matches the scanner revenue price or undercuts slightly.
-    """
+        return "Missing ISBN"
     try:
-        revenue = float(row.get("Revenue", "0").replace("$", "").replace(",", ""))
+        cost    = float(str(row.get("Cost",    "0")).replace("$","").replace(",","").strip())
+        revenue = float(str(row.get("Revenue", "0")).replace("$","").replace(",","").strip())
     except ValueError:
-        revenue = 0.0
-
-    if cfg.PRICING_MODE == "UNDERCUT":
-        return max(round(revenue - cfg.UNDERCUT_AMOUNT, 2), 1.00)
-    else:
-        return round(revenue, 2)
-
-
-def get_cover_image_url(isbn):
-    """
-    Looks up a book cover image URL using Open Library's cover API.
-    Returns a URL string if found, or None if not available.
-    Open Library serves cover images directly by ISBN — no API key needed.
-    """
-    # Open Library cover URL — returns the image directly
-    # We check if it resolves to a real image (not a placeholder)
-    url = f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg"
-    try:
-        response = requests.head(url, timeout=5, allow_redirects=True)
-        # Open Library returns a 1x1 placeholder if no cover exists
-        # Real covers are much larger — check Content-Length
-        content_length = int(response.headers.get("Content-Length", 0))
-        if response.status_code == 200 and content_length > 1000:
-            return url
-    except Exception:
-        pass
-
-    # Fallback: Google Books thumbnail
-    try:
-        gb_url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}"
-        response = requests.get(gb_url, timeout=5)
-        if response.status_code == 200:
-            items = response.json().get("items", [])
-            if items:
-                image_links = items[0].get("volumeInfo", {}).get("imageLinks", {})
-                # Prefer large thumbnail
-                img = image_links.get("large") or image_links.get("thumbnail")
-                if img:
-                    # Convert to https and remove curl parameter
-                    img = img.replace("http://", "https://").replace("&edge=curl", "")
-                    return img
-    except Exception:
-        pass
-
+        return "Cannot parse price"
+    if cost <= 0 or revenue <= 0:
+        return "Zero price"
+    raw_conf   = str(row.get("Confidence","")).strip()
+    confidence = raw_conf.split()[-1].upper() if raw_conf else ""
+    if confidence not in cfg.ALLOWED_CONFIDENCE:
+        return f"Confidence '{confidence}' not allowed"
+    for flag in cfg.SKIP_IF_CONCERNS:
+        if flag in str(row.get("Concerns","")):
+            return f"Blocked flag: {flag}"
+    if calculate_competitive_price(row) is None:
+        return "Not profitable at any competitive price"
     return None
 
 
-def build_inventory_item_payload(row):
-    """
-    Builds the JSON payload for PUT /inventory_item/{sku}
-    This tells eBay what the product IS (title, description, ISBN).
-    Automatically fetches cover image from Open Library or Google Books.
-    """
-    title = row.get("Title", "").strip()
-    # eBay title max = 80 chars
-    if len(title) > 80:
-        title = title[:77] + "..."
+def load_opportunities(csv_path):
+    if not os.path.exists(csv_path):
+        print(f"CSV not found: {csv_path}"); return []
+    opps, skipped = [], []
+    with open(csv_path, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            r = should_skip(row)
+            (skipped if r else opps).append((row, r) if r else row)
+    # Normalise: opps contains dicts, skipped contains tuples
+    clean_opps = [x for x in opps if isinstance(x, dict)]
+    print(f"CSV: {len(clean_opps)} pass, {len(skipped)} skipped.")
+    return clean_opps
 
-    isbn = row.get("ISBN-13", "").strip()
 
-    # Try to get cover image automatically
-    cover_url = get_cover_image_url(isbn)
-    if cover_url:
-        print(f"  🖼️  Cover image found.")
-    else:
-        print(f"  ⚠️  No cover image found — listing may require manual photo.")
+# ── State ─────────────────────────────────────────────────
 
-    payload = {
+def load_state():
+    if os.path.exists(cfg.LISTER_STATE):
+        s = json.load(open(cfg.LISTER_STATE))
+        s.setdefault("listings", {}); s.setdefault("listed_isbns", [])
+        return s
+    return {"listed_isbns": [], "listings": {}, "last_run": None}
+
+def save_state(state):
+    json.dump(state, open(cfg.LISTER_STATE,"w"), indent=2)
+
+
+# ── Pricing ───────────────────────────────────────────────
+
+def calculate_competitive_price(row):
+    """Undercut eBay active by UNDERCUT_PCT; fall back to full price."""
+    try:
+        revenue = float(str(row.get("Revenue","0")).replace("$","").replace(",","").strip())
+        cost    = float(str(row.get("Cost",   "0")).replace("$","").replace(",","").strip())
+    except ValueError:
+        return None
+    if revenue <= 0 or cost <= 0:
+        return None
+    for price in [round(revenue*(1-cfg.UNDERCUT_PCT),2), round(revenue,2)]:
+        if price*(1-cfg.EBAY_FEE_RATE) - cost >= cfg.MIN_PROFIT_AFTER_FEES:
+            return price
+    return None
+
+
+# ── Cover image ───────────────────────────────────────────
+
+def get_cover_image_url(isbn):
+    url = f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg"
+    try:
+        r = requests.head(url, timeout=5, allow_redirects=True)
+        if r.status_code==200 and int(r.headers.get("Content-Length",0))>1000:
+            return url
+    except Exception:
+        pass
+    try:
+        r = requests.get(f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}", timeout=5)
+        if r.status_code==200:
+            items = r.json().get("items",[])
+            if items:
+                links = items[0].get("volumeInfo",{}).get("imageLinks",{})
+                img = links.get("large") or links.get("thumbnail")
+                if img:
+                    return img.replace("http://","https://").replace("&edge=curl","")
+    except Exception:
+        pass
+    return None
+
+
+# ── eBay API payloads ─────────────────────────────────────
+
+def build_inventory_item_payload(row, cover_url):
+    title = row.get("Title","").strip()[:80]
+    isbn  = row.get("ISBN-13","").strip()
+    p = {
         "product": {
             "title": title,
             "description": (
-                f"{title}\n\n"
-                f"ISBN-13: {isbn}\n\n"
-                f"Brand new. "
-                f"Ships directly from our supplier. "
-                f"Typically dispatches within {cfg.DISPATCH_TIME_DAYS} business days."
+                f"{title}\n\nISBN-13: {isbn}\n\n"
+                f"Brand new. Ships in {cfg.DISPATCH_TIME_DAYS} business days."
             ),
             "isbn": [isbn],
         },
         "condition": cfg.CONDITION_ID,
         "conditionDescription": cfg.CONDITION_DESCRIPTION,
-        "availability": {
-            "shipToLocationAvailability": {
-                "quantity": cfg.QUANTITY
-            }
-        }
+        "availability": {"shipToLocationAvailability": {"quantity": cfg.QUANTITY}},
     }
-
     if cover_url:
-        payload["product"]["imageUrls"] = [cover_url]
+        p["product"]["imageUrls"] = [cover_url]
+    return p
 
-    return payload
 
-
-def build_offer_payload(row, sku):
-    """
-    Builds the JSON payload for POST /offer
-    This tells eBay the PRICE, CATEGORY, and POLICIES for the listing.
-    """
-    price = calculate_price(row)
-
+def build_offer_payload(row, sku, price):
     return {
-        "sku":            sku,
-        "marketplaceId":  cfg.MARKETPLACE_ID,
-        "format":         "FIXED_PRICE",
-        "availableQuantity": cfg.QUANTITY,
-        "categoryId":     cfg.DEFAULT_CATEGORY_ID,
+        "sku": sku, "marketplaceId": cfg.MARKETPLACE_ID,
+        "format": "FIXED_PRICE", "availableQuantity": cfg.QUANTITY,
+        "categoryId": cfg.DEFAULT_CATEGORY_ID,
         "listingDescription": (
-            f"{row.get('Title', '').strip()}\n\n"
-            f"ISBN-13: {row.get('ISBN-13', '').strip()}\n\n"
-            f"Brand new. Ships within {cfg.DISPATCH_TIME_DAYS} business days."
+            f"{row.get('Title','').strip()}\n\n"
+            f"ISBN-13: {row.get('ISBN-13','').strip()}\n\n"
+            f"Brand new. Ships in {cfg.DISPATCH_TIME_DAYS} business days."
         ),
-        "pricingSummary": {
-            "price": {
-                "currency": cfg.CURRENCY,
-                "value":    str(price)
-            }
-        },
+        "pricingSummary": {"price": {"currency": cfg.CURRENCY, "value": str(price)}},
         "listingDuration": cfg.LISTING_DURATION,
         "merchantLocationKey": cfg.MERCHANT_LOCATION_KEY,
         "listingPolicies": {
@@ -276,256 +155,155 @@ def build_offer_payload(row, sku):
     }
 
 
-# ==============================================================
-# SECTION 4: eBay API calls
-# ==============================================================
+# ── eBay API calls ────────────────────────────────────────
+
+def _headers():
+    h = get_auth_headers(); h["Content-Language"] = "en-US"; return h
 
 def create_inventory_item(sku, payload):
-    """PUT /inventory_item/{sku} — creates or updates a product record."""
-    url = f"{BASE_URL}/inventory_item/{sku}"
-    headers = get_auth_headers()
-    headers["Content-Language"] = "en-US"
-    response = requests.put(url, headers=headers, json=payload)
-    return response
-
+    return requests.put(f"{BASE_URL}/inventory_item/{sku}", headers=_headers(), json=payload)
 
 def create_offer(payload):
-    """POST /offer — creates a listing offer (not yet published/live)."""
-    url = f"{BASE_URL}/offer"
-    headers = get_auth_headers()
-    headers["Content-Language"] = "en-US"
-    response = requests.post(url, headers=headers, json=payload)
-    return response
+    return requests.post(f"{BASE_URL}/offer", headers=_headers(), json=payload)
+
+def publish_offer_single(offer_id):
+    return requests.post(f"{BASE_URL}/offer/{offer_id}/publish", headers=_headers())
 
 
-def bulk_publish_offers(offer_ids):
-    """POST /bulk_publish_offer — makes up to 25 offers go live at once."""
-    url = f"{BASE_URL}/bulk_publish_offer"
-    payload = {
-        "requests": [{"offerId": oid} for oid in offer_ids]
-    }
-    headers = get_auth_headers()
-    headers["Content-Language"] = "en-US"
-    response = requests.post(url, headers=headers, json=payload)
-    return response
+# ── Logging ───────────────────────────────────────────────
+
+def append_log(rows):
+    fields = ["timestamp","isbn","title","price","offer_id","listing_id","status","notes"]
+    exists = os.path.exists(cfg.LISTER_LOG)
+    with open(cfg.LISTER_LOG,"a",newline="",encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        if not exists: w.writeheader()
+        w.writerows(rows)
 
 
-# ==============================================================
-# SECTION 5: Logging
-# ==============================================================
-
-def append_log(log_rows):
-    """Appends results to lister_log.csv for your records."""
-    file_exists = os.path.exists(cfg.LISTER_LOG)
-    with open(cfg.LISTER_LOG, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=[
-            "timestamp", "isbn", "title", "price", "offer_id", "status", "notes"
-        ])
-        if not file_exists:
-            writer.writeheader()
-        writer.writerows(log_rows)
-
-
-# ==============================================================
-# SECTION 6: Main listing loop
-# ==============================================================
+# ── Main loop ─────────────────────────────────────────────
 
 def run_lister():
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"\n{'='*60}")
-    print(f"📦 eBay Lister — {timestamp}")
-    print(f"{'='*60}")
-
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"\n{'='*60}\neBay Lister — {ts}\n{'='*60}")
     if cfg.DRY_RUN:
-        print("🟡 DRY RUN MODE — no real listings will be created.")
-        print("   Set DRY_RUN = False in lister_config.py to go live.\n")
+        print("DRY RUN — no real listings will be created.\n")
 
-    # Validate required config values before doing anything
     if not cfg.DRY_RUN:
-        missing = []
-        for field in ["FULFILLMENT_POLICY_ID", "PAYMENT_POLICY_ID", "RETURN_POLICY_ID", "MERCHANT_LOCATION_KEY"]:
-            val = getattr(cfg, field, "")
-            if not val or val.startswith("YOUR_"):
-                missing.append(field)
+        missing = [f for f in ["FULFILLMENT_POLICY_ID","PAYMENT_POLICY_ID",
+                                "RETURN_POLICY_ID","MERCHANT_LOCATION_KEY"]
+                   if str(getattr(cfg,f,"")).startswith("YOUR_")]
         if missing:
-            print(f"❌ Config incomplete. Fill in these values in lister_config.py first:")
-            for m in missing:
-                print(f"   - {m}")
-            return
+            print(f"Config incomplete: {missing}"); return
 
-    # Load what we've already listed (avoid duplicates)
-    state = load_state()
-    already_listed = set(state.get("listed_isbns", []))
+    state         = load_state()
+    already_listed = set(state.get("listed_isbns",[]))
+    opps          = load_opportunities(cfg.SCANNER_CSV)
+    if not opps: return
 
-    # Load and filter scanner CSV
-    opportunities = load_opportunities(cfg.SCANNER_CSV)
-    if not opportunities:
-        print("No opportunities to list. Exiting.")
-        return
-
-    # Remove already-listed ISBNs
-    new_opps = [r for r in opportunities if r.get("ISBN-13", "") not in already_listed]
-    print(f"\n🆕 New (not yet listed): {len(new_opps)} | Already listed: {len(opportunities) - len(new_opps)}")
-
-    if not new_opps:
-        print("Nothing new to list. All opportunities already active.")
-        return
+    new_opps = [r for r in opps if r.get("ISBN-13","") not in already_listed]
+    print(f"New to list: {len(new_opps)} | Already listed: {len(opps)-len(new_opps)}")
+    if not new_opps: print("Nothing new."); return
 
     # Preview table
-    print(f"\n{'─'*80}")
-    print(f"{'#':<4} {'Title':<50} {'ISBN':<15} {'Price':>8} {'Profit':>8}")
-    print(f"{'─'*80}")
+    print(f"\n{'─'*85}")
+    print(f"{'#':<4} {'Title':<46} {'ISBN':<14} {'Price':>8} {'Profit':>8} {'Conf'}")
+    print(f"{'─'*85}")
     for i, row in enumerate(new_opps, 1):
-        title  = row.get("Title", "")[:48]
-        isbn   = row.get("ISBN-13", "")
-        price  = calculate_price(row)
-        profit = row.get("Profit", "")
-        print(f"{i:<4} {title:<50} {isbn:<15} ${price:>7.2f} {profit:>8}")
-    print(f"{'─'*80}")
+        price  = calculate_competitive_price(row) or 0
+        try:
+            cost = float(str(row.get("Cost","0")).replace("$","").replace(",",""))
+        except: cost = 0
+        profit = round(price*(1-cfg.EBAY_FEE_RATE)-cost, 2)
+        conf   = str(row.get("Confidence","")).split()[-1] if row.get("Confidence") else "?"
+        print(f"{i:<4} {row.get('Title','')[:44]:<46} {row.get('ISBN-13',''):<14} "
+              f"${price:>7.2f} ${profit:>7.2f} {conf}")
+    print(f"{'─'*85}")
 
     if cfg.DRY_RUN:
-        print(f"\n✅ Dry run complete. {len(new_opps)} listings would be created.")
-        print("Set DRY_RUN = False in lister_config.py when ready to go live.")
-        return
+        print(f"\nDry run done. {len(new_opps)} would be listed."); return
 
-    # ---- LIVE MODE: Create listings ----
-    print(f"\n🚀 Creating {len(new_opps)} eBay listings...\n")
-
-    log_rows      = []
-    offer_ids     = []
-    success_isbns = []
-    pending_rows  = []  # Full row data kept alongside offer_ids for state saving
+    print(f"\nCreating {len(new_opps)} listings...\n")
+    log_rows = []
 
     for i, row in enumerate(new_opps, 1):
-        isbn  = row.get("ISBN-13", "").strip()
-        title = row.get("Title", "Unknown")[:55]
+        isbn  = row.get("ISBN-13","").strip()
+        title = row.get("Title","Unknown")[:55]
         sku   = f"ISBN-{isbn}"
-        price = calculate_price(row)
+        price = calculate_competitive_price(row)
+        if price is None: continue
+
+        try: cost = float(str(row.get("Cost","0")).replace("$","").replace(",",""))
+        except: cost = 0.0
+        bgsgoat_url = row.get("URL","")
 
         print(f"[{i}/{len(new_opps)}] {title}...")
 
-        # Step A: Create inventory item
-        inv_payload = build_inventory_item_payload(row)
-        inv_response = create_inventory_item(sku, inv_payload)
+        cover_url = get_cover_image_url(isbn)
+        print(f"  Cover: {'found' if cover_url else 'none'}")
 
-        if inv_response.status_code not in (200, 204):
-            print(f"  ❌ Inventory item failed ({inv_response.status_code}): {inv_response.text[:100]}")
-            log_rows.append({
-                "timestamp": timestamp, "isbn": isbn, "title": title,
-                "price": price, "offer_id": "", "status": "FAILED_INVENTORY",
-                "notes": inv_response.text[:150]
-            })
+        # Step A: inventory item
+        inv_r = create_inventory_item(sku, build_inventory_item_payload(row, cover_url))
+        if inv_r.status_code not in (200, 204):
+            msg = inv_r.text[:120]
+            print(f"  Inventory FAILED ({inv_r.status_code}): {msg}")
+            log_rows.append({"timestamp":ts,"isbn":isbn,"title":title,"price":price,
+                              "offer_id":"","listing_id":"","status":"FAILED_INVENTORY","notes":msg})
             continue
+        print(f"  Inventory item OK.")
 
-        print(f"  ✅ Inventory item created.")
-
-        # Step B: Create offer
-        offer_payload = build_offer_payload(row, sku)
-        offer_response = create_offer(offer_payload)
-
-        if offer_response.status_code not in (200, 201):
-            print(f"  ❌ Offer creation failed ({offer_response.status_code}): {offer_response.text[:100]}")
-            log_rows.append({
-                "timestamp": timestamp, "isbn": isbn, "title": title,
-                "price": price, "offer_id": "", "status": "FAILED_OFFER",
-                "notes": offer_response.text[:150]
-            })
+        # Step B: offer
+        offer_r = create_offer(build_offer_payload(row, sku, price))
+        if offer_r.status_code not in (200, 201):
+            msg = offer_r.text[:120]
+            print(f"  Offer FAILED ({offer_r.status_code}): {msg}")
+            log_rows.append({"timestamp":ts,"isbn":isbn,"title":title,"price":price,
+                              "offer_id":"","listing_id":"","status":"FAILED_OFFER","notes":msg})
             continue
+        offer_id = offer_r.json().get("offerId")
+        print(f"  Offer created: {offer_id}")
 
-        offer_id = offer_response.json().get("offerId")
-        offer_ids.append(offer_id)
-        success_isbns.append(isbn)
-        pending_rows.append(row)
-        print(f"  ✅ Offer created. Offer ID: {offer_id}")
-
-        # Small delay to be polite to the API
-        time.sleep(0.3)
-
-        # Publish in batches of 25 (eBay limit)
-        if len(offer_ids) >= cfg.BATCH_SIZE:
-            publish_batch(offer_ids, success_isbns, pending_rows, log_rows, timestamp, state)
-            offer_ids     = []
-            success_isbns = []
-            pending_rows  = []
-
-    # Publish any remaining offers
-    if offer_ids:
-        publish_batch(offer_ids, success_isbns, pending_rows, log_rows, timestamp, state)
-
-    # Update state — published_isbns already added inside publish_batch
-    state["last_run"] = timestamp
-    save_state(state)
-
-    # Save log
-    append_log(log_rows)
-
-    # Summary
-    published = sum(1 for r in log_rows if r["status"] == "PUBLISHED")
-    failed    = len(log_rows) - published
-    print(f"\n{'='*60}")
-    print(f"✅ Done! {published} listed | {failed} failed")
-    print(f"📄 Log saved to: {cfg.LISTER_LOG}")
-    print(f"{'='*60}\n")
-
-
-def publish_batch(offer_ids, isbns, rows, log_rows, timestamp, state):
-    """
-    Publishes a batch of up to 25 offers and logs results.
-    Also saves offer_id + listing_id into state['listings'] per ISBN
-    so that auto_delist.py can find and end listings later.
-    """
-    print(f"\n  📤 Publishing batch of {len(offer_ids)} offers...")
-    pub_response = bulk_publish_offers(offer_ids)
-
-    if pub_response.status_code not in (200, 207):
-        print(f"  ❌ Bulk publish failed ({pub_response.status_code}): {pub_response.text[:100]}")
-        for oid, isbn in zip(offer_ids, isbns):
-            log_rows.append({
-                "timestamp": timestamp, "isbn": isbn, "title": "",
-                "price": "", "offer_id": oid, "status": "FAILED_PUBLISH",
-                "notes": pub_response.text[:100]
-            })
-        return
-
-    results = pub_response.json().get("responses", [])
-    for result, isbn, row in zip(results, isbns, rows):
-        status_code = result.get("statusCode", 0)
-        listing_id  = result.get("listingId", "")
-        offer_id    = result.get("offerId", "")
-        errors      = result.get("errors", [])
-        error_msg   = errors[0].get("message", "") if errors else ""
-
-        if status_code == 200:
-            print(f"  🟢 LIVE — Listing ID: {listing_id} | ISBN: {isbn}")
-            log_rows.append({
-                "timestamp": timestamp, "isbn": isbn,
-                "title": row.get("Title", "")[:55],
-                "price": calculate_price(row), "offer_id": offer_id,
-                "status": "PUBLISHED", "notes": f"listingId={listing_id}"
-            })
-            # Save rich state so auto_delist can find this listing later
-            state["listed_isbns"] = list(set(state.get("listed_isbns", [])) | {isbn})
+        # Step C: publish
+        pub_r = publish_offer_single(offer_id)
+        if pub_r.status_code in (200, 201):
+            listing_id = pub_r.json().get("listingId","")
+            print(f"  LIVE — Listing ID: {listing_id}")
+            log_rows.append({"timestamp":ts,"isbn":isbn,"title":title,"price":price,
+                              "offer_id":offer_id,"listing_id":listing_id,
+                              "status":"PUBLISHED","notes":""})
+            # Update unified state — tracker reads this
+            state["listed_isbns"] = list(set(state.get("listed_isbns",[])) | {isbn})
             state["listings"][isbn] = {
-                "offer_id":   offer_id,
-                "listing_id": listing_id,
-                "title":      row.get("Title", "")[:80],
-                "price":      calculate_price(row),
-                "listed_at":  timestamp,
-                "status":     "ACTIVE"
+                "offer_id":               offer_id,
+                "listing_id":             listing_id,
+                "title":                  row.get("Title","")[:80],
+                "ebay_price":             price,
+                "cost":                   cost,
+                "booksgoat_url":          bgsgoat_url,
+                "listed_at":              ts,
+                "source":                 "auto",
+                "status":                 "ACTIVE",
+                "last_checked":           None,
+                "last_supplier_price":    cost,
+                "last_supplier_available": True,
+                "delist_reason":          None,
+                "delisted_at":            None,
             }
         else:
-            print(f"  🔴 Failed — {error_msg} | ISBN: {isbn}")
-            log_rows.append({
-                "timestamp": timestamp, "isbn": isbn,
-                "title": row.get("Title", "")[:55],
-                "price": "", "offer_id": offer_id,
-                "status": "FAILED_PUBLISH", "notes": error_msg
-            })
+            msg = pub_r.text[:150]
+            print(f"  Publish FAILED ({pub_r.status_code}): {msg}")
+            log_rows.append({"timestamp":ts,"isbn":isbn,"title":title,"price":price,
+                              "offer_id":offer_id,"listing_id":"","status":"FAILED_PUBLISH","notes":msg})
 
+        time.sleep(0.3)
 
-# ==============================================================
-# Entry point
-# ==============================================================
+    state["last_run"] = ts
+    save_state(state)
+    if log_rows: append_log(log_rows)
+
+    published = sum(1 for r in log_rows if r["status"]=="PUBLISHED")
+    print(f"\n{'='*60}\nDone. {published} listed | {len(log_rows)-published} failed\n{'='*60}\n")
+
 
 if __name__ == "__main__":
     run_lister()

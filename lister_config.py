@@ -1,104 +1,46 @@
 # ============================================================
 # lister_config.py
-# Configuration for the eBay auto-lister
-# Edit the values in this file to match your eBay account
+# Strategy: prioritise sell-through and volume over high margin.
+# Any book that is profitable after eBay fees gets listed.
 # ============================================================
 
-# ----------------------------------------------------------
-# FILTERING — which scanner results to list
-# ----------------------------------------------------------
+# Minimum profit in $ after eBay fees
+MIN_PROFIT_AFTER_FEES = 1.00
+MIN_PROFIT            = 1.00
+MIN_MARGIN            = 0.0
 
-# Only list books with these confidence levels
-# Options: "LOW", "MEDIUM", "HIGH"
-# FALLBACK is excluded by default — no real eBay data
-ALLOWED_CONFIDENCE = ["LOW", "MEDIUM", "HIGH"]
+# All confidence levels including FALLBACK are allowed
+ALLOWED_CONFIDENCE = ["LOW", "MEDIUM", "HIGH", "FALLBACK"]
 
-# Minimum profit required before listing ($)
-MIN_PROFIT = 15.00
+# Only skip if genuinely no usable price data
+SKIP_IF_CONCERNS = ["NO_PRICE_DATA"]
 
-# Minimum margin required before listing (%)
-MIN_MARGIN = 20.0
-
-# Skip listings with these concern flags
-# WIDE_SPREAD means the eBay price range is unreliable
-SKIP_IF_CONCERNS = ["FALLBACK_PRICING", "NO_EBAY_DATA", "WIDE_SPREAD"]
-
-# ----------------------------------------------------------
-# LISTING SETTINGS
-# ----------------------------------------------------------
-
-# How long listings stay active (days)
-# 30 is the max for fixed-price
-LISTING_DURATION = "GTC"  # GTC = Good Till Cancelled (recommended)
-
-# Quantity per listing — ALWAYS 1 for dropshipping
-QUANTITY = 100
-
-# Handling time in days — give yourself dropship buffer
-DISPATCH_TIME_DAYS = 20
-
-# Condition for all books
-# Inventory API values: NEW, LIKE_NEW, VERY_GOOD, GOOD, ACCEPTABLE
-# (Note: these are different from the old Trading API numeric codes)
-CONDITION_ID = "NEW"
+# ------ LISTING SETTINGS ------
+LISTING_DURATION      = "GTC"
+QUANTITY              = 100
+DISPATCH_TIME_DAYS    = 20
+CONDITION_ID          = "NEW"
 CONDITION_DESCRIPTION = "Brand new. Never opened. Ships direct from supplier."
+DEFAULT_CATEGORY_ID   = "171228"
 
-# eBay book category IDs
-# 171228 = Textbooks, Education  |  267 = Books (general)
-DEFAULT_CATEGORY_ID = "171228"
+# ------ COMPETITIVE PRICING ------
+UNDERCUT_PCT  = 0.01      # Undercut eBay active price by 1%
+EBAY_FEE_RATE = 0.1325    # eBay Final Value Fee
 
-# ----------------------------------------------------------
-# PRICING STRATEGY
-# ----------------------------------------------------------
-
-# How to price against the eBay active listing price
-# "MATCH"    = use exactly the revenue price from scanner
-# "UNDERCUT" = list slightly below (see UNDERCUT_AMOUNT)
-PRICING_MODE = "UNDERCUT"
-
-# How much to undercut the active listing price by ($)
-# Helps your listing sell faster
-UNDERCUT_AMOUNT = 1.00
-
-# ----------------------------------------------------------
-# YOUR eBAY ACCOUNT POLICIES
-# How to find these:
-#   1. Go to eBay Seller Hub
-#   2. Click Account → Business Policies
-#   3. Copy the Policy ID numbers from each policy
-# ----------------------------------------------------------
-
+# ------ BUSINESS POLICIES ------
 FULFILLMENT_POLICY_ID = "391308514023"
 PAYMENT_POLICY_ID     = "391308491023"
 RETURN_POLICY_ID      = "391308498023"
 MERCHANT_LOCATION_KEY = "home1"
 
-# ----------------------------------------------------------
-# FILE PATHS
-# ----------------------------------------------------------
-
-# Scanner output CSV to read from
-SCANNER_CSV = "scanner_results.csv"
-
-# Log file to record what was listed
-LISTER_LOG = "lister_log.csv"
-
-# State file to avoid re-listing duplicates
+# ------ FILE PATHS ------
+SCANNER_CSV  = "scanner_results.csv"
+LISTER_LOG   = "lister_log.csv"
 LISTER_STATE = "lister_state.json"
 
-# ----------------------------------------------------------
-# eBay API SETTINGS
-# ----------------------------------------------------------
-
-# Marketplace ID — US eBay
+# ------ eBay API ------
 MARKETPLACE_ID = "EBAY_US"
+CURRENCY       = "USD"
+BATCH_SIZE     = 25
 
-# Currency
-CURRENCY = "USD"
-
-# Max offers to publish in one batch (eBay limit = 25)
-BATCH_SIZE = 25
-
-# Dry run mode — if True, prints what WOULD be listed but doesn't actually list
-# Set to False when you're ready to go live
 DRY_RUN = False

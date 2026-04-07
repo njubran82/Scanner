@@ -24,7 +24,7 @@ CONDITION_DESCRIPTION = "Brand new. Never opened. Ships direct from supplier."
 DEFAULT_CATEGORY_ID   = "171228"
 
 # ------ COMPETITIVE PRICING ------
-UNDERCUT_PCT  = 0.01      # Undercut eBay active price by 1%
+UNDERCUT_PCT  = 0.1      # Undercut eBay active price by 1%
 EBAY_FEE_RATE = 0.1325    # eBay Final Value Fee
 
 # ------ BUSINESS POLICIES ------

@@ -94,12 +94,12 @@ EBAY_PER_ORDER_FEE = 0.00
 # ─── Profit & Opportunity Thresholds ──────────────────────────────────────────
 
 # Minimum net profit per book to qualify as an opportunity
-MIN_PROFIT = 10.00
+MIN_PROFIT = 1.00
 
 # Minimum margin as a decimal (0.10 = 10%)
 # Kept low because this is a volume-focused dropshipping business.
 # The $10 hard floor is the primary gate; margin is a secondary sanity check.
-MIN_MARGIN = 0.10
+MIN_MARGIN = 0.0
 
 # Amazon price fallback: if no eBay sold data exists, use Amazon price × discount
 # as a conservative eBay revenue estimate. Flagged clearly in all outputs.

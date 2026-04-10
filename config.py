@@ -171,6 +171,23 @@ TWILIO_TO_NUMBER     = os.getenv("TWILIO_TO_NUMBER", "")
 SMS_MIN_OPPORTUNITIES = 1   # Don't SMS unless at least this many new opps found
 
 
+# ─── Amazon Price Comparison (Keepa) ──────────────────────────────────────────
+#
+# Keepa fetches live Amazon new prices for each book by ISBN.
+# Adds amazon_new, amazon_3p_low, and amazon_vs_ebay columns to scan results.
+#
+# Setup:
+#   1. Sign up at https://keepa.com and subscribe to any paid plan (~$20/month)
+#   2. Get your API key from https://keepa.com/#!api
+#   3. Add KEEPA_API_KEY to .env (local) and GitHub Secrets (cloud)
+#
+# Set KEEPA_ENABLED = False to disable without removing the key.
+
+KEEPA_ENABLED      = bool(os.getenv("KEEPA_API_KEY", ""))  # Auto-enables if key exists
+KEEPA_API_KEY      = os.getenv("KEEPA_API_KEY", "")
+KEEPA_REQUEST_DELAY = 1.2    # Seconds between requests (1 token/min plan = 1.2s safe)
+
+
 # ─── Scheduling ───────────────────────────────────────────────────────────────
 
 SCHEDULER_ENABLED = False

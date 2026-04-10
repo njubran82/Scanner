@@ -24,7 +24,7 @@ from datetime import datetime
 
 # Your GitHub raw CSV URL
 # Format: https://raw.githubusercontent.com/{user}/{repo}/main/scanner_results.csv
-GITHUB_CSV_URL = "https://raw.githubusercontent.com/njubran82/BooksGOAT-Scanner/main/scanner_results.csv"
+GITHUB_CSV_URL = "https://raw.githubusercontent.com/njubran82/Scanner/main/scanner_results.csv"
 
 # Where to save the downloaded CSV
 LOCAL_CSV_PATH = r"E:\Book\Lister\scanner_results.csv"

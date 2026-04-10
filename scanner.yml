@@ -1,0 +1,82 @@
+name: BooksGoat Scanner
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scanner
+        env:
+          EBAY_APP_ID:          ${{ secrets.EBAY_APP_ID }}
+          EBAY_CERT_ID:         ${{ secrets.EBAY_CERT_ID }}
+          SMTP_HOST:            ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:            ${{ secrets.SMTP_PORT }}
+          SMTP_USER:            ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD:        ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:           ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:             ${{ secrets.EMAIL_TO }}
+          TWILIO_ACCOUNT_SID:   ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN:    ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER:   ${{ secrets.TWILIO_FROM_NUMBER }}
+          TWILIO_TO_NUMBER:     ${{ secrets.TWILIO_TO_NUMBER }}
+          KEEPA_API_KEY:        ${{ secrets.KEEPA_API_KEY }}
+        run: python run_scanner.py
+
+      - name: Commit state file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          STATE=$(cat scanner_state.json 2>/dev/null || echo '{}')
+          RESULTS=$(cat scanner_results.csv 2>/dev/null || echo '')
+          git checkout -- . 2>/dev/null || true
+          git clean -fd 2>/dev/null || true
+          git pull origin "$GITHUB_REF_NAME"
+          echo "$STATE" > scanner_state.json
+          echo "$RESULTS" > scanner_results.csv
+          git add scanner_state.json scanner_results.csv
+          git diff --staged --quiet || git commit -m "chore: update scanner state [skip ci]"
+          git push
+
+  list:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv
+
+      - name: Pull latest scanner results
+        run: git pull origin main
+
+      - name: Run lister
+        env:
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+        run: python lister.py

@@ -48,8 +48,11 @@ CSV_LATEST_PATH = "scanner_results.csv"
 
 # ── CSV ───────────────────────────────────────────────────────────────────────
 
-def save_results_csv(all_results: List[Opportunity]) -> str:
+def save_results_csv(all_results: List[Opportunity], keepa_data: dict = None) -> str:
     """Save all results to scanner_results.csv + timestamped archive."""
+    if keepa_data is None:
+        keepa_data = {}
+
     sorted_results = sorted(
         all_results,
         key=lambda o: (not o.is_opportunity, -o.profit)
@@ -62,12 +65,26 @@ def save_results_csv(all_results: List[Opportunity]) -> str:
         "eBay Sold Count", "eBay Sold Median", "Price Spread %",
         "eBay Active Count", "eBay Active Median",
         "Amazon Price", "Amazon Rank",
+        "Amazon Live (New)", "Amazon Live (3P Low)", "Amazon vs eBay",
         "Concern Flags", "Skip Reason", "Data Source",
     ]
 
     rows = []
     for opp in sorted_results:
-        b = opp.book
+        b    = opp.book
+        kd   = keepa_data.get(b.isbn13, {})
+
+        # Amazon live prices from Keepa
+        amz_new    = f"${kd['amazon_new']:.2f}"  if kd.get("amazon_new")  else ""
+        amz_3p     = f"${kd['new_3p_low']:.2f}"  if kd.get("new_3p_low")  else ""
+        amz_best   = kd.get("best_new")
+
+        if amz_best and opp.is_opportunity:
+            diff = ((opp.revenue_estimate - amz_best) / amz_best) * 100
+            amz_vs = f"{diff:+.1f}%"
+        else:
+            amz_vs = ""
+
         rows.append([
             "YES" if opp.is_opportunity else "NO",
             opp.confidence,
@@ -85,6 +102,7 @@ def save_results_csv(all_results: List[Opportunity]) -> str:
             f"${opp.ebay_active_median:.2f}" if opp.ebay_active_median else "",
             f"${b.amazon_price:.2f}" if b.amazon_price else "",
             b.amazon_rank or "",
+            amz_new, amz_3p, amz_vs,
             opp.concern_str,
             opp.skip_reason,
             b.source,
@@ -236,6 +254,21 @@ def run_scan() -> List[Opportunity]:
             f"Mode: {api_health['run_mode']}"
         )
 
+        # ── 2b. Keepa Amazon price enrichment (optional) ─────────────────
+        keepa_data = {}
+        if getattr(config, "KEEPA_ENABLED", False) and opportunities:
+            try:
+                from market_data.keepa import get_amazon_price
+                logger.info(f"Fetching Keepa Amazon prices for {len(opportunities)} opportunities...")
+                for opp in opportunities:
+                    isbn = opp.book.isbn13
+                    if isbn:
+                        kd = get_amazon_price(isbn, config.KEEPA_API_KEY)
+                        keepa_data[isbn] = kd
+                logger.info(f"Keepa: {sum(1 for v in keepa_data.values() if v.get('best_new'))} prices found")
+            except Exception as e:
+                logger.warning(f"Keepa enrichment failed (non-fatal): {e}")
+
         # ── 3. Classify ──────────────────────────────────────────────────
         new_opps, significant, suppressed = classify_opportunities(opportunities)
 
@@ -245,7 +278,7 @@ def run_scan() -> List[Opportunity]:
         )
 
         # ── 5. Save CSV (every run) ──────────────────────────────────────
-        csv_path = save_results_csv(all_results)
+        csv_path = save_results_csv(all_results, keepa_data=keepa_data)
 
         # ── 6. Immediate alert — new or significant only ─────────────────
         if new_opps or significant:

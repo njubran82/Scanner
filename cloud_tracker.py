@@ -146,30 +146,28 @@ def assess_risk(isbn: str, entry: dict, sheet_data: dict | None) -> dict | None:
     """
     Returns {"reason": str, "detail": str} if listing should be delisted, else None.
 
-    sheet_data is None if the ISBN was not found in the catalog at all.
+    IMPORTANT: The BooksGoat Google Sheet is an incomplete feed — it only
+    contains books BooksGoat has chosen to include (~92 books). Your tracked
+    listings may include books not in the sheet that are still available on
+    BooksGoat's website. Therefore:
+      - Missing from sheet → no action (availability checked by local tracker)
+      - Price = 0 in sheet → delist (explicit unavailability signal)
+      - Price spike → delist
+      - Profit gone → delist
     """
     ebay_price = float(entry.get("ebay_price", 0) or 0)
     orig_cost  = float(entry.get("cost", 0) or 0)
 
-    # ── Rule 1: ISBN not in sheet at all = OOS ─────────────
+    # ── Not in sheet — no price data, skip silently ────────
     if sheet_data is None:
-        return {
-            "reason": "OUT_OF_STOCK",
-            "detail": "ISBN not found in BooksGoat catalog (removed or delisted)"
-        }
+        return None
 
-    # ── Rule 2: Explicitly unavailable ────────────────────
-    if not sheet_data.get("available", True):
-        return {
-            "reason": "OUT_OF_STOCK",
-            "detail": "BooksGoat price is 0 or unavailable in sheet"
-        }
-
+    # ── Price is 0 or explicitly unavailable ──────────────
     new_price = sheet_data.get("price")
-    if new_price is None:
-        return None  # Can't determine price — don't delist on uncertainty
+    if new_price is None or new_price <= 0:
+        return None  # No usable price — don't delist on uncertainty
 
-    # ── Rule 3: Price spike vs original cost ──────────────
+    # ── Rule 1: Price spike vs original cost ──────────────
     if orig_cost > 0:
         spike_pct = ((new_price - orig_cost) / orig_cost) * 100
         if spike_pct >= PRICE_SPIKE_PCT:
@@ -181,8 +179,8 @@ def assess_risk(isbn: str, entry: dict, sheet_data: dict | None) -> dict | None:
                 )
             }
 
-    # ── Rule 4: Profit gone negative ──────────────────────
-    if ebay_price > 0 and new_price > 0:
+    # ── Rule 2: Profit gone below floor ───────────────────
+    if ebay_price > 0:
         new_profit = ebay_price * (1 - EBAY_FEE_RATE) - new_price
         if new_profit < MIN_PROFIT_FLOOR:
             return {

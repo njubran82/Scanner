@@ -220,7 +220,15 @@ def scan():
                 continue
 
         listing_price = calculate_listing_price(median)
-        profit        = calculate_profit(book['cost'], listing_price)
+
+        # Amazon price check — undercut Amazon by 5% if it's cheaper than our eBay price
+        amazon_price = book.get('amazon_price')
+        if amazon_price and amazon_price < listing_price:
+            amazon_beating_price = round(amazon_price * 0.95, 2)
+            log.info(f"  Amazon (${amazon_price:.2f}) < eBay (${listing_price:.2f}) — repricing to ${amazon_beating_price:.2f}")
+            listing_price = amazon_beating_price
+
+        profit = calculate_profit(book['cost'], listing_price)
 
         if profit < MIN_PROFIT:
             skipped_no_profit += 1

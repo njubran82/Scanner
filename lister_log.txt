@@ -969,3 +969,84 @@
 2026-04-11 19:09:23,527 INFO LISTER DONE: 15 listed, 30 failed
 2026-04-11 19:09:23,528 INFO ============================================================
 2026-04-11 19:09:24,747 INFO Email alert sent
+2026-04-11 19:19:34,458 INFO ============================================================
+2026-04-11 19:19:34,458 INFO LISTER STARTED — 2026-04-11 19:19:34
+2026-04-11 19:19:34,458 INFO ============================================================
+2026-04-11 19:19:34,459 INFO Processing 30 opportunities...
+2026-04-11 19:19:34,730 INFO Listing: Sterile Processing Technical Manual Workbook (CRCST Workbook
+2026-04-11 19:19:35,589 WARNING   No image found for B0C1XZ4BQV — skipping
+2026-04-11 19:19:35,589 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-11 19:19:36,214 WARNING   No image found for 9781032836072 — skipping
+2026-04-11 19:19:36,214 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-11 19:19:36,910 WARNING   No image found for 9781943378210 — skipping
+2026-04-11 19:19:36,910 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-11 19:19:37,686 WARNING   No image found for 9781636940267 — skipping
+2026-04-11 19:19:37,687 INFO Listing: FYI: For Your Improvement â For Learners, Managers, Mentor
+2026-04-11 19:19:38,149 INFO   Image: Open Library (9781933578170)
+2026-04-11 19:19:39,311 INFO   Offer already exists (150219187011) — updating and publishing
+2026-04-11 19:19:42,788 INFO   ✅ Listed | $61.25 | Profit: $12.14 | ListingID: 358436418540
+2026-04-11 19:19:43,789 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-11 19:19:44,423 WARNING   No image found for 9781641950473 — skipping
+2026-04-11 19:19:44,423 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-11 19:19:45,393 WARNING   No image found for 9780197609026 — skipping
+2026-04-11 19:19:45,394 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-11 19:19:46,165 WARNING   No image found for 9781337711067 — skipping
+2026-04-11 19:19:46,165 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-11 19:19:46,913 WARNING   No image found for 9781683674405 — skipping
+2026-04-11 19:19:46,913 INFO Listing: Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statisti
+2026-04-11 19:19:47,299 INFO   Image: Open Library (9781439840955)
+2026-04-11 19:19:48,400 INFO   Offer already exists (150219223011) — updating and publishing
+2026-04-11 19:19:52,506 INFO   ✅ Listed | $69.65 | Profit: $11.43 | ListingID: 358436418695
+2026-04-11 19:19:53,507 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-11 19:19:54,003 INFO   Image: Open Library (9781466516946)
+2026-04-11 19:19:55,130 INFO   Offer already exists (150219233011) — updating and publishing
+2026-04-11 19:19:58,141 INFO   ✅ Listed | $215.02 | Profit: $109.54 | ListingID: 358436418812
+2026-04-11 19:19:59,141 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 19:19:59,462 INFO   Image: Open Library (9780195335286)
+2026-04-11 19:20:00,832 INFO   Offer already exists (150219237011) — updating and publishing
+2026-04-11 19:20:03,886 INFO   ✅ Listed | $71.72 | Profit: $36.23 | ListingID: 358436418912
+2026-04-11 19:20:04,886 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-11 19:20:06,391 WARNING   No image found for 9798320894041 — skipping
+2026-04-11 19:20:06,391 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-11 19:20:06,972 WARNING   No image found for 9781615373062 — skipping
+2026-04-11 19:20:06,972 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-11 19:20:07,599 WARNING   No image found for 9781951058067 — skipping
+2026-04-11 19:20:07,599 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-11 19:20:08,260 WARNING   No image found for 9781951058098 — skipping
+2026-04-11 19:20:08,260 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-11 19:20:08,874 WARNING   No image found for 9781544343242 — skipping
+2026-04-11 19:20:08,875 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-11 19:20:09,543 WARNING   No image found for 9781577667391 — skipping
+2026-04-11 19:20:09,543 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-11 19:20:10,143 WARNING   No image found for 9781119465935 — skipping
+2026-04-11 19:20:10,143 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-11 19:20:10,790 WARNING   No image found for 9780323376518 — skipping
+2026-04-11 19:20:10,791 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-11 19:20:11,135 WARNING   No image found for 9781944366445 — skipping
+2026-04-11 19:20:11,135 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-11 19:20:11,731 WARNING   No image found for 9780128216170 — skipping
+2026-04-11 19:20:11,731 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-11 19:20:12,405 WARNING   No image found for 9781032933832 — skipping
+2026-04-11 19:20:12,405 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-11 19:20:12,977 WARNING   No image found for 9781440878848 — skipping
+2026-04-11 19:20:12,978 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-11 19:20:13,556 WARNING   No image found for 9781412972123 — skipping
+2026-04-11 19:20:13,557 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-11 19:20:14,609 INFO   Image: Open Library (9781462532766)
+2026-04-11 19:20:15,822 INFO   Offer already exists (150219419011) — updating and publishing
+2026-04-11 19:20:20,202 INFO   ✅ Listed | $77.79 | Profit: $27.49 | ListingID: 358436419218
+2026-04-11 19:20:21,202 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-11 19:20:22,190 INFO   Image: Open Library (9781683732556)
+2026-04-11 19:20:23,316 INFO   Offer already exists (150219473011) — updating and publishing
+2026-04-11 19:20:26,877 INFO   ✅ Listed | $31.08 | Profit: $6.97 | ListingID: 358436419436
+2026-04-11 19:20:27,878 INFO Listing: Lange Q & A Radiography Examination
+2026-04-11 19:20:28,532 WARNING   No image found for 9781260460445 — skipping
+2026-04-11 19:20:28,532 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 19:20:28,828 INFO   Image: Open Library (9780195335286)
+2026-04-11 19:20:30,167 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 19:20:30,168 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-11 19:20:30,803 WARNING   No image found for 9781138641594 — skipping
+2026-04-11 19:20:30,804 INFO ============================================================
+2026-04-11 19:20:30,805 INFO LISTER DONE: 6 listed, 24 failed
+2026-04-11 19:20:30,805 INFO ============================================================
+2026-04-11 19:20:31,561 INFO Email alert sent

@@ -621,3 +621,202 @@
 2026-04-11 18:54:31,564 INFO ============================================================
 2026-04-11 18:54:31,564 INFO LISTER DONE: 0 listed, 45 failed
 2026-04-11 18:54:31,564 INFO ============================================================
+2026-04-11 18:59:12,725 INFO ============================================================
+2026-04-11 18:59:12,725 INFO LISTER STARTED — 2026-04-11 18:59:12
+2026-04-11 18:59:12,725 INFO ============================================================
+2026-04-11 18:59:12,725 INFO Processing 45 opportunities...
+2026-04-11 18:59:12,947 INFO Listing: Fire and Emergency Services Instructor, 9th Edition
+2026-04-11 18:59:14,454 INFO   Image: Open Library (9780879396961)
+2026-04-11 18:59:15,655 INFO   Offer already exists (150219162011) — updating and publishing
+2026-04-11 18:59:17,532 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 18:59:17,534 ERROR   Listing failed for 9780879396961
+2026-04-11 18:59:17,534 INFO Listing: Sterile Processing Technical Manual Workbook (CRCST Workbook
+2026-04-11 18:59:17,754 WARNING   No image found for B0C1XZ4BQV — skipping
+2026-04-11 18:59:17,755 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-11 18:59:18,095 WARNING   No image found for 9781032836072 — skipping
+2026-04-11 18:59:18,095 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-11 18:59:18,634 WARNING   No image found for 9781943378210 — skipping
+2026-04-11 18:59:18,635 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-11 18:59:18,904 INFO   Image: Open Library (9781462550128)
+2026-04-11 18:59:19,826 INFO   Offer already exists (150219183011) — updating and publishing
+2026-04-11 18:59:21,549 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 18:59:21,551 ERROR   Listing failed for 9781462550128
+2026-04-11 18:59:21,552 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-11 18:59:22,223 INFO   Image: Google Books
+2026-04-11 18:59:23,164 INFO   Offer already exists (150226430011) — updating and publishing
+2026-04-11 18:59:24,942 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 18:59:24,944 ERROR   Listing failed for 9781636940267
+2026-04-11 18:59:24,945 INFO Listing: FYI: For Your Improvement â For Learners, Managers, Mentor
+2026-04-11 18:59:25,034 INFO   Image: Open Library (9781933578170)
+2026-04-11 18:59:26,001 INFO   Offer already exists (150219187011) — updating and publishing
+2026-04-11 18:59:27,695 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 18:59:27,697 ERROR   Listing failed for 9781933578170
+2026-04-11 18:59:27,697 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-11 18:59:28,198 WARNING   No image found for 9781641950473 — skipping
+2026-04-11 18:59:28,198 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-11 18:59:28,416 WARNING   No image found for 9780197609026 — skipping
+2026-04-11 18:59:28,416 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-11 18:59:28,645 INFO   Image: Open Library (9780367263638)
+2026-04-11 18:59:29,629 INFO   Offer already exists (150219197011) — updating and publishing
+2026-04-11 18:59:31,586 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 18:59:31,588 ERROR   Listing failed for 9780367263638
+2026-04-11 18:59:31,588 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-11 18:59:32,403 INFO   Image: Google Books
+2026-04-11 18:59:34,971 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 18:59:34,973 ERROR   Listing failed for 9781337711067
+2026-04-11 18:59:34,974 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-11 18:59:35,305 INFO   Image: Open Library (9780867157994)
+2026-04-11 18:59:36,322 INFO   Offer already exists (150219214011) — updating and publishing
+2026-04-11 18:59:38,175 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 18:59:38,176 ERROR   Listing failed for 9780867157994
+2026-04-11 18:59:38,177 INFO Listing: Molecular Biology of the Cell, 7th Edition by Bruce Alberts 
+2026-04-11 18:59:38,532 INFO   Image: Open Library (9780393884821)
+2026-04-11 18:59:39,498 INFO   Offer already exists (150219217011) — updating and publishing
+2026-04-11 18:59:41,390 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 18:59:41,392 ERROR   Listing failed for 9780393884821
+2026-04-11 18:59:41,392 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-11 18:59:42,723 INFO   Image: Google Books
+2026-04-11 18:59:43,693 INFO   Offer already exists (150224427011) — updating and publishing
+2026-04-11 18:59:45,626 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 18:59:45,628 ERROR   Listing failed for 9781683674405
+2026-04-11 18:59:45,628 INFO Listing: Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statisti
+2026-04-11 18:59:45,744 INFO   Image: Open Library (9781439840955)
+2026-04-11 18:59:46,669 INFO   Offer already exists (150219223011) — updating and publishing
+2026-04-11 18:59:48,629 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 18:59:48,631 ERROR   Listing failed for 9781439840955
+2026-04-11 18:59:48,631 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-11 18:59:48,716 INFO   Image: Open Library (9781466516946)
+2026-04-11 18:59:49,749 INFO   Offer already exists (150219233011) — updating and publishing
+2026-04-11 18:59:51,777 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 18:59:51,779 ERROR   Listing failed for 9781466516946
+2026-04-11 18:59:51,779 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 18:59:51,868 INFO   Image: Open Library (9780195335286)
+2026-04-11 18:59:52,887 INFO   Offer already exists (150219237011) — updating and publishing
+2026-04-11 18:59:54,655 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 18:59:54,657 ERROR   Listing failed for 9780195335286
+2026-04-11 18:59:54,657 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-11 18:59:54,864 WARNING   No image found for 9798320894041 — skipping
+2026-04-11 18:59:54,864 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-11 18:59:55,097 WARNING   No image found for 9781615373062 — skipping
+2026-04-11 18:59:55,097 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-11 18:59:55,580 INFO   Image: Google Books
+2026-04-11 18:59:56,568 INFO   Offer already exists (150221441011) — updating and publishing
+2026-04-11 18:59:58,011 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 18:59:58,013 ERROR   Listing failed for 9781951058067
+2026-04-11 18:59:58,013 INFO Listing: Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 
+2026-04-11 18:59:58,309 INFO   Image: Open Library (9781609836184)
+2026-04-11 18:59:59,148 INFO   Offer already exists (150219242011) — updating and publishing
+2026-04-11 19:00:01,378 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 19:00:01,380 ERROR   Listing failed for 9781609836184
+2026-04-11 19:00:01,380 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-11 19:00:01,693 INFO   Image: Open Library (9781506353074)
+2026-04-11 19:00:02,664 INFO   Offer already exists (150219254011) — updating and publishing
+2026-04-11 19:00:04,568 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:04,570 ERROR   Listing failed for 9781506353074
+2026-04-11 19:00:04,570 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-11 19:00:05,650 INFO   Image: Google Books
+2026-04-11 19:00:06,519 INFO   Offer already exists (150226673011) — updating and publishing
+2026-04-11 19:00:08,063 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:08,065 ERROR   Listing failed for 9781951058098
+2026-04-11 19:00:08,065 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-11 19:00:08,805 INFO   Image: Google Books
+2026-04-11 19:00:11,551 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:11,552 ERROR   Listing failed for 9781544343242
+2026-04-11 19:00:11,553 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-11 19:00:11,834 INFO   Image: Open Library (9780323033718)
+2026-04-11 19:00:12,776 INFO   Offer already exists (150219259011) — updating and publishing
+2026-04-11 19:00:14,975 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 19:00:14,977 ERROR   Listing failed for 9780323033718
+2026-04-11 19:00:14,978 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-11 19:00:15,820 INFO   Image: Google Books
+2026-04-11 19:00:16,692 INFO   Offer already exists (150226720011) — updating and publishing
+2026-04-11 19:00:18,806 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:18,808 ERROR   Listing failed for 9781577667391
+2026-04-11 19:00:18,809 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-11 19:00:19,959 INFO   Image: Google Books
+2026-04-11 19:00:20,845 INFO   Offer already exists (150226750011) — updating and publishing
+2026-04-11 19:00:22,886 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:22,888 ERROR   Listing failed for 9781119465935
+2026-04-11 19:00:22,888 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-11 19:00:23,186 INFO   Image: Open Library (9781118753651)
+2026-04-11 19:00:24,192 INFO   Offer already exists (150219267011) — updating and publishing
+2026-04-11 19:00:26,367 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 19:00:26,369 ERROR   Listing failed for 9781118753651
+2026-04-11 19:00:26,370 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-11 19:00:26,904 INFO   Image: Google Books
+2026-04-11 19:00:27,858 INFO   Offer already exists (150224518011) — updating and publishing
+2026-04-11 19:00:29,725 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:29,727 ERROR   Listing failed for 9780323376518
+2026-04-11 19:00:29,727 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-11 19:00:30,185 WARNING   No image found for 9781944366445 — skipping
+2026-04-11 19:00:30,186 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-11 19:00:30,426 INFO   Image: Open Library (9781593850203)
+2026-04-11 19:00:31,272 INFO   Offer already exists (150219286011) — updating and publishing
+2026-04-11 19:00:32,985 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:32,987 ERROR   Listing failed for 9781593850203
+2026-04-11 19:00:32,988 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-11 19:00:33,875 INFO   Image: Google Books
+2026-04-11 19:00:36,537 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:36,539 ERROR   Listing failed for 9780128216170
+2026-04-11 19:00:36,539 INFO Listing: Developmental Biology, 13th Edition by Michael J.F. Gilbert 
+2026-04-11 19:00:36,876 INFO   Image: Open Library (9780197574591)
+2026-04-11 19:00:37,915 INFO   Offer already exists (150219296011) — updating and publishing
+2026-04-11 19:00:39,469 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:39,471 ERROR   Listing failed for 9780197574591
+2026-04-11 19:00:39,471 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-11 19:00:39,955 INFO   Image: Open Library (9781009397759)
+2026-04-11 19:00:41,003 INFO   Offer already exists (150219320011) — updating and publishing
+2026-04-11 19:00:42,985 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 19:00:42,987 ERROR   Listing failed for 9781009397759
+2026-04-11 19:00:42,987 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-11 19:00:43,753 INFO   Image: Google Books
+2026-04-11 19:00:44,760 INFO   Offer already exists (150219329011) — updating and publishing
+2026-04-11 19:00:46,290 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:46,292 ERROR   Listing failed for 9781032933832
+2026-04-11 19:00:46,293 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-11 19:00:46,929 INFO   Image: Google Books
+2026-04-11 19:00:47,940 INFO   Offer already exists (150226881011) — updating and publishing
+2026-04-11 19:00:49,825 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 19:00:49,827 ERROR   Listing failed for 9781440878848
+2026-04-11 19:00:49,827 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-11 19:00:51,194 INFO   Image: Open Library (9781119143642)
+2026-04-11 19:00:52,293 INFO   Offer already exists (150219345011) — updating and publishing
+2026-04-11 19:00:54,300 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:54,302 ERROR   Listing failed for 9781119143642
+2026-04-11 19:00:54,302 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-11 19:00:54,551 INFO   Image: Open Library (9781450434140)
+2026-04-11 19:00:55,345 INFO   Offer already exists (150219353011) — updating and publishing
+2026-04-11 19:00:57,053 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:57,055 ERROR   Listing failed for 9781450434140
+2026-04-11 19:00:57,055 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-11 19:00:57,291 INFO   Image: Open Library (9781572307810)
+2026-04-11 19:00:58,269 INFO   Offer already exists (150219360011) — updating and publishing
+2026-04-11 19:00:59,833 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:00:59,836 ERROR   Listing failed for 9781572307810
+2026-04-11 19:00:59,836 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-11 19:01:00,092 WARNING   No image found for 9781412972123 — skipping
+2026-04-11 19:01:00,092 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-11 19:01:00,434 INFO   Image: Open Library (9781462532766)
+2026-04-11 19:01:01,349 INFO   Offer already exists (150219419011) — updating and publishing
+2026-04-11 19:01:06,987 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 19:01:06,989 ERROR   Listing failed for 9781462532766
+2026-04-11 19:01:06,990 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-11 19:01:07,295 INFO   Image: Open Library (9781683732556)
+2026-04-11 19:01:08,259 INFO   Offer already exists (150219473011) — updating and publishing
+2026-04-11 19:01:10,294 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:01:10,297 ERROR   Listing failed for 9781683732556
+2026-04-11 19:01:10,297 INFO Listing: Lange Q & A Radiography Examination
+2026-04-11 19:01:10,796 INFO   Image: Google Books
+2026-04-11 19:01:11,682 INFO   Offer already exists (150219476011) — updating and publishing
+2026-04-11 19:01:13,625 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specific Author
+2026-04-11 19:01:13,628 ERROR   Listing failed for 9781260460445
+2026-04-11 19:01:13,628 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 19:01:13,771 INFO   Image: Open Library (9780195335286)
+2026-04-11 19:01:14,763 INFO   Offer already exists (150219237011) — updating and publishing
+2026-04-11 19:01:16,815 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, enter a valid value, and then try again.","parameters":[{"name":"0","value":"The item specifi
+2026-04-11 19:01:16,817 ERROR   Listing failed for 9780195335286
+2026-04-11 19:01:16,817 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-11 19:01:17,172 WARNING   No image found for 9781138641594 — skipping
+2026-04-11 19:01:17,173 INFO ============================================================
+2026-04-11 19:01:17,173 INFO LISTER DONE: 0 listed, 45 failed
+2026-04-11 19:01:17,174 INFO ============================================================

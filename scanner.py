@@ -82,6 +82,7 @@ def fetch_booksgoat():
                 'isbn10':        isbn10,
                 'cost':          float(cost_raw),
                 'amazon_price':  float(amazon_raw) if amazon_raw else None,
+                'booksgoat_url': f'https://www.booksgoat.com/index.php?route=product/search&search={isbn13}',
             })
         except Exception as e:
             log.warning(f"Skipping row: {e} | {row}")

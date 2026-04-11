@@ -820,3 +820,152 @@
 2026-04-11 19:01:17,173 INFO ============================================================
 2026-04-11 19:01:17,173 INFO LISTER DONE: 0 listed, 45 failed
 2026-04-11 19:01:17,174 INFO ============================================================
+2026-04-11 19:07:09,683 INFO ============================================================
+2026-04-11 19:07:09,683 INFO LISTER STARTED — 2026-04-11 19:07:09
+2026-04-11 19:07:09,683 INFO ============================================================
+2026-04-11 19:07:09,683 INFO Processing 45 opportunities...
+2026-04-11 19:07:09,962 INFO Listing: Fire and Emergency Services Instructor, 9th Edition
+2026-04-11 19:07:12,017 INFO   Image: Open Library (9780879396961)
+2026-04-11 19:07:13,142 INFO   Offer already exists (150219162011) — updating and publishing
+2026-04-11 19:07:16,411 INFO   ✅ Listed | $91.88 | Profit: $21.72 | ListingID: 358436392439
+2026-04-11 19:07:17,411 INFO Listing: Sterile Processing Technical Manual Workbook (CRCST Workbook
+2026-04-11 19:07:18,000 WARNING   No image found for B0C1XZ4BQV — skipping
+2026-04-11 19:07:18,001 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-11 19:07:18,503 WARNING   No image found for 9781032836072 — skipping
+2026-04-11 19:07:18,503 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-11 19:07:19,068 WARNING   No image found for 9781943378210 — skipping
+2026-04-11 19:07:19,069 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-11 19:07:20,162 INFO   Image: Open Library (9781462550128)
+2026-04-11 19:07:21,405 INFO   Offer already exists (150219183011) — updating and publishing
+2026-04-11 19:07:23,955 INFO   ✅ Listed | $148.40 | Profit: $61.75 | ListingID: 358436392931
+2026-04-11 19:07:24,956 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-11 19:07:25,568 WARNING   No image found for 9781636940267 — skipping
+2026-04-11 19:07:25,568 INFO Listing: FYI: For Your Improvement â For Learners, Managers, Mentor
+2026-04-11 19:07:25,918 INFO   Image: Open Library (9781933578170)
+2026-04-11 19:07:27,024 INFO   Offer already exists (150219187011) — updating and publishing
+2026-04-11 19:07:29,512 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Book Title's value of \"FYI: For Your Improvement â For Learners, Managers, Mentors, and Feedback Give\" is too long. Enter a value of no more than 65 characters.",
+2026-04-11 19:07:29,515 ERROR   Listing failed for 9781933578170
+2026-04-11 19:07:29,515 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-11 19:07:30,035 WARNING   No image found for 9781641950473 — skipping
+2026-04-11 19:07:30,036 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-11 19:07:30,568 WARNING   No image found for 9780197609026 — skipping
+2026-04-11 19:07:30,569 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-11 19:07:31,362 INFO   Image: Open Library (9780367263638)
+2026-04-11 19:07:32,455 INFO   Offer already exists (150219197011) — updating and publishing
+2026-04-11 19:07:35,221 INFO   ✅ Listed | $224.94 | Profit: $120.15 | ListingID: 358436393571
+2026-04-11 19:07:36,221 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-11 19:07:36,734 WARNING   No image found for 9781337711067 — skipping
+2026-04-11 19:07:36,734 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-11 19:07:37,490 INFO   Image: Open Library (9780867157994)
+2026-04-11 19:07:38,618 INFO   Offer already exists (150219214011) — updating and publishing
+2026-04-11 19:07:41,711 INFO   ✅ Listed | $156.82 | Profit: $49.05 | ListingID: 358436393969
+2026-04-11 19:07:42,712 INFO Listing: Molecular Biology of the Cell, 7th Edition by Bruce Alberts 
+2026-04-11 19:07:43,467 INFO   Image: Open Library (9780393884821)
+2026-04-11 19:07:44,742 INFO   Offer already exists (150219217011) — updating and publishing
+2026-04-11 19:07:48,077 INFO   ✅ Listed | $181.11 | Profit: $10.12 | ListingID: 358436394365
+2026-04-11 19:07:49,077 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-11 19:07:49,602 WARNING   No image found for 9781683674405 — skipping
+2026-04-11 19:07:49,602 INFO Listing: Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statisti
+2026-04-11 19:07:49,918 INFO   Image: Open Library (9781439840955)
+2026-04-11 19:07:51,018 INFO   Offer already exists (150219223011) — updating and publishing
+2026-04-11 19:07:52,984 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Book Title's value of \"Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statistical Science), 3rd ed\" is too long. Enter a value of no more than 65 characters.",
+2026-04-11 19:07:52,986 ERROR   Listing failed for 9781439840955
+2026-04-11 19:07:52,987 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-11 19:07:53,274 INFO   Image: Open Library (9781466516946)
+2026-04-11 19:07:54,270 INFO   Offer already exists (150219233011) — updating and publishing
+2026-04-11 19:07:56,038 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Book Title's value of \"American Herbal Products Association's Botanical Safety Handbook, 2nd Edition\" is too long. Enter a value of no more than 65 characters.","pa
+2026-04-11 19:07:56,040 ERROR   Listing failed for 9781466516946
+2026-04-11 19:07:56,040 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 19:07:56,338 INFO   Image: Open Library (9780195335286)
+2026-04-11 19:07:57,307 INFO   Offer already exists (150219237011) — updating and publishing
+2026-04-11 19:07:59,425 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Book Title's value of \"Exposure and Response (Ritual) Prevention for Obsessive-Compulsive Disorder: The\" is too long. Enter a value of no more than 65 characters.",
+2026-04-11 19:07:59,427 ERROR   Listing failed for 9780195335286
+2026-04-11 19:07:59,428 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-11 19:07:59,935 WARNING   No image found for 9798320894041 — skipping
+2026-04-11 19:07:59,936 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-11 19:08:00,404 WARNING   No image found for 9781615373062 — skipping
+2026-04-11 19:08:00,405 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-11 19:08:00,873 WARNING   No image found for 9781951058067 — skipping
+2026-04-11 19:08:00,874 INFO Listing: Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 
+2026-04-11 19:08:01,648 INFO   Image: Open Library (9781609836184)
+2026-04-11 19:08:02,707 INFO   Offer already exists (150219242011) — updating and publishing
+2026-04-11 19:08:06,898 INFO   ✅ Listed | $161.87 | Profit: $52.43 | ListingID: 358436395349
+2026-04-11 19:08:07,898 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-11 19:08:08,601 INFO   Image: Open Library (9781506353074)
+2026-04-11 19:08:09,660 INFO   Offer already exists (150219254011) — updating and publishing
+2026-04-11 19:08:12,420 INFO   ✅ Listed | $82.25 | Profit: $13.36 | ListingID: 358436395722
+2026-04-11 19:08:13,421 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-11 19:08:13,930 WARNING   No image found for 9781951058098 — skipping
+2026-04-11 19:08:13,931 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-11 19:08:14,564 WARNING   No image found for 9781544343242 — skipping
+2026-04-11 19:08:14,565 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-11 19:08:15,289 INFO   Image: Open Library (9780323033718)
+2026-04-11 19:08:16,354 INFO   Offer already exists (150219259011) — updating and publishing
+2026-04-11 19:08:19,237 INFO   ✅ Listed | $199.67 | Profit: $96.22 | ListingID: 358436396124
+2026-04-11 19:08:20,237 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-11 19:08:20,776 WARNING   No image found for 9781577667391 — skipping
+2026-04-11 19:08:20,776 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-11 19:08:21,261 WARNING   No image found for 9781119465935 — skipping
+2026-04-11 19:08:21,262 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-11 19:08:22,068 INFO   Image: Open Library (9781118753651)
+2026-04-11 19:08:23,459 INFO   Offer already exists (150219267011) — updating and publishing
+2026-04-11 19:08:26,370 INFO   ✅ Listed | $140.82 | Profit: $64.17 | ListingID: 358436396542
+2026-04-11 19:08:27,371 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-11 19:08:27,846 WARNING   No image found for 9780323376518 — skipping
+2026-04-11 19:08:27,846 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-11 19:08:28,150 WARNING   No image found for 9781944366445 — skipping
+2026-04-11 19:08:28,150 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-11 19:08:29,002 INFO   Image: Open Library (9781593850203)
+2026-04-11 19:08:30,058 INFO   Offer already exists (150219286011) — updating and publishing
+2026-04-11 19:08:34,189 INFO   ✅ Listed | $117.63 | Profit: $47.05 | ListingID: 358436396874
+2026-04-11 19:08:35,190 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-11 19:08:35,670 WARNING   No image found for 9780128216170 — skipping
+2026-04-11 19:08:35,670 INFO Listing: Developmental Biology, 13th Edition by Michael J.F. Gilbert 
+2026-04-11 19:08:36,402 INFO   Image: Open Library (9780197574591)
+2026-04-11 19:08:37,994 INFO   Offer already exists (150219296011) — updating and publishing
+2026-04-11 19:08:42,016 INFO   ✅ Listed | $189.32 | Profit: $76.25 | ListingID: 358436397201
+2026-04-11 19:08:43,016 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-11 19:08:43,892 INFO   Image: Open Library (9781009397759)
+2026-04-11 19:08:45,349 INFO   Offer already exists (150219320011) — updating and publishing
+2026-04-11 19:08:48,616 INFO   ✅ Listed | $119.88 | Profit: $68.01 | ListingID: 358436397693
+2026-04-11 19:08:49,616 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-11 19:08:50,113 WARNING   No image found for 9781032933832 — skipping
+2026-04-11 19:08:50,114 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-11 19:08:50,617 WARNING   No image found for 9781440878848 — skipping
+2026-04-11 19:08:50,617 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-11 19:08:51,334 INFO   Image: Open Library (9781119143642)
+2026-04-11 19:08:52,407 INFO   Offer already exists (150219345011) — updating and publishing
+2026-04-11 19:08:56,467 INFO   ✅ Listed | $61.23 | Profit: $31.13 | ListingID: 358436398000
+2026-04-11 19:08:57,467 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-11 19:08:58,161 INFO   Image: Open Library (9781450434140)
+2026-04-11 19:08:59,380 INFO   Offer already exists (150219353011) — updating and publishing
+2026-04-11 19:09:02,865 INFO   ✅ Listed | $81.07 | Profit: $26.34 | ListingID: 358436398240
+2026-04-11 19:09:03,866 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-11 19:09:04,637 INFO   Image: Open Library (9781572307810)
+2026-04-11 19:09:05,600 INFO   Offer already exists (150219360011) — updating and publishing
+2026-04-11 19:09:08,924 INFO   ✅ Listed | $69.99 | Profit: $30.73 | ListingID: 358436398496
+2026-04-11 19:09:09,924 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-11 19:09:10,423 WARNING   No image found for 9781412972123 — skipping
+2026-04-11 19:09:10,424 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-11 19:09:11,176 INFO   Image: Open Library (9781462532766)
+2026-04-11 19:09:12,408 INFO   Offer already exists (150219419011) — updating and publishing
+2026-04-11 19:09:14,431 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Book Title's value of \"Eye Movement Desensitization and Reprocessing (EMDR) Therapy: Basic Principles,\" is too long. Enter a value of no more than 65 characters.","
+2026-04-11 19:09:14,433 ERROR   Listing failed for 9781462532766
+2026-04-11 19:09:14,433 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-11 19:09:15,286 INFO   Image: Open Library (9781683732556)
+2026-04-11 19:09:16,516 INFO   Offer already exists (150219473011) — updating and publishing
+2026-04-11 19:09:18,780 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Book Title's value of \"The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy\" is too long. Enter a value of no more than 65 characters.","parameters":
+2026-04-11 19:09:18,782 ERROR   Listing failed for 9781683732556
+2026-04-11 19:09:18,783 INFO Listing: Lange Q & A Radiography Examination
+2026-04-11 19:09:19,421 WARNING   No image found for 9781260460445 — skipping
+2026-04-11 19:09:19,422 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 19:09:19,651 INFO   Image: Open Library (9780195335286)
+2026-04-11 19:09:20,849 INFO   Offer already exists (150219237011) — updating and publishing
+2026-04-11 19:09:23,027 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Book Title's value of \"Exposure and Response (Ritual) Prevention for Obsessive-Compulsive Disorder: The\" is too long. Enter a value of no more than 65 characters.",
+2026-04-11 19:09:23,029 ERROR   Listing failed for 9780195335286
+2026-04-11 19:09:23,029 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-11 19:09:23,526 WARNING   No image found for 9781138641594 — skipping
+2026-04-11 19:09:23,527 INFO ============================================================
+2026-04-11 19:09:23,527 INFO LISTER DONE: 15 listed, 30 failed
+2026-04-11 19:09:23,528 INFO ============================================================
+2026-04-11 19:09:24,747 INFO Email alert sent

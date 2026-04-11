@@ -2,11 +2,8 @@ name: Weekly Book Scanner & Auto-Lister
 
 on:
   schedule:
-    - cron: '0 14 * * 1'
-  workflow_dispatch:
-
-permissions:
-  contents: write
+    - cron: '0 14 * * 1'   # Every Monday at 9 AM EST (14:00 UTC)
+  workflow_dispatch:        # Allow manual trigger from GitHub UI
 
 jobs:
   scan-and-list:
@@ -40,7 +37,6 @@ jobs:
           EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
-          ANTHROPIC_API_KEY:  ${{ secrets.ANTHROPIC_API_KEY }}
           SMTP_HOST:          ${{ secrets.SMTP_HOST }}
           SMTP_PORT:          ${{ secrets.SMTP_PORT }}
           SMTP_USER:          ${{ secrets.SMTP_USER }}

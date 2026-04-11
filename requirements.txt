@@ -1,15 +1,2 @@
-# requirements.txt — Install with: pip install -r requirements.txt
-
-# Core
-pandas>=2.0.0           # CSV parsing and data manipulation
-requests>=2.31.0        # HTTP — live URL fetch + eBay API calls
-python-dotenv>=1.0.0    # Loads .env secrets file
-
-# Notifications
-twilio>=8.0.0           # SMS alerts
-
-# Scheduling (optional — only needed for --schedule mode)
-apscheduler>=3.10.0
-
-# Future suppliers (install only when implementing)
-# playwright>=1.40.0    # BooksGoat web scraper (not needed yet)
+requests==2.33.1
+python-dotenv==1.2.2

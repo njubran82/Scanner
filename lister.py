@@ -405,6 +405,7 @@ def list_books():
             'profit':        book['profit'],
             'confidence':    book['confidence'],
             'listed_date':   datetime.now().isoformat(),
+            'booksgoat_url': book.get('booksgoat_url', f'https://www.booksgoat.com/index.php?route=product/search&search={isbn13}'),
         }
         if isbn13 not in state.get('listed_isbns', []):
             state.setdefault('listed_isbns', []).append(isbn13)

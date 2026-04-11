@@ -713,18 +713,6 @@
       "confidence": "MEDIUM",
       "listed_date": "2026-04-11T19:09:08.922655"
     },
-    "9781933578170": {
-      "title": "FYI: For Your Improvement \u00e2\u0080\u0093 For Learners, Managers, Mentors, and Feedback Givers, 5th Edition (ISBN 9781933578170) - Paperback",
-      "isbn13": "9781933578170",
-      "isbn10": "1933578173",
-      "offer_id": "150219187011",
-      "listing_id": "358436418540",
-      "cost": 40.99,
-      "listing_price": 61.25,
-      "profit": 12.14,
-      "confidence": "HIGH",
-      "listed_date": "2026-04-11T19:19:42.787797"
-    },
     "9781439840955": {
       "title": "Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statistical Science), 3rd edition by Andrew Gelman, John B. Carlin, Hal S. Stern, David B. Dunson",
       "isbn13": "9781439840955",
@@ -784,6 +772,32 @@
       "profit": 6.97,
       "confidence": "HIGH",
       "listed_date": "2026-04-11T19:20:26.876548"
+    },
+    "9781951058098": {
+      "title": "The ASQ Certified Quality Auditor Handbook, 5th edition by Lance B Coleman (ISBN 9781951058098) - Hardcover",
+      "isbn13": "9781951058098",
+      "isbn10": "1951058097",
+      "offer_id": "150226673011",
+      "listing_id": "358436967984",
+      "cost": 60.99,
+      "listing_price": 104.68,
+      "profit": 29.82,
+      "confidence": "HIGH",
+      "listed_date": "2026-04-11T23:34:41.828396",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781951058098"
+    },
+    "9781440878848": {
+      "title": "How to Write and Publish a Scientific Paper",
+      "isbn13": "9781440878848",
+      "isbn10": "1440878846",
+      "offer_id": "150226881011",
+      "listing_id": "358436767547",
+      "cost": 29.99,
+      "listing_price": 44.15,
+      "profit": 8.31,
+      "confidence": "HIGH",
+      "listed_date": "2026-04-11T23:34:50.065470",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781440878848"
     }
   },
   "listed_isbns": [
@@ -843,13 +857,15 @@
     "9781119143642",
     "9781450434140",
     "9781572307810",
-    "9781933578170",
     "9781439840955",
     "9781466516946",
     "9780195335286",
     "9781462532766",
-    "9781683732556"
+    "9781683732556",
+    "9781951058098",
+    "9781440878848"
   ],
-  "last_run": "2026-04-11T19:20:30.803905",
-  "last_tracker_run": null
+  "last_run": "2026-04-11T23:34:52.123130",
+  "last_tracker_run": null,
+  "last_repricer_run": "2026-04-11T23:35:23.251587"
 }

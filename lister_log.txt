@@ -1050,3 +1050,59 @@
 2026-04-11 19:20:30,805 INFO LISTER DONE: 6 listed, 24 failed
 2026-04-11 19:20:30,805 INFO ============================================================
 2026-04-11 19:20:31,561 INFO Email alert sent
+2026-04-11 23:34:31,843 INFO ============================================================
+2026-04-11 23:34:31,843 INFO LISTER STARTED — 2026-04-11 23:34:31
+2026-04-11 23:34:31,844 INFO ============================================================
+2026-04-11 23:34:31,844 INFO Processing 22 opportunities...
+2026-04-11 23:34:32,089 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-11 23:34:32,806 WARNING   No image found for 9781032836072 — skipping
+2026-04-11 23:34:32,806 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-11 23:34:33,296 WARNING   No image found for 9781943378210 — skipping
+2026-04-11 23:34:33,296 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-11 23:34:33,800 WARNING   No image found for 9781636940267 — skipping
+2026-04-11 23:34:33,801 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-11 23:34:34,380 WARNING   No image found for 9781641950473 — skipping
+2026-04-11 23:34:34,380 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-11 23:34:34,895 WARNING   No image found for 9780197609026 — skipping
+2026-04-11 23:34:34,896 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-11 23:34:35,277 WARNING   No image found for 9781337711067 — skipping
+2026-04-11 23:34:35,277 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-11 23:34:35,825 WARNING   No image found for 9781683674405 — skipping
+2026-04-11 23:34:35,826 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-11 23:34:36,182 WARNING   No image found for 9798320894041 — skipping
+2026-04-11 23:34:36,183 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-11 23:34:36,668 WARNING   No image found for 9781615373062 — skipping
+2026-04-11 23:34:36,669 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-11 23:34:37,011 WARNING   No image found for 9781951058067 — skipping
+2026-04-11 23:34:37,011 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-11 23:34:37,742 INFO   Image: Google Books
+2026-04-11 23:34:39,091 INFO   Offer already exists (150226673011) — updating and publishing
+2026-04-11 23:34:41,829 INFO   ✅ Listed | $104.68 | Profit: $29.82 | ListingID: 358436967984
+2026-04-11 23:34:42,830 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-11 23:34:43,281 WARNING   No image found for 9781544343242 — skipping
+2026-04-11 23:34:43,281 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-11 23:34:43,633 WARNING   No image found for 9781577667391 — skipping
+2026-04-11 23:34:43,633 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-11 23:34:43,987 WARNING   No image found for 9781119465935 — skipping
+2026-04-11 23:34:43,987 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-11 23:34:44,323 WARNING   No image found for 9780323376518 — skipping
+2026-04-11 23:34:44,324 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-11 23:34:45,632 WARNING   No image found for 9781944366445 — skipping
+2026-04-11 23:34:45,632 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-11 23:34:46,232 WARNING   No image found for 9780128216170 — skipping
+2026-04-11 23:34:46,233 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-11 23:34:46,590 WARNING   No image found for 9781032933832 — skipping
+2026-04-11 23:34:46,590 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-11 23:34:47,462 INFO   Image: Google Books
+2026-04-11 23:34:48,863 INFO   Offer already exists (150226881011) — updating and publishing
+2026-04-11 23:34:50,067 INFO   ✅ Listed | $44.15 | Profit: $8.31 | ListingID: 358436767547
+2026-04-11 23:34:51,067 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-11 23:34:51,412 WARNING   No image found for 9781412972123 — skipping
+2026-04-11 23:34:51,412 INFO Listing: Lange Q & A Radiography Examination
+2026-04-11 23:34:51,759 WARNING   No image found for 9781260460445 — skipping
+2026-04-11 23:34:51,760 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-11 23:34:52,122 WARNING   No image found for 9781138641594 — skipping
+2026-04-11 23:34:52,124 INFO ============================================================
+2026-04-11 23:34:52,124 INFO LISTER DONE: 2 listed, 20 failed
+2026-04-11 23:34:52,124 INFO ============================================================
+2026-04-11 23:34:53,407 INFO Email alert sent

@@ -15,7 +15,6 @@ load_dotenv()
 EBAY_CLIENT_ID     = os.getenv('EBAY_CLIENT_ID')
 EBAY_CLIENT_SECRET = os.getenv('EBAY_CLIENT_SECRET')
 EBAY_REFRESH_TOKEN = os.getenv('EBAY_REFRESH_TOKEN')
-ANTHROPIC_API_KEY  = os.getenv('ANTHROPIC_API_KEY')
 SMTP_HOST          = os.getenv('SMTP_HOST', 'smtp.gmail.com')
 SMTP_PORT          = int(os.getenv('SMTP_PORT', '587'))
 SMTP_USER          = os.getenv('SMTP_USER')
@@ -73,47 +72,16 @@ def get_ebay_token():
 
 # ── AI Description ───────────────────────────────────────────────────────────
 def generate_description(title, isbn13):
-    """Generate listing description via Claude API, append mandatory disclaimer."""
-    try:
-        r = requests.post(
-            'https://api.anthropic.com/v1/messages',
-            headers={
-                'x-api-key': ANTHROPIC_API_KEY,
-                'anthropic-version': '2023-06-01',
-                'content-type': 'application/json'
-            },
-            json={
-                'model': 'claude-haiku-4-5-20251001',
-                'max_tokens': 500,
-                'messages': [{
-                    'role': 'user',
-                    'content': (
-                        f'Write a 5-6 sentence product description for an eBay listing for the '
-                        f'textbook titled "{title}" (ISBN: {isbn13}). Cover: what subject it addresses, '
-                        f'who benefits from it, what key concepts or skills it develops, and why it is '
-                        f'a valuable addition to a student\'s library. Write in plain text only — '
-                        f'no bullet points, no markdown, no headers. Do not mention the price.'
-                    )
-                }]
-            },
-            timeout=20
-        )
-        resp = r.json()
-        if 'content' not in resp:
-            raise ValueError(f"Unexpected API response: {resp.get('error', resp)}")
-        text = resp['content'][0]['text'].strip()
-        return text + DISCLAIMER
-    except Exception as e:
-        log.warning(f"AI description failed ({isbn13}): {e} — using fallback")
-        return (
-            f'"{title}" is a comprehensive academic textbook designed for students and educators '
-            f'seeking a thorough understanding of the subject matter. This edition covers core '
-            f'concepts, theories, and practical applications that are essential for academic success. '
-            f'The text is written by leading authorities in the field and is widely used in university '
-            f'and college courses worldwide. This brand new copy (ISBN: {isbn13}) is in perfect '
-            f'condition and ready to support your studies.'
-            + DISCLAIMER
-        )
+    """Generate a professional listing description with mandatory disclaimer."""
+    return (
+        f'"{title}" is a comprehensive academic textbook designed for students and educators '
+        f'seeking a thorough understanding of the subject matter. This edition covers core '
+        f'concepts, theories, and practical applications that are essential for academic success. '
+        f'The text is written by leading authorities in the field and is widely used in university '
+        f'and college courses worldwide. This brand new copy (ISBN: {isbn13}) is in perfect '
+        f'condition and ready to support your studies.'
+        + DISCLAIMER
+    )
 
 
 # ── Book Image ───────────────────────────────────────────────────────────────
@@ -227,9 +195,7 @@ def create_and_publish_offer(token, book, description):
                 'value':    f"{book['listing_price']:.2f}"
             }
         },
-        'listingDuration': 'GTC',
-        'countryOfOrigin': 'IN',
-        'tax': {'applyTax': False}
+        'listingDuration': 'GTC'
     }
 
     r = requests.post(
@@ -244,13 +210,25 @@ def create_and_publish_offer(token, book, description):
     )
 
     if r.status_code not in [200, 201]:
-        log.error(f"  create_offer failed ({r.status_code}): {r.text[:300]}")
-        return None, None
-
-    offer_id = r.json().get('offerId')
-    if not offer_id:
-        log.error(f"  No offerId returned: {r.text[:200]}")
-        return None, None
+        # Handle "offer already exists" — retrieve existing offerId and publish it
+        resp_text = r.text
+        if 'already exists' in resp_text:
+            import re
+            m = re.search(r'"offerId","value":"(\d+)"', resp_text)
+            if m:
+                offer_id = m.group(1)
+                log.info(f"  Offer already exists ({offer_id}) — publishing directly")
+            else:
+                log.error(f"  create_offer failed ({r.status_code}): {resp_text[:300]}")
+                return None, None
+        else:
+            log.error(f"  create_offer failed ({r.status_code}): {resp_text[:300]}")
+            return None, None
+    else:
+        offer_id = r.json().get('offerId')
+        if not offer_id:
+            log.error(f"  No offerId returned: {r.text[:200]}")
+            return None, None
 
     # Publish
     pub = requests.post(

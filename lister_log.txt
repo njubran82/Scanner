@@ -1,0 +1,101 @@
+2026-04-11 18:14:43,131 INFO ============================================================
+2026-04-11 18:14:43,131 INFO LISTER STARTED — 2026-04-11 18:14:43
+2026-04-11 18:14:43,131 INFO ============================================================
+2026-04-11 18:14:43,132 INFO Processing 45 opportunities...
+2026-04-11 18:14:43,593 INFO Listing: Fire and Emergency Services Instructor, 9th Edition
+2026-04-11 18:14:45,987 WARNING   No image found for 9780879396961 — skipping
+2026-04-11 18:14:45,988 INFO Listing: Sterile Processing Technical Manual Workbook (CRCST Workbook
+2026-04-11 18:14:46,630 WARNING   No image found for B0C1XZ4BQV — skipping
+2026-04-11 18:14:46,631 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-11 18:14:47,353 WARNING   No image found for 9781032836072 — skipping
+2026-04-11 18:14:47,353 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-11 18:14:48,146 WARNING   No image found for 9781943378210 — skipping
+2026-04-11 18:14:48,146 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-11 18:14:50,716 INFO   Image: Google Books
+2026-04-11 18:14:50,811 WARNING AI description failed (9781462550128): 'content' — using fallback
+2026-04-11 18:14:51,053 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":2004,"domain":"ACCESS","category":"REQUEST","message":"Invalid request","longMessage":"The request has errors. For help, see the documentation for this API.","parameters":[{"name":"reason","value":"Could not serialize field [product.isbn]"}]}]}
+2026-04-11 18:14:51,055 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-11 18:14:52,098 WARNING   No image found for 9781636940267 — skipping
+2026-04-11 18:14:52,098 INFO Listing: FYI: For Your Improvement â For Learners, Managers, Mentor
+2026-04-11 18:14:52,840 WARNING   No image found for 9781933578170 — skipping
+2026-04-11 18:14:52,841 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-11 18:14:53,468 WARNING   No image found for 9781641950473 — skipping
+2026-04-11 18:14:53,468 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-11 18:14:54,346 WARNING   No image found for 9780197609026 — skipping
+2026-04-11 18:14:54,346 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-11 18:14:56,565 WARNING   No image found for 9780367263638 — skipping
+2026-04-11 18:14:56,566 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-11 18:14:57,207 WARNING   No image found for 9781337711067 — skipping
+2026-04-11 18:14:57,208 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-11 18:14:59,295 WARNING   No image found for 9780867157994 — skipping
+2026-04-11 18:14:59,295 INFO Listing: Molecular Biology of the Cell, 7th Edition by Bruce Alberts 
+2026-04-11 18:15:01,281 WARNING   No image found for 9780393884821 — skipping
+2026-04-11 18:15:01,281 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-11 18:15:02,101 WARNING   No image found for 9781683674405 — skipping
+2026-04-11 18:15:02,101 INFO Listing: Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statisti
+2026-04-11 18:15:02,920 WARNING   No image found for 9781439840955 — skipping
+2026-04-11 18:15:02,920 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-11 18:15:03,784 WARNING   No image found for 9781466516946 — skipping
+2026-04-11 18:15:03,785 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 18:15:04,406 WARNING   No image found for 9780195335286 — skipping
+2026-04-11 18:15:04,407 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-11 18:15:05,001 WARNING   No image found for 9798320894041 — skipping
+2026-04-11 18:15:05,001 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-11 18:15:05,743 WARNING   No image found for 9781615373062 — skipping
+2026-04-11 18:15:05,743 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-11 18:15:06,545 WARNING   No image found for 9781951058067 — skipping
+2026-04-11 18:15:06,546 INFO Listing: Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 
+2026-04-11 18:15:08,616 WARNING   No image found for 9781609836184 — skipping
+2026-04-11 18:15:08,616 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-11 18:15:11,671 WARNING   No image found for 9781506353074 — skipping
+2026-04-11 18:15:11,671 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-11 18:15:12,337 WARNING   No image found for 9781951058098 — skipping
+2026-04-11 18:15:12,337 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-11 18:15:13,034 WARNING   No image found for 9781544343242 — skipping
+2026-04-11 18:15:13,034 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-11 18:15:15,045 WARNING   No image found for 9780323033718 — skipping
+2026-04-11 18:15:15,046 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-11 18:15:15,610 WARNING   No image found for 9781577667391 — skipping
+2026-04-11 18:15:15,610 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-11 18:15:16,212 WARNING   No image found for 9781119465935 — skipping
+2026-04-11 18:15:16,212 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-11 18:15:18,227 WARNING   No image found for 9781118753651 — skipping
+2026-04-11 18:15:18,227 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-11 18:15:19,170 INFO   Image: Google Books
+2026-04-11 18:15:19,288 WARNING AI description failed (9780323376518): 'content' — using fallback
+2026-04-11 18:15:19,559 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":2004,"domain":"ACCESS","category":"REQUEST","message":"Invalid request","longMessage":"The request has errors. For help, see the documentation for this API.","parameters":[{"name":"reason","value":"Could not serialize field [product.isbn]"}]}]}
+2026-04-11 18:15:19,560 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-11 18:15:19,889 WARNING   No image found for 9781944366445 — skipping
+2026-04-11 18:15:19,889 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-11 18:15:21,897 WARNING   No image found for 9781593850203 — skipping
+2026-04-11 18:15:21,897 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-11 18:15:22,489 WARNING   No image found for 9780128216170 — skipping
+2026-04-11 18:15:22,489 INFO Listing: Developmental Biology, 13th Edition by Michael J.F. Gilbert 
+2026-04-11 18:15:24,796 WARNING   No image found for 9780197574591 — skipping
+2026-04-11 18:15:24,796 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-11 18:15:26,920 WARNING   No image found for 9781009397759 — skipping
+2026-04-11 18:15:26,921 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-11 18:15:27,558 WARNING   No image found for 9781032933832 — skipping
+2026-04-11 18:15:27,559 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-11 18:15:28,217 WARNING   No image found for 9781440878848 — skipping
+2026-04-11 18:15:28,218 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-11 18:15:30,127 WARNING   No image found for 9781119143642 — skipping
+2026-04-11 18:15:30,127 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-11 18:15:32,199 WARNING   No image found for 9781450434140 — skipping
+2026-04-11 18:15:32,199 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-11 18:15:34,290 WARNING   No image found for 9781572307810 — skipping
+2026-04-11 18:15:34,290 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-11 18:15:35,006 WARNING   No image found for 9781412972123 — skipping
+2026-04-11 18:15:35,006 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-11 18:15:36,974 WARNING   No image found for 9781462532766 — skipping
+2026-04-11 18:15:36,974 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-11 18:15:38,901 WARNING   No image found for 9781683732556 — skipping
+2026-04-11 18:15:38,901 INFO Listing: Lange Q & A Radiography Examination
+2026-04-11 18:15:39,570 WARNING   No image found for 9781260460445 — skipping
+2026-04-11 18:15:39,571 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 18:15:40,253 WARNING   No image found for 9780195335286 — skipping
+2026-04-11 18:15:40,254 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-11 18:15:40,935 WARNING   No image found for 9781138641594 — skipping
+2026-04-11 18:15:40,936 INFO ============================================================
+2026-04-11 18:15:40,936 INFO LISTER DONE: 0 listed, 45 failed
+2026-04-11 18:15:40,936 INFO ============================================================

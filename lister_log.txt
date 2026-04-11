@@ -99,3 +99,172 @@
 2026-04-11 18:15:40,936 INFO ============================================================
 2026-04-11 18:15:40,936 INFO LISTER DONE: 0 listed, 45 failed
 2026-04-11 18:15:40,936 INFO ============================================================
+2026-04-11 18:22:19,863 INFO ============================================================
+2026-04-11 18:22:19,864 INFO LISTER STARTED — 2026-04-11 18:22:19
+2026-04-11 18:22:19,864 INFO ============================================================
+2026-04-11 18:22:19,864 INFO Processing 45 opportunities...
+2026-04-11 18:22:20,218 INFO Listing: Fire and Emergency Services Instructor, 9th Edition
+2026-04-11 18:22:21,442 INFO   Image: Open Library (9780879396961)
+2026-04-11 18:22:21,527 WARNING AI description failed (9780879396961): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:23,352 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:23,353 ERROR   Listing failed for 9780879396961
+2026-04-11 18:22:23,353 INFO Listing: Sterile Processing Technical Manual Workbook (CRCST Workbook
+2026-04-11 18:22:24,152 WARNING   No image found for B0C1XZ4BQV — skipping
+2026-04-11 18:22:24,152 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-11 18:22:24,858 WARNING   No image found for 9781032836072 — skipping
+2026-04-11 18:22:24,858 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-11 18:22:25,593 WARNING   No image found for 9781943378210 — skipping
+2026-04-11 18:22:25,593 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-11 18:22:26,753 INFO   Image: Open Library (9781462550128)
+2026-04-11 18:22:26,882 WARNING AI description failed (9781462550128): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:29,338 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:29,340 ERROR   Listing failed for 9781462550128
+2026-04-11 18:22:29,341 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-11 18:22:29,949 WARNING   No image found for 9781636940267 — skipping
+2026-04-11 18:22:29,949 INFO Listing: FYI: For Your Improvement â For Learners, Managers, Mentor
+2026-04-11 18:22:30,229 INFO   Image: Open Library (9781933578170)
+2026-04-11 18:22:30,310 WARNING AI description failed (9781933578170): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:32,569 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:32,570 ERROR   Listing failed for 9781933578170
+2026-04-11 18:22:32,571 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-11 18:22:33,236 WARNING   No image found for 9781641950473 — skipping
+2026-04-11 18:22:33,236 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-11 18:22:33,933 WARNING   No image found for 9780197609026 — skipping
+2026-04-11 18:22:33,933 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-11 18:22:34,877 INFO   Image: Open Library (9780367263638)
+2026-04-11 18:22:35,087 WARNING AI description failed (9780367263638): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:37,534 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:37,536 ERROR   Listing failed for 9780367263638
+2026-04-11 18:22:37,536 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-11 18:22:38,109 WARNING   No image found for 9781337711067 — skipping
+2026-04-11 18:22:38,110 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-11 18:22:39,122 INFO   Image: Open Library (9780867157994)
+2026-04-11 18:22:39,237 WARNING AI description failed (9780867157994): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:41,930 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:41,932 ERROR   Listing failed for 9780867157994
+2026-04-11 18:22:41,932 INFO Listing: Molecular Biology of the Cell, 7th Edition by Bruce Alberts 
+2026-04-11 18:22:42,943 INFO   Image: Open Library (9780393884821)
+2026-04-11 18:22:43,022 WARNING AI description failed (9780393884821): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:44,917 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:44,919 ERROR   Listing failed for 9780393884821
+2026-04-11 18:22:44,919 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-11 18:22:45,567 WARNING   No image found for 9781683674405 — skipping
+2026-04-11 18:22:45,567 INFO Listing: Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statisti
+2026-04-11 18:22:45,878 INFO   Image: Open Library (9781439840955)
+2026-04-11 18:22:45,956 WARNING AI description failed (9781439840955): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:48,177 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:48,179 ERROR   Listing failed for 9781439840955
+2026-04-11 18:22:48,179 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-11 18:22:48,573 INFO   Image: Open Library (9781466516946)
+2026-04-11 18:22:48,685 WARNING AI description failed (9781466516946): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:50,770 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:50,772 ERROR   Listing failed for 9781466516946
+2026-04-11 18:22:50,772 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 18:22:51,206 INFO   Image: Open Library (9780195335286)
+2026-04-11 18:22:51,295 WARNING AI description failed (9780195335286): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:53,303 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:53,304 ERROR   Listing failed for 9780195335286
+2026-04-11 18:22:53,305 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-11 18:22:54,023 WARNING   No image found for 9798320894041 — skipping
+2026-04-11 18:22:54,023 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-11 18:22:54,622 WARNING   No image found for 9781615373062 — skipping
+2026-04-11 18:22:54,622 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-11 18:22:55,221 WARNING   No image found for 9781951058067 — skipping
+2026-04-11 18:22:55,221 INFO Listing: Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 
+2026-04-11 18:22:56,307 INFO   Image: Open Library (9781609836184)
+2026-04-11 18:22:56,920 WARNING AI description failed (9781609836184): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:22:58,523 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:22:58,525 ERROR   Listing failed for 9781609836184
+2026-04-11 18:22:58,525 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-11 18:22:59,388 INFO   Image: Open Library (9781506353074)
+2026-04-11 18:22:59,582 WARNING AI description failed (9781506353074): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:01,338 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:01,340 ERROR   Listing failed for 9781506353074
+2026-04-11 18:23:01,340 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-11 18:23:02,064 WARNING   No image found for 9781951058098 — skipping
+2026-04-11 18:23:02,064 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-11 18:23:02,649 WARNING   No image found for 9781544343242 — skipping
+2026-04-11 18:23:02,650 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-11 18:23:03,598 INFO   Image: Open Library (9780323033718)
+2026-04-11 18:23:03,686 WARNING AI description failed (9780323033718): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:05,768 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:05,769 ERROR   Listing failed for 9780323033718
+2026-04-11 18:23:05,770 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-11 18:23:06,418 WARNING   No image found for 9781577667391 — skipping
+2026-04-11 18:23:06,418 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-11 18:23:07,145 WARNING   No image found for 9781119465935 — skipping
+2026-04-11 18:23:07,145 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-11 18:23:08,196 INFO   Image: Open Library (9781118753651)
+2026-04-11 18:23:08,283 WARNING AI description failed (9781118753651): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:10,346 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:10,348 ERROR   Listing failed for 9781118753651
+2026-04-11 18:23:10,349 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-11 18:23:10,921 WARNING   No image found for 9780323376518 — skipping
+2026-04-11 18:23:10,922 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-11 18:23:11,326 WARNING   No image found for 9781944366445 — skipping
+2026-04-11 18:23:11,326 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-11 18:23:12,150 INFO   Image: Open Library (9781593850203)
+2026-04-11 18:23:12,227 WARNING AI description failed (9781593850203): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:14,235 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:14,237 ERROR   Listing failed for 9781593850203
+2026-04-11 18:23:14,238 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-11 18:23:14,870 WARNING   No image found for 9780128216170 — skipping
+2026-04-11 18:23:14,870 INFO Listing: Developmental Biology, 13th Edition by Michael J.F. Gilbert 
+2026-04-11 18:23:16,018 INFO   Image: Open Library (9780197574591)
+2026-04-11 18:23:16,131 WARNING AI description failed (9780197574591): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:18,260 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:18,262 ERROR   Listing failed for 9780197574591
+2026-04-11 18:23:18,262 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-11 18:23:19,284 INFO   Image: Open Library (9781009397759)
+2026-04-11 18:23:19,397 WARNING AI description failed (9781009397759): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:21,259 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:21,261 ERROR   Listing failed for 9781009397759
+2026-04-11 18:23:21,262 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-11 18:23:22,204 INFO   Image: Google Books
+2026-04-11 18:23:22,325 WARNING AI description failed (9781032933832): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:24,494 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:24,495 ERROR   Listing failed for 9781032933832
+2026-04-11 18:23:24,495 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-11 18:23:25,083 WARNING   No image found for 9781440878848 — skipping
+2026-04-11 18:23:25,083 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-11 18:23:26,006 INFO   Image: Open Library (9781119143642)
+2026-04-11 18:23:26,082 WARNING AI description failed (9781119143642): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:28,038 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:28,039 ERROR   Listing failed for 9781119143642
+2026-04-11 18:23:28,040 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-11 18:23:28,901 INFO   Image: Open Library (9781450434140)
+2026-04-11 18:23:28,977 WARNING AI description failed (9781450434140): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:30,648 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:30,650 ERROR   Listing failed for 9781450434140
+2026-04-11 18:23:30,650 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-11 18:23:31,652 INFO   Image: Open Library (9781572307810)
+2026-04-11 18:23:31,821 WARNING AI description failed (9781572307810): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:33,643 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:33,644 ERROR   Listing failed for 9781572307810
+2026-04-11 18:23:33,645 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-11 18:23:34,336 WARNING   No image found for 9781412972123 — skipping
+2026-04-11 18:23:34,336 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-11 18:23:35,422 INFO   Image: Open Library (9781462532766)
+2026-04-11 18:23:35,498 WARNING AI description failed (9781462532766): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:37,418 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:37,419 ERROR   Listing failed for 9781462532766
+2026-04-11 18:23:37,420 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-11 18:23:38,345 INFO   Image: Open Library (9781683732556)
+2026-04-11 18:23:38,422 WARNING AI description failed (9781683732556): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:40,300 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:40,301 ERROR   Listing failed for 9781683732556
+2026-04-11 18:23:40,302 INFO Listing: Lange Q & A Radiography Examination
+2026-04-11 18:23:41,175 INFO   Image: Google Books
+2026-04-11 18:23:41,418 WARNING AI description failed (9781260460445): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:43,267 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. No <Item.Country> exists or <Item.Country> is specified as an empty tag in the request.","parameters":[{"name":"0","value":"Item.Country"}]}]}
+2026-04-11 18:23:43,268 ERROR   Listing failed for 9781260460445
+2026-04-11 18:23:43,268 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 18:23:43,652 INFO   Image: Open Library (9780195335286)
+2026-04-11 18:23:43,731 WARNING AI description failed (9780195335286): Unexpected API response: {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'} — using fallback
+2026-04-11 18:23:44,930 ERROR   create_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Offer entity already exists.","parameters":[{"name":"offerId","value":"150219237011"}]}]}
+2026-04-11 18:23:44,930 ERROR   Listing failed for 9780195335286
+2026-04-11 18:23:44,930 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-11 18:23:45,540 WARNING   No image found for 9781138641594 — skipping
+2026-04-11 18:23:45,541 INFO ============================================================
+2026-04-11 18:23:45,541 INFO LISTER DONE: 0 listed, 45 failed
+2026-04-11 18:23:45,541 INFO ============================================================

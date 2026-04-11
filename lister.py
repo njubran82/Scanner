@@ -135,9 +135,43 @@ def get_book_image(isbn13, isbn10):
     return None
 
 
+# ── Item Specific Helpers ────────────────────────────────────────────────────
+def extract_author(title):
+    """
+    Extract author name from BooksGoat title strings like:
+    'The Art of Electronics, 3rd edition by Paul Horowitz and Winfield Hill'
+    'DSM-5 Handbook by John Smith (ISBN ...) - Hardcover'
+    Returns author string or 'See Description' as fallback.
+    """
+    import re
+    # Match ' by Author Name' before common suffixes
+    m = re.search(r'\bby\s+([A-Z][^(\-\n]{3,60}?)(?:\s*[-—(]|\s*\(ISBN|\s*$)', title)
+    if m:
+        author = m.group(1).strip().rstrip(',').strip()
+        if 3 < len(author) < 80:
+            return author
+    return 'See Description'
+
+def clean_book_title(title):
+    """
+    Strip author bylines, edition notes, ISBN refs, and format tags from title.
+    Returns a clean title string for eBay's Book Title item specific.
+    """
+    import re
+    t = re.sub(r'\s+by\s+.+$', '', title, flags=re.IGNORECASE)
+    t = re.sub(r'\s*[-—]\s*(Hardcover|Paperback|Spiral.*?)$', '', t, flags=re.IGNORECASE)
+    t = re.sub(r'\s*\(ISBN[^)]*\)', '', t, flags=re.IGNORECASE)
+    t = re.sub(r'\s*\*US [A-Z]+\*\s*', ' ', t)
+    t = re.sub(r'\s*\{[^}]*\}', '', t)
+    return t.strip(' -—,')[:80]
+
+
 # ── eBay Inventory API ───────────────────────────────────────────────────────
 def create_inventory_item(token, book, description, image_url):
     """PUT /sell/inventory/v1/inventory_item/{sku}"""
+    clean_title = clean_book_title(book['title'])
+    author      = extract_author(book['title'])
+
     payload = {
         'availability': {
             'shipToLocationAvailability': {'quantity': QUANTITY}
@@ -148,9 +182,11 @@ def create_inventory_item(token, book, description, image_url):
             'description': description,
             'imageUrls':   [image_url],
             'aspects': {
-                'Type':     ['Textbook'],
-                'Language': ['English'],
-                'ISBN':     [book['isbn13']]
+                'Book Title': [clean_title],
+                'Author':     [author],
+                'Type':       ['Textbook'],
+                'Language':   ['English'],
+                'ISBN':       [book['isbn13']]
             }
         }
     }

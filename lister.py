@@ -4,7 +4,8 @@ Reads scan_opportunities.json, lists each book on eBay via Inventory API,
 updates lister_state.json so the tracker knows what to monitor.
 """
 
-import os, json, base64, time, logging, requests
+import os, json, base64, time, logging, requests, smtplib
+from email.mime.text import MIMEText
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -15,13 +16,12 @@ EBAY_CLIENT_ID     = os.getenv('EBAY_CLIENT_ID')
 EBAY_CLIENT_SECRET = os.getenv('EBAY_CLIENT_SECRET')
 EBAY_REFRESH_TOKEN = os.getenv('EBAY_REFRESH_TOKEN')
 ANTHROPIC_API_KEY  = os.getenv('ANTHROPIC_API_KEY')
-SENDGRID_API_KEY   = os.getenv('SENDGRID_API_KEY')
-ALERT_EMAIL_TO     = os.getenv('ALERT_EMAIL_TO')
-ALERT_EMAIL_FROM   = os.getenv('ALERT_EMAIL_FROM')
-TWILIO_SID         = os.getenv('TWILIO_SID')
-TWILIO_AUTH        = os.getenv('TWILIO_AUTH')
-TWILIO_FROM        = os.getenv('TWILIO_FROM')
-TWILIO_TO          = os.getenv('TWILIO_TO')
+SMTP_HOST          = os.getenv('SMTP_HOST', 'smtp.gmail.com')
+SMTP_PORT          = int(os.getenv('SMTP_PORT', '587'))
+SMTP_USER          = os.getenv('SMTP_USER')
+SMTP_PASSWORD      = os.getenv('SMTP_PASSWORD')
+EMAIL_FROM         = os.getenv('EMAIL_FROM')
+EMAIL_TO           = os.getenv('EMAIL_TO')
 
 PAYMENT_POLICY_ID  = '391308491023'
 SHIPPING_POLICY_ID = '391308514023'
@@ -262,45 +262,23 @@ def send_alerts(listed_books):
         f"- {b['title']} | ${b['listing_price']:.2f} | Profit: ${b['profit']:.2f} | {b['confidence']}"
         for b in listed_books
     ]
-    body = f"New listings added:\n\n" + "\n".join(lines)
+    body = "New listings added:\n\n" + "\n".join(lines)
 
-    # Email
-    if SENDGRID_API_KEY and ALERT_EMAIL_TO:
-        try:
-            requests.post(
-                'https://api.sendgrid.com/v3/mail/send',
-                headers={
-                    'Authorization': f'Bearer {SENDGRID_API_KEY}',
-                    'Content-Type':  'application/json'
-                },
-                json={
-                    'personalizations': [{'to': [{'email': ALERT_EMAIL_TO}]}],
-                    'from':    {'email': ALERT_EMAIL_FROM},
-                    'subject': subject,
-                    'content': [{'type': 'text/plain', 'value': body}]
-                },
-                timeout=10
-            )
-            log.info("Email alert sent")
-        except Exception as e:
-            log.error(f"Email alert failed: {e}")
-
-    # SMS
-    if TWILIO_SID and TWILIO_AUTH:
-        try:
-            requests.post(
-                f'https://api.twilio.com/2010-04-01/Accounts/{TWILIO_SID}/Messages.json',
-                auth=(TWILIO_SID, TWILIO_AUTH),
-                data={
-                    'From': TWILIO_FROM,
-                    'To':   TWILIO_TO,
-                    'Body': f"[eBay Lister] {len(listed_books)} new books listed. Check email for details."
-                },
-                timeout=10
-            )
-            log.info("SMS alert sent")
-        except Exception as e:
-            log.error(f"SMS alert failed: {e}")
+    if not all([SMTP_USER, SMTP_PASSWORD, EMAIL_TO]):
+        log.warning("Email not configured — skipping alert")
+        return
+    try:
+        msg = MIMEText(body)
+        msg['Subject'] = subject
+        msg['From']    = EMAIL_FROM or SMTP_USER
+        msg['To']      = EMAIL_TO
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.sendmail(msg['From'], [EMAIL_TO], msg.as_string())
+        log.info("Email alert sent")
+    except Exception as e:
+        log.error(f"Email alert failed: {e}")
 
 
 # ── State ────────────────────────────────────────────────────────────────────

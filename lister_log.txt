@@ -1106,3 +1106,116 @@
 2026-04-11 23:34:52,124 INFO LISTER DONE: 2 listed, 20 failed
 2026-04-11 23:34:52,124 INFO ============================================================
 2026-04-11 23:34:53,407 INFO Email alert sent
+2026-04-11 23:50:38,340 INFO ============================================================
+2026-04-11 23:50:38,340 INFO LISTER STARTED — 2026-04-11 23:50:38
+2026-04-11 23:50:38,341 INFO ============================================================
+2026-04-11 23:50:38,341 INFO Processing 41 opportunities...
+2026-04-11 23:50:38,631 INFO Listing: Fire and Emergency Services Instructor, 9th Edition
+2026-04-11 23:50:40,107 INFO   Image: Open Library (9780879396961)
+2026-04-11 23:50:41,618 INFO   Offer already exists (150219162011) — updating and publishing
+2026-04-11 23:50:43,705 INFO   ✅ Listed | $87.06 | Profit: $17.53 | ListingID: 358436392439
+2026-04-11 23:50:44,705 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-11 23:50:45,360 WARNING   No image found for 9781032836072 — skipping
+2026-04-11 23:50:45,361 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-11 23:50:45,951 WARNING   No image found for 9781943378210 — skipping
+2026-04-11 23:50:45,952 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-11 23:50:47,290 INFO   Image: Open Library (9781462550128)
+2026-04-11 23:50:48,595 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:50:48,596 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-11 23:50:49,234 WARNING   No image found for 9781636940267 — skipping
+2026-04-11 23:50:49,234 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-11 23:50:49,940 WARNING   No image found for 9781641950473 — skipping
+2026-04-11 23:50:49,941 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-11 23:50:50,473 WARNING   No image found for 9780197609026 — skipping
+2026-04-11 23:50:50,474 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-11 23:50:51,622 INFO   Image: Open Library (9780367263638)
+2026-04-11 23:50:53,130 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:50:53,131 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-11 23:50:54,801 WARNING   No image found for 9781337711067 — skipping
+2026-04-11 23:50:54,801 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-11 23:50:56,017 INFO   Image: Open Library (9780867157994)
+2026-04-11 23:50:57,444 INFO   Offer already exists (150219214011) — updating and publishing
+2026-04-11 23:50:59,516 INFO   ✅ Listed | $137.22 | Profit: $32.05 | ListingID: 358436393969
+2026-04-11 23:51:00,516 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-11 23:51:01,080 WARNING   No image found for 9781683674405 — skipping
+2026-04-11 23:51:01,080 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-11 23:51:01,939 WARNING   No image found for 9781466516946 — skipping
+2026-04-11 23:51:01,939 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 23:51:03,054 WARNING   No image found for 9780195335286 — skipping
+2026-04-11 23:51:03,054 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-11 23:51:03,672 WARNING   No image found for 9798320894041 — skipping
+2026-04-11 23:51:03,673 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-11 23:51:04,363 WARNING   No image found for 9781615373062 — skipping
+2026-04-11 23:51:04,363 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-11 23:51:04,913 WARNING   No image found for 9781951058067 — skipping
+2026-04-11 23:51:04,913 INFO Listing: Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 
+2026-04-11 23:51:05,933 INFO   Image: Open Library (9781609836184)
+2026-04-11 23:51:07,530 INFO   Offer already exists (150219242011) — updating and publishing
+2026-04-11 23:51:09,052 INFO   ✅ Listed | $141.64 | Profit: $34.88 | ListingID: 358436395349
+2026-04-11 23:51:10,052 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-11 23:51:11,100 INFO   Image: Open Library (9781506353074)
+2026-04-11 23:51:13,129 INFO   Offer already exists (150219254011) — updating and publishing
+2026-04-11 23:51:14,293 INFO   ✅ Listed | $82.25 | Profit: $13.36 | ListingID: 358436395722
+2026-04-11 23:51:15,293 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-11 23:51:15,832 WARNING   No image found for 9781951058098 — skipping
+2026-04-11 23:51:15,833 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-11 23:51:16,427 WARNING   No image found for 9781544343242 — skipping
+2026-04-11 23:51:16,427 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-11 23:51:17,445 INFO   Image: Open Library (9780323033718)
+2026-04-11 23:51:18,580 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:18,581 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-11 23:51:19,119 WARNING   No image found for 9781577667391 — skipping
+2026-04-11 23:51:19,120 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-11 23:51:19,677 WARNING   No image found for 9781119465935 — skipping
+2026-04-11 23:51:19,677 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-11 23:51:20,685 INFO   Image: Open Library (9781118753651)
+2026-04-11 23:51:21,611 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:21,612 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-11 23:51:22,226 WARNING   No image found for 9780323376518 — skipping
+2026-04-11 23:51:22,227 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-11 23:51:22,558 WARNING   No image found for 9781944366445 — skipping
+2026-04-11 23:51:22,558 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-11 23:51:23,985 INFO   Image: Open Library (9781593850203)
+2026-04-11 23:51:25,743 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:25,745 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-11 23:51:26,331 WARNING   No image found for 9780128216170 — skipping
+2026-04-11 23:51:26,332 INFO Listing: Developmental Biology, 13th Edition by Michael J.F. Gilbert 
+2026-04-11 23:51:27,460 INFO   Image: Open Library (9780197574591)
+2026-04-11 23:51:28,787 INFO   Offer already exists (150219296011) — updating and publishing
+2026-04-11 23:51:30,192 INFO   ✅ Listed | $165.66 | Profit: $55.72 | ListingID: 358436397201
+2026-04-11 23:51:31,192 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-11 23:51:32,168 INFO   Image: Open Library (9781009397759)
+2026-04-11 23:51:33,328 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:33,329 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-11 23:51:33,871 WARNING   No image found for 9781032933832 — skipping
+2026-04-11 23:51:33,871 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-11 23:51:34,437 WARNING   No image found for 9781440878848 — skipping
+2026-04-11 23:51:34,437 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-11 23:51:35,483 INFO   Image: Open Library (9781119143642)
+2026-04-11 23:51:36,823 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:36,824 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-11 23:51:37,848 INFO   Image: Open Library (9781450434140)
+2026-04-11 23:51:38,830 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:38,832 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-11 23:51:39,818 INFO   Image: Open Library (9781572307810)
+2026-04-11 23:51:41,127 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:41,128 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-11 23:51:41,698 WARNING   No image found for 9781412972123 — skipping
+2026-04-11 23:51:41,699 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-11 23:51:42,692 INFO   Image: Open Library (9781462532766)
+2026-04-11 23:51:44,198 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:44,199 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-11 23:51:45,253 INFO   Image: Open Library (9781683732556)
+2026-04-11 23:51:46,733 INFO   Offer already exists (150219473011) — updating and publishing
+2026-04-11 23:51:48,098 INFO   ✅ Listed | $31.08 | Profit: $6.97 | ListingID: 358436419436
+2026-04-11 23:51:49,098 INFO Listing: Lange Q & A Radiography Examination
+2026-04-11 23:51:49,656 WARNING   No image found for 9781260460445 — skipping
+2026-04-11 23:51:49,657 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 23:51:50,288 INFO   Image: Open Library (0195335287)
+2026-04-11 23:51:51,301 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-11 23:51:51,303 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-11 23:51:51,916 WARNING   No image found for 9781138641594 — skipping
+2026-04-11 23:51:51,917 INFO ============================================================
+2026-04-11 23:51:51,917 INFO LISTER DONE: 6 listed, 35 failed
+2026-04-11 23:51:51,917 INFO ============================================================
+2026-04-11 23:51:52,739 INFO Email alert sent

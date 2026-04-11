@@ -532,6 +532,84 @@
       "confidence": "MANUAL",
       "listed_date": "2026-04-11T00:00:00",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/product&product_id=438205"
+    },
+    "9780879396961": {
+      "title": "Fire and Emergency Services Instructor, 9th Edition",
+      "isbn13": "9780879396961",
+      "isbn10": "0879396962",
+      "offer_id": "150219162011",
+      "listing_id": "358436392439",
+      "cost": 57.99,
+      "listing_price": 87.06,
+      "profit": 17.53,
+      "confidence": "HIGH",
+      "listed_date": "2026-04-11T23:50:43.704154",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780879396961"
+    },
+    "9780867157994": {
+      "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 9780867157994) - Hardcover",
+      "isbn13": "9780867157994",
+      "isbn10": "0867157992",
+      "offer_id": "150219214011",
+      "listing_id": "358436393969",
+      "cost": 86.99,
+      "listing_price": 137.22,
+      "profit": 32.05,
+      "confidence": "MEDIUM",
+      "listed_date": "2026-04-11T23:50:59.515181",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994"
+    },
+    "9781609836184": {
+      "title": "Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 9781609836184) - Hardcover",
+      "isbn13": "9781609836184",
+      "isbn10": "1609836189",
+      "offer_id": "150219242011",
+      "listing_id": "358436395349",
+      "cost": 87.99,
+      "listing_price": 141.64,
+      "profit": 34.88,
+      "confidence": "MEDIUM",
+      "listed_date": "2026-04-11T23:51:09.051499",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781609836184"
+    },
+    "9781506353074": {
+      "title": "Qualitative Data Analysis: A Methods Sourcebook, 4th Edition By Matthew B. Miles, A. Michael Huberman & Johnny Salda\u00c3\u00b1a (ISBN: 9781506353074) - Paperback",
+      "isbn13": "9781506353074",
+      "isbn10": "150635307X",
+      "offer_id": "150219254011",
+      "listing_id": "358436395722",
+      "cost": 57.99,
+      "listing_price": 82.25,
+      "profit": 13.36,
+      "confidence": "HIGH",
+      "listed_date": "2026-04-11T23:51:14.292478",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781506353074"
+    },
+    "9780197574591": {
+      "title": "Developmental Biology, 13th Edition by Michael J.F. Gilbert (ISBN 9780197574591) - Hardcover",
+      "isbn13": "9780197574591",
+      "isbn10": "0197574599",
+      "offer_id": "150219296011",
+      "listing_id": "358436397201",
+      "cost": 87.99,
+      "listing_price": 165.66,
+      "profit": 55.72,
+      "confidence": "MEDIUM",
+      "listed_date": "2026-04-11T23:51:30.191639",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780197574591"
+    },
+    "9781683732556": {
+      "title": "The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy",
+      "isbn13": "9781683732556",
+      "isbn10": "1683732553",
+      "offer_id": "150219473011",
+      "listing_id": "358436419436",
+      "cost": 19.99,
+      "listing_price": 31.08,
+      "profit": 6.97,
+      "confidence": "HIGH",
+      "listed_date": "2026-04-11T23:51:48.097337",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781683732556"
     }
   },
   "listed_isbns": [
@@ -575,8 +653,15 @@
     "9781543830903",
     "9781462554270",
     "9781285080475",
-    "9780323988131"
+    "9780323988131",
+    "9780879396961",
+    "9780867157994",
+    "9781609836184",
+    "9781506353074",
+    "9780197574591",
+    "9781683732556"
   ],
-  "last_run": null,
-  "last_tracker_run": null
+  "last_run": "2026-04-11T23:51:51.916755",
+  "last_tracker_run": null,
+  "last_repricer_run": "2026-04-11T23:52:14.645169"
 }

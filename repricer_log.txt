@@ -74,3 +74,100 @@
 2026-04-11 23:35:23,252 INFO REPRICER DONE: 0 repriced | 1 delisted | 51 unchanged
 2026-04-11 23:35:23,252 INFO ============================================================
 2026-04-11 23:35:24,289 INFO Email alert sent
+2026-04-11 23:51:52,898 INFO ============================================================
+2026-04-11 23:51:52,898 INFO REPRICER STARTED — 2026-04-11 23:51:52
+2026-04-11 23:51:52,898 INFO ============================================================
+2026-04-11 23:51:52,898 INFO Checking 47 listings...
+2026-04-11 23:51:53,342 INFO Fetched 90 BooksGoat prices
+2026-04-11 23:51:53,677 INFO   Point-of-Care Ultrasound Techniques for the Small : not in BooksGoat sheet — skipping
+2026-04-11 23:51:53,677 INFO   PPI Fundamentals of Surveying Practice Exam, 5th E: not in BooksGoat sheet — skipping
+2026-04-11 23:51:53,677 INFO   The Art of Electronics, 3rd edition by Paul Horowi: not in BooksGoat sheet — skipping
+2026-04-11 23:51:53,677 INFO   Guides to the Evaluation of Permanent Impairment, : profit $-6.92 < $5 at $89.99 — delisting
+2026-04-11 23:51:53,905 ERROR   No offer_id found for 9781579478889
+2026-04-11 23:51:53,906 ERROR   ❌ Delist failed: 9781579478889
+2026-04-11 23:51:54,406 INFO   Milady Standard Barbering, 6th edition by Milady: profit $-7.60 < $5 at $79.99 — delisting
+2026-04-11 23:51:54,633 ERROR   No offer_id found for 9781305100558
+2026-04-11 23:51:54,635 ERROR   ❌ Delist failed: 9781305100558
+2026-04-11 23:51:55,135 INFO   Sterile Processing Technical Manual (CRCST 9th edi: profit $-5.95 < $5 at $59.99 — delisting
+2026-04-11 23:51:55,341 ERROR   No offer_id found for 9798350705218
+2026-04-11 23:51:55,343 ERROR   ❌ Delist failed: 9798350705218
+2026-04-11 23:51:55,843 INFO   NASCLA Contractors Guide to Business, Law, and Pro: profit $-4.62 < $5 at $49.99 — delisting
+2026-04-11 23:51:56,087 ERROR   No offer_id found for 9781948558396
+2026-04-11 23:51:56,089 ERROR   ❌ Delist failed: 9781948558396
+2026-04-11 23:51:56,589 INFO   Qualitative Inquiry and Research Design: Choosing : profit $-4.62 < $5 at $49.99 — delisting
+2026-04-11 23:51:56,878 ERROR   No offer_id found for 9781544398396
+2026-04-11 23:51:56,879 ERROR   ❌ Delist failed: 9781544398396
+2026-04-11 23:51:57,379 INFO   Low Pressure Boilers, 5th Ed. by Frederick Steingr: profit $-5.95 < $5 at $59.99 — delisting
+2026-04-11 23:51:57,601 ERROR   No offer_id found for 9780826943729
+2026-04-11 23:51:57,602 ERROR   ❌ Delist failed: 9780826943729
+2026-04-11 23:51:58,103 INFO   ACI CODE-318-19(22): Building Code Requirements fo: profit $-7.60 < $5 at $79.99 — delisting
+2026-04-11 23:51:58,314 ERROR   No offer_id found for 9781641950565
+2026-04-11 23:51:58,315 ERROR   ❌ Delist failed: 9781641950565
+2026-04-11 23:51:58,815 INFO   The Foundations of Chinese Medicine 3rd Ed. by Gio: profit $-10.25 < $5 at $99.99 — delisting
+2026-04-11 23:51:59,197 ERROR   No offer_id found for 9780702052163
+2026-04-11 23:51:59,198 ERROR   ❌ Delist failed: 9780702052163
+2026-04-11 23:51:59,698 INFO   Medical Terminology for Health Professions, 9th Ed: profit $-9.01 < $5 at $67.99 — delisting
+2026-04-11 23:51:59,931 ERROR   No offer_id found for 9780357513699
+2026-04-11 23:51:59,932 ERROR   ❌ Delist failed: 9780357513699
+2026-04-11 23:52:00,433 INFO   Real Estate Development - 5th Edition: Principles : profit $-4.62 < $5 at $49.99 — delisting
+2026-04-11 23:52:00,718 ERROR   No offer_id found for 9780874203431
+2026-04-11 23:52:00,720 ERROR   ❌ Delist failed: 9780874203431
+2026-04-11 23:52:01,220 INFO   Dsm-5 -tr Handbook of Differential Diagnosis - 978: profit $-7.15 < $5 at $53.99 — delisting
+2026-04-11 23:52:01,433 ERROR   No offer_id found for 9781615373598
+2026-04-11 23:52:01,434 ERROR   ❌ Delist failed: 9781615373598
+2026-04-11 23:52:01,935 INFO   Distressed Debt Analysis: Strategies for Speculati: profit $-4.62 < $5 at $49.99 — delisting
+2026-04-11 23:52:02,140 ERROR   No offer_id found for 9781932159189
+2026-04-11 23:52:02,141 ERROR   ❌ Delist failed: 9781932159189
+2026-04-11 23:52:02,641 INFO   DC:0-5: Diagnostic Classification of Mental Health: profit $-4.23 < $5 at $46.99 — delisting
+2026-04-11 23:52:02,868 ERROR   No offer_id found for 9781938558573
+2026-04-11 23:52:02,869 ERROR   ❌ Delist failed: 9781938558573
+2026-04-11 23:52:03,369 INFO   Race Car Vehicle - 9781560915263: profit $-6.27 < $5 at $69.99 — delisting
+2026-04-11 23:52:03,603 ERROR   No offer_id found for 9781560915263
+2026-04-11 23:52:03,604 ERROR   ❌ Delist failed: 9781560915263
+2026-04-11 23:52:04,104 INFO   Radiation Detection and Measurement 4th Ed. by Gle: profit $-9.27 < $5 at $69.99 — delisting
+2026-04-11 23:52:04,305 ERROR   No offer_id found for 9780470131480
+2026-04-11 23:52:04,306 ERROR   ❌ Delist failed: 9780470131480
+2026-04-11 23:52:04,806 INFO   Handbook of Bird Biology 3rd Ed. (Cornell Lab of O: profit $-7.48 < $5 at $63.99 — delisting
+2026-04-11 23:52:05,060 ERROR   No offer_id found for 9781118291054
+2026-04-11 23:52:05,061 ERROR   ❌ Delist failed: 9781118291054
+2026-04-11 23:52:05,561 INFO   Milady Standard Cosmetology 13th Edition: profit $-12.57 < $5 at $109.99 — delisting
+2026-04-11 23:52:05,798 ERROR   No offer_id found for 9781285769417
+2026-04-11 23:52:05,799 ERROR   ❌ Delist failed: 9781285769417
+2026-04-11 23:52:06,300 INFO   HVAC Water Chillers and Cooling Towers: Fundamenta: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   Design of CMOS Phase-Locked Loops: From Circuit Le: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   Understanding and Applying Relational Frame Theory: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   Laboratory Techniques in Organic Chemistry, 4th Ed: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   Microwave Engineering 4th Edition by David Pozar: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   Vector Calculus, 6th Edition by Jerrold Marsden, A: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   Aircraft Design: A Conceptual Approach, 6th Editio: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   Formulas and Calculations for Drilling, Production: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   Spacecraft Thermal Control Handbook — Edited by Da: not in BooksGoat sheet — skipping
+2026-04-11 23:52:06,300 INFO   The Art of Reading Buildings by John Mittendorf: profit $-4.95 < $5 at $59.99 — delisting
+2026-04-11 23:52:06,538 ERROR   No offer_id found for 9781593703424
+2026-04-11 23:52:06,539 ERROR   ❌ Delist failed: 9781593703424
+2026-04-11 23:52:07,040 INFO   Science and Practice of Strength Training, 3rd Edi: not in BooksGoat sheet — skipping
+2026-04-11 23:52:07,040 INFO   Introduction to the Thermodynamics of Materials, 7: not in BooksGoat sheet — skipping
+2026-04-11 23:52:07,040 INFO   Interpreting the MMPI-3 textbook by Martin Sellbom: not in BooksGoat sheet — skipping
+2026-04-11 23:52:07,040 INFO   2021 International Residential Code (IRC) by Inter: not in BooksGoat sheet — skipping
+2026-04-11 23:52:07,040 INFO   2018 International Residential Code for One- and T: not in BooksGoat sheet — skipping
+2026-04-11 23:52:07,040 INFO   Trading and Exchanges: Market Microstructure for P: profit $-6.27 < $5 at $69.99 — delisting
+2026-04-11 23:52:07,252 ERROR   No offer_id found for 9780195144703
+2026-04-11 23:52:07,254 ERROR   ❌ Delist failed: 9780195144703
+2026-04-11 23:52:07,754 INFO   Brinker, Piermattei and Flo's Handbook of Small An: profit $-6.27 < $5 at $69.99 — delisting
+2026-04-11 23:52:07,993 ERROR   No offer_id found for 9781437723649
+2026-04-11 23:52:07,994 ERROR   ❌ Delist failed: 9781437723649
+2026-04-11 23:52:08,495 INFO   The MBE Decoded: Multistate Bar Exam (Bar Review),: profit $-5.30 < $5 at $39.99 — delisting
+2026-04-11 23:52:08,756 ERROR   No offer_id found for 9781543830903
+2026-04-11 23:52:08,758 ERROR   ❌ Delist failed: 9781543830903
+2026-04-11 23:52:09,258 INFO   Cognitive Processing Therapy for PTSD: A Comprehen: profit $-3.71 < $5 at $27.99 — delisting
+2026-04-11 23:52:09,477 ERROR   No offer_id found for 9781462554270
+2026-04-11 23:52:09,479 ERROR   ❌ Delist failed: 9781462554270
+2026-04-11 23:52:09,979 INFO   Milady Standard Nail Technology, 7th Edition by Mi: profit $-7.60 < $5 at $79.99 — delisting
+2026-04-11 23:52:10,425 ERROR   No offer_id found for 9781285080475
+2026-04-11 23:52:10,426 ERROR   ❌ Delist failed: 9781285080475
+2026-04-11 23:52:10,927 INFO   A Workbook of Ethical Case Scenarios in Applied Be: profit $-2.65 < $5 at $19.99 — delisting
+2026-04-11 23:52:11,142 ERROR   No offer_id found for 9780323988131
+2026-04-11 23:52:11,143 ERROR   ❌ Delist failed: 9780323988131
+2026-04-11 23:52:14,646 INFO ============================================================
+2026-04-11 23:52:14,646 INFO REPRICER DONE: 0 repriced | 0 delisted | 23 unchanged
+2026-04-11 23:52:14,646 INFO ============================================================

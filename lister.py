@@ -85,15 +85,17 @@ def generate_description(title, isbn13):
 
 
 # ── Book Image ───────────────────────────────────────────────────────────────
-def is_real_image(url, min_bytes=5000):
-    """Download first chunk and verify it's a real JPEG/PNG, not a placeholder."""
+def is_real_image(url, min_bytes=15000):
+    """
+    Download first chunk and verify it's a real JPEG/PNG large enough to use.
+    min_bytes=15000 (~15KB) filters out thumbnails and placeholder images.
+    """
     try:
-        r = requests.get(url, timeout=10, stream=True)
+        r = requests.get(url, timeout=12, stream=True)
         if r.status_code != 200:
             return False
         chunk = next(r.iter_content(chunk_size=min_bytes + 1), b'')
         r.close()
-        # Check for JPEG (FF D8) or PNG (89 50 4E 47) magic bytes
         is_jpg = chunk[:2] == b'\xff\xd8'
         is_png = chunk[:4] == b'\x89PNG'
         return (is_jpg or is_png) and len(chunk) >= min_bytes
@@ -101,33 +103,44 @@ def is_real_image(url, min_bytes=5000):
         return False
 
 def get_book_image(isbn13, isbn10):
-    """Try Open Library (ISBN-13, ISBN-10), then Google Books API."""
-    # Open Library — check with actual GET + magic bytes
+    """
+    Try image sources in order of quality:
+    1. Open Library large cover (ISBN-13, then ISBN-10)
+    2. Google Books — try extraLarge/large/medium at zoom=3
+    Returns None if no suitable image found (listing will be skipped).
+    """
+    # Open Library large covers — 15KB minimum to filter placeholders
     for isbn in [isbn13, isbn10]:
         if not isbn:
             continue
         url = f'https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg'
-        if is_real_image(url):
+        if is_real_image(url, min_bytes=15000):
             log.info(f"  Image: Open Library ({isbn})")
             return url
 
-    # Google Books fallback
+    # Google Books — prefer larger sizes, enforce quality floor
     try:
         r = requests.get(
             'https://www.googleapis.com/books/v1/volumes',
-            params={'q': f'isbn:{isbn13}'},
+            params={'q': f'isbn:{isbn13}', 'maxResults': 3},
             timeout=8
         )
         items = r.json().get('items', [])
         for item in items:
             img = item.get('volumeInfo', {}).get('imageLinks', {})
-            src = img.get('extraLarge') or img.get('large') or img.get('medium') or img.get('thumbnail')
-            if src:
+            # Try sizes in descending quality order
+            for size_key, zoom in [('extraLarge', 3), ('large', 3), ('medium', 2), ('thumbnail', 1)]:
+                src = img.get(size_key)
+                if not src:
+                    continue
                 src = src.replace('http://', 'https://')
-                # Upgrade to larger size
-                src = src.replace('zoom=1', 'zoom=3').replace('zoom=2', 'zoom=3')
-                if is_real_image(src, min_bytes=2000):
-                    log.info(f"  Image: Google Books")
+                # Force highest zoom available
+                import re as _re
+                src = _re.sub(r'zoom=\d', f'zoom={zoom}', src)
+                # Large images only — thumbnails are too small for eBay
+                min_b = 20000 if size_key in ('extraLarge', 'large') else 10000
+                if is_real_image(src, min_bytes=min_b):
+                    log.info(f"  Image: Google Books ({size_key})")
                     return src
     except Exception as e:
         log.warning(f"  Google Books image failed: {e}")

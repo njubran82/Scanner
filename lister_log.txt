@@ -439,3 +439,185 @@
 2026-04-11 18:46:45,887 INFO ============================================================
 2026-04-11 18:46:45,887 INFO LISTER DONE: 0 listed, 45 failed
 2026-04-11 18:46:45,887 INFO ============================================================
+2026-04-11 18:52:46,705 INFO ============================================================
+2026-04-11 18:52:46,705 INFO LISTER STARTED — 2026-04-11 18:52:46
+2026-04-11 18:52:46,705 INFO ============================================================
+2026-04-11 18:52:46,706 INFO Processing 45 opportunities...
+2026-04-11 18:52:46,983 INFO Listing: Fire and Emergency Services Instructor, 9th Edition
+2026-04-11 18:52:47,343 INFO   Image: Open Library (9780879396961)
+2026-04-11 18:52:48,301 INFO   Offer already exists (150219162011) — updating and publishing
+2026-04-11 18:52:50,473 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:52:50,475 ERROR   Listing failed for 9780879396961
+2026-04-11 18:52:50,475 INFO Listing: Sterile Processing Technical Manual Workbook (CRCST Workbook
+2026-04-11 18:52:50,914 WARNING   No image found for B0C1XZ4BQV — skipping
+2026-04-11 18:52:50,914 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-11 18:52:51,384 WARNING   No image found for 9781032836072 — skipping
+2026-04-11 18:52:51,385 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-11 18:52:51,819 WARNING   No image found for 9781943378210 — skipping
+2026-04-11 18:52:51,819 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-11 18:52:52,201 INFO   Image: Open Library (9781462550128)
+2026-04-11 18:52:53,265 INFO   Offer already exists (150219183011) — updating and publishing
+2026-04-11 18:52:55,098 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:52:55,100 ERROR   Listing failed for 9781462550128
+2026-04-11 18:52:55,100 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-11 18:52:55,729 INFO   Image: Google Books
+2026-04-11 18:52:58,608 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:52:58,610 ERROR   Listing failed for 9781636940267
+2026-04-11 18:52:58,610 INFO Listing: FYI: For Your Improvement â For Learners, Managers, Mentor
+2026-04-11 18:52:58,715 INFO   Image: Open Library (9781933578170)
+2026-04-11 18:52:59,795 INFO   Offer already exists (150219187011) — updating and publishing
+2026-04-11 18:53:01,976 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:01,978 ERROR   Listing failed for 9781933578170
+2026-04-11 18:53:01,978 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-11 18:53:02,354 WARNING   No image found for 9781641950473 — skipping
+2026-04-11 18:53:02,355 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-11 18:53:02,605 WARNING   No image found for 9780197609026 — skipping
+2026-04-11 18:53:02,605 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-11 18:53:02,974 INFO   Image: Open Library (9780367263638)
+2026-04-11 18:53:04,021 INFO   Offer already exists (150219197011) — updating and publishing
+2026-04-11 18:53:06,116 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:06,118 ERROR   Listing failed for 9780367263638
+2026-04-11 18:53:06,118 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-11 18:53:06,449 WARNING   No image found for 9781337711067 — skipping
+2026-04-11 18:53:06,449 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-11 18:53:06,799 INFO   Image: Open Library (9780867157994)
+2026-04-11 18:53:07,651 INFO   Offer already exists (150219214011) — updating and publishing
+2026-04-11 18:53:09,554 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:09,556 ERROR   Listing failed for 9780867157994
+2026-04-11 18:53:09,556 INFO Listing: Molecular Biology of the Cell, 7th Edition by Bruce Alberts 
+2026-04-11 18:53:09,807 INFO   Image: Open Library (9780393884821)
+2026-04-11 18:53:10,737 INFO   Offer already exists (150219217011) — updating and publishing
+2026-04-11 18:53:13,106 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:13,108 ERROR   Listing failed for 9780393884821
+2026-04-11 18:53:13,108 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-11 18:53:13,568 WARNING   No image found for 9781683674405 — skipping
+2026-04-11 18:53:13,568 INFO Listing: Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statisti
+2026-04-11 18:53:13,768 INFO   Image: Open Library (9781439840955)
+2026-04-11 18:53:14,623 INFO   Offer already exists (150219223011) — updating and publishing
+2026-04-11 18:53:16,513 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:16,515 ERROR   Listing failed for 9781439840955
+2026-04-11 18:53:16,515 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-11 18:53:16,672 INFO   Image: Open Library (9781466516946)
+2026-04-11 18:53:17,741 INFO   Offer already exists (150219233011) — updating and publishing
+2026-04-11 18:53:19,756 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:19,758 ERROR   Listing failed for 9781466516946
+2026-04-11 18:53:19,758 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 18:53:19,854 INFO   Image: Open Library (9780195335286)
+2026-04-11 18:53:20,845 INFO   Offer already exists (150219237011) — updating and publishing
+2026-04-11 18:53:22,542 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:22,544 ERROR   Listing failed for 9780195335286
+2026-04-11 18:53:22,544 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-11 18:53:23,279 WARNING   No image found for 9798320894041 — skipping
+2026-04-11 18:53:23,279 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-11 18:53:24,215 INFO   Image: Google Books
+2026-04-11 18:53:25,114 INFO   Offer already exists (150224445011) — updating and publishing
+2026-04-11 18:53:27,161 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:27,162 ERROR   Listing failed for 9781615373062
+2026-04-11 18:53:27,163 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-11 18:53:27,689 INFO   Image: Google Books
+2026-04-11 18:53:28,690 INFO   Offer already exists (150221441011) — updating and publishing
+2026-04-11 18:53:30,562 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:30,564 ERROR   Listing failed for 9781951058067
+2026-04-11 18:53:30,564 INFO Listing: Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 
+2026-04-11 18:53:30,951 INFO   Image: Open Library (9781609836184)
+2026-04-11 18:53:31,936 INFO   Offer already exists (150219242011) — updating and publishing
+2026-04-11 18:53:33,382 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:33,384 ERROR   Listing failed for 9781609836184
+2026-04-11 18:53:33,384 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-11 18:53:33,687 INFO   Image: Open Library (9781506353074)
+2026-04-11 18:53:34,623 INFO   Offer already exists (150219254011) — updating and publishing
+2026-04-11 18:53:36,366 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:36,367 ERROR   Listing failed for 9781506353074
+2026-04-11 18:53:36,368 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-11 18:53:36,951 INFO   Image: Google Books
+2026-04-11 18:53:39,756 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:39,758 ERROR   Listing failed for 9781951058098
+2026-04-11 18:53:39,758 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-11 18:53:40,014 WARNING   No image found for 9781544343242 — skipping
+2026-04-11 18:53:40,014 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-11 18:53:40,311 INFO   Image: Open Library (9780323033718)
+2026-04-11 18:53:41,108 INFO   Offer already exists (150219259011) — updating and publishing
+2026-04-11 18:53:42,695 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:42,697 ERROR   Listing failed for 9780323033718
+2026-04-11 18:53:42,697 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-11 18:53:43,218 INFO   Image: Google Books
+2026-04-11 18:53:45,663 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:45,665 ERROR   Listing failed for 9781577667391
+2026-04-11 18:53:45,665 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-11 18:53:46,974 INFO   Image: Google Books
+2026-04-11 18:53:49,907 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:49,910 ERROR   Listing failed for 9781119465935
+2026-04-11 18:53:49,910 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-11 18:53:50,176 INFO   Image: Open Library (9781118753651)
+2026-04-11 18:53:51,187 INFO   Offer already exists (150219267011) — updating and publishing
+2026-04-11 18:53:53,156 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:53,158 ERROR   Listing failed for 9781118753651
+2026-04-11 18:53:53,158 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-11 18:53:53,457 WARNING   No image found for 9780323376518 — skipping
+2026-04-11 18:53:53,457 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-11 18:53:54,180 WARNING   No image found for 9781944366445 — skipping
+2026-04-11 18:53:54,181 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-11 18:53:54,605 INFO   Image: Open Library (9781593850203)
+2026-04-11 18:53:55,470 INFO   Offer already exists (150219286011) — updating and publishing
+2026-04-11 18:53:56,801 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:53:56,803 ERROR   Listing failed for 9781593850203
+2026-04-11 18:53:56,803 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-11 18:53:57,013 WARNING   No image found for 9780128216170 — skipping
+2026-04-11 18:53:57,013 INFO Listing: Developmental Biology, 13th Edition by Michael J.F. Gilbert 
+2026-04-11 18:53:57,407 INFO   Image: Open Library (9780197574591)
+2026-04-11 18:53:58,445 INFO   Offer already exists (150219296011) — updating and publishing
+2026-04-11 18:54:00,281 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:00,283 ERROR   Listing failed for 9780197574591
+2026-04-11 18:54:00,283 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-11 18:54:00,682 INFO   Image: Open Library (9781009397759)
+2026-04-11 18:54:01,641 INFO   Offer already exists (150219320011) — updating and publishing
+2026-04-11 18:54:03,326 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:03,327 ERROR   Listing failed for 9781009397759
+2026-04-11 18:54:03,327 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-11 18:54:03,931 INFO   Image: Google Books
+2026-04-11 18:54:04,690 INFO   Offer already exists (150219329011) — updating and publishing
+2026-04-11 18:54:06,425 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:06,426 ERROR   Listing failed for 9781032933832
+2026-04-11 18:54:06,426 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-11 18:54:06,915 INFO   Image: Google Books
+2026-04-11 18:54:09,922 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:09,924 ERROR   Listing failed for 9781440878848
+2026-04-11 18:54:09,924 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-11 18:54:10,193 INFO   Image: Open Library (9781119143642)
+2026-04-11 18:54:11,170 INFO   Offer already exists (150219345011) — updating and publishing
+2026-04-11 18:54:13,130 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:13,131 ERROR   Listing failed for 9781119143642
+2026-04-11 18:54:13,132 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-11 18:54:13,519 INFO   Image: Open Library (9781450434140)
+2026-04-11 18:54:14,679 INFO   Offer already exists (150219353011) — updating and publishing
+2026-04-11 18:54:16,872 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:16,874 ERROR   Listing failed for 9781450434140
+2026-04-11 18:54:16,874 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-11 18:54:17,352 INFO   Image: Open Library (9781572307810)
+2026-04-11 18:54:18,417 INFO   Offer already exists (150219360011) — updating and publishing
+2026-04-11 18:54:20,618 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:20,619 ERROR   Listing failed for 9781572307810
+2026-04-11 18:54:20,620 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-11 18:54:20,828 WARNING   No image found for 9781412972123 — skipping
+2026-04-11 18:54:20,828 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-11 18:54:21,053 INFO   Image: Open Library (9781462532766)
+2026-04-11 18:54:22,046 INFO   Offer already exists (150219419011) — updating and publishing
+2026-04-11 18:54:23,974 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:23,976 ERROR   Listing failed for 9781462532766
+2026-04-11 18:54:23,976 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-11 18:54:24,208 INFO   Image: Open Library (9781683732556)
+2026-04-11 18:54:25,390 INFO   Offer already exists (150219473011) — updating and publishing
+2026-04-11 18:54:27,568 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:27,570 ERROR   Listing failed for 9781683732556
+2026-04-11 18:54:27,570 INFO Listing: Lange Q & A Radiography Examination
+2026-04-11 18:54:27,942 WARNING   No image found for 9781260460445 — skipping
+2026-04-11 18:54:27,943 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-11 18:54:28,028 INFO   Image: Open Library (9780195335286)
+2026-04-11 18:54:29,211 INFO   Offer already exists (150219237011) — updating and publishing
+2026-04-11 18:54:31,305 ERROR   publish_offer failed (400): {"errors":[{"errorId":25005,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"The eBay listing associated with the inventory item, or the unpublished offer has an invalid category ID. The category selected is not a leaf category."}]}
+2026-04-11 18:54:31,307 ERROR   Listing failed for 9780195335286
+2026-04-11 18:54:31,307 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-11 18:54:31,563 WARNING   No image found for 9781138641594 — skipping
+2026-04-11 18:54:31,564 INFO ============================================================
+2026-04-11 18:54:31,564 INFO LISTER DONE: 0 listed, 45 failed
+2026-04-11 18:54:31,564 INFO ============================================================

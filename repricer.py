@@ -220,6 +220,12 @@ def reprice():
         current_cost  = bg['cost']
         amazon_price  = bg.get('amazon_price')
 
+        # Skip if no listing price recorded (some manual listings)
+        if not listing_price:
+            log.info(f"  {title[:50]}: no listing price recorded — skipping")
+            unchanged += 1
+            continue
+
         # Determine target price
         target_price = listing_price  # default: keep current
 

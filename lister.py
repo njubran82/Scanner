@@ -163,7 +163,7 @@ def clean_book_title(title):
     t = re.sub(r'\s*\(ISBN[^)]*\)', '', t, flags=re.IGNORECASE)
     t = re.sub(r'\s*\*US [A-Z]+\*\s*', ' ', t)
     t = re.sub(r'\s*\{[^}]*\}', '', t)
-    return t.strip(' -—,')[:80]
+    return t.strip(' -—,')[:65]
 
 
 # ── eBay Inventory API ───────────────────────────────────────────────────────

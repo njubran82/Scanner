@@ -98,7 +98,10 @@ def generate_description(title, isbn13):
             },
             timeout=20
         )
-        text = r.json()['content'][0]['text'].strip()
+        resp = r.json()
+        if 'content' not in resp:
+            raise ValueError(f"Unexpected API response: {resp.get('error', resp)}")
+        text = resp['content'][0]['text'].strip()
         return text + DISCLAIMER
     except Exception as e:
         log.warning(f"AI description failed ({isbn13}): {e} — using fallback")
@@ -114,37 +117,50 @@ def generate_description(title, isbn13):
 
 
 # ── Book Image ───────────────────────────────────────────────────────────────
+def is_real_image(url, min_bytes=5000):
+    """Download first chunk and verify it's a real JPEG/PNG, not a placeholder."""
+    try:
+        r = requests.get(url, timeout=10, stream=True)
+        if r.status_code != 200:
+            return False
+        chunk = next(r.iter_content(chunk_size=min_bytes + 1), b'')
+        r.close()
+        # Check for JPEG (FF D8) or PNG (89 50 4E 47) magic bytes
+        is_jpg = chunk[:2] == b'\xff\xd8'
+        is_png = chunk[:4] == b'\x89PNG'
+        return (is_jpg or is_png) and len(chunk) >= min_bytes
+    except Exception:
+        return False
+
 def get_book_image(isbn13, isbn10):
     """Try Open Library (ISBN-13, ISBN-10), then Google Books API."""
+    # Open Library — check with actual GET + magic bytes
     for isbn in [isbn13, isbn10]:
         if not isbn:
             continue
         url = f'https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg'
-        try:
-            r = requests.head(url, timeout=8, allow_redirects=True)
-            # Open Library returns a 1x1 placeholder for missing covers
-            content_len = int(r.headers.get('content-length', 0))
-            if r.status_code == 200 and content_len > 5000:
-                log.info(f"  Image: Open Library ({isbn})")
-                return url
-        except Exception:
-            pass
+        if is_real_image(url):
+            log.info(f"  Image: Open Library ({isbn})")
+            return url
 
     # Google Books fallback
     try:
         r = requests.get(
-            f'https://www.googleapis.com/books/v1/volumes',
+            'https://www.googleapis.com/books/v1/volumes',
             params={'q': f'isbn:{isbn13}'},
             timeout=8
         )
         items = r.json().get('items', [])
-        if items:
-            img = items[0].get('volumeInfo', {}).get('imageLinks', {})
-            src = img.get('extraLarge') or img.get('large') or img.get('thumbnail')
+        for item in items:
+            img = item.get('volumeInfo', {}).get('imageLinks', {})
+            src = img.get('extraLarge') or img.get('large') or img.get('medium') or img.get('thumbnail')
             if src:
                 src = src.replace('http://', 'https://')
-                log.info(f"  Image: Google Books")
-                return src
+                # Upgrade to larger size
+                src = src.replace('zoom=1', 'zoom=3').replace('zoom=2', 'zoom=3')
+                if is_real_image(src, min_bytes=2000):
+                    log.info(f"  Image: Google Books")
+                    return src
     except Exception as e:
         log.warning(f"  Google Books image failed: {e}")
 
@@ -162,7 +178,6 @@ def create_inventory_item(token, book, description, image_url):
         'product': {
             'title':       book['title'][:80],
             'description': description,
-            'isbn':        book['isbn13'],
             'imageUrls':   [image_url],
             'aspects': {
                 'Type':     ['Textbook'],

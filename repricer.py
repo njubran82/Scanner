@@ -89,7 +89,11 @@ def fetch_amazon_prices():
 
 # ── eBay Offer Update ────────────────────────────────────────────────────────
 def update_offer_price(token, offer_id, new_price):
-    """Update the price on an existing eBay offer."""
+    """
+    Update only the price on an existing eBay offer.
+    Fetches the current offer, updates pricingSummary, strips read-only fields, PUTs back.
+    """
+    # Fetch current offer
     r = requests.get(
         f'https://api.ebay.com/sell/inventory/v1/offer/{offer_id}',
         headers={'Authorization': f'Bearer {token}'},
@@ -100,24 +104,35 @@ def update_offer_price(token, offer_id, new_price):
         return False
 
     offer_data = r.json()
+
+    # Strip ALL read-only and response-only fields eBay rejects in PUT
+    read_only = [
+        'offerId', 'status', 'listing', 'marketplaceId',
+        'auditInfo', 'availableQuantity', 'soldQuantity',
+        'warnings', 'errors'
+    ]
+    for field in read_only:
+        offer_data.pop(field, None)
+
+    # Update price only
     offer_data['pricingSummary'] = {
         'price': {'currency': 'USD', 'value': f'{new_price:.2f}'}
     }
-    # Remove read-only fields
-    for field in ['offerId', 'status', 'listing', 'marketplaceId']:
-        offer_data.pop(field, None)
 
     r2 = requests.put(
         f'https://api.ebay.com/sell/inventory/v1/offer/{offer_id}',
         headers={
-            'Authorization': f'Bearer {token}',
-            'Content-Type': 'application/json',
+            'Authorization':    f'Bearer {token}',
+            'Content-Type':     'application/json',
             'Content-Language': 'en-US'
         },
         json=offer_data,
         timeout=15
     )
-    return r2.status_code in [200, 204]
+    if r2.status_code not in [200, 204]:
+        log.error(f"  PUT failed ({r2.status_code}): {r2.text[:300]}")
+        return False
+    return True
 
 
 def delist_offer(token, isbn13, offer_id=None):

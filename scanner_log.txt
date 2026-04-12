@@ -878,3 +878,93 @@
 2026-04-12 00:25:08,927 INFO   Unprofitable:     23
 2026-04-12 00:25:08,927 INFO   Amazon fallbacks: 3
 2026-04-12 00:25:08,927 INFO ============================================================
+2026-04-12 01:00:17,955 INFO ============================================================
+2026-04-12 01:00:17,955 INFO SCANNER STARTED — 2026-04-12 01:00:17
+2026-04-12 01:00:17,955 INFO ============================================================
+2026-04-12 01:00:18,476 INFO eBay token acquired
+2026-04-12 01:00:18,476 INFO Fetching BooksGoat sheet...
+2026-04-12 01:00:19,302 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Guides to the Evaluation of Permanent Impairment, 6th Edition (ISBN 9781579478889) - Paperback', 'ISBN-13': '9781579478889', 'ISBN-10': '1579478883', '5 Qty': '$84.99', '10 Qty': '$79.99', '25 Qty': '$74.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#724,981'}
+2026-04-12 01:00:19,303 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Cancer as a Metabolic Disease: On the Origin, Management, and Prevention of Cancer, 1st Edition by Thomas N. Seyfried (ISBN 9780470584927) - Hardcover', 'ISBN-13': '9780470584927', 'ISBN-10': '0470584920', '5 Qty': '$52.99', '10 Qty': '$50.99', '25 Qty': '$48.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#17,314'}
+2026-04-12 01:00:19,303 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Tests & Measurement for People Who (Think They) Hate Tests & Measurement, 4th Edition by Neil J. Salkind â\x80\x93 Paperback (ISBN: 9781071817179)', 'ISBN-13': '9781071817179', 'ISBN-10': '1071817175', '5 Qty': '$59.99', '10 Qty': '$56.99', '25 Qty': '$53.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#623,460'}
+2026-04-12 01:00:19,303 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback', 'ISBN-13': '9781138088610', 'ISBN-10': '1138088617', '5 Qty': '$55.99', '10 Qty': '$54.99', '25 Qty': '$53.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#693,029'}
+2026-04-12 01:00:19,303 INFO Fetched 88 books from BooksGoat
+2026-04-12 01:00:21,650 INFO ✅ Fire and Emergency Services Instructor, 9th Editio | Cost: $57.99 | List: $87.06 | Profit: $17.53 | HIGH (20)
+2026-04-12 01:00:25,844 INFO   Amazon ($63.00) < eBay ($78.75) — repricing to $59.85
+2026-04-12 01:00:28,657 INFO   Amazon ($200.00) < eBay ($224.94) — repricing to $190.00
+2026-04-12 01:00:28,658 INFO ✅ Safety Professionalâs Reference and Study Guide, | Cost: $86.99 | List: $190.00 | Profit: $77.84 | HIGH (7)
+2026-04-12 01:00:31,674 INFO   Amazon ($144.30) < eBay ($153.93) — repricing to $137.09
+2026-04-12 01:00:31,674 INFO ✅ Arboristsâ Certification Study Guide, 4th Editio | Cost: $76.99 | List: $137.09 | Profit: $41.94 | MEDIUM (1)
+2026-04-12 01:00:34,446 INFO   Amazon ($91.00) < eBay ($147.87) — repricing to $86.45
+2026-04-12 01:00:34,447 INFO ✅ Clinical Handbook of Couple Therapy, 6th Edition b | Cost: $66.99 | List: $86.45 | Profit: $8.01 | HIGH (15)
+2026-04-12 01:00:36,659 INFO   Amazon fallback: The ASQ Certified Quality Engineer Handbook 5th ed
+2026-04-12 01:00:36,659 INFO ✅ The ASQ Certified Quality Engineer Handbook 5th ed | Cost: $66.99 | List: $108.49 | Profit: $27.13 | FALLBACK_AMAZON (0)
+2026-04-12 01:00:38,553 INFO   Amazon ($33.00) < eBay ($61.25) — repricing to $31.35
+2026-04-12 01:00:45,496 INFO   Amazon ($74.99) < eBay ($114.06) — repricing to $71.24
+2026-04-12 01:00:45,496 INFO ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $48.99 | List: $71.24 | Profit: $12.81 | HIGH (7)
+2026-04-12 01:00:47,872 INFO   Amazon ($117.63) < eBay ($122.75) — repricing to $111.75
+2026-04-12 01:00:47,872 INFO ✅ Bioethics: Principles, Issues, and Cases, 5th Edit | Cost: $56.99 | List: $111.75 | Profit: $39.95 | HIGH (4)
+2026-04-12 01:00:50,271 INFO   Amazon ($127.00) < eBay ($165.26) — repricing to $120.65
+2026-04-12 01:00:50,271 INFO ✅ Safety Professional's Reference and Study Guide, 3 | Cost: $74.99 | List: $120.65 | Profit: $29.67 | HIGH (6)
+2026-04-12 01:00:52,473 INFO   Amazon ($84.49) < eBay ($101.83) — repricing to $80.27
+2026-04-12 01:00:52,474 INFO ✅ Principles of Radiographic Imaging: An Art and a S | Cost: $62.99 | List: $80.27 | Profit: $6.64 | HIGH (12)
+2026-04-12 01:00:59,437 INFO ✅ Zero Bone Loss Concepts by Tomas Linkevicius (ISBN | Cost: $86.99 | List: $137.22 | Profit: $32.05 | MEDIUM (1)
+2026-04-12 01:01:06,541 INFO   Amazon ($102.36) < eBay ($106.08) — repricing to $97.24
+2026-04-12 01:01:06,541 INFO ✅ Larone's Medically Important Fungi: A Guide to Ide | Cost: $58.99 | List: $97.24 | Profit: $25.37 | HIGH (5)
+2026-04-12 01:01:13,289 INFO   Amazon ($158.50) < eBay ($209.12) — repricing to $150.57
+2026-04-12 01:01:13,290 INFO ✅ American Herbal Products Association's Botanical S | Cost: $76.99 | List: $150.57 | Profit: $53.63 | HIGH (4)
+2026-04-12 01:01:13,751 INFO   Amazon ($64.67) < eBay ($71.72) — repricing to $61.44
+2026-04-12 01:01:13,751 INFO ✅ Exposure and Response (Ritual) Prevention for Obse | Cost: $25.99 | List: $61.44 | Profit: $27.31 | MEDIUM (1)
+2026-04-12 01:01:15,739 INFO   Amazon ($145.74) < eBay ($200.25) — repricing to $138.45
+2026-04-12 01:01:15,739 INFO ✅ The Paralegal's Companion: Fundamentals for Legal  | Cost: $66.99 | List: $138.45 | Profit: $53.12 | MEDIUM (1)
+2026-04-12 01:01:17,964 INFO ✅ Textbook of Women's Reproductive Mental Health by  | Cost: $56.99 | List: $117.55 | Profit: $44.98 | HIGH (5)
+2026-04-12 01:01:20,335 INFO   Amazon ($124.14) < eBay ($133.56) — repricing to $117.93
+2026-04-12 01:01:20,335 INFO ✅ The ASQ Certified Manager of Quality/Organizationa | Cost: $66.99 | List: $117.93 | Profit: $35.31 | HIGH (3)
+2026-04-12 01:01:22,466 INFO ✅ Concrete Manual: Based on the 2015 IBC and ACI 318 | Cost: $87.99 | List: $141.64 | Profit: $34.88 | MEDIUM (1)
+2026-04-12 01:01:24,631 INFO ✅ Qualitative Data Analysis: A Methods Sourcebook, 4 | Cost: $57.99 | List: $82.25 | Profit: $13.36 | HIGH (20)
+2026-04-12 01:01:27,349 INFO   Amazon ($111.00) < eBay ($131.25) — repricing to $105.45
+2026-04-12 01:01:27,349 INFO ✅ Counseling Individuals Through the Lifespan 2nd ed | Cost: $66.99 | List: $105.45 | Profit: $24.49 | HIGH (5)
+2026-04-12 01:01:29,524 INFO   Amazon ($145.44) < eBay ($199.67) — repricing to $138.17
+2026-04-12 01:01:29,525 INFO ✅ Functional Occlusion: From TMJ to Smile Design by  | Cost: $76.99 | List: $138.17 | Profit: $42.87 | HIGH (4)
+2026-04-12 01:01:36,079 INFO   Amazon ($116.59) < eBay ($138.27) — repricing to $110.76
+2026-04-12 01:01:36,079 INFO ✅ Factory Physics, 3rd Edition by Wallace J. Hopp &  | Cost: $56.99 | List: $110.76 | Profit: $39.09 | MEDIUM (2)
+2026-04-12 01:01:38,315 INFO   Amazon ($109.08) < eBay ($132.45) — repricing to $103.63
+2026-04-12 01:01:38,315 INFO ✅ Designing Effective Instruction, 8th Edition by Ga | Cost: $56.99 | List: $103.63 | Profit: $32.91 | HIGH (7)
+2026-04-12 01:01:38,851 INFO   Amazon ($128.00) < eBay ($140.82) — repricing to $121.60
+2026-04-12 01:01:38,851 INFO ✅ Rocket Propulsion Elements, 9th Edition by George  | Cost: $57.99 | List: $121.60 | Profit: $47.50 | MEDIUM (1)
+2026-04-12 01:01:41,112 INFO   Amazon ($119.11) < eBay ($177.30) — repricing to $113.15
+2026-04-12 01:01:41,112 INFO ✅ Small Animal Dermatology: A Color Atlas and Therap | Cost: $61.99 | List: $113.15 | Profit: $36.17 | HIGH (9)
+2026-04-12 01:01:42,602 INFO   Amazon fallback: 2021 Uniform Mechanical Code Soft Cover with Tabs 
+2026-04-12 01:01:42,603 INFO ✅ 2021 Uniform Mechanical Code Soft Cover with Tabs  | Cost: $76.99 | List: $117.25 | Profit: $24.72 | FALLBACK_AMAZON (0)
+2026-04-12 01:01:47,608 INFO   Amazon ($95.20) < eBay ($98.38) — repricing to $90.44
+2026-04-12 01:01:47,608 INFO ✅ Ethnicity and Family Therapy, 3rd Edition by Monic | Cost: $54.99 | List: $90.44 | Profit: $23.47 | HIGH (6)
+2026-04-12 01:01:49,954 INFO   Amazon ($86.99) < eBay ($165.67) — repricing to $82.64
+2026-04-12 01:01:49,954 INFO ✅ Ketogenic: The Science of Therapeutic Carbohydrate | Cost: $55.99 | List: $82.64 | Profit: $15.70 | HIGH (5)
+2026-04-12 01:01:52,111 INFO ✅ Developmental Biology, 13th Edition by Michael J.F | Cost: $87.99 | List: $165.66 | Profit: $55.72 | MEDIUM (1)
+2026-04-12 01:01:52,569 INFO   Amazon ($55.49) < eBay ($119.88) — repricing to $52.72
+2026-04-12 01:01:52,569 INFO ✅ Introduction to Electrodynamics by David J. Griffi | Cost: $35.99 | List: $52.72 | Profit: $9.74 | MEDIUM (1)
+2026-04-12 01:01:54,667 INFO   Amazon fallback: Considerations on the AI Endgame (Chapman & Hall/C
+2026-04-12 01:01:54,668 INFO ✅ Considerations on the AI Endgame (Chapman & Hall/C | Cost: $16.99 | List: $26.24 | Profit: $5.77 | FALLBACK_AMAZON (0)
+2026-04-12 01:01:57,082 INFO ✅ How to Write and Publish a Scientific Paper        | Cost: $29.99 | List: $44.15 | Profit: $8.31 | HIGH (20)
+2026-04-12 01:01:57,614 INFO   Amazon ($37.62) < eBay ($61.42) — repricing to $35.74
+2026-04-12 01:01:57,614 INFO ✅ Understanding Behaviorism: Behavior, Culture, and  | Cost: $21.99 | List: $35.74 | Profit: $9.01 | MEDIUM (1)
+2026-04-12 01:02:00,019 INFO   Amazon ($73.22) < eBay ($73.61) — repricing to $69.56
+2026-04-12 01:02:00,019 INFO ✅ ACSM's Exercise Management for Persons With Chroni | Cost: $43.99 | List: $69.56 | Profit: $16.35 | HIGH (15)
+2026-04-12 01:02:00,493 INFO   Amazon ($52.00) < eBay ($69.99) — repricing to $49.40
+2026-04-12 01:02:00,493 INFO ✅ DBT Skills Training Handouts and Worksheets Second | Cost: $29.99 | List: $49.40 | Profit: $12.86 | MEDIUM (1)
+2026-04-12 01:02:03,331 INFO ✅ Qualitative Research & Evaluation Methods: Integra | Cost: $71.99 | List: $109.38 | Profit: $22.90 | HIGH (17)
+2026-04-12 01:02:04,977 INFO   Amazon ($61.00) < eBay ($77.79) — repricing to $57.95
+2026-04-12 01:02:04,977 INFO ✅ Eye Movement Desensitization and Reprocessing (EMD | Cost: $39.99 | List: $57.95 | Profit: $10.28 | MEDIUM (1)
+2026-04-12 01:02:07,229 INFO ✅ The Comprehensive Clinician's Guide to Cognitive B | Cost: $19.99 | List: $29.18 | Profit: $5.32 | HIGH (20)
+2026-04-12 01:02:11,551 INFO   Amazon ($72.00) < eBay ($79.66) — repricing to $68.40
+2026-04-12 01:02:11,552 INFO ✅ Lange Q & A Radiography Examination                | Cost: $41.99 | List: $68.40 | Profit: $17.35 | HIGH (18)
+2026-04-12 01:02:11,984 INFO   Amazon ($64.67) < eBay ($71.72) — repricing to $61.44
+2026-04-12 01:02:11,984 INFO ✅ Exposure and Response (Ritual) Prevention for Obse | Cost: $40.99 | List: $61.44 | Profit: $12.31 | MEDIUM (1)
+2026-04-12 01:02:15,052 INFO   Amazon ($87.45) < eBay ($124.14) — repricing to $83.08
+2026-04-12 01:02:15,053 INFO ✅ Strategies and Tactics of Behavioral Research and  | Cost: $52.99 | List: $83.08 | Profit: $19.08 | HIGH (8)
+2026-04-12 01:02:15,054 INFO ============================================================
+2026-04-12 01:02:15,054 INFO SCAN COMPLETE: 40 opportunities found
+2026-04-12 01:02:15,054 INFO   Already listed:   25
+2026-04-12 01:02:15,054 INFO   No eBay data:     0
+2026-04-12 01:02:15,054 INFO   Unprofitable:     23
+2026-04-12 01:02:15,054 INFO   Amazon fallbacks: 3
+2026-04-12 01:02:15,054 INFO ============================================================

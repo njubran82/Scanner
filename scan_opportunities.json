@@ -1,7 +1,21 @@
 {
-  "scan_date": "2026-04-12T00:25:08.926413",
+  "scan_date": "2026-04-12T01:02:15.053152",
   "total_books": 88,
   "opportunities": [
+    {
+      "title": "Fire and Emergency Services Instructor, 9th Edition",
+      "isbn13": "9780879396961",
+      "isbn10": "0879396962",
+      "cost": 57.99,
+      "amazon_price": 97.0,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780879396961",
+      "median_price": 99.495,
+      "listing_price": 87.06,
+      "profit": 17.53,
+      "confidence": "HIGH",
+      "num_comps": 20,
+      "scanned_at": "2026-04-12T01:00:21.650533"
+    },
     {
       "title": "Safety Professional\u00e2\u0080\u0099s Reference and Study Guide, 4th Edition by W. David Yates (ISBN: 9781032836072) \u00e2\u0080\u0093 Hardcover",
       "isbn13": "9781032836072",
@@ -14,7 +28,7 @@
       "profit": 77.84,
       "confidence": "HIGH",
       "num_comps": 7,
-      "scanned_at": "2026-04-12T00:23:28.995011"
+      "scanned_at": "2026-04-12T01:00:28.658037"
     },
     {
       "title": "Arborists\u00e2\u0080\u0099 Certification Study Guide, 4th Edition by Sharon Lilly, Corrine Bassett (ISBN: 9781943378210) - Paperback",
@@ -28,7 +42,7 @@
       "profit": 41.94,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:23:32.045500"
+      "scanned_at": "2026-04-12T01:00:31.674402"
     },
     {
       "title": "Clinical Handbook of Couple Therapy, 6th Edition by Jay L. Lebow (ISBN 9781462550128) - Hardcover",
@@ -42,7 +56,7 @@
       "profit": 8.01,
       "confidence": "HIGH",
       "num_comps": 15,
-      "scanned_at": "2026-04-12T00:23:35.749379"
+      "scanned_at": "2026-04-12T01:00:34.447103"
     },
     {
       "title": "The ASQ Certified Quality Engineer Handbook 5th edition (ISBN 9781636940267) by Scott A Laman - Hardcover",
@@ -56,7 +70,7 @@
       "profit": 27.13,
       "confidence": "FALLBACK_AMAZON",
       "num_comps": 0,
-      "scanned_at": "2026-04-12T00:23:37.950947"
+      "scanned_at": "2026-04-12T01:00:36.659788"
     },
     {
       "title": "The Contractor's Guide to Quality Concrete Construction, 4th Edition by American Concrete Institute (ISBN 9781641950473) - Paperback",
@@ -70,7 +84,7 @@
       "profit": 12.81,
       "confidence": "HIGH",
       "num_comps": 7,
-      "scanned_at": "2026-04-12T00:23:45.360974"
+      "scanned_at": "2026-04-12T01:00:45.496749"
     },
     {
       "title": "Bioethics: Principles, Issues, and Cases, 5th Edition by Lewis Vaughn (ISBN 9780197609026) - Paperback",
@@ -84,7 +98,7 @@
       "profit": 39.95,
       "confidence": "HIGH",
       "num_comps": 4,
-      "scanned_at": "2026-04-12T00:23:47.654673"
+      "scanned_at": "2026-04-12T01:00:47.872888"
     },
     {
       "title": "Safety Professional's Reference and Study Guide, 3rd Edition by W. David Yates (ISBN 9780367263638) - Hardcover",
@@ -93,12 +107,12 @@
       "cost": 74.99,
       "amazon_price": 127.0,
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780367263638",
-      "median_price": 241.01,
+      "median_price": 188.865,
       "listing_price": 120.65,
       "profit": 29.67,
       "confidence": "HIGH",
       "num_comps": 6,
-      "scanned_at": "2026-04-12T00:23:50.146123"
+      "scanned_at": "2026-04-12T01:00:50.271964"
     },
     {
       "title": "Principles of Radiographic Imaging: An Art and a Science, 6th edition by Carlton and Adler (ISBN 9781337711067) - Hardcover",
@@ -112,7 +126,21 @@
       "profit": 6.64,
       "confidence": "HIGH",
       "num_comps": 12,
-      "scanned_at": "2026-04-12T00:23:52.378920"
+      "scanned_at": "2026-04-12T01:00:52.474173"
+    },
+    {
+      "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 9780867157994) - Hardcover",
+      "isbn13": "9780867157994",
+      "isbn10": "0867157992",
+      "cost": 86.99,
+      "amazon_price": 179.22,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994",
+      "median_price": 156.82,
+      "listing_price": 137.22,
+      "profit": 32.05,
+      "confidence": "MEDIUM",
+      "num_comps": 1,
+      "scanned_at": "2026-04-12T01:00:59.437082"
     },
     {
       "title": "Larone's Medically Important Fungi: A Guide to Identification 7th edition by Lars Westblade (ISBN 9781683674405) - Hardcover",
@@ -126,7 +154,7 @@
       "profit": 25.37,
       "confidence": "HIGH",
       "num_comps": 5,
-      "scanned_at": "2026-04-12T00:24:03.872468"
+      "scanned_at": "2026-04-12T01:01:06.541715"
     },
     {
       "title": "American Herbal Products Association's Botanical Safety Handbook, 2nd Edition (ISBN 9781466516946) - Hardcover",
@@ -140,7 +168,7 @@
       "profit": 53.63,
       "confidence": "HIGH",
       "num_comps": 4,
-      "scanned_at": "2026-04-12T00:24:10.659585"
+      "scanned_at": "2026-04-12T01:01:13.290160"
     },
     {
       "title": "Exposure and Response (Ritual) Prevention for Obsessive-Compulsive Disorder: Therapist Guide, 2nd Edition by Edna B. Foa (ISBN 9780195335286) - Paperback",
@@ -154,7 +182,7 @@
       "profit": 27.31,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:24:11.187959"
+      "scanned_at": "2026-04-12T01:01:13.751411"
     },
     {
       "title": "The Paralegal's Companion: Fundamentals for Legal Practitioners and Those Preparing for the CP Exam by NALA (ISBN 9798320894041) \u00e2\u0080\u0093 Paperback",
@@ -168,7 +196,7 @@
       "profit": 53.12,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:24:13.215121"
+      "scanned_at": "2026-04-12T01:01:15.739827"
     },
     {
       "title": "Textbook of Women's Reproductive Mental Health by Lucy Hutner (ISBN 9781615373062) - Hardcover",
@@ -182,7 +210,7 @@
       "profit": 44.98,
       "confidence": "HIGH",
       "num_comps": 5,
-      "scanned_at": "2026-04-12T00:24:15.496289"
+      "scanned_at": "2026-04-12T01:01:17.964528"
     },
     {
       "title": "The ASQ Certified Manager of Quality/Organizational Excellence Handbook, 5th Edition by Sandra L Furterer (ISBN 9781951058067) - Hardcover",
@@ -196,21 +224,35 @@
       "profit": 35.31,
       "confidence": "HIGH",
       "num_comps": 3,
-      "scanned_at": "2026-04-12T00:24:18.025812"
+      "scanned_at": "2026-04-12T01:01:20.335716"
     },
     {
-      "title": "The ASQ Certified Quality Auditor Handbook, 5th edition by Lance B Coleman (ISBN 9781951058098) - Hardcover",
-      "isbn13": "9781951058098",
-      "isbn10": "1951058097",
-      "cost": 60.99,
-      "amazon_price": 110.19,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781951058098",
-      "median_price": 166.72,
-      "listing_price": 104.68,
-      "profit": 29.82,
+      "title": "Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 9781609836184) - Hardcover",
+      "isbn13": "9781609836184",
+      "isbn10": "1609836189",
+      "cost": 87.99,
+      "amazon_price": 184.99,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781609836184",
+      "median_price": 161.87,
+      "listing_price": 141.64,
+      "profit": 34.88,
+      "confidence": "MEDIUM",
+      "num_comps": 1,
+      "scanned_at": "2026-04-12T01:01:22.466949"
+    },
+    {
+      "title": "Qualitative Data Analysis: A Methods Sourcebook, 4th Edition By Matthew B. Miles, A. Michael Huberman & Johnny Salda\u00c3\u00b1a (ISBN: 9781506353074) - Paperback",
+      "isbn13": "9781506353074",
+      "isbn10": "150635307X",
+      "cost": 57.99,
+      "amazon_price": 100.05,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781506353074",
+      "median_price": 93.995,
+      "listing_price": 82.25,
+      "profit": 13.36,
       "confidence": "HIGH",
-      "num_comps": 7,
-      "scanned_at": "2026-04-12T00:24:20.808085"
+      "num_comps": 20,
+      "scanned_at": "2026-04-12T01:01:24.631234"
     },
     {
       "title": "Counseling Individuals Through the Lifespan 2nd edition (Counseling and Professional Identity) by Wong, Hall, Hernandez (ISBN: 9781544343242) - Paperback",
@@ -224,7 +266,7 @@
       "profit": 24.49,
       "confidence": "HIGH",
       "num_comps": 5,
-      "scanned_at": "2026-04-12T00:24:23.125544"
+      "scanned_at": "2026-04-12T01:01:27.349852"
     },
     {
       "title": "Functional Occlusion: From TMJ to Smile Design by Peter E. Dawson 1st edition (ISBN: 9780323033718) - Hardcover",
@@ -238,7 +280,7 @@
       "profit": 42.87,
       "confidence": "HIGH",
       "num_comps": 4,
-      "scanned_at": "2026-04-12T00:24:25.327204"
+      "scanned_at": "2026-04-12T01:01:29.525060"
     },
     {
       "title": "Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Spearman (ISBN 9781577667391) - Hardcover",
@@ -252,7 +294,7 @@
       "profit": 39.09,
       "confidence": "MEDIUM",
       "num_comps": 2,
-      "scanned_at": "2026-04-12T00:24:32.520441"
+      "scanned_at": "2026-04-12T01:01:36.079520"
     },
     {
       "title": "Designing Effective Instruction, 8th Edition by Gary R. Morrison (ISBN 9781119465935) - Paperback",
@@ -266,7 +308,7 @@
       "profit": 32.91,
       "confidence": "HIGH",
       "num_comps": 7,
-      "scanned_at": "2026-04-12T00:24:34.841842"
+      "scanned_at": "2026-04-12T01:01:38.315409"
     },
     {
       "title": "Rocket Propulsion Elements, 9th Edition by George P. Sutton (ISBN 9781118753651) - Hardcover",
@@ -280,7 +322,7 @@
       "profit": 47.5,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:24:35.424341"
+      "scanned_at": "2026-04-12T01:01:38.851574"
     },
     {
       "title": "Small Animal Dermatology: A Color Atlas and Therapeutic Guide, 4th Edition by Danny W. Scott, William H. Miller Jr. & Craig E. Griffin \u00e2\u0080\u0093 Hardcover (ISBN: 9780323376518)",
@@ -294,7 +336,7 @@
       "profit": 36.17,
       "confidence": "HIGH",
       "num_comps": 9,
-      "scanned_at": "2026-04-12T00:24:38.761117"
+      "scanned_at": "2026-04-12T01:01:41.112709"
     },
     {
       "title": "2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781944366445) - Paperback",
@@ -308,7 +350,7 @@
       "profit": 24.72,
       "confidence": "FALLBACK_AMAZON",
       "num_comps": 0,
-      "scanned_at": "2026-04-12T00:24:40.240647"
+      "scanned_at": "2026-04-12T01:01:42.603012"
     },
     {
       "title": "Ethnicity and Family Therapy, 3rd Edition by Monica McGoldrick, Joe Giordano & Nydia Garcia-Preto \u00e2\u0080\u0093 Hardcover (ISBN: 9781593850204)",
@@ -317,12 +359,12 @@
       "cost": 54.99,
       "amazon_price": 95.2,
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781593850203",
-      "median_price": 126.03,
+      "median_price": 112.435,
       "listing_price": 90.44,
       "profit": 23.47,
       "confidence": "HIGH",
       "num_comps": 6,
-      "scanned_at": "2026-04-12T00:24:45.415726"
+      "scanned_at": "2026-04-12T01:01:47.608550"
     },
     {
       "title": "Ketogenic: The Science of Therapeutic Carbohydrate Restriction in Human Health by Tim Noakes, Tamzyn Murphy, Neville Wellington *DOWNLOAD VERSION*",
@@ -336,7 +378,21 @@
       "profit": 15.7,
       "confidence": "HIGH",
       "num_comps": 5,
-      "scanned_at": "2026-04-12T00:24:47.735811"
+      "scanned_at": "2026-04-12T01:01:49.954951"
+    },
+    {
+      "title": "Developmental Biology, 13th Edition by Michael J.F. Gilbert (ISBN 9780197574591) - Hardcover",
+      "isbn13": "9780197574591",
+      "isbn10": "0197574599",
+      "cost": 87.99,
+      "amazon_price": 216.37,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780197574591",
+      "median_price": 189.32,
+      "listing_price": 165.66,
+      "profit": 55.72,
+      "confidence": "MEDIUM",
+      "num_comps": 1,
+      "scanned_at": "2026-04-12T01:01:52.110985"
     },
     {
       "title": "Introduction to Electrodynamics by David J. Griffiths, 5th Edition (ISBN 9781009397759) - Hardcover",
@@ -350,7 +406,7 @@
       "profit": 9.74,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:24:48.261681"
+      "scanned_at": "2026-04-12T01:01:52.569771"
     },
     {
       "title": "Considerations on the AI Endgame (Chapman & Hall/CRC Artificial Intelligence and Robotics Series)",
@@ -364,7 +420,7 @@
       "profit": 5.77,
       "confidence": "FALLBACK_AMAZON",
       "num_comps": 0,
-      "scanned_at": "2026-04-12T00:24:50.511437"
+      "scanned_at": "2026-04-12T01:01:54.668136"
     },
     {
       "title": "How to Write and Publish a Scientific Paper",
@@ -378,7 +434,7 @@
       "profit": 8.31,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-12T00:24:52.811065"
+      "scanned_at": "2026-04-12T01:01:57.082139"
     },
     {
       "title": "Understanding Behaviorism: Behavior, Culture, and Evolution",
@@ -392,7 +448,7 @@
       "profit": 9.01,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:24:53.271598"
+      "scanned_at": "2026-04-12T01:01:57.614944"
     },
     {
       "title": "ACSM's Exercise Management for Persons With Chronic Diseases",
@@ -406,7 +462,7 @@
       "profit": 16.35,
       "confidence": "HIGH",
       "num_comps": 15,
-      "scanned_at": "2026-04-12T00:24:55.832724"
+      "scanned_at": "2026-04-12T01:02:00.019711"
     },
     {
       "title": "DBT Skills Training Handouts and Worksheets Second Edition",
@@ -420,7 +476,7 @@
       "profit": 12.86,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:24:56.408493"
+      "scanned_at": "2026-04-12T01:02:00.493525"
     },
     {
       "title": "Qualitative Research & Evaluation Methods: Integrating Theory and Practice",
@@ -434,7 +490,7 @@
       "profit": 22.9,
       "confidence": "HIGH",
       "num_comps": 17,
-      "scanned_at": "2026-04-12T00:24:59.269863"
+      "scanned_at": "2026-04-12T01:02:03.331561"
     },
     {
       "title": "Eye Movement Desensitization and Reprocessing (EMDR) Therapy: Basic Principles, Protocols, and Procedures, 3rd edition",
@@ -448,7 +504,21 @@
       "profit": 10.28,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:25:00.846897"
+      "scanned_at": "2026-04-12T01:02:04.977946"
+    },
+    {
+      "title": "The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy",
+      "isbn13": "9781683732556",
+      "isbn10": "1683732553",
+      "cost": 19.99,
+      "amazon_price": 33.01,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781683732556",
+      "median_price": 33.345,
+      "listing_price": 29.18,
+      "profit": 5.32,
+      "confidence": "HIGH",
+      "num_comps": 20,
+      "scanned_at": "2026-04-12T01:02:07.229848"
     },
     {
       "title": "Lange Q & A Radiography Examination",
@@ -457,12 +527,12 @@
       "cost": 41.99,
       "amazon_price": 72.0,
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781260460445",
-      "median_price": 87.95,
+      "median_price": 91.045,
       "listing_price": 68.4,
       "profit": 17.35,
       "confidence": "HIGH",
-      "num_comps": 19,
-      "scanned_at": "2026-04-12T00:25:05.630336"
+      "num_comps": 18,
+      "scanned_at": "2026-04-12T01:02:11.552297"
     },
     {
       "title": "Exposure and Response (Ritual) Prevention for Obsessive-Compulsive Disorder: Therapist Guide (Treatments That Work) 2nd Edition",
@@ -476,7 +546,7 @@
       "profit": 12.31,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-12T00:25:06.560321"
+      "scanned_at": "2026-04-12T01:02:11.984348"
     },
     {
       "title": "Strategies and Tactics of Behavioral Research and Practice, 4th edition",
@@ -490,7 +560,7 @@
       "profit": 19.08,
       "confidence": "HIGH",
       "num_comps": 8,
-      "scanned_at": "2026-04-12T00:25:08.926258"
+      "scanned_at": "2026-04-12T01:02:15.052994"
     }
   ]
 }

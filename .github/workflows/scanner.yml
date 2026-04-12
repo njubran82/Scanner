@@ -64,5 +64,9 @@ jobs:
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
           git add lister_state.json scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
+          git stash || true
+          git pull --rebase origin main || true
+          git stash pop || true
+          git add lister_state.json scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
           git diff --staged --quiet || git commit -m "Scanner/Lister/Repricer run $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push

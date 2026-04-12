@@ -194,6 +194,7 @@ def create_inventory_item(token, book, description, image_url):
             'title':       book['title'][:80],
             'description': description,
             'imageUrls':   [image_url],
+            'identifiers': [{'type': 'ISBN', 'value': book['isbn13']}],
             'aspects': {
                 'Book Title': [clean_title],
                 'Author':     [author],

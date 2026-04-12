@@ -252,16 +252,22 @@ def reprice():
         profit = target_price - current_cost - (target_price * EBAY_FEE_RATE)
 
         if profit < MIN_PROFIT:
-            log.info(f"  {title[:50]}: profit ${profit:.2f} < $5 at ${target_price:.2f} — delisting")
-            success = delist_offer(token, isbn13, offer_id=offer_id)
-            if success:
-                delisted.append({**listing, 'reason': f'Profit ${profit:.2f} after Amazon reprice'})
-                del state['listings'][isbn13]
-                if isbn13 in state.get('listed_isbns', []):
-                    state['listed_isbns'].remove(isbn13)
-                log.info(f"  ✅ Delisted: {title[:50]}")
+            if offer_id:
+                # Auto-listed — can delist via API
+                log.info(f"  {title[:50]}: profit ${profit:.2f} < $5 — auto-delisting")
+                success = delist_offer(token, isbn13, offer_id=offer_id)
+                if success:
+                    delisted.append({**listing, 'reason': f'Profit ${profit:.2f} after Amazon reprice'})
+                    del state['listings'][isbn13]
+                    if isbn13 in state.get('listed_isbns', []):
+                        state['listed_isbns'].remove(isbn13)
+                    log.info(f"  ✅ Delisted: {title[:50]}")
+                else:
+                    log.error(f"  ❌ Delist failed: {isbn13}")
             else:
-                log.error(f"  ❌ Delist failed: {isbn13}")
+                # Manual listing — alert only, cannot auto-delist
+                log.info(f"  {title[:50]}: MANUAL listing unprofitable (${profit:.2f}) — alerting only")
+                delisted.append({**listing, 'reason': f'MANUAL — Please delist in Seller Hub. Profit ${profit:.2f} at ${target_price:.2f}'})
 
         elif abs(target_price - listing_price) > 0.01:
             # Price needs updating

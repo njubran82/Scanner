@@ -1623,3 +1623,85 @@
 2026-04-12 01:04:07,017 INFO LISTER DONE: 18 listed, 22 failed
 2026-04-12 01:04:07,017 INFO ============================================================
 2026-04-12 01:04:08,606 INFO Email alert sent
+2026-04-12 11:05:13,140 INFO ============================================================
+2026-04-12 11:05:13,141 INFO LISTER STARTED — 2026-04-12 11:05:13
+2026-04-12 11:05:13,141 INFO ============================================================
+2026-04-12 11:05:13,141 INFO Processing 21 opportunities...
+2026-04-12 11:05:13,387 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-12 11:05:14,418 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:05:15,662 INFO   Offer already exists (150221391011) — updating and publishing
+2026-04-12 11:05:19,079 INFO   ✅ Listed | $190.00 | Profit: $77.84 | ListingID: 358438536999
+2026-04-12 11:05:20,080 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-12 11:05:21,027 WARNING   No image found for 9781943378210 — skipping
+2026-04-12 11:05:21,027 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-12 11:05:21,847 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:05:23,090 INFO   Offer already exists (150226430011) — updating and publishing
+2026-04-12 11:05:26,046 INFO   ✅ Listed | $108.49 | Profit: $27.13 | ListingID: 358438537246
+2026-04-12 11:05:27,046 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-12 11:05:27,882 WARNING   No image found for 9781641950473 — skipping
+2026-04-12 11:05:27,882 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-12 11:05:28,931 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:05:30,033 INFO   Offer already exists (150224322011) — updating and publishing
+2026-04-12 11:05:33,093 INFO   ✅ Listed | $111.75 | Profit: $39.95 | ListingID: 358438537525
+2026-04-12 11:05:34,093 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-12 11:05:34,913 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:05:35,980 INFO   Offer already exists (150228475011) — updating and publishing
+2026-04-12 11:05:38,928 INFO   ✅ Listed | $80.27 | Profit: $6.64 | ListingID: 358438537683
+2026-04-12 11:05:39,928 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-12 11:05:40,826 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:05:41,968 INFO   Offer already exists (150224427011) — updating and publishing
+2026-04-12 11:05:45,083 INFO   ✅ Listed | $97.24 | Profit: $25.37 | ListingID: 358438537992
+2026-04-12 11:05:46,083 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-12 11:05:46,859 WARNING   No image found for 9798320894041 — skipping
+2026-04-12 11:05:46,860 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-12 11:05:47,599 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:05:51,385 INFO   Offer already exists (150224445011) — updating and publishing
+2026-04-12 11:05:53,949 INFO   ✅ Listed | $117.55 | Profit: $44.98 | ListingID: 358436767278
+2026-04-12 11:05:54,950 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-12 11:05:55,841 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:05:59,549 INFO   Offer already exists (150221441011) — updating and publishing
+2026-04-12 11:06:00,590 INFO   ✅ Listed | $117.93 | Profit: $35.31 | ListingID: 358436767432
+2026-04-12 11:06:01,590 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-12 11:06:02,373 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:03,624 INFO   Offer already exists (150228645011) — updating and publishing
+2026-04-12 11:06:07,832 INFO   ✅ Listed | $105.45 | Profit: $24.49 | ListingID: 358438538505
+2026-04-12 11:06:08,832 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-12 11:06:09,627 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:10,879 INFO   Offer already exists (150226720011) — updating and publishing
+2026-04-12 11:06:14,108 INFO   ✅ Listed | $110.76 | Profit: $39.09 | ListingID: 358438538757
+2026-04-12 11:06:15,108 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-12 11:06:15,832 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:16,945 INFO   Offer already exists (150226750011) — updating and publishing
+2026-04-12 11:06:19,941 INFO   ✅ Listed | $103.63 | Profit: $32.91 | ListingID: 358438538886
+2026-04-12 11:06:20,942 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-12 11:06:21,766 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:22,770 INFO   Offer already exists (150224518011) — updating and publishing
+2026-04-12 11:06:25,978 INFO   ✅ Listed | $113.15 | Profit: $36.17 | ListingID: 358438539023
+2026-04-12 11:06:26,979 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-12 11:06:27,542 WARNING   No image found for 9781944366445 — skipping
+2026-04-12 11:06:27,543 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-12 11:06:28,414 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:29,772 INFO   Offer already exists (150228775011) — updating and publishing
+2026-04-12 11:06:32,906 INFO   ✅ Listed | $82.64 | Profit: $15.70 | ListingID: 358438539197
+2026-04-12 11:06:33,906 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-12 11:06:34,781 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:35,934 INFO   Offer already exists (150219329011) — updating and publishing
+2026-04-12 11:06:40,020 INFO   ✅ Listed | $26.24 | Profit: $5.77 | ListingID: 358438539364
+2026-04-12 11:06:41,020 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-12 11:06:41,929 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:45,389 INFO   Offer already exists (150226881011) — updating and publishing
+2026-04-12 11:06:46,389 INFO   ✅ Listed | $44.15 | Profit: $8.31 | ListingID: 358436767547
+2026-04-12 11:06:47,390 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-12 11:06:48,124 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:52,137 INFO   ✅ Listed | $109.38 | Profit: $22.90 | ListingID: 358438539921
+2026-04-12 11:06:53,137 INFO Listing: Lange Q & A Radiography Examination
+2026-04-12 11:06:53,987 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:06:55,107 INFO   Offer already exists (150219476011) — updating and publishing
+2026-04-12 11:06:59,029 INFO   ✅ Listed | $68.40 | Profit: $17.35 | ListingID: 358438540208
+2026-04-12 11:07:00,030 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-12 11:07:00,847 INFO   Image: Google Books (thumbnail)
+2026-04-12 11:07:05,852 INFO   ✅ Listed | $83.08 | Profit: $19.08 | ListingID: 358438540583
+2026-04-12 11:07:06,854 INFO ============================================================
+2026-04-12 11:07:06,854 INFO LISTER DONE: 17 listed, 4 failed
+2026-04-12 11:07:06,854 INFO ============================================================
+2026-04-12 11:07:08,145 INFO Email alert sent

@@ -85,7 +85,7 @@ def generate_description(title, isbn13):
 
 
 # ── Book Image ───────────────────────────────────────────────────────────────
-def is_real_image(url, min_bytes=15000):
+def is_real_image(url, min_bytes=5000):
     """
     Download first chunk and verify it's a real JPEG/PNG large enough to use.
     min_bytes=15000 (~15KB) filters out thumbnails and placeholder images.
@@ -114,7 +114,7 @@ def get_book_image(isbn13, isbn10):
         if not isbn:
             continue
         url = f'https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg'
-        if is_real_image(url, min_bytes=15000):
+        if is_real_image(url, min_bytes=5000):
             log.info(f"  Image: Open Library ({isbn})")
             return url
 
@@ -138,7 +138,7 @@ def get_book_image(isbn13, isbn10):
                 import re as _re
                 src = _re.sub(r'zoom=\d', f'zoom={zoom}', src)
                 # Large images only — thumbnails are too small for eBay
-                min_b = 20000 if size_key in ('extraLarge', 'large') else 10000
+                min_b = 5000
                 if is_real_image(src, min_bytes=min_b):
                     log.info(f"  Image: Google Books ({size_key})")
                     return src

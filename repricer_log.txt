@@ -268,3 +268,53 @@
 2026-04-12 00:06:13,446 INFO ============================================================
 2026-04-12 00:06:13,446 INFO REPRICER DONE: 0 repriced | 0 delisted | 23 unchanged
 2026-04-12 00:06:13,446 INFO ============================================================
+2026-04-12 00:15:52,292 INFO ============================================================
+2026-04-12 00:15:52,292 INFO REPRICER STARTED — 2026-04-12 00:15:52
+2026-04-12 00:15:52,292 INFO ============================================================
+2026-04-12 00:15:52,292 INFO Checking 47 listings...
+2026-04-12 00:15:52,720 INFO Fetched 90 BooksGoat prices
+2026-04-12 00:15:53,008 INFO   Point-of-Care Ultrasound Techniques for the Small : not in BooksGoat sheet — skipping
+2026-04-12 00:15:53,008 INFO   PPI Fundamentals of Surveying Practice Exam, 5th E: not in BooksGoat sheet — skipping
+2026-04-12 00:15:53,008 INFO   The Art of Electronics, 3rd edition by Paul Horowi: not in BooksGoat sheet — skipping
+2026-04-12 00:15:53,008 INFO   Guides to the Evaluation of Permanent Impairment, : MANUAL listing unprofitable ($-6.92) — alerting only
+2026-04-12 00:15:53,508 INFO   Milady Standard Barbering, 6th edition by Milady: MANUAL listing unprofitable ($-7.60) — alerting only
+2026-04-12 00:15:54,009 INFO   Sterile Processing Technical Manual (CRCST 9th edi: MANUAL listing unprofitable ($-5.95) — alerting only
+2026-04-12 00:15:54,509 INFO   NASCLA Contractors Guide to Business, Law, and Pro: MANUAL listing unprofitable ($-4.62) — alerting only
+2026-04-12 00:15:55,009 INFO   Qualitative Inquiry and Research Design: Choosing : MANUAL listing unprofitable ($-4.62) — alerting only
+2026-04-12 00:15:55,510 INFO   Low Pressure Boilers, 5th Ed. by Frederick Steingr: MANUAL listing unprofitable ($-5.95) — alerting only
+2026-04-12 00:15:56,010 INFO   ACI CODE-318-19(22): Building Code Requirements fo: MANUAL listing unprofitable ($-7.60) — alerting only
+2026-04-12 00:15:56,511 INFO   The Foundations of Chinese Medicine 3rd Ed. by Gio: MANUAL listing unprofitable ($-10.25) — alerting only
+2026-04-12 00:15:57,011 INFO   Medical Terminology for Health Professions, 9th Ed: MANUAL listing unprofitable ($-9.01) — alerting only
+2026-04-12 00:15:57,511 INFO   Real Estate Development - 5th Edition: Principles : MANUAL listing unprofitable ($-4.62) — alerting only
+2026-04-12 00:15:58,012 INFO   Dsm-5 -tr Handbook of Differential Diagnosis - 978: MANUAL listing unprofitable ($-7.15) — alerting only
+2026-04-12 00:15:58,512 INFO   Distressed Debt Analysis: Strategies for Speculati: MANUAL listing unprofitable ($-4.62) — alerting only
+2026-04-12 00:15:59,012 INFO   DC:0-5: Diagnostic Classification of Mental Health: MANUAL listing unprofitable ($-4.23) — alerting only
+2026-04-12 00:15:59,513 INFO   Race Car Vehicle - 9781560915263: MANUAL listing unprofitable ($-6.27) — alerting only
+2026-04-12 00:16:00,013 INFO   Radiation Detection and Measurement 4th Ed. by Gle: MANUAL listing unprofitable ($-9.27) — alerting only
+2026-04-12 00:16:00,513 INFO   Handbook of Bird Biology 3rd Ed. (Cornell Lab of O: MANUAL listing unprofitable ($-7.48) — alerting only
+2026-04-12 00:16:01,014 INFO   Milady Standard Cosmetology 13th Edition: MANUAL listing unprofitable ($-12.57) — alerting only
+2026-04-12 00:16:01,514 INFO   HVAC Water Chillers and Cooling Towers: Fundamenta: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   Design of CMOS Phase-Locked Loops: From Circuit Le: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   Understanding and Applying Relational Frame Theory: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   Laboratory Techniques in Organic Chemistry, 4th Ed: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   Microwave Engineering 4th Edition by David Pozar: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   Vector Calculus, 6th Edition by Jerrold Marsden, A: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   Aircraft Design: A Conceptual Approach, 6th Editio: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   Formulas and Calculations for Drilling, Production: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   Spacecraft Thermal Control Handbook — Edited by Da: not in BooksGoat sheet — skipping
+2026-04-12 00:16:01,514 INFO   The Art of Reading Buildings by John Mittendorf: MANUAL listing unprofitable ($-4.95) — alerting only
+2026-04-12 00:16:02,015 INFO   Science and Practice of Strength Training, 3rd Edi: not in BooksGoat sheet — skipping
+2026-04-12 00:16:02,015 INFO   Introduction to the Thermodynamics of Materials, 7: not in BooksGoat sheet — skipping
+2026-04-12 00:16:02,015 INFO   Interpreting the MMPI-3 textbook by Martin Sellbom: not in BooksGoat sheet — skipping
+2026-04-12 00:16:02,015 INFO   2021 International Residential Code (IRC) by Inter: not in BooksGoat sheet — skipping
+2026-04-12 00:16:02,015 INFO   2018 International Residential Code for One- and T: not in BooksGoat sheet — skipping
+2026-04-12 00:16:02,015 INFO   Trading and Exchanges: Market Microstructure for P: MANUAL listing unprofitable ($-6.27) — alerting only
+2026-04-12 00:16:02,515 INFO   Brinker, Piermattei and Flo's Handbook of Small An: MANUAL listing unprofitable ($-6.27) — alerting only
+2026-04-12 00:16:03,015 INFO   The MBE Decoded: Multistate Bar Exam (Bar Review),: MANUAL listing unprofitable ($-5.30) — alerting only
+2026-04-12 00:16:03,516 INFO   Cognitive Processing Therapy for PTSD: A Comprehen: MANUAL listing unprofitable ($-3.71) — alerting only
+2026-04-12 00:16:04,016 INFO   Milady Standard Nail Technology, 7th Edition by Mi: MANUAL listing unprofitable ($-7.60) — alerting only
+2026-04-12 00:16:04,516 INFO   A Workbook of Ethical Case Scenarios in Applied Be: MANUAL listing unprofitable ($-2.65) — alerting only
+2026-04-12 00:16:08,018 INFO ============================================================
+2026-04-12 00:16:08,019 INFO REPRICER DONE: 0 repriced | 24 delisted | 23 unchanged
+2026-04-12 00:16:08,019 INFO ============================================================
+2026-04-12 00:16:08,778 INFO Email alert sent

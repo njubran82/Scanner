@@ -1308,3 +1308,92 @@
 2026-04-12 00:05:51,475 INFO ============================================================
 2026-04-12 00:05:51,475 INFO LISTER DONE: 0 listed, 35 failed
 2026-04-12 00:05:51,475 INFO ============================================================
+2026-04-12 00:15:10,531 INFO ============================================================
+2026-04-12 00:15:10,531 INFO LISTER STARTED — 2026-04-12 00:15:10
+2026-04-12 00:15:10,531 INFO ============================================================
+2026-04-12 00:15:10,531 INFO Processing 35 opportunities...
+2026-04-12 00:15:10,800 INFO Listing: Safety Professionalâs Reference and Study Guide, 4th Editi
+2026-04-12 00:15:12,131 WARNING   No image found for 9781032836072 — skipping
+2026-04-12 00:15:12,131 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-12 00:15:12,830 WARNING   No image found for 9781943378210 — skipping
+2026-04-12 00:15:12,831 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-12 00:15:13,902 INFO   Image: Open Library (9781462550128)
+2026-04-12 00:15:14,942 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:14,943 INFO Listing: The ASQ Certified Quality Engineer Handbook 5th edition (ISB
+2026-04-12 00:15:15,526 WARNING   No image found for 9781636940267 — skipping
+2026-04-12 00:15:15,526 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-12 00:15:16,677 WARNING   No image found for 9781641950473 — skipping
+2026-04-12 00:15:16,677 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-12 00:15:17,247 WARNING   No image found for 9780197609026 — skipping
+2026-04-12 00:15:17,247 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-12 00:15:18,231 INFO   Image: Open Library (9780367263638)
+2026-04-12 00:15:19,547 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:19,548 INFO Listing: Principles of Radiographic Imaging: An Art and a Science, 6t
+2026-04-12 00:15:20,279 WARNING   No image found for 9781337711067 — skipping
+2026-04-12 00:15:20,280 INFO Listing: Larone's Medically Important Fungi: A Guide to Identificatio
+2026-04-12 00:15:20,932 WARNING   No image found for 9781683674405 — skipping
+2026-04-12 00:15:20,932 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-12 00:15:21,744 WARNING   No image found for 9781466516946 — skipping
+2026-04-12 00:15:21,744 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-12 00:15:22,096 INFO   Image: Open Library (9780195335286)
+2026-04-12 00:15:23,407 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:23,408 INFO Listing: The Paralegal's Companion: Fundamentals for Legal Practition
+2026-04-12 00:15:24,340 WARNING   No image found for 9798320894041 — skipping
+2026-04-12 00:15:24,340 INFO Listing: Textbook of Women's Reproductive Mental Health by Lucy Hutne
+2026-04-12 00:15:24,952 WARNING   No image found for 9781615373062 — skipping
+2026-04-12 00:15:24,952 INFO Listing: The ASQ Certified Manager of Quality/Organizational Excellen
+2026-04-12 00:15:25,522 WARNING   No image found for 9781951058067 — skipping
+2026-04-12 00:15:25,523 INFO Listing: The ASQ Certified Quality Auditor Handbook, 5th edition by L
+2026-04-12 00:15:26,224 WARNING   No image found for 9781951058098 — skipping
+2026-04-12 00:15:26,224 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-12 00:15:26,824 WARNING   No image found for 9781544343242 — skipping
+2026-04-12 00:15:26,824 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-12 00:15:27,753 INFO   Image: Open Library (9780323033718)
+2026-04-12 00:15:28,792 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:28,793 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-12 00:15:29,555 WARNING   No image found for 9781577667391 — skipping
+2026-04-12 00:15:29,556 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-12 00:15:30,102 WARNING   No image found for 9781119465935 — skipping
+2026-04-12 00:15:30,102 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-12 00:15:31,106 INFO   Image: Open Library (9781118753651)
+2026-04-12 00:15:32,447 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:32,449 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-12 00:15:33,167 WARNING   No image found for 9780323376518 — skipping
+2026-04-12 00:15:33,167 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-12 00:15:33,575 WARNING   No image found for 9781944366445 — skipping
+2026-04-12 00:15:33,575 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-12 00:15:34,602 INFO   Image: Open Library (9781593850203)
+2026-04-12 00:15:36,027 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:36,028 INFO Listing: Ketogenic: The Science of Therapeutic Carbohydrate Restricti
+2026-04-12 00:15:36,618 WARNING   No image found for 9780128216170 — skipping
+2026-04-12 00:15:36,619 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-12 00:15:37,714 INFO   Image: Open Library (9781009397759)
+2026-04-12 00:15:38,703 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:38,705 INFO Listing: Considerations on the AI Endgame (Chapman & Hall/CRC Artific
+2026-04-12 00:15:39,346 WARNING   No image found for 9781032933832 — skipping
+2026-04-12 00:15:39,346 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-12 00:15:39,899 WARNING   No image found for 9781440878848 — skipping
+2026-04-12 00:15:39,900 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-12 00:15:40,901 INFO   Image: Open Library (9781119143642)
+2026-04-12 00:15:42,219 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:42,220 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-12 00:15:43,244 INFO   Image: Open Library (9781450434140)
+2026-04-12 00:15:44,402 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:44,403 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-12 00:15:45,428 INFO   Image: Open Library (9781572307810)
+2026-04-12 00:15:46,778 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:46,779 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-12 00:15:47,376 WARNING   No image found for 9781412972123 — skipping
+2026-04-12 00:15:47,377 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-12 00:15:48,430 INFO   Image: Open Library (9781462532766)
+2026-04-12 00:15:49,313 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:49,315 INFO Listing: Lange Q & A Radiography Examination
+2026-04-12 00:15:49,954 WARNING   No image found for 9781260460445 — skipping
+2026-04-12 00:15:49,954 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-12 00:15:50,595 INFO   Image: Open Library (0195335287)
+2026-04-12 00:15:51,566 ERROR   create_inventory_item failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-12 00:15:51,568 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-12 00:15:52,138 WARNING   No image found for 9781138641594 — skipping
+2026-04-12 00:15:52,139 INFO ============================================================
+2026-04-12 00:15:52,139 INFO LISTER DONE: 0 listed, 35 failed
+2026-04-12 00:15:52,139 INFO ============================================================

@@ -235,7 +235,15 @@ def reprice():
         current_cost  = bg['cost']
         amazon_price  = bg.get('amazon_price')
 
-        # Skip if no listing price recorded (some manual listings)
+        # Manual listings: skip profitability check entirely.
+        # listing_price in state may be stale if the user repriced in Seller Hub.
+        # Only auto-listed books have reliable pricing data.
+        if not offer_id:
+            log.info(f"  {title[:50]}: MANUAL — skipping (price may be stale in state)")
+            unchanged += 1
+            continue
+
+        # Skip if no listing price recorded
         if not listing_price:
             log.info(f"  {title[:50]}: no listing price recorded — skipping")
             unchanged += 1

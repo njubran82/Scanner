@@ -1051,3 +1051,30 @@
 2026-04-13 10:54:01,464 INFO   Unprofitable:     24
 2026-04-13 10:54:01,464 INFO   Amazon fallbacks: 1
 2026-04-13 10:54:01,464 INFO ============================================================
+2026-04-13 15:16:58,300 INFO ============================================================
+2026-04-13 15:16:58,300 INFO SCANNER STARTED — 2026-04-13 15:16:58
+2026-04-13 15:16:58,300 INFO ============================================================
+2026-04-13 15:16:58,607 INFO eBay token acquired
+2026-04-13 15:16:58,607 INFO Fetching BooksGoat sheet...
+2026-04-13 15:16:59,283 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-13 15:16:59,283 INFO Fetched 91 books from BooksGoat
+2026-04-13 15:17:03,091 INFO   Amazon ($63.00) < eBay ($78.75) — repricing to $59.85
+2026-04-13 15:17:06,211 INFO   Amazon ($144.30) < eBay ($153.93) — repricing to $137.09
+2026-04-13 15:17:06,212 INFO ✅ Arboristsâ Certification Study Guide, 4th Editio | Cost: $76.99 | List: $137.09 | Profit: $41.94 | MEDIUM (1)
+2026-04-13 15:17:07,221 INFO   Amazon ($21.80) < eBay ($61.25) — repricing to $20.71
+2026-04-13 15:17:13,992 INFO   Amazon ($81.42) < eBay ($114.06) — repricing to $77.35
+2026-04-13 15:17:13,992 INFO ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $48.99 | List: $77.35 | Profit: $18.11 | HIGH (7)
+2026-04-13 15:17:16,223 INFO   Amazon ($72.99) < eBay ($101.83) — repricing to $69.34
+2026-04-13 15:17:30,256 INFO   Amazon ($111.95) < eBay ($223.12) — repricing to $106.35
+2026-04-13 15:17:30,256 INFO ✅ National Incident Management System: Principles an | Cost: $56.99 | List: $106.35 | Profit: $35.27 | MEDIUM (1)
+2026-04-13 15:17:32,384 INFO   Amazon ($15.00) < eBay ($200.25) — repricing to $14.25
+2026-04-13 15:17:38,526 INFO   Amazon fallback: 2021 Uniform Mechanical Code Soft Cover with Tabs 
+2026-04-13 15:17:38,526 INFO ✅ 2021 Uniform Mechanical Code Soft Cover with Tabs  | Cost: $76.99 | List: $117.25 | Profit: $24.72 | FALLBACK_AMAZON (0)
+2026-04-13 15:17:43,450 INFO   Amazon ($72.27) < eBay ($117.63) — repricing to $68.66
+2026-04-13 15:17:47,036 INFO ============================================================
+2026-04-13 15:17:47,037 INFO SCAN COMPLETE: 4 opportunities found
+2026-04-13 15:17:47,037 INFO   Already listed:   62
+2026-04-13 15:17:47,037 INFO   No eBay data:     0
+2026-04-13 15:17:47,037 INFO   Unprofitable:     25
+2026-04-13 15:17:47,037 INFO   Amazon fallbacks: 1
+2026-04-13 15:17:47,037 INFO ============================================================

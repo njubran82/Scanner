@@ -1,5 +1,5 @@
 {
-  "scan_date": "2026-04-13T10:54:01.463625",
+  "scan_date": "2026-04-13T15:17:47.036757",
   "total_books": 91,
   "opportunities": [
     {
@@ -14,7 +14,7 @@
       "profit": 41.94,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-13T10:53:21.364420"
+      "scanned_at": "2026-04-13T15:17:06.212210"
     },
     {
       "title": "The Contractor's Guide to Quality Concrete Construction, 4th Edition by American Concrete Institute (ISBN 9781641950473) - Paperback",
@@ -28,35 +28,21 @@
       "profit": 18.11,
       "confidence": "HIGH",
       "num_comps": 7,
-      "scanned_at": "2026-04-13T10:53:29.673991"
+      "scanned_at": "2026-04-13T15:17:13.992405"
     },
     {
-      "title": "Tests & Measurement for People Who (Think They) Hate Tests & Measurement, 4th Edition by Neil J. Salkind \u00e2\u0080\u0093 Paperback (ISBN: 9781071817179)",
-      "isbn13": "9781071817179",
-      "isbn10": "1071817175",
-      "cost": 59.99,
-      "amazon_price": 106.04,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781071817179",
-      "median_price": 112.99,
-      "listing_price": 98.87,
-      "profit": 25.78,
+      "title": "National Incident Management System: Principles and Practice, 2nd Edition (ISBN 9780763781873) - Paperback",
+      "isbn13": "9780763781873",
+      "isbn10": "0763781878",
+      "cost": 56.99,
+      "amazon_price": 111.95,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780763781873",
+      "median_price": 254.99,
+      "listing_price": 106.35,
+      "profit": 35.27,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-13T10:53:49.840128"
-    },
-    {
-      "title": "Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback",
-      "isbn13": "9781138088610",
-      "isbn10": "1138088617",
-      "cost": 55.99,
-      "amazon_price": 123.38,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781138088610",
-      "median_price": 94.445,
-      "listing_price": 82.64,
-      "profit": 15.7,
-      "confidence": "HIGH",
-      "num_comps": 20,
-      "scanned_at": "2026-04-13T10:53:54.178595"
+      "scanned_at": "2026-04-13T15:17:30.256439"
     },
     {
       "title": "2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781944366445) - Paperback",
@@ -70,7 +56,7 @@
       "profit": 24.72,
       "confidence": "FALLBACK_AMAZON",
       "num_comps": 0,
-      "scanned_at": "2026-04-13T10:53:55.471071"
+      "scanned_at": "2026-04-13T15:17:38.526370"
     }
   ]
 }

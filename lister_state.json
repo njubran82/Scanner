@@ -1164,9 +1164,22 @@
       "confidence": "HIGH",
       "listed_date": "2026-04-13T10:54:16.313883",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781138088610"
+    },
+    "9780763781873": {
+      "title": "National Incident Management System: Principles and Practice, 2nd Edition (ISBN 9780763781873) - Paperback",
+      "isbn13": "9780763781873",
+      "isbn10": "0763781878",
+      "offer_id": "151109547011",
+      "listing_id": "358442543122",
+      "cost": 56.99,
+      "listing_price": 106.35,
+      "profit": 35.27,
+      "confidence": "MEDIUM",
+      "listed_date": "2026-04-13T15:17:55.839132",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780763781873"
     }
   },
-  "last_run": "2026-04-13T10:54:17.874731",
+  "last_run": "2026-04-13T15:17:57.580552",
   "listed_isbns": [
     "9781560915263",
     "9781285769417",
@@ -1244,7 +1257,8 @@
     "9781260460445",
     "9781138641594",
     "9781071817179",
-    "9781138088610"
+    "9781138088610",
+    "9780763781873"
   ],
-  "last_repricer_run": "2026-04-13T10:54:44.871357"
+  "last_repricer_run": "2026-04-13T15:18:22.260296"
 }

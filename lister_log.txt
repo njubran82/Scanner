@@ -1725,3 +1725,20 @@
 2026-04-13 10:54:17,876 INFO LISTER DONE: 2 listed, 3 failed
 2026-04-13 10:54:17,876 INFO ============================================================
 2026-04-13 10:54:19,118 INFO Email alert sent
+2026-04-13 15:17:47,405 INFO ============================================================
+2026-04-13 15:17:47,405 INFO LISTER STARTED — 2026-04-13 15:17:47
+2026-04-13 15:17:47,405 INFO ============================================================
+2026-04-13 15:17:47,405 INFO Processing 4 opportunities...
+2026-04-13 15:17:47,714 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-13 15:17:48,872 WARNING   No image found for 9781943378210 — skipping
+2026-04-13 15:17:48,872 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-13 15:17:49,625 WARNING   No image found for 9781641950473 — skipping
+2026-04-13 15:17:49,625 INFO Listing: National Incident Management System: Principles and Practice
+2026-04-13 15:17:50,994 INFO   Image: Google Books (thumbnail)
+2026-04-13 15:17:55,840 INFO   ✅ Listed | $106.35 | Profit: $35.27 | ListingID: 358442543122
+2026-04-13 15:17:56,840 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-13 15:17:57,580 WARNING   No image found for 9781944366445 — skipping
+2026-04-13 15:17:57,581 INFO ============================================================
+2026-04-13 15:17:57,582 INFO LISTER DONE: 1 listed, 3 failed
+2026-04-13 15:17:57,582 INFO ============================================================
+2026-04-13 15:17:58,701 INFO Email alert sent

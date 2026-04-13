@@ -468,3 +468,67 @@
 2026-04-12 11:07:26,398 INFO ============================================================
 2026-04-12 11:07:26,399 INFO REPRICER DONE: 0 repriced | 0 delisted | 77 unchanged
 2026-04-12 11:07:26,399 INFO ============================================================
+2026-04-13 10:54:19,271 INFO ============================================================
+2026-04-13 10:54:19,271 INFO REPRICER STARTED — 2026-04-13 10:54:19
+2026-04-13 10:54:19,271 INFO ============================================================
+2026-04-13 10:54:19,271 INFO Checking 79 listings...
+2026-04-13 10:54:19,602 INFO Fetched 90 BooksGoat prices
+2026-04-13 10:54:19,820 INFO   Point-of-Care Ultrasound Techniques for the Small : not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,821 INFO   PPI Fundamentals of Surveying Practice Exam, 5th E: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,821 INFO   The Art of Electronics, 3rd edition by Paul Horowi: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,821 INFO   Guides to the Evaluation of Permanent Impairment, : MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   Milady Standard Barbering, 6th edition by Milady: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   Sterile Processing Technical Manual (CRCST 9th edi: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   NASCLA Contractors Guide to Business, Law, and Pro: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   Qualitative Inquiry and Research Design: Choosing : MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   Low Pressure Boilers, *US HARDCOVER* 5th Ed. by Fr: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   ACI CODE-318-19(22): Building Code Requirements fo: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   The Foundations of Chinese Medicine *US HARDCOVER*: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   Medical Terminology for Health Professions, 9th Ed: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   Real Estate Development - 5th Edition: Principles : MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   Dsm-5 -tr Handbook of Differential Diagnosis - 978: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,821 INFO   Distressed Debt Analysis: Strategies for Speculati: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,822 INFO   DC:0-5: Diagnostic Classification of Mental Health: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,822 INFO   Race Car Vehicle - 9781560915263: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,822 INFO   Radiation Detection and Measurement *US HARDCOVER*: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,822 INFO   Handbook of Bird Biology *US HARDCOVER* 3rd Ed. (C: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,822 INFO   Milady Standard Cosmetology *US HARDCOVER* 13th Ed: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,822 INFO   HVAC Water Chillers and Cooling Towers: Fundamenta: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Design of CMOS Phase-Locked Loops: From Circuit Le: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Understanding and Applying Relational Frame Theory: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Laboratory Techniques in Organic Chemistry, 4th Ed: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Microwave Engineering 4th Edition by David Pozar (: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Vector Calculus, 6th Edition by Jerrold Marsden, A: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Aircraft Design: A Conceptual Approach, 6th Editio: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Formulas and Calculations for Drilling, Production: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Spacecraft Thermal Control Handbook — Edited by Da: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   The Art of Reading Buildings by John Mittendorf (I: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,822 INFO   Science and Practice of Strength Training, 3rd Edi: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Introduction to the Thermodynamics of Materials, 7: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Interpreting the MMPI-3 textbook by Martin Sellbom: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   2021 International Residential Code (IRC) by Inter: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   2018 International Residential Code for One- and T: not in BooksGoat sheet — skipping
+2026-04-13 10:54:19,822 INFO   Trading and Exchanges: Market Microstructure for P: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,823 INFO   Brinker, Piermattei and Flo's Handbook of Small An: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,823 INFO   The MBE Decoded: Multistate Bar Exam (Bar Review),: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,823 INFO   Cognitive Processing Therapy for PTSD: A Comprehen: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,823 INFO   Milady Standard Nail Technology, 7th Edition by Mi: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,823 INFO   A Workbook of Ethical Case Scenarios in Applied Be: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:19,823 INFO   The ASQ Certified Quality Auditor Handbook, 5th ed: MANUAL — skipping (price may be stale in state)
+2026-04-13 10:54:24,324 INFO   Ethnicity and Family Therapy, 3rd Edition by Monic: profit $4.57 < $5 — auto-delisting
+2026-04-13 10:54:25,206 INFO   ✅ Delisted: Ethnicity and Family Therapy, 3rd Edition by Monic
+2026-04-13 10:54:29,708 INFO   Safety Professionalâs Reference and Study Guide,: $190.00 → $128.24 (profit: $24.26)
+2026-04-13 10:54:31,368 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-13 10:54:31,370 ERROR   ❌ Reprice failed for 9781032836072 (offer_id: 150221391011)
+2026-04-13 10:54:32,870 INFO   Principles of Radiographic Imaging: An Art and a S: profit $-2.84 < $5 — auto-delisting
+2026-04-13 10:54:33,544 INFO   ✅ Delisted: Principles of Radiographic Imaging: An Art and a S
+2026-04-13 10:54:34,044 INFO   Larone's Medically Important Fungi: A Guide to Ide: $97.24 → $92.22 (profit: $21.01)
+2026-04-13 10:54:35,682 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-13 10:54:35,684 ERROR   ❌ Reprice failed for 9781683674405 (offer_id: 150224427011)
+2026-04-13 10:54:41,186 INFO   Lange Q & A Radiography Examination: $68.40 → $64.12 (profit: $13.63)
+2026-04-13 10:54:42,868 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-13 10:54:42,870 ERROR   ❌ Reprice failed for 9781260460445 (offer_id: 150219476011)
+2026-04-13 10:54:44,872 INFO ============================================================
+2026-04-13 10:54:44,872 INFO REPRICER DONE: 0 repriced | 2 delisted | 74 unchanged
+2026-04-13 10:54:44,872 INFO ============================================================
+2026-04-13 10:54:45,830 INFO Email alert sent

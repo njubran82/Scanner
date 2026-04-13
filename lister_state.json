@@ -827,19 +827,6 @@
       "listed_date": "2026-04-12T01:03:16.204483",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781118753651"
     },
-    "9781593850203": {
-      "title": "Ethnicity and Family Therapy, 3rd Edition by Monica McGoldrick, Joe Giordano & Nydia Garcia-Preto \u00e2\u0080\u0093 Hardcover (ISBN: 9781593850204)",
-      "isbn13": "9781593850203",
-      "isbn10": "1593850204",
-      "offer_id": "150219286011",
-      "listing_id": "358436396874",
-      "cost": 54.99,
-      "listing_price": 90.44,
-      "profit": 23.47,
-      "confidence": "HIGH",
-      "listed_date": "2026-04-12T01:03:21.215132",
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781593850203"
-    },
     "9780197574591": {
       "title": "Developmental Biology, 13th Edition by Michael J.F. Gilbert (ISBN 9780197574591) - Hardcover",
       "isbn13": "9780197574591",
@@ -982,19 +969,6 @@
       "confidence": "HIGH",
       "listed_date": "2026-04-12T11:05:33.092122",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780197609026"
-    },
-    "9781337711067": {
-      "title": "Principles of Radiographic Imaging: An Art and a Science, 6th edition by Carlton and Adler (ISBN 9781337711067) - Hardcover",
-      "isbn13": "9781337711067",
-      "isbn10": "1337711063",
-      "offer_id": "150228475011",
-      "listing_id": "358438537683",
-      "cost": 62.99,
-      "listing_price": 80.27,
-      "profit": 6.64,
-      "confidence": "HIGH",
-      "listed_date": "2026-04-12T11:05:38.926456",
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781337711067"
     },
     "9781683674405": {
       "title": "Larone's Medically Important Fungi: A Guide to Identification 7th edition by Lars Westblade (ISBN 9781683674405) - Hardcover",
@@ -1164,9 +1138,35 @@
       "confidence": "HIGH",
       "listed_date": "2026-04-12T11:07:05.850860",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781138641594"
+    },
+    "9781071817179": {
+      "title": "Tests & Measurement for People Who (Think They) Hate Tests & Measurement, 4th Edition by Neil J. Salkind \u00e2\u0080\u0093 Paperback (ISBN: 9781071817179)",
+      "isbn13": "9781071817179",
+      "isbn10": "1071817175",
+      "offer_id": "151042933011",
+      "listing_id": "358441771951",
+      "cost": 59.99,
+      "listing_price": 98.87,
+      "profit": 25.78,
+      "confidence": "MEDIUM",
+      "listed_date": "2026-04-13T10:54:09.628048",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781071817179"
+    },
+    "9781138088610": {
+      "title": "Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback",
+      "isbn13": "9781138088610",
+      "isbn10": "1138088617",
+      "offer_id": "151042968011",
+      "listing_id": "358441772215",
+      "cost": 55.99,
+      "listing_price": 82.64,
+      "profit": 15.7,
+      "confidence": "HIGH",
+      "listed_date": "2026-04-13T10:54:16.313883",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781138088610"
     }
   },
-  "last_run": "2026-04-12T11:07:06.852840",
+  "last_run": "2026-04-13T10:54:17.874731",
   "listed_isbns": [
     "9781560915263",
     "9781285769417",
@@ -1219,7 +1219,6 @@
     "9781506353074",
     "9780323033718",
     "9781118753651",
-    "9781593850203",
     "9780197574591",
     "9781009397759",
     "9781119143642",
@@ -1231,7 +1230,6 @@
     "9781032836072",
     "9781636940267",
     "9780197609026",
-    "9781337711067",
     "9781683674405",
     "9781615373062",
     "9781951058067",
@@ -1244,7 +1242,9 @@
     "9781440878848",
     "9781412972123",
     "9781260460445",
-    "9781138641594"
+    "9781138641594",
+    "9781071817179",
+    "9781138088610"
   ],
-  "last_repricer_run": "2026-04-12T11:07:26.397147"
+  "last_repricer_run": "2026-04-13T10:54:44.871357"
 }

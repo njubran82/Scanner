@@ -1705,3 +1705,23 @@
 2026-04-12 11:07:06,854 INFO LISTER DONE: 17 listed, 4 failed
 2026-04-12 11:07:06,854 INFO ============================================================
 2026-04-12 11:07:08,145 INFO Email alert sent
+2026-04-13 10:54:01,751 INFO ============================================================
+2026-04-13 10:54:01,751 INFO LISTER STARTED — 2026-04-13 10:54:01
+2026-04-13 10:54:01,751 INFO ============================================================
+2026-04-13 10:54:01,751 INFO Processing 5 opportunities...
+2026-04-13 10:54:01,988 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-13 10:54:02,912 WARNING   No image found for 9781943378210 — skipping
+2026-04-13 10:54:02,913 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-13 10:54:03,675 WARNING   No image found for 9781641950473 — skipping
+2026-04-13 10:54:03,675 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-13 10:54:05,659 INFO   Image: Open Library (9781071817179)
+2026-04-13 10:54:09,629 INFO   ✅ Listed | $98.87 | Profit: $25.78 | ListingID: 358441771951
+2026-04-13 10:54:10,629 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-13 10:54:11,558 INFO   Image: Open Library (9781138088610)
+2026-04-13 10:54:16,315 INFO   ✅ Listed | $82.64 | Profit: $15.70 | ListingID: 358441772215
+2026-04-13 10:54:17,315 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-13 10:54:17,874 WARNING   No image found for 9781944366445 — skipping
+2026-04-13 10:54:17,876 INFO ============================================================
+2026-04-13 10:54:17,876 INFO LISTER DONE: 2 listed, 3 failed
+2026-04-13 10:54:17,876 INFO ============================================================
+2026-04-13 10:54:19,118 INFO Email alert sent

@@ -591,3 +591,70 @@
 2026-04-13 15:18:22,261 INFO ============================================================
 2026-04-13 15:18:22,261 INFO REPRICER DONE: 0 repriced | 0 delisted | 75 unchanged
 2026-04-13 15:18:22,261 INFO ============================================================
+2026-04-14 01:00:32,205 INFO ============================================================
+2026-04-14 01:00:32,205 INFO REPRICER STARTED — 2026-04-14 01:00:32
+2026-04-14 01:00:32,205 INFO ============================================================
+2026-04-14 01:00:32,206 INFO Checking 94 listings...
+2026-04-14 01:00:32,211 INFO Fetched 290 BooksGoat prices
+2026-04-14 01:00:32,514 INFO   Point-of-Care Ultrasound Techniques for the Small : MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,514 INFO   PPI Fundamentals of Surveying Practice Exam, 5th E: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   The Art of Electronics, 3rd edition by Paul Horowi: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Guides to the Evaluation of Permanent Impairment, : MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Milady Standard Barbering, 6th edition by Milady: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Sterile Processing Technical Manual (CRCST 9th edi: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,515 INFO   NASCLA Contractors Guide to Business, Law, and Pro: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Qualitative Inquiry and Research Design: Choosing : MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Low Pressure Boilers, *US HARDCOVER* 5th Ed. by Fr: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   ACI CODE-318-19(22): Building Code Requirements fo: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   The Foundations of Chinese Medicine *US HARDCOVER*: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Medical Terminology for Health Professions, 9th Ed: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,515 INFO   Real Estate Development - 5th Edition: Principles : MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Dsm-5 -tr Handbook of Differential Diagnosis - 978: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,515 INFO   Distressed Debt Analysis: Strategies for Speculati: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   DC:0-5: Diagnostic Classification of Mental Health: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,515 INFO   Race Car Vehicle - 9781560915263: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Radiation Detection and Measurement *US HARDCOVER*: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Handbook of Bird Biology *US HARDCOVER* 3rd Ed. (C: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Milady Standard Cosmetology *US HARDCOVER* 13th Ed: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   HVAC Water Chillers and Cooling Towers: Fundamenta: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Design of CMOS Phase-Locked Loops: From Circuit Le: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,515 INFO   Understanding and Applying Relational Frame Theory: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Laboratory Techniques in Organic Chemistry, 4th Ed: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Microwave Engineering 4th Edition by David Pozar (: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,516 INFO   Vector Calculus, 6th Edition by Jerrold Marsden, A: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Aircraft Design: A Conceptual Approach, 6th Editio: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Formulas and Calculations for Drilling, Production: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Spacecraft Thermal Control Handbook — Edited by Da: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   The Art of Reading Buildings by John Mittendorf (I: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Science and Practice of Strength Training, 3rd Edi: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Introduction to the Thermodynamics of Materials, 7: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,516 INFO   Interpreting the MMPI-3 textbook by Martin Sellbom: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   2021 International Residential Code (IRC) by Inter: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   2018 International Residential Code for One- and T: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,516 INFO   Trading and Exchanges: Market Microstructure for P: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,516 INFO   Brinker, Piermattei and Flo's Handbook of Small An: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,516 INFO   The MBE Decoded: Multistate Bar Exam (Bar Review),: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,516 INFO   Cognitive Processing Therapy for PTSD: A Comprehen: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Milady Standard Nail Technology, 7th Edition by Mi: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   A Workbook of Ethical Case Scenarios in Applied Be: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   The ASQ Certified Quality Auditor Handbook, 5th ed: MANUAL — skipping (price may be stale in state)
+2026-04-14 01:00:32,516 INFO   Fire and Emergency Services Instructor, 9th Editio: not in BooksGoat sheet — skipping
+2026-04-14 01:00:32,516 INFO   Clinical Handbook of Couple Therapy, 6th Edition b: not in BooksGoat sheet — skipping
+2026-04-14 01:00:34,017 INFO   Concrete Manual: Based on the 2015 IBC and ACI 318: not in BooksGoat sheet — skipping
+2026-04-14 01:00:34,017 INFO   Qualitative Data Analysis: A Methods Sourcebook, 4: not in BooksGoat sheet — skipping
+2026-04-14 01:00:34,517 INFO   Rocket Propulsion Elements, 9th Edition by George : not in BooksGoat sheet — skipping
+2026-04-14 01:00:34,517 INFO   Developmental Biology, 13th Edition by Michael J.F: not in BooksGoat sheet — skipping
+2026-04-14 01:00:36,518 INFO   Eye Movement Desensitization and Reprocessing (EMD: profit $-3.72 < $5 — auto-delisting
+2026-04-14 01:00:37,230 INFO   ✅ Delisted: Eye Movement Desensitization and Reprocessing (EMD
+2026-04-14 01:00:37,731 INFO   The Comprehensive Clinician's Guide to Cognitive B: not in BooksGoat sheet — skipping
+2026-04-14 01:00:38,231 INFO   Safety Professionalâs Reference and Study Guide,: not in BooksGoat sheet — skipping
+2026-04-14 01:00:38,231 INFO   The ASQ Certified Quality Engineer Handbook 5th ed: not in BooksGoat sheet — skipping
+2026-04-14 01:00:38,231 INFO   Bioethics: Principles, Issues, and Cases, 5th Edit: not in BooksGoat sheet — skipping
+2026-04-14 01:00:42,232 INFO   Considerations on the AI Endgame (Chapman & Hall/C: not in BooksGoat sheet — skipping
+2026-04-14 01:00:42,233 INFO   How to Write and Publish a Scientific Paper: not in BooksGoat sheet — skipping
+2026-04-14 01:00:42,233 INFO   Qualitative Research & Evaluation Methods: Integra: not in BooksGoat sheet — skipping
+2026-04-14 01:00:44,233 INFO   National Incident Management System: Principles an: not in BooksGoat sheet — skipping
+2026-04-14 01:00:52,237 INFO ============================================================
+2026-04-14 01:00:52,238 INFO REPRICER DONE: 0 repriced | 1 delisted | 93 unchanged
+2026-04-14 01:00:52,238 INFO ============================================================
+2026-04-14 01:00:53,296 INFO Email alert sent

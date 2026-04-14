@@ -1,0 +1,91 @@
+name: Weekly Book Scanner & Auto-Lister
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'   # Every Monday at 9 AM EST (14:00 UTC)
+  workflow_dispatch:
+
+jobs:
+  scan-and-list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv
+
+      - name: Verify CSV input file exists
+        run: |
+          test -f booksgoat_20260413_2016_scanner_ready.csv
+          echo "Using CSV input: booksgoat_20260413_2016_scanner_ready.csv"
+
+      - name: Start local CSV server
+        run: |
+          python -m http.server 8000 --bind 127.0.0.1 >/tmp/booksgoat_csv_server.log 2>&1 &
+          echo $! > /tmp/booksgoat_csv_server.pid
+          sleep 2
+          curl -I http://127.0.0.1:8000/booksgoat_20260413_2016_scanner_ready.csv
+
+      - name: Run scanner
+        env:
+          BOOKSGOAT_CSV_URL:  http://127.0.0.1:8000/booksgoat_20260413_2016_scanner_ready.csv
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+        run: python scanner.py
+
+      - name: Run lister
+        env:
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+          SMTP_HOST:          ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:          ${{ secrets.SMTP_PORT }}
+          SMTP_USER:          ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD:      ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:         ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:           ${{ secrets.EMAIL_TO }}
+        run: python lister.py
+
+      - name: Run repricer
+        env:
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+          BOOKSGOAT_CSV_URL:  http://127.0.0.1:8000/booksgoat_20260413_2016_scanner_ready.csv
+          SMTP_HOST:          ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:          ${{ secrets.SMTP_PORT }}
+          SMTP_USER:          ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD:      ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:         ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:           ${{ secrets.EMAIL_TO }}
+        run: python repricer.py
+
+      - name: Stop local CSV server
+        if: always()
+        run: |
+          if [ -f /tmp/booksgoat_csv_server.pid ]; then
+            kill "$(cat /tmp/booksgoat_csv_server.pid)" || true
+          fi
+
+      - name: Commit updated state
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add lister_state.json scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
+          git stash || true
+          git pull --rebase origin main || true
+          git stash pop || true
+          git add lister_state.json scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
+          git diff --staged --quiet || git commit -m "Scanner/Lister/Repricer run $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push

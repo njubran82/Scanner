@@ -8,9 +8,6 @@ on:
 jobs:
   scan-and-list:
     runs-on: ubuntu-latest
-    jobs:
-  scan-and-list:
-    runs-on: ubuntu-latest
     permissions:
       contents: write
 

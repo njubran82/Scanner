@@ -1257,3 +1257,31 @@
 2026-04-14 00:53:02,059 INFO   Unprofitable:     54
 2026-04-14 00:53:02,059 INFO   Amazon fallbacks: 0
 2026-04-14 00:53:02,059 INFO ============================================================
+2026-04-16 11:54:56,159 INFO ============================================================
+2026-04-16 11:54:56,159 INFO SCANNER STARTED — 2026-04-16 11:54:56
+2026-04-16 11:54:56,159 INFO ============================================================
+2026-04-16 11:54:56,709 INFO eBay token acquired
+2026-04-16 11:54:56,710 INFO Fetching BooksGoat sheet...
+2026-04-16 11:54:57,675 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-16 11:54:57,676 INFO Fetched 91 books from BooksGoat
+2026-04-16 11:55:01,956 INFO   Amazon ($63.00) < eBay ($78.75) — repricing to $59.85
+2026-04-16 11:55:05,101 INFO ✅ Arboristsâ Certification Study Guide, 4th Editio | Cost: $76.99 | List: $136.23 | Profit: $41.19 | MEDIUM (2)
+2026-04-16 11:55:06,492 INFO   Amazon ($21.80) < eBay ($61.25) — repricing to $20.71
+2026-04-16 11:55:08,912 INFO ✅ Behavior Analysis for Lasting Change, 5th Edition  | Cost: $76.99 | List: $104.37 | Profit: $13.55 | HIGH (6)
+2026-04-16 11:55:14,123 INFO   Amazon ($81.42) < eBay ($114.06) — repricing to $77.35
+2026-04-16 11:55:14,123 INFO ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $48.99 | List: $77.35 | Profit: $18.11 | HIGH (7)
+2026-04-16 11:55:16,856 INFO   Amazon ($72.99) < eBay ($97.77) — repricing to $69.34
+2026-04-16 11:55:27,082 INFO   Amazon ($84.42) < eBay ($106.03) — repricing to $80.20
+2026-04-16 11:55:27,082 INFO ✅ Bayesian Data Analysis (Chapman & Hall/CRC Texts i | Cost: $48.99 | List: $80.20 | Profit: $20.58 | MEDIUM (1)
+2026-04-16 11:55:31,570 INFO   Amazon ($15.00) < eBay ($210.79) — repricing to $14.25
+2026-04-16 11:55:38,666 INFO   Amazon fallback: 2021 Uniform Mechanical Code Soft Cover with Tabs 
+2026-04-16 11:55:38,666 INFO ✅ 2021 Uniform Mechanical Code Soft Cover with Tabs  | Cost: $76.99 | List: $117.25 | Profit: $24.72 | FALLBACK_AMAZON (0)
+2026-04-16 11:55:43,719 INFO   Amazon ($72.27) < eBay ($118.72) — repricing to $68.66
+2026-04-16 11:55:45,858 INFO ✅ Eye Movement Desensitization and Reprocessing (EMD | Cost: $39.99 | List: $70.09 | Profit: $20.81 | MEDIUM (2)
+2026-04-16 11:55:47,982 INFO ============================================================
+2026-04-16 11:55:47,982 INFO SCAN COMPLETE: 6 opportunities found
+2026-04-16 11:55:47,982 INFO   Already listed:   62
+2026-04-16 11:55:47,982 INFO   No eBay data:     0
+2026-04-16 11:55:47,982 INFO   Unprofitable:     23
+2026-04-16 11:55:47,982 INFO   Amazon fallbacks: 1
+2026-04-16 11:55:47,982 INFO ============================================================

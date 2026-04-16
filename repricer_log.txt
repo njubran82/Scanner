@@ -658,3 +658,173 @@
 2026-04-14 01:00:52,238 INFO REPRICER DONE: 0 repriced | 1 delisted | 93 unchanged
 2026-04-14 01:00:52,238 INFO ============================================================
 2026-04-14 01:00:53,296 INFO Email alert sent
+2026-04-16 11:56:15,015 INFO ============================================================
+2026-04-16 11:56:15,015 INFO REPRICER STARTED — 2026-04-16 11:56:15
+2026-04-16 11:56:15,015 INFO fee=15.3%  min_profit=$1.00  undercut=12%
+2026-04-16 11:56:15,015 INFO ============================================================
+2026-04-16 11:56:15,015 INFO Checking 96 listings...
+2026-04-16 11:56:15,441 INFO Fetched 90 BooksGoat prices
+2026-04-16 11:56:15,999 INFO   Point-of-Care Ultrasound Techniques for the Small : no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   PPI Fundamentals of Surveying Practice Exam, 5th E: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   The Art of Electronics, 3rd edition by Paul Horowi: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Guides to the Evaluation of Permanent Impairment, : no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Milady Standard Barbering, 6th edition by Milady: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Sterile Processing Technical Manual (CRCST 9th edi: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   NASCLA Contractors Guide to Business, Law, and Pro: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Qualitative Inquiry and Research Design: Choosing : no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Low Pressure Boilers, *US HARDCOVER* 5th Ed. by Fr: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   ACI CODE-318-19(22): Building Code Requirements fo: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   The Foundations of Chinese Medicine *US HARDCOVER*: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Medical Terminology for Health Professions, 9th Ed: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Real Estate Development - 5th Edition: Principles : no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Dsm-5 -tr Handbook of Differential Diagnosis - 978: no listing price recorded — skipping
+2026-04-16 11:56:16,000 INFO   Distressed Debt Analysis: Strategies for Speculati: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   DC:0-5: Diagnostic Classification of Mental Health: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Race Car Vehicle - 9781560915263: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Radiation Detection and Measurement *US HARDCOVER*: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Handbook of Bird Biology *US HARDCOVER* 3rd Ed. (C: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Milady Standard Cosmetology *US HARDCOVER* 13th Ed: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   HVAC Water Chillers and Cooling Towers: Fundamenta: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Design of CMOS Phase-Locked Loops: From Circuit Le: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Understanding and Applying Relational Frame Theory: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Laboratory Techniques in Organic Chemistry, 4th Ed: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Microwave Engineering 4th Edition by David Pozar (: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Vector Calculus, 6th Edition by Jerrold Marsden, A: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Aircraft Design: A Conceptual Approach, 6th Editio: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Formulas and Calculations for Drilling, Production: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Spacecraft Thermal Control Handbook — Edited by Da: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   The Art of Reading Buildings by John Mittendorf (I: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Science and Practice of Strength Training, 3rd Edi: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Introduction to the Thermodynamics of Materials, 7: no listing price recorded — skipping
+2026-04-16 11:56:16,001 INFO   Interpreting the MMPI-3 textbook by Martin Sellbom: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   2021 International Residential Code (IRC) by Inter: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   2018 International Residential Code for One- and T: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   Trading and Exchanges: Market Microstructure for P: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   Brinker, Piermattei and Flo's Handbook of Small An: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   The MBE Decoded: Multistate Bar Exam (Bar Review),: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   Cognitive Processing Therapy for PTSD: A Comprehen: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   Milady Standard Nail Technology, 7th Edition by Mi: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   A Workbook of Ethical Case Scenarios in Applied Be: no listing price recorded — skipping
+2026-04-16 11:56:16,002 INFO   The ASQ Certified Quality Auditor Handbook, 5th ed: MANUAL listing — alerting only if unprofitable
+2026-04-16 11:56:16,440 INFO   The ASQ Certified Quality Auditor Handbook, 5th ed: $104.68 → $92.12 profit=$17.04  method=EBAY_COMP (HIGH, floor=$104.68)
+2026-04-16 11:56:16,440 INFO   MANUAL listing — cannot reprice via API
+2026-04-16 11:56:17,403 INFO   Fire and Emergency Services Instructor, 9th Editio: AUTO-DELIST — Unprofitable — profit $-43.12 at $17.56 (cost $57.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:56:18,243 INFO   ✅ Delisted
+2026-04-16 11:56:19,214 INFO   Clinical Handbook of Couple Therapy, 6th Edition b: AUTO-DELIST — Unprofitable — profit $-52.12 at $17.56 (cost $66.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:56:19,930 INFO   ✅ Delisted
+2026-04-16 11:56:20,869 INFO   Safety Professional's Reference and Study Guide, 3: AUTO-DELIST — Unprofitable — profit $-37.86 at $43.84 (cost $74.99, method: EBAY_COMP (HIGH, floor=$49.82))
+2026-04-16 11:56:21,935 INFO   ✅ Delisted
+2026-04-16 11:56:22,713 INFO   Zero Bone Loss Concepts by Tomas Linkevicius (ISBN: $137.22 → $120.75 profit=$15.29  method=EBAY_COMP (HIGH, floor=$137.22)
+2026-04-16 11:56:25,319 INFO   ✅ Repriced
+2026-04-16 11:56:26,185 INFO   American Herbal Products Association's Botanical S: AUTO-DELIST — Unprofitable — profit $-14.41 at $73.88 (cost $76.99, method: EBAY_COMP (HIGH, floor=$83.95))
+2026-04-16 11:56:27,020 INFO   ✅ Delisted
+2026-04-16 11:56:27,879 INFO   Concrete Manual: Based on the 2015 IBC and ACI 318: AUTO-DELIST — Unprofitable — profit $-34.32 at $63.36 (cost $87.99, method: EBAY_COMP (HIGH, floor=$72.00))
+2026-04-16 11:56:28,630 INFO   ✅ Delisted
+2026-04-16 11:56:29,524 INFO   Qualitative Data Analysis: A Methods Sourcebook, 4: AUTO-DELIST — Unprofitable — profit $-42.37 at $18.44 (cost $57.99, method: EBAY_COMP (HIGH, floor=$20.95))
+2026-04-16 11:56:30,401 INFO   ✅ Delisted
+2026-04-16 11:56:31,282 INFO   Functional Occlusion: From TMJ to Smile Design by : $138.17 → $92.80 profit=$1.61  method=EBAY_COMP (HIGH, floor=$105.46)
+2026-04-16 11:56:33,852 INFO   ✅ Repriced
+2026-04-16 11:56:34,667 INFO   Rocket Propulsion Elements, 9th Edition by George : AUTO-DELIST — Unprofitable — profit $-46.90 at $13.09 (cost $57.99, method: EBAY_COMP (HIGH, floor=$14.88))
+2026-04-16 11:56:35,389 INFO   ✅ Delisted
+2026-04-16 11:56:36,370 INFO   Developmental Biology, 13th Edition by Michael J.F: $165.66 → $139.17 profit=$29.89  method=EBAY_COMP (HIGH, floor=$158.15)
+2026-04-16 11:56:38,803 INFO   ✅ Repriced
+2026-04-16 11:56:39,643 INFO   Introduction to Electrodynamics by David J. Griffi: AUTO-DELIST — Unprofitable — profit $-11.49 at $28.92 (cost $35.99, method: EBAY_COMP (HIGH, floor=$32.86))
+2026-04-16 11:56:40,298 INFO   ✅ Delisted
+2026-04-16 11:56:41,174 INFO   Understanding Behaviorism: Behavior, Culture, and : AUTO-DELIST — Unprofitable — profit $-11.55 at $12.32 (cost $21.99, method: EBAY_COMP (HIGH, floor=$14.00))
+2026-04-16 11:56:42,286 INFO   ✅ Delisted
+2026-04-16 11:56:43,180 INFO   ACSM's Exercise Management for Persons With Chroni: AUTO-DELIST — Unprofitable — profit $-36.54 at $8.80 (cost $43.99, method: EBAY_COMP (HIGH, floor=$10.00))
+2026-04-16 11:56:44,006 INFO   ✅ Delisted
+2026-04-16 11:56:44,868 INFO   DBT Skills Training Handouts and Worksheets Second: AUTO-DELIST — Unprofitable — profit $-8.47 at $25.41 (cost $29.99, method: EBAY_COMP (HIGH, floor=$28.88))
+2026-04-16 11:56:45,168 INFO   ✅ Delisted
+2026-04-16 11:56:45,970 INFO   The Comprehensive Clinician's Guide to Cognitive B: AUTO-DELIST — Unprofitable — profit $-6.58 at $15.83 (cost $19.99, method: EBAY_COMP (HIGH, floor=$17.99))
+2026-04-16 11:56:46,879 INFO   ✅ Delisted
+2026-04-16 11:56:47,739 INFO   Exposure and Response (Ritual) Prevention for Obse: AUTO-DELIST — Unprofitable — profit $-1.21 at $46.97 (cost $40.99, method: EBAY_COMP (HIGH, floor=$53.37))
+2026-04-16 11:56:48,336 INFO   ✅ Delisted
+2026-04-16 11:56:49,186 INFO   Safety Professionalâs Reference and Study Guide,: $190.00 → $167.20 profit=$54.63  method=EBAY_COMP (HIGH, floor=$190.00)
+2026-04-16 11:56:50,416 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 11:56:50,418 ERROR   ❌ Reprice failed (9781032836072)
+2026-04-16 11:56:51,214 INFO   The ASQ Certified Quality Engineer Handbook 5th ed: $108.49 → $92.48 profit=$11.34  method=EBAY_COMP (HIGH, floor=$105.09)
+2026-04-16 11:56:52,529 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 11:56:52,531 ERROR   ❌ Reprice failed (9781636940267)
+2026-04-16 11:56:53,394 INFO   Bioethics: Principles, Issues, and Cases, 5th Edit: AUTO-DELIST — Unprofitable — profit $-39.88 at $20.20 (cost $56.99, method: EBAY_COMP (HIGH, floor=$22.95))
+2026-04-16 11:56:53,926 INFO   ✅ Delisted
+2026-04-16 11:56:54,729 INFO   Larone's Medically Important Fungi: A Guide to Ide: $97.24 → $77.87 profit=$6.97  method=EBAY_COMP (HIGH, floor=$88.49)
+2026-04-16 11:56:56,160 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 11:56:56,162 ERROR   ❌ Reprice failed (9781683674405)
+2026-04-16 11:56:57,022 INFO   Textbook of Women's Reproductive Mental Health by : $117.55 → $94.71 profit=$23.23  method=EBAY_COMP (HIGH, floor=$107.63)
+2026-04-16 11:56:58,466 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 11:56:58,469 ERROR   ❌ Reprice failed (9781615373062)
+2026-04-16 11:56:59,660 INFO   The ASQ Certified Manager of Quality/Organizationa: $117.93 → $88.89 profit=$8.30  method=EBAY_COMP (HIGH, floor=$101.01)
+2026-04-16 11:57:01,122 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 11:57:01,123 ERROR   ❌ Reprice failed (9781951058067)
+2026-04-16 11:57:01,973 INFO   Counseling Individuals Through the Lifespan 2nd ed: AUTO-DELIST — Unprofitable — profit $-18.54 at $57.20 (cost $66.99, method: EBAY_COMP (HIGH, floor=$65.00))
+2026-04-16 11:57:02,788 INFO   ✅ Delisted
+2026-04-16 11:57:03,727 INFO   Factory Physics, 3rd Edition by Wallace J. Hopp & : AUTO-DELIST — Unprofitable — profit $-4.40 at $62.09 (cost $56.99, method: EBAY_COMP (HIGH, floor=$70.56))
+2026-04-16 11:57:04,724 INFO   ✅ Delisted
+2026-04-16 11:57:05,731 INFO   Designing Effective Instruction, 8th Edition by Ga: AUTO-DELIST — Unprofitable — profit $-42.12 at $17.56 (cost $56.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:57:06,418 INFO   ✅ Delisted
+2026-04-16 11:57:07,478 INFO   Small Animal Dermatology: A Color Atlas and Therap: AUTO-DELIST — Unprofitable — profit $-35.94 at $30.76 (cost $61.99, method: EBAY_COMP (HIGH, floor=$34.95))
+2026-04-16 11:57:08,378 INFO   ✅ Delisted
+2026-04-16 11:57:09,294 INFO   Ketogenic: The Science of Therapeutic Carbohydrate: $82.64 → $72.72 profit=$5.60  method=EBAY_COMP (HIGH, floor=$82.64)
+2026-04-16 11:57:10,894 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 11:57:10,896 ERROR   ❌ Reprice failed (9780128216170)
+2026-04-16 11:57:11,923 INFO   Considerations on the AI Endgame (Chapman & Hall/C: $26.24 → $22.43 profit=$2.01  method=EBAY_COMP (HIGH, floor=$25.49)
+2026-04-16 11:57:13,772 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 11:57:13,773 ERROR   ❌ Reprice failed (9781032933832)
+2026-04-16 11:57:14,751 INFO   How to Write and Publish a Scientific Paper: AUTO-DELIST — Unprofitable — profit $-7.87 at $26.12 (cost $29.99, method: EBAY_COMP (HIGH, floor=$29.68))
+2026-04-16 11:57:15,680 INFO   ✅ Delisted
+2026-04-16 11:57:16,617 INFO   Qualitative Research & Evaluation Methods: Integra: AUTO-DELIST — Unprofitable — profit $-57.12 at $17.56 (cost $71.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:57:17,733 INFO   ✅ Delisted
+2026-04-16 11:57:18,716 INFO   Lange Q & A Radiography Examination: AUTO-DELIST — Unprofitable — profit $-27.12 at $17.56 (cost $41.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:57:19,419 INFO   ✅ Delisted
+2026-04-16 11:57:20,421 INFO   Strategies and Tactics of Behavioral Research and : AUTO-DELIST — Unprofitable — profit $-35.14 at $21.08 (cost $52.99, method: EBAY_COMP (HIGH, floor=$23.95))
+2026-04-16 11:57:21,840 INFO   ✅ Delisted
+2026-04-16 11:57:22,790 INFO   Tests & Measurement for People Who (Think They) Ha: AUTO-DELIST — Unprofitable — profit $-3.99 at $66.11 (cost $59.99, method: EBAY_COMP (HIGH, floor=$75.13))
+2026-04-16 11:57:23,773 INFO   ✅ Delisted
+2026-04-16 11:57:24,760 INFO   Evolutionary Psychology: The New Science of the Mi: AUTO-DELIST — Unprofitable — profit $-36.64 at $22.84 (cost $55.99, method: EBAY_COMP (HIGH, floor=$25.95))
+2026-04-16 11:57:25,658 INFO   ✅ Delisted
+2026-04-16 11:57:26,594 INFO   National Incident Management System: Principles an: AUTO-DELIST — Unprofitable — profit $-42.12 at $17.56 (cost $56.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:57:27,470 INFO   ✅ Delisted
+2026-04-16 11:57:28,413 INFO   Option Volatility and Pricing: Advanced Trading St: AUTO-DELIST — Unprofitable — profit $-23.22 at $28.06 (cost $46.99, method: EBAY_COMP (HIGH, floor=$31.89))
+2026-04-16 11:57:29,382 INFO   ✅ Delisted
+2026-04-16 11:57:30,616 INFO   Experiential Learning: Experience as the Source of: AUTO-DELIST — Unprofitable — profit $-11.04 at $81.41 (cost $79.99, method: EBAY_COMP (HIGH, floor=$92.51))
+2026-04-16 11:57:31,570 INFO   ✅ Delisted
+2026-04-16 11:57:32,515 INFO   School Law and the Public Schools: A Practical Gui: AUTO-DELIST — Unprofitable — profit $-75.12 at $17.56 (cost $89.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:57:33,982 INFO   ✅ Delisted
+2026-04-16 11:57:34,907 INFO   Signal and Power Integrity - Simplified, 3rd editi: AUTO-DELIST — Unprofitable — profit $-10.08 at $58.92 (cost $59.99, method: EBAY_COMP (HIGH, floor=$66.95))
+2026-04-16 11:57:36,104 INFO   ✅ Delisted
+2026-04-16 11:57:37,096 INFO   Family Therapy: History, Theory, and Practice, 7th: AUTO-DELIST — Unprofitable — profit $-65.12 at $17.56 (cost $79.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:57:37,895 INFO   ✅ Delisted
+2026-04-16 11:57:38,918 INFO   Articulation and Phonology in Speech Sound Disorde: AUTO-DELIST — Unprofitable — profit $-72.14 at $21.08 (cost $89.99, method: EBAY_COMP (HIGH, floor=$23.95))
+2026-04-16 11:57:39,850 INFO   ✅ Delisted
+2026-04-16 11:57:40,983 INFO   Understanding Digital Signal Processing, 3rd Editi: AUTO-DELIST — Unprofitable — profit $-37.02 at $23.58 (cost $56.99, method: EBAY_COMP (HIGH, floor=$26.79))
+2026-04-16 11:57:41,954 INFO   ✅ Delisted
+2026-04-16 11:57:43,008 INFO   Diversity, Oppression, & Change: Culturally Ground: AUTO-DELIST — Unprofitable — profit $-32.86 at $16.68 (cost $46.99, method: EBAY_COMP (HIGH, floor=$18.95))
+2026-04-16 11:57:43,857 INFO   ✅ Delisted
+2026-04-16 11:57:44,801 INFO   Decision Modelling for Health Economic Evaluation : AUTO-DELIST — Unprofitable — profit $-14.75 at $41.61 (cost $49.99, method: EBAY_COMP (HIGH, floor=$47.28))
+2026-04-16 11:57:45,668 INFO   ✅ Delisted
+2026-04-16 11:57:46,876 INFO   The Handbook of Mortgage-Backed Securities, 7th Ed: AUTO-DELIST — Unprofitable — profit $-45.12 at $17.56 (cost $59.99, method: EBAY_COMP (HIGH, floor=$19.95))
+2026-04-16 11:57:48,182 INFO   ✅ Delisted
+2026-04-16 11:57:49,187 INFO   Gardner and Sutherlandâs Chromosome Abnormalitie: AUTO-DELIST — Unprofitable — profit $-63.90 at $19.00 (cost $79.99, method: EBAY_COMP (HIGH, floor=$21.59))
+2026-04-16 11:57:50,043 INFO   ✅ Delisted
+2026-04-16 11:57:50,946 INFO   Inter-Act: Interpersonal Communication - Concepts,: AUTO-DELIST — Unprofitable — profit $-67.35 at $14.92 (cost $79.99, method: EBAY_COMP (HIGH, floor=$16.95))
+2026-04-16 11:57:51,815 INFO   ✅ Delisted
+2026-04-16 11:57:52,780 INFO   A Brief History of the Romans, 2nd Edition by Mary: AUTO-DELIST — Unprofitable — profit $-45.90 at $16.64 (cost $59.99, method: EBAY_COMP (HIGH, floor=$18.91))
+2026-04-16 11:57:53,947 INFO   ✅ Delisted
+2026-04-16 11:57:54,933 INFO   An Introduction to Quantum Field Theory by Michael: AUTO-DELIST — Unprofitable — profit $-27.53 at $31.24 (cost $53.99, method: EBAY_COMP (HIGH, floor=$35.50))
+2026-04-16 11:57:55,888 INFO   ✅ Delisted
+2026-04-16 11:57:56,902 INFO   Concrete Mathematics: A Foundation for Computer Sc: AUTO-DELIST — Unprofitable — profit $-16.45 at $39.60 (cost $49.99, method: EBAY_COMP (HIGH, floor=$45.00))
+2026-04-16 11:57:58,130 INFO   ✅ Delisted
+2026-04-16 11:57:59,191 INFO   Reinforcement Learning: An Introduction, 2nd Editi: AUTO-DELIST — Unprofitable — profit $-22.18 at $35.20 (cost $51.99, method: EBAY_COMP (HIGH, floor=$40.00))
+2026-04-16 11:58:00,086 INFO   ✅ Delisted
+2026-04-16 11:58:01,052 INFO   Behavior Analysis for Lasting Change, 5th Edition : $104.37 → $114.40 profit=$19.91  method=EBAY_COMP (HIGH, floor=$130.00)
+2026-04-16 11:58:02,545 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 11:58:02,547 ERROR   ❌ Reprice failed (9781597381000)
+2026-04-16 11:58:03,418 INFO   Bayesian Data Analysis (Chapman & Hall/CRC Texts i: AUTO-DELIST — Unprofitable — profit $-22.94 at $30.76 (cost $48.99, method: EBAY_COMP (HIGH, floor=$34.95))
+2026-04-16 11:58:04,124 INFO   ✅ Delisted
+2026-04-16 11:58:04,970 INFO   Eye Movement Desensitization and Reprocessing (EMD: AUTO-DELIST — Unprofitable — profit $-28.65 at $13.39 (cost $39.99, method: EBAY_COMP (HIGH, floor=$15.22))
+2026-04-16 11:58:06,038 INFO   ✅ Delisted
+2026-04-16 11:58:06,540 INFO ============================================================
+2026-04-16 11:58:06,540 INFO DONE: 3 repriced | 43 delisted | 42 unchanged
+2026-04-16 11:58:06,540 INFO ============================================================
+2026-04-16 11:58:07,642 INFO Email alert sent

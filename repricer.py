@@ -114,35 +114,64 @@ def fetch_booksgoat_prices():
 def get_ebay_comps(isbn, app_token):
     """
     Returns (prices: list[float], confidence: str).
-    Uses Browse API — Books category, fixed price only.
+    Uses GTIN search (same as scanner.py) for precise ISBN matching.
+    Falls back to keyword search if GTIN returns nothing.
     """
     headers = {
-        'Authorization':          f'Bearer {app_token}',
+        'Authorization':           f'Bearer {app_token}',
         'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
     }
-    params = {
-        'q':            isbn,
-        'category_ids': '267',
-        'filter':       'buyingOptions:{FIXED_PRICE},conditions:{NEW}',  # NEW only — exclude used/rental
-        'sort':         'price',
-        'limit':        '20',
-    }
-    try:
-        r = requests.get(
-            'https://api.ebay.com/buy/browse/v1/item_summary/search',
-            headers=headers, params=params, timeout=15
-        )
-        r.raise_for_status()
-    except Exception as e:
-        log.warning(f'  Browse API error for {isbn}: {e}')
-        return [], 'ERROR'
-
     prices = []
-    for item in r.json().get('itemSummaries', []):
+
+    # Primary: GTIN search — precise, matches exact ISBN
+    for isbn_val in [isbn, isbn[3:] if len(isbn) == 13 else None]:
+        if not isbn_val or len(isbn_val) < 10:
+            continue
         try:
-            prices.append(float(item['price']['value']))
-        except (KeyError, ValueError):
-            pass
+            r = requests.get(
+                'https://api.ebay.com/buy/browse/v1/item_summary/search',
+                headers=headers,
+                params={
+                    'gtin':   isbn_val,
+                    'filter': 'conditions:{NEW},buyingOptions:{FIXED_PRICE}',
+                    'limit':  '50',
+                },
+                timeout=15
+            )
+            r.raise_for_status()
+            for item in r.json().get('itemSummaries', []):
+                try:
+                    prices.append(float(item['price']['value']))
+                except (KeyError, ValueError):
+                    pass
+            if prices:
+                break
+        except Exception as e:
+            log.warning(f'  GTIN search error for {isbn_val}: {e}')
+
+    # Fallback: keyword search if GTIN found nothing
+    if not prices:
+        try:
+            r = requests.get(
+                'https://api.ebay.com/buy/browse/v1/item_summary/search',
+                headers=headers,
+                params={
+                    'q':            isbn,
+                    'category_ids': '267',
+                    'filter':       'conditions:{NEW},buyingOptions:{FIXED_PRICE}',
+                    'sort':         'price',
+                    'limit':        '20',
+                },
+                timeout=15
+            )
+            r.raise_for_status()
+            for item in r.json().get('itemSummaries', []):
+                try:
+                    prices.append(float(item['price']['value']))
+                except (KeyError, ValueError):
+                    pass
+        except Exception as e:
+            log.warning(f'  Keyword search error for {isbn}: {e}')
 
     if   len(prices) >= 3: conf = 'HIGH'
     elif len(prices) >= 1: conf = 'MEDIUM'

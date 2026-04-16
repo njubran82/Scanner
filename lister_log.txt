@@ -2900,3 +2900,47 @@
 2026-04-16 20:26:17,973 INFO LISTER DONE: 8 listed, 0 drafts, 0 failed
 2026-04-16 20:26:17,973 INFO ============================================================
 2026-04-16 20:26:18,855 INFO Email alert sent
+2026-04-16 20:37:29,281 INFO ============================================================
+2026-04-16 20:37:29,281 INFO LISTER STARTED — 2026-04-16 20:37:29
+2026-04-16 20:37:29,281 INFO ============================================================
+2026-04-16 20:37:29,281 INFO Processing 12 opportunities...
+2026-04-16 20:37:29,552 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 20:37:30,531 INFO   Image: Open Library (9781506353074)
+2026-04-16 20:37:34,962 INFO   ✅ Listed | $76.99 | Profit: $7.22 | ListingID: 358453886521
+2026-04-16 20:37:35,962 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-16 20:37:36,814 INFO   Image: Open Library (9780323033718)
+2026-04-16 20:37:41,970 INFO   ✅ Listed | $143.01 | Profit: $44.14 | ListingID: 358453887047
+2026-04-16 20:37:42,970 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 20:37:43,758 INFO   Image: Open Library (9781071817179)
+2026-04-16 20:37:48,658 INFO   ✅ Listed | $99.43 | Profit: $24.23 | ListingID: 358453887506
+2026-04-16 20:37:49,659 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 20:37:51,391 INFO   Image: Open Library (9781138088610)
+2026-04-16 20:37:55,522 INFO   ✅ Listed | $79.07 | Profit: $10.98 | ListingID: 358453887632
+2026-04-16 20:37:56,522 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 20:37:57,403 INFO   Image: Open Library (9781118753651)
+2026-04-16 20:38:01,083 INFO   ✅ Listed | $116.37 | Profit: $40.58 | ListingID: 358453887706
+2026-04-16 20:38:02,083 INFO Listing: Research and Evaluation in Education and Psychology, 6th Edi
+2026-04-16 20:38:02,916 INFO   Image: Amazon CDN
+2026-04-16 20:38:07,003 INFO   ✅ Listed | $69.82 | Profit: $3.15 | ListingID: 358453887778
+2026-04-16 20:38:08,004 INFO Listing: Developmental Biology, 13th Edition by Michael J.F. Gilbert 
+2026-04-16 20:38:08,981 INFO   Image: Open Library (9780197574591)
+2026-04-16 20:38:13,144 INFO   ✅ Listed | $183.96 | Profit: $67.82 | ListingID: 358453887901
+2026-04-16 20:38:14,144 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 20:38:14,913 INFO   Image: Open Library (9781009397759)
+2026-04-16 20:38:19,484 INFO   ✅ Listed | $49.18 | Profit: $5.67 | ListingID: 358453887967
+2026-04-16 20:38:20,484 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-16 20:38:33,580 INFO   Image: Amazon CDN
+2026-04-16 20:38:38,460 INFO   ✅ Listed | $42.39 | Profit: $5.91 | ListingID: 358453888210
+2026-04-16 20:38:39,460 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-16 20:38:40,288 INFO   Image: Open Library (9781450434140)
+2026-04-16 20:38:45,344 INFO   ✅ Listed | $69.35 | Profit: $14.75 | ListingID: 358453888293
+2026-04-16 20:38:46,344 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 20:38:47,041 INFO   Image: Open Library (9781462532766)
+2026-04-16 20:38:51,419 INFO   ✅ Listed | $70.49 | Profit: $19.72 | ListingID: 358453888589
+2026-04-16 20:38:52,419 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-16 20:38:53,210 INFO   Image: Open Library (9781683732556)
+2026-04-16 20:38:56,947 INFO   ✅ Listed | $29.58 | Profit: $5.06 | ListingID: 358453888657
+2026-04-16 20:38:57,948 INFO ============================================================
+2026-04-16 20:38:57,948 INFO LISTER DONE: 12 listed, 0 drafts, 0 failed
+2026-04-16 20:38:57,948 INFO ============================================================
+2026-04-16 20:38:58,970 INFO Email alert sent

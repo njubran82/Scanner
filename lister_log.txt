@@ -2260,3 +2260,104 @@
 2026-04-16 11:56:13,740 INFO LISTER DONE: 3 listed, 3 failed
 2026-04-16 11:56:13,740 INFO ============================================================
 2026-04-16 11:56:14,869 INFO Email alert sent
+2026-04-16 12:05:46,116 INFO ============================================================
+2026-04-16 12:05:46,116 INFO LISTER STARTED — 2026-04-16 12:05:46
+2026-04-16 12:05:46,117 INFO ============================================================
+2026-04-16 12:05:46,117 INFO Processing 30 opportunities...
+2026-04-16 12:05:46,487 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-16 12:05:47,465 WARNING   No image found for 9781943378210 — listing without image (flagged)
+2026-04-16 12:05:51,782 INFO   ✅ Listed | $136.23 | Profit: $41.19 | ListingID: 358452692736
+2026-04-16 12:05:52,783 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-16 12:05:53,251 INFO   Image: Open Library (9781462550128)
+2026-04-16 12:05:57,480 INFO   ✅ Listed | $111.30 | Profit: $29.56 | ListingID: 358452693100
+2026-04-16 12:05:58,480 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-16 12:05:58,981 WARNING   No image found for 9781641950473 — listing without image (flagged)
+2026-04-16 12:06:01,732 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.","parameters":[{"name":"0","value":"Add at least 1 photo. Mo
+2026-04-16 12:06:01,734 ERROR   Listing failed for 9781641950473
+2026-04-16 12:06:01,734 INFO Listing: Bioethics: Principles, Issues, and Cases, 5th Edition by Lew
+2026-04-16 12:06:02,511 INFO   Image: Google Books (thumbnail)
+2026-04-16 12:06:06,577 INFO   ✅ Listed | $113.95 | Profit: $41.86 | ListingID: 358452693654
+2026-04-16 12:06:07,577 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-16 12:06:08,054 INFO   Image: Open Library (9780367263638)
+2026-04-16 12:06:11,652 INFO   ✅ Listed | $120.65 | Profit: $29.67 | ListingID: 358452693894
+2026-04-16 12:06:12,653 INFO Listing: Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statisti
+2026-04-16 12:06:12,857 INFO   Image: Open Library (9781439840955)
+2026-04-16 12:06:16,435 INFO   ✅ Listed | $80.20 | Profit: $20.58 | ListingID: 358452694094
+2026-04-16 12:06:17,435 INFO Listing: National Incident Management System: Principles and Practice
+2026-04-16 12:06:18,129 WARNING   No image found for 9780763781873 — listing without image (flagged)
+2026-04-16 12:06:22,802 INFO   ✅ Listed | $106.35 | Profit: $35.27 | ListingID: 358452694301
+2026-04-16 12:06:23,803 INFO Listing: American Herbal Products Association's Botanical Safety Hand
+2026-04-16 12:06:24,033 INFO   Image: Open Library (9781466516946)
+2026-04-16 12:06:29,092 INFO   ✅ Listed | $152.90 | Profit: $55.65 | ListingID: 358452694592
+2026-04-16 12:06:30,092 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-16 12:06:30,330 INFO   Image: Open Library (9780195335286)
+2026-04-16 12:06:34,575 INFO   ✅ Listed | $64.28 | Profit: $29.77 | ListingID: 358452695001
+2026-04-16 12:06:35,575 INFO Listing: Concrete Manual: Based on the 2015 IBC and ACI 318-14 (ISBN 
+2026-04-16 12:06:36,015 INFO   Image: Open Library (9781609836184)
+2026-04-16 12:06:39,689 INFO   ✅ Listed | $161.87 | Profit: $52.43 | ListingID: 358452695364
+2026-04-16 12:06:40,689 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 12:06:41,216 INFO   Image: Open Library (9781506353074)
+2026-04-16 12:06:45,970 INFO   ✅ Listed | $76.55 | Profit: $8.42 | ListingID: 358452695767
+2026-04-16 12:06:46,971 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-16 12:06:47,683 INFO   Image: Google Books (thumbnail)
+2026-04-16 12:06:51,196 INFO   ✅ Listed | $101.65 | Profit: $21.19 | ListingID: 358452696141
+2026-04-16 12:06:52,197 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 12:06:52,694 INFO   Image: Open Library (9781071817179)
+2026-04-16 12:06:56,392 INFO   ✅ Listed | $98.87 | Profit: $25.78 | ListingID: 358452696397
+2026-04-16 12:06:57,392 INFO Listing: Factory Physics, 3rd Edition by Wallace J. Hopp & Mark L. Sp
+2026-04-16 12:06:59,126 INFO   Image: Google Books (thumbnail)
+2026-04-16 12:07:02,499 INFO   ✅ Listed | $121.55 | Profit: $48.45 | ListingID: 358452696831
+2026-04-16 12:07:03,500 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 12:07:03,971 INFO   Image: Open Library (9781138088610)
+2026-04-16 12:07:08,386 INFO   ✅ Listed | $78.62 | Profit: $12.21 | ListingID: 358452697152
+2026-04-16 12:07:09,387 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-16 12:07:10,112 INFO   Image: Google Books (thumbnail)
+2026-04-16 12:07:13,729 INFO   ✅ Listed | $103.26 | Profit: $32.59 | ListingID: 358452697488
+2026-04-16 12:07:14,729 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 12:07:15,519 INFO   Image: Open Library (9781118753651)
+2026-04-16 12:07:19,501 INFO   ✅ Listed | $116.37 | Profit: $42.96 | ListingID: 358452697760
+2026-04-16 12:07:20,501 INFO Listing: Small Animal Dermatology: A Color Atlas and Therapeutic Guid
+2026-04-16 12:07:21,259 INFO   Image: Google Books (thumbnail)
+2026-04-16 12:07:25,017 INFO   ✅ Listed | $136.64 | Profit: $56.55 | ListingID: 358452698138
+2026-04-16 12:07:26,018 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-16 12:07:26,453 WARNING   No image found for 9781944366445 — listing without image (flagged)
+2026-04-16 12:07:29,251 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.","parameters":[{"name":"0","value":"Add at least 1 photo. Mo
+2026-04-16 12:07:29,253 ERROR   Listing failed for 9781944366445
+2026-04-16 12:07:29,254 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 12:07:29,710 INFO   Image: Open Library (9781009397759)
+2026-04-16 12:07:34,203 INFO   ✅ Listed | $48.90 | Profit: $6.43 | ListingID: 358452699318
+2026-04-16 12:07:35,203 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-16 12:07:35,875 INFO   Image: Google Books (thumbnail)
+2026-04-16 12:07:40,449 INFO   ✅ Listed | $42.39 | Profit: $6.78 | ListingID: 358452700112
+2026-04-16 12:07:41,449 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-16 12:07:41,945 INFO   Image: Open Library (9781119143642)
+2026-04-16 12:07:45,260 INFO   ✅ Listed | $34.10 | Profit: $7.59 | ListingID: 358452700867
+2026-04-16 12:07:46,260 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-16 12:07:46,724 INFO   Image: Open Library (9781450434140)
+2026-04-16 12:07:50,595 INFO   ✅ Listed | $69.35 | Profit: $16.17 | ListingID: 358452701518
+2026-04-16 12:07:51,595 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-16 12:07:52,084 INFO   Image: Open Library (9781572307810)
+2026-04-16 12:07:56,121 INFO   ✅ Listed | $49.40 | Profit: $12.86 | ListingID: 358452702135
+2026-04-16 12:07:57,121 INFO Listing: Qualitative Research & Evaluation Methods: Integrating Theor
+2026-04-16 12:07:57,996 INFO   Image: Google Books (thumbnail)
+2026-04-16 12:08:02,541 INFO   ✅ Listed | $101.16 | Profit: $15.77 | ListingID: 358452703040
+2026-04-16 12:08:03,541 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 12:08:04,019 INFO   Image: Open Library (9781462532766)
+2026-04-16 12:08:07,542 INFO   ✅ Listed | $70.09 | Profit: $20.81 | ListingID: 358452703962
+2026-04-16 12:08:08,542 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-16 12:08:09,105 INFO   Image: Open Library (9781683732556)
+2026-04-16 12:08:12,710 INFO   ✅ Listed | $29.41 | Profit: $5.52 | ListingID: 358452704713
+2026-04-16 12:08:13,710 INFO Listing: Lange Q & A Radiography Examination
+2026-04-16 12:08:14,283 WARNING   No image found for 9781260460445 — listing without image (flagged)
+2026-04-16 12:08:18,550 INFO   ✅ Listed | $64.12 | Profit: $13.63 | ListingID: 358452705471
+2026-04-16 12:08:19,550 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-16 12:08:19,753 INFO   Image: Open Library (9780195335286)
+2026-04-16 12:08:23,527 INFO   Offer already exists (152565706011) — updating and publishing
+2026-04-16 12:08:25,882 INFO   ✅ Listed | $64.28 | Profit: $14.77 | ListingID: 358452695001
+2026-04-16 12:08:26,883 INFO Listing: Strategies and Tactics of Behavioral Research and Practice, 
+2026-04-16 12:08:27,258 WARNING   No image found for 9781138641594 — listing without image (flagged)
+2026-04-16 12:08:32,036 INFO   ✅ Listed | $85.49 | Profit: $21.17 | ListingID: 358452707033
+2026-04-16 12:08:33,038 INFO ============================================================
+2026-04-16 12:08:33,038 INFO LISTER DONE: 28 listed, 2 failed
+2026-04-16 12:08:33,038 INFO ============================================================
+2026-04-16 12:08:34,323 INFO Email alert sent

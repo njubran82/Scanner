@@ -717,24 +717,11 @@
       "offer_id": "150219214011",
       "listing_id": "358436393969",
       "cost": 86.99,
-      "listing_price": 120.75,
-      "profit": 15.29,
+      "listing_price": 106.26,
+      "profit": 3.01,
       "confidence": "MEDIUM",
       "listed_date": "2026-04-12T01:02:44.729709",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994"
-    },
-    "9780323033718": {
-      "title": "Functional Occlusion: From TMJ to Smile Design by Peter E. Dawson 1st edition (ISBN: 9780323033718) - Hardcover",
-      "isbn13": "9780323033718",
-      "isbn10": "0323033717",
-      "offer_id": "150219259011",
-      "listing_id": "358436396124",
-      "cost": 76.99,
-      "listing_price": 92.8,
-      "profit": 1.61,
-      "confidence": "HIGH",
-      "listed_date": "2026-04-12T01:03:10.752332",
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780323033718"
     },
     "9780197574591": {
       "title": "Developmental Biology, 13th Edition by Michael J.F. Gilbert (ISBN 9780197574591) - Hardcover",
@@ -743,8 +730,8 @@
       "offer_id": "150219296011",
       "listing_id": "358436397201",
       "cost": 87.99,
-      "listing_price": 139.17,
-      "profit": 29.89,
+      "listing_price": 122.47,
+      "profit": 15.74,
       "confidence": "MEDIUM",
       "listed_date": "2026-04-12T01:03:29.891240",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780197574591"
@@ -840,21 +827,22 @@
       "listed_date": "2026-04-12T11:06:40.018403",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781032933832"
     },
-    "9781597381000": {
-      "title": "Behavior Analysis for Lasting Change, 5th Edition by G. Roy Mayer, Beth Sulzer-Azaroff & Michele Wallace (ISBN: 9781597381000) \u00e2\u0080\u0093 Hardcover",
-      "isbn13": "9781597381000",
-      "isbn10": "1597381004",
-      "offer_id": "152562292011",
-      "listing_id": "358452668650",
+    "9781943378210": {
+      "title": "Arborists\u00e2\u0080\u0099 Certification Study Guide, 4th Edition by Sharon Lilly, Corrine Bassett (ISBN: 9781943378210) - Paperback",
+      "isbn13": "9781943378210",
+      "isbn10": "1943378215",
+      "offer_id": "152565450011",
+      "listing_id": "358452692736",
       "cost": 76.99,
-      "listing_price": 104.37,
-      "profit": 13.55,
-      "confidence": "HIGH",
-      "listed_date": "2026-04-16T11:55:55.721435",
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781597381000"
+      "listing_price": 119.21,
+      "profit": 23.98,
+      "confidence": "MEDIUM",
+      "listed_date": "2026-04-16T12:05:51.781603",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781943378210",
+      "needs_image": true
     }
   },
-  "last_run": "2026-04-16T11:56:13.738378",
+  "last_run": "2026-04-16T12:08:33.036605",
   "listed_isbns": [
     "9781560915263",
     "9781285769417",
@@ -899,7 +887,6 @@
     "9781593703424",
     "9781951058098",
     "9780867157994",
-    "9780323033718",
     "9780197574591",
     "9781032836072",
     "9781636940267",
@@ -908,7 +895,7 @@
     "9781951058067",
     "9780128216170",
     "9781032933832",
-    "9781597381000"
+    "9781943378210"
   ],
-  "last_repricer_run": "2026-04-16T11:58:06.539283"
+  "last_repricer_run": "2026-04-16T12:09:51.793133"
 }

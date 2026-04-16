@@ -1478,3 +1478,57 @@
 2026-04-16 14:57:29,888 INFO   Unprofitable:     21
 2026-04-16 14:57:29,888 INFO   Amazon fallbacks: 2
 2026-04-16 14:57:29,888 INFO ============================================================
+2026-04-16 15:06:27,947 INFO ============================================================
+2026-04-16 15:06:27,948 INFO SCANNER STARTED — 2026-04-16 15:06:27
+2026-04-16 15:06:27,948 INFO ============================================================
+2026-04-16 15:06:28,252 INFO eBay token acquired
+2026-04-16 15:06:28,253 INFO No validated_isbns.json found — running without availability filter
+2026-04-16 15:06:28,253 INFO Fetching BooksGoat sheet...
+2026-04-16 15:06:29,072 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-16 15:06:29,073 INFO Fetched 91 books from BooksGoat
+2026-04-16 15:06:33,196 INFO   Amazon ($63.00) < eBay ($79.20) — repricing to $59.85
+2026-04-16 15:06:33,197 INFO ✅ Sterile Processing Technical Manual Workbook (CRCS | Cost: $48.99 | List: $59.85 | Profit: $1.70 | HIGH (3)
+2026-04-16 15:06:34,530 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-16 15:06:38,849 INFO   Amazon ($81.42) < eBay ($114.71) — repricing to $77.35
+2026-04-16 15:06:38,850 INFO ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $48.99 | List: $77.35 | Profit: $16.53 | HIGH (7)
+2026-04-16 15:06:40,927 INFO   Amazon ($127.00) < eBay ($196.72) — repricing to $120.65
+2026-04-16 15:06:40,927 INFO ✅ Safety Professional's Reference and Study Guide, 3 | Cost: $74.99 | List: $120.65 | Profit: $27.20 | HIGH (6)
+2026-04-16 15:06:43,057 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-16 15:06:55,367 INFO   Amazon ($67.66) < eBay ($73.00) — repricing to $64.28
+2026-04-16 15:06:55,367 INFO ✅ Exposure and Response (Ritual) Prevention for Obse | Cost: $25.99 | List: $64.28 | Profit: $28.46 | MEDIUM (1)
+2026-04-16 15:06:57,183 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-16 15:06:59,059 INFO ✅ Qualitative Data Analysis: A Methods Sourcebook, 4 | Cost: $57.99 | List: $76.99 | Profit: $7.22 | HIGH (20)
+2026-04-16 15:07:01,704 INFO   Amazon ($107.00) < eBay ($132.00) — repricing to $101.65
+2026-04-16 15:07:01,704 INFO ✅ Counseling Individuals Through the Lifespan 2nd ed | Cost: $66.99 | List: $101.65 | Profit: $19.11 | HIGH (5)
+2026-04-16 15:07:04,319 INFO ✅ Tests & Measurement for People Who (Think They) Ha | Cost: $59.99 | List: $99.43 | Profit: $24.23 | MEDIUM (1)
+2026-04-16 15:07:08,525 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $79.07 | Profit: $10.98 | HIGH (20)
+2026-04-16 15:07:10,593 INFO   Amazon ($108.69) < eBay ($132.79) — repricing to $103.26
+2026-04-16 15:07:10,594 INFO ✅ Designing Effective Instruction, 8th Edition by Ga | Cost: $56.99 | List: $103.26 | Profit: $30.47 | HIGH (7)
+2026-04-16 15:07:11,080 INFO   Amazon ($122.49) < eBay ($142.67) — repricing to $116.37
+2026-04-16 15:07:11,081 INFO ✅ Rocket Propulsion Elements, 9th Edition by George  | Cost: $57.99 | List: $116.37 | Profit: $40.58 | MEDIUM (1)
+2026-04-16 15:07:12,415 INFO   Amazon fallback: 2021 Uniform Mechanical Code Soft Cover with Tabs 
+2026-04-16 15:07:12,415 INFO ✅ 2021 Uniform Mechanical Code Soft Cover with Tabs  | Cost: $76.99 | List: $117.92 | Profit: $22.89 | FALLBACK_AMAZON (0)
+2026-04-16 15:07:16,978 INFO   Amazon ($72.27) < eBay ($119.40) — repricing to $68.66
+2026-04-16 15:07:16,979 INFO ✅ Ethnicity and Family Therapy, 3rd Edition by Monic | Cost: $54.99 | List: $68.66 | Profit: $3.17 | HIGH (5)
+2026-04-16 15:07:18,855 INFO   Amazon fallback: Developmental Biology, 13th Edition by Michael J.F
+2026-04-16 15:07:18,856 INFO ✅ Developmental Biology, 13th Edition by Michael J.F | Cost: $87.99 | List: $183.96 | Profit: $67.82 | FALLBACK_AMAZON (0)
+2026-04-16 15:07:21,035 INFO ✅ Introduction to Electrodynamics by David J. Griffi | Cost: $35.99 | List: $49.18 | Profit: $5.67 | HIGH (20)
+2026-04-16 15:07:23,135 INFO   Amazon ($44.62) < eBay ($49.96) — repricing to $42.39
+2026-04-16 15:07:23,135 INFO ✅ How to Write and Publish a Scientific Paper        | Cost: $29.99 | List: $42.39 | Profit: $5.91 | HIGH (20)
+2026-04-16 15:07:23,591 INFO   Amazon ($35.90) < eBay ($62.37) — repricing to $34.10
+2026-04-16 15:07:23,591 INFO ✅ Understanding Behaviorism: Behavior, Culture, and  | Cost: $21.99 | List: $34.10 | Profit: $6.89 | MEDIUM (1)
+2026-04-16 15:07:24,039 INFO   Amazon ($52.00) < eBay ($70.39) — repricing to $49.40
+2026-04-16 15:07:24,039 INFO ✅ DBT Skills Training Handouts and Worksheets Second | Cost: $29.99 | List: $49.40 | Profit: $11.85 | MEDIUM (1)
+2026-04-16 15:07:24,886 INFO ✅ Encyclopedia of Counseling                         | Cost: $29.99 | List: $37.62 | Profit: $1.87 | MEDIUM (1)
+2026-04-16 15:07:25,873 INFO ✅ Eye Movement Desensitization and Reprocessing (EMD | Cost: $39.99 | List: $70.49 | Profit: $19.72 | MEDIUM (2)
+2026-04-16 15:07:27,964 INFO ✅ The Comprehensive Clinician's Guide to Cognitive B | Cost: $19.99 | List: $29.58 | Profit: $5.06 | HIGH (20)
+2026-04-16 15:07:30,311 INFO   Amazon ($67.66) < eBay ($73.00) — repricing to $64.28
+2026-04-16 15:07:30,311 INFO ✅ Exposure and Response (Ritual) Prevention for Obse | Cost: $40.99 | List: $64.28 | Profit: $13.46 | MEDIUM (1)
+2026-04-16 15:07:30,312 INFO ============================================================
+2026-04-16 15:07:30,312 INFO SCAN COMPLETE: 21 opportunities found
+2026-04-16 15:07:30,312 INFO   Already listed:   49
+2026-04-16 15:07:30,312 INFO   Not validated:    0
+2026-04-16 15:07:30,312 INFO   No eBay data:     0
+2026-04-16 15:07:30,312 INFO   Unprofitable:     21
+2026-04-16 15:07:30,312 INFO   Amazon fallbacks: 2
+2026-04-16 15:07:30,312 INFO ============================================================

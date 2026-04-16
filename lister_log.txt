@@ -2535,3 +2535,83 @@
 2026-04-16 14:59:05,971 INFO LISTER DONE: 15 listed, 3 failed
 2026-04-16 14:59:05,972 INFO ============================================================
 2026-04-16 14:59:07,724 INFO Email alert sent
+2026-04-16 15:07:30,707 INFO ============================================================
+2026-04-16 15:07:30,707 INFO LISTER STARTED — 2026-04-16 15:07:30
+2026-04-16 15:07:30,707 INFO ============================================================
+2026-04-16 15:07:30,707 INFO Processing 21 opportunities...
+2026-04-16 15:07:30,967 INFO Listing: Sterile Processing Technical Manual Workbook (CRCST Workbook
+2026-04-16 15:07:34,009 WARNING   No image found for B0C1XZ4BQV — listing without image (flagged)
+2026-04-16 15:07:35,094 INFO   Offer already exists (152616376011) — updating and publishing
+2026-04-16 15:07:37,335 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. EAN has an invalid value of \"B0C1XZ4BQV\". Enter a valid value and try again, or you can leave the EAN field blank.","parameters":[{"name":"0","value":"EAN has an in
+2026-04-16 15:07:37,337 ERROR   Listing failed for B0C1XZ4BQV
+2026-04-16 15:07:37,338 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-16 15:07:40,868 WARNING   No image found for 9781641950473 — listing without image (flagged)
+2026-04-16 15:07:41,828 INFO   Offer already exists (152565518011) — updating and publishing
+2026-04-16 15:07:43,581 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.","parameters":[{"name":"0","value":"Add at least 1 photo. Mo
+2026-04-16 15:07:43,583 ERROR   Listing failed for 9781641950473
+2026-04-16 15:07:43,583 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-16 15:07:46,524 INFO   Image: Open Library (9780367263638)
+2026-04-16 15:07:51,083 INFO   ✅ Listed | $120.65 | Profit: $27.20 | ListingID: 358453161279
+2026-04-16 15:07:52,083 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-16 15:07:52,507 INFO   Image: Open Library (9780195335286)
+2026-04-16 15:07:56,841 INFO   ✅ Listed | $64.28 | Profit: $28.46 | ListingID: 358453161568
+2026-04-16 15:07:57,842 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 15:07:59,020 INFO   Image: Open Library (9781506353074)
+2026-04-16 15:08:02,725 INFO   ✅ Listed | $76.99 | Profit: $7.22 | ListingID: 358453161937
+2026-04-16 15:08:03,725 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-16 15:08:04,601 INFO   Image: Amazon CDN
+2026-04-16 15:08:08,486 INFO   ✅ Listed | $101.65 | Profit: $19.11 | ListingID: 358453162083
+2026-04-16 15:08:09,486 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 15:08:10,571 INFO   Image: Open Library (9781071817179)
+2026-04-16 15:08:14,945 INFO   ✅ Listed | $99.43 | Profit: $24.23 | ListingID: 358453162294
+2026-04-16 15:08:15,946 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 15:08:16,994 INFO   Image: Open Library (9781138088610)
+2026-04-16 15:08:21,234 INFO   ✅ Listed | $79.07 | Profit: $10.98 | ListingID: 358453162587
+2026-04-16 15:08:22,234 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-16 15:08:23,051 INFO   Image: Amazon CDN
+2026-04-16 15:08:25,490 ERROR   publish_offer failed (500): {"errors":[{"errorId":25604,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"Input error. Seller Inventory Service can not publish the data. Product not found. Please try again or contact customer support.."}]}
+2026-04-16 15:08:25,492 ERROR   Listing failed for 9781119465935
+2026-04-16 15:08:25,492 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 15:08:26,857 INFO   Image: Open Library (9781118753651)
+2026-04-16 15:08:31,705 INFO   ✅ Listed | $116.37 | Profit: $40.58 | ListingID: 358453163219
+2026-04-16 15:08:32,705 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-16 15:08:35,710 WARNING   No image found for 9781944366445 — listing without image (flagged)
+2026-04-16 15:08:36,598 INFO   Offer already exists (152565994011) — updating and publishing
+2026-04-16 15:08:38,212 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.","parameters":[{"name":"0","value":"Add at least 1 photo. Mo
+2026-04-16 15:08:38,214 ERROR   Listing failed for 9781944366445
+2026-04-16 15:08:38,215 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-16 15:08:39,179 INFO   Image: Open Library (9781593850203)
+2026-04-16 15:08:43,907 INFO   ✅ Listed | $68.66 | Profit: $3.17 | ListingID: 358453164019
+2026-04-16 15:08:44,907 INFO Listing: Developmental Biology, 13th Edition by Michael J.F. Gilbert 
+2026-04-16 15:08:45,977 INFO   Image: Open Library (9780197574591)
+2026-04-16 15:08:47,670 ERROR   publish_offer failed (500): {"errors":[{"errorId":25604,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"Input error. Seller Inventory Service can not publish the data. Product not found. Please try again or contact customer support.."}]}
+2026-04-16 15:08:47,672 ERROR   Listing failed for 9780197574591
+2026-04-16 15:08:47,673 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 15:08:48,815 INFO   Image: Open Library (9781009397759)
+2026-04-16 15:08:52,549 INFO   ✅ Listed | $49.18 | Profit: $5.67 | ListingID: 358453164606
+2026-04-16 15:08:53,549 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-16 15:08:54,302 INFO   Image: Amazon CDN
+2026-04-16 15:08:58,413 INFO   ✅ Listed | $42.39 | Profit: $5.91 | ListingID: 358453164950
+2026-04-16 15:08:59,414 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-16 15:09:00,415 INFO   Image: Open Library (9781119143642)
+2026-04-16 15:09:05,663 INFO   ✅ Listed | $34.10 | Profit: $6.89 | ListingID: 358453165808
+2026-04-16 15:09:06,663 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-16 15:09:07,768 INFO   Image: Open Library (9781572307810)
+2026-04-16 15:09:12,222 INFO   ✅ Listed | $49.40 | Profit: $11.85 | ListingID: 358453166474
+2026-04-16 15:09:13,222 INFO Listing: Encyclopedia of Counseling
+2026-04-16 15:09:14,201 INFO   Image: Open Library (9781138942653)
+2026-04-16 15:09:18,353 INFO   ✅ Listed | $37.62 | Profit: $1.87 | ListingID: 358453167451
+2026-04-16 15:09:19,353 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 15:09:20,391 INFO   Image: Open Library (9781462532766)
+2026-04-16 15:09:25,933 INFO   ✅ Listed | $70.49 | Profit: $19.72 | ListingID: 358453168603
+2026-04-16 15:09:26,933 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-16 15:09:28,056 INFO   Image: Open Library (9781683732556)
+2026-04-16 15:09:35,905 INFO   ✅ Listed | $29.58 | Profit: $5.06 | ListingID: 358453170965
+2026-04-16 15:09:36,905 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-16 15:09:37,213 INFO   Image: Open Library (9780195335286)
+2026-04-16 15:09:40,285 INFO   Offer already exists (152621795011) — updating and publishing
+2026-04-16 15:09:42,511 INFO   ✅ Listed | $64.28 | Profit: $13.46 | ListingID: 358453161568
+2026-04-16 15:09:43,513 INFO ============================================================
+2026-04-16 15:09:43,513 INFO LISTER DONE: 16 listed, 5 failed
+2026-04-16 15:09:43,513 INFO ============================================================
+2026-04-16 15:09:44,821 INFO Email alert sent

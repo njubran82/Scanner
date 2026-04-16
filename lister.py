@@ -193,7 +193,7 @@ def create_inventory_item(token, book, description, image_url):
         'product': {
             'title':       book['title'][:80],
             'description': description,
-            'imageUrls':   [image_url],
+            **({'imageUrls': [image_url]} if image_url else {}),
             'ean':         [book['isbn13']],
             'isbn':        [book['isbn10']] if book.get('isbn10') else [],
             'aspects': {
@@ -385,12 +385,10 @@ def list_books():
 
         log.info(f"Listing: {book['title'][:60]}")
 
-        # 1. Get image — skip if none
+        # 1. Get image — list anyway if none found, flag for manual image upload
         image_url = get_book_image(isbn13, book.get('isbn10', ''))
         if not image_url:
-            log.warning(f"  No image found for {isbn13} — skipping")
-            failed += 1
-            continue
+            log.warning(f"  No image found for {isbn13} — listing without image (flagged)")
 
         # 2. Generate description
         description = generate_description(book['title'], isbn13)
@@ -421,6 +419,7 @@ def list_books():
             'confidence':    book['confidence'],
             'listed_date':   datetime.now().isoformat(),
             'booksgoat_url': book.get('booksgoat_url', f'https://www.booksgoat.com/index.php?route=product/search&search={isbn13}'),
+            'needs_image':   not bool(image_url),
         }
         if isbn13 not in state.get('listed_isbns', []):
             state.setdefault('listed_isbns', []).append(isbn13)

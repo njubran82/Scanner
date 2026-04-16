@@ -180,18 +180,24 @@ def get_ebay_comps(isbn, app_token):
 
 
 # ── Target Price ──────────────────────────────────────────────────────────────
+import statistics as _statistics
+
 def calc_target_price(isbn, current_cost, current_listing_price,
                       bg_prices, app_token):
     """
     Returns (target_price, method, confidence).
     Priority: eBay comps → Amazon fallback → keep current.
+
+    Uses MEDIAN comp price (matching scanner.py logic) not minimum.
+    Undercutting the median keeps us competitive without racing to
+    the bottom of a single cheap outlier listing.
     """
     comps, conf = get_ebay_comps(isbn, app_token)
 
     if comps:
-        floor        = min(comps)
-        target_price = round(floor * (1 - UNDERCUT_PCT), 2)
-        method       = f'EBAY_COMP ({conf}, floor=${floor:.2f})'
+        median       = _statistics.median(comps)
+        target_price = round(median * (1 - UNDERCUT_PCT), 2)
+        method       = f'EBAY_COMP ({conf}, median=${median:.2f}, n={len(comps)})'
         return target_price, method, conf
 
     # No eBay comps — try Amazon fallback

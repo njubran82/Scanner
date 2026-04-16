@@ -1780,3 +1780,38 @@
 2026-04-16 20:37:29,067 INFO   Unprofitable:     20
 2026-04-16 20:37:29,067 INFO   Amazon fallbacks: 1
 2026-04-16 20:37:29,067 INFO ============================================================
+2026-04-16 20:58:18,928 INFO ============================================================
+2026-04-16 20:58:18,928 INFO SCANNER STARTED — 2026-04-16 20:58:18
+2026-04-16 20:58:18,928 INFO ============================================================
+2026-04-16 20:58:19,381 INFO eBay token acquired
+2026-04-16 20:58:19,381 INFO No validated_isbns.json found — running without availability filter
+2026-04-16 20:58:19,381 INFO Fetching BooksGoat sheet...
+2026-04-16 20:58:20,289 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-16 20:58:20,289 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-16 20:58:20,290 INFO Fetched 90 books from BooksGoat
+2026-04-16 20:58:26,904 INFO   Amazon ($144.30) < eBay ($154.81) — repricing to $137.09
+2026-04-16 20:58:26,904 INFO ✅ Arboristsâ Certification Study Guide, 4th Editio | Cost: $76.99 | List: $137.09 | Profit: $39.13 | MEDIUM (1)
+2026-04-16 20:58:28,066 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-16 20:58:33,086 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-16 20:58:40,298 INFO   Amazon fallback: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN
+2026-04-16 20:58:40,299 INFO ✅ Zero Bone Loss Concepts by Tomas Linkevicius (ISBN | Cost: $86.99 | List: $151.36 | Profit: $41.21 | FALLBACK_AMAZON (0)
+2026-04-16 20:58:48,143 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-16 20:58:49,986 INFO ✅ Qualitative Data Analysis: A Methods Sourcebook, 4 | Cost: $57.99 | List: $76.99 | Profit: $7.22 | HIGH (20)
+2026-04-16 20:58:52,442 INFO ✅ Tests & Measurement for People Who (Think They) Ha | Cost: $59.99 | List: $99.43 | Profit: $24.23 | MEDIUM (1)
+2026-04-16 20:58:56,689 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $79.07 | Profit: $10.98 | HIGH (20)
+2026-04-16 20:58:57,144 INFO   Amazon ($122.49) < eBay ($142.67) — repricing to $116.37
+2026-04-16 20:58:57,144 INFO ✅ Rocket Propulsion Elements, 9th Edition by George  | Cost: $57.99 | List: $116.37 | Profit: $40.58 | MEDIUM (1)
+2026-04-16 20:58:59,718 INFO ✅ Introduction to Electrodynamics by David J. Griffi | Cost: $35.99 | List: $49.18 | Profit: $5.67 | HIGH (20)
+2026-04-16 20:59:00,097 INFO   Amazon ($35.90) < eBay ($62.37) — repricing to $34.10
+2026-04-16 20:59:00,098 INFO ✅ Understanding Behaviorism: Behavior, Culture, and  | Cost: $21.99 | List: $34.10 | Profit: $6.89 | MEDIUM (1)
+2026-04-16 20:59:00,494 INFO   Amazon ($52.00) < eBay ($70.39) — repricing to $49.40
+2026-04-16 20:59:00,494 INFO ✅ DBT Skills Training Handouts and Worksheets Second | Cost: $29.99 | List: $49.40 | Profit: $11.85 | MEDIUM (1)
+2026-04-16 20:59:02,203 INFO ✅ Eye Movement Desensitization and Reprocessing (EMD | Cost: $39.99 | List: $70.49 | Profit: $19.72 | MEDIUM (2)
+2026-04-16 20:59:04,106 INFO ============================================================
+2026-04-16 20:59:04,106 INFO SCAN COMPLETE: 10 opportunities found
+2026-04-16 20:59:04,106 INFO   Already listed:   60
+2026-04-16 20:59:04,106 INFO   Not validated:    0
+2026-04-16 20:59:04,106 INFO   No eBay data:     0
+2026-04-16 20:59:04,106 INFO   Unprofitable:     20
+2026-04-16 20:59:04,106 INFO   Amazon fallbacks: 1
+2026-04-16 20:59:04,106 INFO ============================================================

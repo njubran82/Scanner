@@ -2944,3 +2944,41 @@
 2026-04-16 20:38:57,948 INFO LISTER DONE: 12 listed, 0 drafts, 0 failed
 2026-04-16 20:38:57,948 INFO ============================================================
 2026-04-16 20:38:58,970 INFO Email alert sent
+2026-04-16 20:59:04,376 INFO ============================================================
+2026-04-16 20:59:04,376 INFO LISTER STARTED — 2026-04-16 20:59:04
+2026-04-16 20:59:04,376 INFO ============================================================
+2026-04-16 20:59:04,377 INFO Processing 10 opportunities...
+2026-04-16 20:59:04,588 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-16 20:59:05,824 INFO   Image: Amazon CDN
+2026-04-16 20:59:10,377 INFO   ✅ Listed | $137.09 | Profit: $39.13 | ListingID: 358453930321
+2026-04-16 20:59:11,377 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-16 20:59:13,126 INFO   Image: Open Library (9780867157994)
+2026-04-16 20:59:16,532 INFO   ✅ Listed | $151.36 | Profit: $41.21 | ListingID: 358453930400
+2026-04-16 20:59:17,532 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 20:59:18,312 INFO   Image: Open Library (9781506353074)
+2026-04-16 20:59:23,257 INFO   ✅ Listed | $76.99 | Profit: $7.22 | ListingID: 358453930471
+2026-04-16 20:59:24,257 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 20:59:25,076 INFO   Image: Open Library (9781071817179)
+2026-04-16 20:59:28,479 INFO   ✅ Listed | $99.43 | Profit: $24.23 | ListingID: 358453930545
+2026-04-16 20:59:29,479 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 20:59:30,166 INFO   Image: Open Library (9781138088610)
+2026-04-16 20:59:33,642 INFO   ✅ Listed | $79.07 | Profit: $10.98 | ListingID: 358453930582
+2026-04-16 20:59:34,642 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 20:59:35,390 INFO   Image: Open Library (9781118753651)
+2026-04-16 20:59:38,960 INFO   ✅ Listed | $116.37 | Profit: $40.58 | ListingID: 358453930660
+2026-04-16 20:59:39,960 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 20:59:41,773 INFO   Image: Open Library (9781009397759)
+2026-04-16 20:59:46,220 INFO   ✅ Listed | $49.18 | Profit: $5.67 | ListingID: 358453930743
+2026-04-16 20:59:47,221 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-16 20:59:50,191 INFO   Image: Open Library (9781119143642)
+2026-04-16 20:59:54,078 INFO   ✅ Listed | $34.10 | Profit: $6.89 | ListingID: 358453930857
+2026-04-16 20:59:55,078 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-16 20:59:55,792 INFO   Image: Open Library (9781572307810)
+2026-04-16 20:59:59,410 INFO   ✅ Listed | $49.40 | Profit: $11.85 | ListingID: 358453930920
+2026-04-16 21:00:00,410 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 21:00:01,166 INFO   Image: Open Library (9781462532766)
+2026-04-16 21:00:06,291 INFO   ✅ Listed | $70.49 | Profit: $19.72 | ListingID: 358453930983
+2026-04-16 21:00:07,293 INFO ============================================================
+2026-04-16 21:00:07,293 INFO LISTER DONE: 10 listed, 0 drafts, 0 failed
+2026-04-16 21:00:07,293 INFO ============================================================
+2026-04-16 21:00:08,312 INFO Email alert sent

@@ -1,34 +1,20 @@
 {
-  "scan_date": "2026-04-16T20:59:04.105942",
+  "scan_date": "2026-04-16T21:12:31.316939",
   "total_books": 90,
   "opportunities": [
     {
-      "title": "Arborists\u00e2\u0080\u0099 Certification Study Guide, 4th Edition by Sharon Lilly, Corrine Bassett (ISBN: 9781943378210) - Paperback",
-      "isbn13": "9781943378210",
-      "isbn10": "1943378215",
-      "cost": 76.99,
-      "amazon_price": 144.3,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781943378210",
-      "median_price": 175.92,
-      "listing_price": 137.09,
-      "profit": 39.13,
-      "confidence": "MEDIUM",
-      "num_comps": 1,
-      "scanned_at": "2026-04-16T20:58:26.904322"
-    },
-    {
-      "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 9780867157994) - Hardcover",
-      "isbn13": "9780867157994",
-      "isbn10": "0867157992",
-      "cost": 86.99,
-      "amazon_price": 172.0,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994",
-      "median_price": 172.0,
-      "listing_price": 151.36,
-      "profit": 41.21,
-      "confidence": "FALLBACK_AMAZON",
-      "num_comps": 0,
-      "scanned_at": "2026-04-16T20:58:40.299043"
+      "title": "Clinical Handbook of Couple Therapy, 6th Edition by Jay L. Lebow (ISBN 9781462550128) - Hardcover",
+      "isbn13": "9781462550128",
+      "isbn10": "1462550126",
+      "cost": 66.99,
+      "amazon_price": 117.16,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781462550128",
+      "median_price": 168.735,
+      "listing_price": 111.3,
+      "profit": 27.28,
+      "confidence": "HIGH",
+      "num_comps": 14,
+      "scanned_at": "2026-04-16T21:11:52.220537"
     },
     {
       "title": "Qualitative Data Analysis: A Methods Sourcebook, 4th Edition By Matthew B. Miles, A. Michael Huberman & Johnny Salda\u00c3\u00b1a (ISBN: 9781506353074) - Paperback",
@@ -42,21 +28,7 @@
       "profit": 7.22,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-16T20:58:49.986936"
-    },
-    {
-      "title": "Tests & Measurement for People Who (Think They) Hate Tests & Measurement, 4th Edition by Neil J. Salkind \u00e2\u0080\u0093 Paperback (ISBN: 9781071817179)",
-      "isbn13": "9781071817179",
-      "isbn10": "1071817175",
-      "cost": 59.99,
-      "amazon_price": 106.04,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781071817179",
-      "median_price": 112.99,
-      "listing_price": 99.43,
-      "profit": 24.23,
-      "confidence": "MEDIUM",
-      "num_comps": 1,
-      "scanned_at": "2026-04-16T20:58:52.442489"
+      "scanned_at": "2026-04-16T21:12:10.826619"
     },
     {
       "title": "Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback",
@@ -70,21 +42,21 @@
       "profit": 10.98,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-16T20:58:56.689139"
+      "scanned_at": "2026-04-16T21:12:17.172650"
     },
     {
-      "title": "Rocket Propulsion Elements, 9th Edition by George P. Sutton (ISBN 9781118753651) - Hardcover",
-      "isbn13": "9781118753651",
-      "isbn10": "1118753658",
-      "cost": 57.99,
-      "amazon_price": 122.49,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781118753651",
-      "median_price": 162.12,
-      "listing_price": 116.37,
-      "profit": 40.58,
-      "confidence": "MEDIUM",
-      "num_comps": 1,
-      "scanned_at": "2026-04-16T20:58:57.144731"
+      "title": "Research and Evaluation in Education and Psychology, 6th Edition by Donna M. Mertens (ISBN 9781071853801) - Paperback",
+      "isbn13": "9781071853801",
+      "isbn10": "1071853805",
+      "cost": 55.99,
+      "amazon_price": 98.99,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781071853801",
+      "median_price": 79.34,
+      "listing_price": 69.82,
+      "profit": 3.15,
+      "confidence": "HIGH",
+      "num_comps": 20,
+      "scanned_at": "2026-04-16T21:12:19.670726"
     },
     {
       "title": "Introduction to Electrodynamics by David J. Griffiths, 5th Edition (ISBN 9781009397759) - Hardcover",
@@ -98,49 +70,49 @@
       "profit": 5.67,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-16T20:58:59.718946"
+      "scanned_at": "2026-04-16T21:12:21.733391"
     },
     {
-      "title": "Understanding Behaviorism: Behavior, Culture, and Evolution",
-      "isbn13": "9781119143642",
-      "isbn10": "1119143640",
-      "cost": 21.99,
-      "amazon_price": 35.9,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781119143642",
-      "median_price": 70.88,
-      "listing_price": 34.1,
-      "profit": 6.89,
-      "confidence": "MEDIUM",
-      "num_comps": 1,
-      "scanned_at": "2026-04-16T20:59:00.098259"
-    },
-    {
-      "title": "DBT Skills Training Handouts and Worksheets Second Edition",
-      "isbn13": "9781572307810",
-      "isbn10": "1572307811",
+      "title": "How to Write and Publish a Scientific Paper",
+      "isbn13": "9781440878848",
+      "isbn10": "1440878846",
       "cost": 29.99,
-      "amazon_price": 52.0,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781572307810",
-      "median_price": 79.99,
-      "listing_price": 49.4,
-      "profit": 11.85,
-      "confidence": "MEDIUM",
-      "num_comps": 1,
-      "scanned_at": "2026-04-16T20:59:00.494401"
+      "amazon_price": 44.62,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781440878848",
+      "median_price": 56.775,
+      "listing_price": 42.39,
+      "profit": 5.91,
+      "confidence": "HIGH",
+      "num_comps": 20,
+      "scanned_at": "2026-04-16T21:12:23.801737"
     },
     {
-      "title": "Eye Movement Desensitization and Reprocessing (EMDR) Therapy: Basic Principles, Protocols, and Procedures, 3rd edition",
-      "isbn13": "9781462532766",
-      "isbn10": "1462532764",
-      "cost": 39.99,
-      "amazon_price": 86.0,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781462532766",
-      "median_price": 80.105,
-      "listing_price": 70.49,
-      "profit": 19.72,
-      "confidence": "MEDIUM",
-      "num_comps": 2,
-      "scanned_at": "2026-04-16T20:59:02.203326"
+      "title": "ACSM's Exercise Management for Persons With Chronic Diseases",
+      "isbn13": "9781450434140",
+      "isbn10": "1450434142",
+      "cost": 43.99,
+      "amazon_price": 73.0,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781450434140",
+      "median_price": 92.635,
+      "listing_price": 69.35,
+      "profit": 14.75,
+      "confidence": "HIGH",
+      "num_comps": 14,
+      "scanned_at": "2026-04-16T21:12:25.889488"
+    },
+    {
+      "title": "The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy",
+      "isbn13": "9781683732556",
+      "isbn10": "1683732553",
+      "cost": 19.99,
+      "amazon_price": 33.5,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781683732556",
+      "median_price": 33.61,
+      "listing_price": 29.58,
+      "profit": 5.06,
+      "confidence": "HIGH",
+      "num_comps": 20,
+      "scanned_at": "2026-04-16T21:12:29.283755"
     }
   ]
 }

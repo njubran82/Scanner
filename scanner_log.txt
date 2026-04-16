@@ -1815,3 +1815,34 @@
 2026-04-16 20:59:04,106 INFO   Unprofitable:     20
 2026-04-16 20:59:04,106 INFO   Amazon fallbacks: 1
 2026-04-16 20:59:04,106 INFO ============================================================
+2026-04-16 21:11:45,570 INFO ============================================================
+2026-04-16 21:11:45,570 INFO SCANNER STARTED — 2026-04-16 21:11:45
+2026-04-16 21:11:45,570 INFO ============================================================
+2026-04-16 21:11:45,812 INFO eBay token acquired
+2026-04-16 21:11:45,812 INFO No validated_isbns.json found — running without availability filter
+2026-04-16 21:11:45,812 INFO Fetching BooksGoat sheet...
+2026-04-16 21:11:46,686 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-16 21:11:46,686 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-16 21:11:46,687 INFO Fetched 90 books from BooksGoat
+2026-04-16 21:11:52,220 INFO   Amazon ($117.16) < eBay ($148.49) — repricing to $111.30
+2026-04-16 21:11:52,220 INFO ✅ Clinical Handbook of Couple Therapy, 6th Edition b | Cost: $66.99 | List: $111.30 | Profit: $27.28 | HIGH (14)
+2026-04-16 21:11:52,657 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-16 21:11:56,937 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-16 21:12:08,983 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-16 21:12:10,826 INFO ✅ Qualitative Data Analysis: A Methods Sourcebook, 4 | Cost: $57.99 | List: $76.99 | Profit: $7.22 | HIGH (20)
+2026-04-16 21:12:17,172 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $79.07 | Profit: $10.98 | HIGH (20)
+2026-04-16 21:12:19,670 INFO ✅ Research and Evaluation in Education and Psycholog | Cost: $55.99 | List: $69.82 | Profit: $3.15 | HIGH (20)
+2026-04-16 21:12:21,733 INFO ✅ Introduction to Electrodynamics by David J. Griffi | Cost: $35.99 | List: $49.18 | Profit: $5.67 | HIGH (20)
+2026-04-16 21:12:23,801 INFO   Amazon ($44.62) < eBay ($49.96) — repricing to $42.39
+2026-04-16 21:12:23,801 INFO ✅ How to Write and Publish a Scientific Paper        | Cost: $29.99 | List: $42.39 | Profit: $5.91 | HIGH (20)
+2026-04-16 21:12:25,889 INFO   Amazon ($73.00) < eBay ($81.52) — repricing to $69.35
+2026-04-16 21:12:25,889 INFO ✅ ACSM's Exercise Management for Persons With Chroni | Cost: $43.99 | List: $69.35 | Profit: $14.75 | HIGH (14)
+2026-04-16 21:12:29,283 INFO ✅ The Comprehensive Clinician's Guide to Cognitive B | Cost: $19.99 | List: $29.58 | Profit: $5.06 | HIGH (20)
+2026-04-16 21:12:31,317 INFO ============================================================
+2026-04-16 21:12:31,317 INFO SCAN COMPLETE: 8 opportunities found
+2026-04-16 21:12:31,317 INFO   Already listed:   62
+2026-04-16 21:12:31,317 INFO   Not validated:    0
+2026-04-16 21:12:31,317 INFO   No eBay data:     0
+2026-04-16 21:12:31,317 INFO   Unprofitable:     20
+2026-04-16 21:12:31,317 INFO   Amazon fallbacks: 0
+2026-04-16 21:12:31,317 INFO ============================================================

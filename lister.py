@@ -333,7 +333,24 @@ def create_and_publish_offer(token, book, description):
     )
 
     if pub.status_code not in [200, 201]:
-        log.error(f"  publish_offer failed ({pub.status_code}): {pub.text[:300]}")
+        pub_text = pub.text
+        # Error 25604: orphaned inventory item — product catalog entry is gone.
+        # Fix: delete the inventory item and offer, recreate from scratch.
+        if '25604' in pub_text:
+            log.warning(f"  Error 25604 (orphaned item) for {book['isbn13']} — deleting and recreating")
+            # Delete offer
+            requests.delete(
+                f'https://api.ebay.com/sell/inventory/v1/offer/{offer_id}',
+                headers={'Authorization': f'Bearer {token}'}, timeout=10
+            )
+            # Delete inventory item
+            requests.delete(
+                f"https://api.ebay.com/sell/inventory/v1/inventory_item/{book['isbn13']}",
+                headers={'Authorization': f'Bearer {token}'}, timeout=10
+            )
+            # Signal caller to retry by returning a special sentinel
+            return 'RETRY', None
+        log.error(f"  publish_offer failed ({pub.status_code}): {pub_text[:300]}")
         return offer_id, None
 
     listing_id = pub.json().get('listingId')
@@ -341,13 +358,31 @@ def create_and_publish_offer(token, book, description):
 
 
 # ── Alerts ───────────────────────────────────────────────────────────────────
-def send_alerts(listed_books):
-    subject = f"[Lister] {len(listed_books)} new books listed on eBay"
-    lines = [
-        f"- {b['title']} | ${b['listing_price']:.2f} | Profit: ${b['profit']:.2f} | {b['confidence']}"
-        for b in listed_books
-    ]
-    body = "New listings added:\n\n" + "\n".join(lines)
+def send_alerts(listed_books, needs_image_drafts=None):
+    lines = []
+
+    if listed_books:
+        lines.append(f"✅ {len(listed_books)} NEW LISTINGS")
+        for b in listed_books:
+            lines.append(f"  - {b['title'][:55]} | ${b['listing_price']:.2f} | Profit: ${b['profit']:.2f} | {b['confidence']}")
+
+    if needs_image_drafts:
+        lines.append(f"\n📋 {len(needs_image_drafts)} DRAFTS — IMAGE NEEDED")
+        lines.append("These are saved in Seller Hub as drafts. Add a photo to each and publish manually.")
+        lines.append("")
+        for b in needs_image_drafts:
+            lines.append(f"  - {b['title'][:55]}")
+            lines.append(f"    ISBN: {b['isbn13']}  |  Price: ${b['listing_price']:.2f}  |  Offer ID: {b.get('offer_id', 'unknown')}")
+            lines.append(f"    Seller Hub: https://www.ebay.com/sh/lst/active")
+
+    if not lines:
+        return
+
+    body    = "\n".join(lines)
+    subject = (
+        f"[Lister] {len(listed_books)} listed"
+        + (f", {len(needs_image_drafts)} drafts need images" if needs_image_drafts else "")
+    )
 
     if not all([SMTP_USER, SMTP_PASSWORD, EMAIL_TO]):
         log.warning("Email not configured — skipping alert")
@@ -402,8 +437,9 @@ def list_books():
     state         = load_state()
     already_listed = set(state.get('listed_isbns', []))
 
-    newly_listed = []
-    failed       = 0
+    newly_listed       = []
+    needs_image_drafts = []
+    failed             = 0
 
     for book in opportunities:
         isbn13 = book['isbn13']
@@ -414,10 +450,10 @@ def list_books():
 
         log.info(f"Listing: {book['title'][:60]}")
 
-        # 1. Get image — list anyway if none found, flag for manual image upload
+        # 1. Get image
         image_url = get_book_image(isbn13, book.get('isbn10', ''))
         if not image_url:
-            log.warning(f"  No image found for {isbn13} — listing without image (flagged)")
+            log.warning(f"  No image found for {isbn13} — saving as draft for manual image upload")
 
         # 2. Generate description
         description = generate_description(book['title'], isbn13)
@@ -428,8 +464,74 @@ def list_books():
             continue
         time.sleep(0.5)
 
+        # 4a. No image — create offer but do NOT publish (saves as draft in Seller Hub)
+        if not image_url:
+            offer_payload = {
+                'sku':                isbn13,
+                'marketplaceId':      'EBAY_US',
+                'format':             'FIXED_PRICE',
+                'availableQuantity':  QUANTITY,
+                'categoryId':         '261186',
+                'listingDescription': description,
+                'listingPolicies': {
+                    'fulfillmentPolicyId': SHIPPING_POLICY_ID,
+                    'paymentPolicyId':     PAYMENT_POLICY_ID,
+                    'returnPolicyId':      RETURN_POLICY_ID
+                },
+                'pricingSummary': {
+                    'price': {'currency': 'USD', 'value': f"{book['listing_price']:.2f}"}
+                },
+                'listingDuration':     'GTC',
+                'merchantLocationKey': 'home1'
+            }
+            r = requests.post(
+                'https://api.ebay.com/sell/inventory/v1/offer',
+                headers={
+                    'Authorization':    f'Bearer {token}',
+                    'Content-Type':     'application/json',
+                    'Content-Language': 'en-US'
+                },
+                json=offer_payload, timeout=15
+            )
+            offer_id = r.json().get('offerId') if r.status_code in [200, 201] else None
+            if offer_id:
+                log.info(f"  📋 Draft saved (offer {offer_id}) — add image in Seller Hub to publish")
+                state.setdefault('listings', {})[isbn13] = {
+                    'title':         book['title'],
+                    'isbn13':        isbn13,
+                    'isbn10':        book.get('isbn10', ''),
+                    'offer_id':      offer_id,
+                    'listing_id':    None,
+                    'cost':          book['cost'],
+                    'listing_price': book['listing_price'],
+                    'profit':        book['profit'],
+                    'confidence':    book['confidence'],
+                    'listed_date':   datetime.now().isoformat(),
+                    'booksgoat_url': book.get('booksgoat_url', ''),
+                    'needs_image':   True,
+                    'status':        'DRAFT',
+                }
+                if isbn13 not in state.get('listed_isbns', []):
+                    state.setdefault('listed_isbns', []).append(isbn13)
+                save_state(state)
+                needs_image_drafts.append({**book, 'offer_id': offer_id})
+            else:
+                log.error(f"  Draft offer creation failed for {isbn13}: {r.text[:200]}")
+                failed += 1
+            continue
+
         # 4. Create + publish offer
         offer_id, listing_id = create_and_publish_offer(token, book, description)
+
+        # If error 25604 was detected, inventory item was deleted — recreate and retry once
+        if offer_id == 'RETRY':
+            log.info(f"  Retrying {isbn13} after orphaned item cleanup...")
+            if not create_inventory_item(token, book, description, image_url):
+                log.error(f"  Retry: inventory item recreate failed for {isbn13}")
+                failed += 1
+                continue
+            offer_id, listing_id = create_and_publish_offer(token, book, description)
+
         if not listing_id:
             log.error(f"  Listing failed for {isbn13}")
             failed += 1
@@ -466,11 +568,11 @@ def list_books():
     save_state(state)
 
     log.info("=" * 60)
-    log.info(f"LISTER DONE: {len(newly_listed)} listed, {failed} failed")
+    log.info(f"LISTER DONE: {len(newly_listed)} listed, {len(needs_image_drafts)} drafts, {failed} failed")
     log.info("=" * 60)
 
-    if newly_listed:
-        send_alerts(newly_listed)
+    if newly_listed or needs_image_drafts:
+        send_alerts(newly_listed, needs_image_drafts)
 
 
 if __name__ == '__main__':

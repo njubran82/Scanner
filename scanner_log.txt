@@ -1356,3 +1356,77 @@
 2026-04-16 12:05:45,861 INFO   Unprofitable:     24
 2026-04-16 12:05:45,861 INFO   Amazon fallbacks: 2
 2026-04-16 12:05:45,861 INFO ============================================================
+2026-04-16 12:13:49,829 INFO ============================================================
+2026-04-16 12:13:49,829 INFO SCANNER STARTED — 2026-04-16 12:13:49
+2026-04-16 12:13:49,829 INFO ============================================================
+2026-04-16 12:13:50,086 INFO eBay token acquired
+2026-04-16 12:13:50,086 INFO Fetching BooksGoat sheet...
+2026-04-16 12:13:50,996 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-16 12:13:50,996 INFO Fetched 91 books from BooksGoat
+2026-04-16 12:13:53,216 INFO   Amazon fallback: DBT Skills Training Manual, Second Edition by Mars
+2026-04-16 12:13:53,217 INFO ✅ DBT Skills Training Manual, Second Edition by Mars | Cost: $47.99 | List: $73.50 | Profit: $15.77 | FALLBACK_AMAZON (0)
+2026-04-16 12:13:54,619 INFO   Amazon ($63.00) < eBay ($78.75) — repricing to $59.85
+2026-04-16 12:13:57,231 INFO   Amazon ($117.16) < eBay ($147.64) — repricing to $111.30
+2026-04-16 12:13:57,231 INFO ✅ Clinical Handbook of Couple Therapy, 6th Edition b | Cost: $66.99 | List: $111.30 | Profit: $29.56 | HIGH (14)
+2026-04-16 12:13:57,632 INFO   Amazon ($21.80) < eBay ($61.25) — repricing to $20.71
+2026-04-16 12:14:03,565 INFO   Amazon ($81.42) < eBay ($114.06) — repricing to $77.35
+2026-04-16 12:14:03,565 INFO ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $48.99 | List: $77.35 | Profit: $18.11 | HIGH (7)
+2026-04-16 12:14:05,556 INFO   Amazon ($119.95) < eBay ($122.75) — repricing to $113.95
+2026-04-16 12:14:05,556 INFO ✅ Bioethics: Principles, Issues, and Cases, 5th Edit | Cost: $56.99 | List: $113.95 | Profit: $41.86 | HIGH (4)
+2026-04-16 12:14:07,469 INFO   Amazon ($127.00) < eBay ($166.25) — repricing to $120.65
+2026-04-16 12:14:07,469 INFO ✅ Safety Professional's Reference and Study Guide, 3 | Cost: $74.99 | List: $120.65 | Profit: $29.67 | HIGH (7)
+2026-04-16 12:14:09,405 INFO   Amazon ($72.99) < eBay ($97.77) — repricing to $69.34
+2026-04-16 12:14:18,138 INFO   Amazon ($84.42) < eBay ($106.03) — repricing to $80.20
+2026-04-16 12:14:18,138 INFO ✅ Bayesian Data Analysis (Chapman & Hall/CRC Texts i | Cost: $48.99 | List: $80.20 | Profit: $20.58 | MEDIUM (1)
+2026-04-16 12:14:20,678 INFO   Amazon ($111.95) < eBay ($223.12) — repricing to $106.35
+2026-04-16 12:14:20,679 INFO ✅ National Incident Management System: Principles an | Cost: $56.99 | List: $106.35 | Profit: $35.27 | MEDIUM (1)
+2026-04-16 12:14:22,762 INFO   Amazon ($160.95) < eBay ($210.71) — repricing to $152.90
+2026-04-16 12:14:22,762 INFO ✅ American Herbal Products Association's Botanical S | Cost: $76.99 | List: $152.90 | Profit: $55.65 | HIGH (4)
+2026-04-16 12:14:23,152 INFO   Amazon ($67.66) < eBay ($72.59) — repricing to $64.28
+2026-04-16 12:14:23,152 INFO ✅ Exposure and Response (Ritual) Prevention for Obse | Cost: $25.99 | List: $64.28 | Profit: $29.77 | MEDIUM (1)
+2026-04-16 12:14:25,063 INFO   Amazon ($15.00) < eBay ($210.79) — repricing to $14.25
+2026-04-16 12:14:26,962 INFO ✅ Concrete Manual: Based on the 2015 IBC and ACI 318 | Cost: $87.99 | List: $141.64 | Profit: $34.88 | MEDIUM (1)
+2026-04-16 12:14:28,825 INFO ✅ Qualitative Data Analysis: A Methods Sourcebook, 4 | Cost: $57.99 | List: $85.44 | Profit: $16.13 | HIGH (20)
+2026-04-16 12:14:31,187 INFO   Amazon ($107.00) < eBay ($120.26) — repricing to $101.65
+2026-04-16 12:14:31,187 INFO ✅ Counseling Individuals Through the Lifespan 2nd ed | Cost: $66.99 | List: $101.65 | Profit: $21.19 | HIGH (6)
+2026-04-16 12:14:33,253 INFO   Amazon ($150.54) < eBay ($199.67) — repricing to $143.01
+2026-04-16 12:14:33,253 INFO ✅ Functional Occlusion: From TMJ to Smile Design by  | Cost: $76.99 | List: $143.01 | Profit: $47.07 | HIGH (4)
+2026-04-16 12:14:35,922 INFO ✅ Tests & Measurement for People Who (Think They) Ha | Cost: $59.99 | List: $98.87 | Profit: $25.78 | MEDIUM (1)
+2026-04-16 12:14:39,987 INFO   Amazon ($127.95) < eBay ($146.99) — repricing to $121.55
+2026-04-16 12:14:39,987 INFO ✅ Factory Physics, 3rd Edition by Wallace J. Hopp &  | Cost: $56.99 | List: $121.55 | Profit: $48.45 | HIGH (3)
+2026-04-16 12:14:42,119 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $78.62 | Profit: $12.21 | HIGH (20)
+2026-04-16 12:14:44,066 INFO   Amazon ($108.69) < eBay ($131.31) — repricing to $103.26
+2026-04-16 12:14:44,067 INFO ✅ Designing Effective Instruction, 8th Edition by Ga | Cost: $56.99 | List: $103.26 | Profit: $32.59 | HIGH (8)
+2026-04-16 12:14:44,466 INFO   Amazon ($122.49) < eBay ($141.86) — repricing to $116.37
+2026-04-16 12:14:44,467 INFO ✅ Rocket Propulsion Elements, 9th Edition by George  | Cost: $57.99 | List: $116.37 | Profit: $42.96 | MEDIUM (1)
+2026-04-16 12:14:46,548 INFO   Amazon ($143.83) < eBay ($175.00) — repricing to $136.64
+2026-04-16 12:14:46,549 INFO ✅ Small Animal Dermatology: A Color Atlas and Therap | Cost: $61.99 | List: $136.64 | Profit: $56.55 | HIGH (9)
+2026-04-16 12:14:47,766 INFO   Amazon fallback: 2021 Uniform Mechanical Code Soft Cover with Tabs 
+2026-04-16 12:14:47,767 INFO ✅ 2021 Uniform Mechanical Code Soft Cover with Tabs  | Cost: $76.99 | List: $117.25 | Profit: $24.72 | FALLBACK_AMAZON (0)
+2026-04-16 12:14:52,300 INFO   Amazon ($72.27) < eBay ($118.72) — repricing to $68.66
+2026-04-16 12:14:54,227 INFO   Amazon ($55.49) < eBay ($55.96) — repricing to $52.72
+2026-04-16 12:14:54,227 INFO ✅ Introduction to Electrodynamics by David J. Griffi | Cost: $35.99 | List: $52.72 | Profit: $9.74 | HIGH (20)
+2026-04-16 12:14:56,055 INFO   Amazon ($44.62) < eBay ($48.20) — repricing to $42.39
+2026-04-16 12:14:56,055 INFO ✅ How to Write and Publish a Scientific Paper        | Cost: $29.99 | List: $42.39 | Profit: $6.78 | HIGH (20)
+2026-04-16 12:14:56,461 INFO   Amazon ($35.90) < eBay ($62.02) — repricing to $34.10
+2026-04-16 12:14:56,461 INFO ✅ Understanding Behaviorism: Behavior, Culture, and  | Cost: $21.99 | List: $34.10 | Profit: $7.59 | MEDIUM (1)
+2026-04-16 12:14:58,452 INFO   Amazon ($73.00) < eBay ($73.58) — repricing to $69.35
+2026-04-16 12:14:58,452 INFO ✅ ACSM's Exercise Management for Persons With Chroni | Cost: $43.99 | List: $69.35 | Profit: $16.17 | HIGH (15)
+2026-04-16 12:14:58,805 INFO   Amazon ($52.00) < eBay ($69.99) — repricing to $49.40
+2026-04-16 12:14:58,805 INFO ✅ DBT Skills Training Handouts and Worksheets Second | Cost: $29.99 | List: $49.40 | Profit: $12.86 | MEDIUM (1)
+2026-04-16 12:15:01,386 INFO ✅ Qualitative Research & Evaluation Methods: Integra | Cost: $71.99 | List: $101.16 | Profit: $15.77 | HIGH (17)
+2026-04-16 12:15:02,657 INFO ✅ Eye Movement Desensitization and Reprocessing (EMD | Cost: $39.99 | List: $70.09 | Profit: $20.81 | MEDIUM (2)
+2026-04-16 12:15:04,539 INFO ✅ The Comprehensive Clinician's Guide to Cognitive B | Cost: $19.99 | List: $29.41 | Profit: $5.52 | HIGH (20)
+2026-04-16 12:15:08,349 INFO   Amazon ($67.49) < eBay ($76.96) — repricing to $64.12
+2026-04-16 12:15:08,349 INFO ✅ Lange Q & A Radiography Examination                | Cost: $41.99 | List: $64.12 | Profit: $13.63 | HIGH (19)
+2026-04-16 12:15:08,778 INFO   Amazon ($67.66) < eBay ($72.59) — repricing to $64.28
+2026-04-16 12:15:08,778 INFO ✅ Exposure and Response (Ritual) Prevention for Obse | Cost: $40.99 | List: $64.28 | Profit: $14.77 | MEDIUM (1)
+2026-04-16 12:15:10,761 INFO   Amazon ($89.99) < eBay ($124.76) — repricing to $85.49
+2026-04-16 12:15:10,761 INFO ✅ Strategies and Tactics of Behavioral Research and  | Cost: $52.99 | List: $85.49 | Profit: $21.17 | HIGH (8)
+2026-04-16 12:15:10,762 INFO ============================================================
+2026-04-16 12:15:10,762 INFO SCAN COMPLETE: 31 opportunities found
+2026-04-16 12:15:10,762 INFO   Already listed:   36
+2026-04-16 12:15:10,762 INFO   No eBay data:     0
+2026-04-16 12:15:10,762 INFO   Unprofitable:     24
+2026-04-16 12:15:10,762 INFO   Amazon fallbacks: 2
+2026-04-16 12:15:10,762 INFO ============================================================

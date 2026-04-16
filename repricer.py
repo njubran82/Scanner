@@ -215,7 +215,13 @@ def update_offer_price(token, offer_id, new_price):
         json=minimal, timeout=15
     )
     if r2.status_code not in [200, 204]:
-        log.error(f'  PUT failed ({r2.status_code}): {r2.text[:300]}')
+        err_text = r2.text
+        # Error 25604: orphaned inventory item — cannot reprice, flag for manual fix
+        if '25604' in err_text:
+            log.warning(f'  Error 25604 (orphaned item) for offer {offer_id} — '
+                        f'listing needs to be deleted and recreated manually in Seller Hub')
+        else:
+            log.error(f'  PUT failed ({r2.status_code}): {err_text[:300]}')
         return False
     return True
 

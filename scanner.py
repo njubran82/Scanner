@@ -77,6 +77,13 @@ def fetch_booksgoat():
             if not title or not isbn13 or not cost_raw:
                 continue
 
+            # Validate ISBN-13 format — must be 13 digits starting with 978 or 979.
+            # Rejects Amazon ASINs (e.g. B0C1XZ4BQV) and other non-ISBN identifiers.
+            import re as _re
+            if not _re.match(r'^97[89]\d{10}$', isbn13):
+                log.warning(f"Skipping invalid ISBN-13 '{isbn13}' for: {title[:50]}")
+                continue
+
             books.append({
                 'title':         title,
                 'isbn13':        isbn13,

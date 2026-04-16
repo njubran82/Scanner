@@ -2467,3 +2467,71 @@
 2026-04-16 12:17:55,565 INFO LISTER DONE: 29 listed, 2 failed
 2026-04-16 12:17:55,565 INFO ============================================================
 2026-04-16 12:17:57,062 INFO Email alert sent
+2026-04-16 14:57:30,140 INFO ============================================================
+2026-04-16 14:57:30,140 INFO LISTER STARTED — 2026-04-16 14:57:30
+2026-04-16 14:57:30,140 INFO ============================================================
+2026-04-16 14:57:30,140 INFO Processing 18 opportunities...
+2026-04-16 14:57:30,298 INFO Listing: Sterile Processing Technical Manual Workbook (CRCST Workbook
+2026-04-16 14:57:31,979 WARNING   No image found for B0C1XZ4BQV — listing without image (flagged)
+2026-04-16 14:57:34,476 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. EAN has an invalid value of \"B0C1XZ4BQV\". Enter a valid value and try again, or you can leave the EAN field blank.","parameters":[{"name":"0","value":"EAN has an in
+2026-04-16 14:57:34,478 ERROR   Listing failed for B0C1XZ4BQV
+2026-04-16 14:57:34,478 INFO Listing: Behavior Analysis for Lasting Change, 5th Edition by G. Roy 
+2026-04-16 14:57:34,829 INFO   Image: Open Library (9781597381000)
+2026-04-16 14:57:39,402 INFO   ✅ Listed | $106.66 | Profit: $13.35 | ListingID: 358453145812
+2026-04-16 14:57:40,403 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-16 14:57:42,300 WARNING   No image found for 9781641950473 — listing without image (flagged)
+2026-04-16 14:57:43,301 INFO   Offer already exists (152565518011) — updating and publishing
+2026-04-16 14:57:44,910 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.","parameters":[{"name":"0","value":"Add at least 1 photo. Mo
+2026-04-16 14:57:44,912 ERROR   Listing failed for 9781641950473
+2026-04-16 14:57:44,912 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-16 14:57:45,366 INFO   Image: Open Library (9780367263638)
+2026-04-16 14:57:48,905 INFO   ✅ Listed | $120.65 | Profit: $27.20 | ListingID: 358453145962
+2026-04-16 14:57:49,905 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-16 14:57:50,146 INFO   Image: Open Library (9780867157994)
+2026-04-16 14:57:54,170 INFO   ✅ Listed | $151.36 | Profit: $41.21 | ListingID: 358453146003
+2026-04-16 14:57:55,171 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-16 14:57:55,329 INFO   Image: Open Library (9780195335286)
+2026-04-16 14:57:59,169 INFO   ✅ Listed | $64.28 | Profit: $28.46 | ListingID: 358453146069
+2026-04-16 14:58:00,169 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 14:58:00,420 INFO   Image: Open Library (9781506353074)
+2026-04-16 14:58:03,664 INFO   ✅ Listed | $76.99 | Profit: $7.22 | ListingID: 358453146136
+2026-04-16 14:58:04,664 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-16 14:58:05,250 INFO   Image: Amazon CDN
+2026-04-16 14:58:09,001 INFO   ✅ Listed | $101.65 | Profit: $19.11 | ListingID: 358453146209
+2026-04-16 14:58:10,001 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 14:58:10,351 INFO   Image: Open Library (9781071817179)
+2026-04-16 14:58:14,923 INFO   ✅ Listed | $99.43 | Profit: $24.23 | ListingID: 358453146279
+2026-04-16 14:58:15,924 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 14:58:16,224 INFO   Image: Open Library (9781138088610)
+2026-04-16 14:58:20,707 INFO   ✅ Listed | $79.07 | Profit: $10.98 | ListingID: 358453146341
+2026-04-16 14:58:21,707 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-16 14:58:22,374 INFO   Image: Amazon CDN
+2026-04-16 14:58:26,330 INFO   ✅ Listed | $103.26 | Profit: $30.47 | ListingID: 358453146411
+2026-04-16 14:58:27,330 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 14:58:27,654 INFO   Image: Open Library (9781118753651)
+2026-04-16 14:58:32,365 INFO   ✅ Listed | $116.37 | Profit: $40.58 | ListingID: 358453146486
+2026-04-16 14:58:33,365 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-16 14:58:34,268 WARNING   No image found for 9781944366445 — listing without image (flagged)
+2026-04-16 14:58:35,241 INFO   Offer already exists (152565994011) — updating and publishing
+2026-04-16 14:58:36,900 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.","parameters":[{"name":"0","value":"Add at least 1 photo. Mo
+2026-04-16 14:58:36,902 ERROR   Listing failed for 9781944366445
+2026-04-16 14:58:36,902 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-16 14:58:37,150 INFO   Image: Open Library (9781593850203)
+2026-04-16 14:58:41,109 INFO   ✅ Listed | $68.66 | Profit: $3.17 | ListingID: 358453146630
+2026-04-16 14:58:42,109 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 14:58:42,407 INFO   Image: Open Library (9781009397759)
+2026-04-16 14:58:46,430 INFO   ✅ Listed | $49.18 | Profit: $5.67 | ListingID: 358453146691
+2026-04-16 14:58:47,430 INFO Listing: Encyclopedia of Counseling
+2026-04-16 14:58:47,724 INFO   Image: Open Library (9781138942653)
+2026-04-16 14:58:52,271 INFO   ✅ Listed | $37.62 | Profit: $1.87 | ListingID: 358453146756
+2026-04-16 14:58:53,271 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 14:58:53,568 INFO   Image: Open Library (9781462532766)
+2026-04-16 14:58:57,201 INFO   ✅ Listed | $70.49 | Profit: $19.72 | ListingID: 358453146845
+2026-04-16 14:58:58,202 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-16 14:58:58,354 INFO   Image: Open Library (9780195335286)
+2026-04-16 14:59:01,997 INFO   Offer already exists (152616535011) — updating and publishing
+2026-04-16 14:59:04,969 INFO   ✅ Listed | $64.28 | Profit: $13.46 | ListingID: 358453146069
+2026-04-16 14:59:05,971 INFO ============================================================
+2026-04-16 14:59:05,971 INFO LISTER DONE: 15 listed, 3 failed
+2026-04-16 14:59:05,972 INFO ============================================================
+2026-04-16 14:59:07,724 INFO Email alert sent

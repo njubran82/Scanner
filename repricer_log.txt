@@ -1850,3 +1850,160 @@
 2026-04-16 19:30:57,934 INFO DONE: 11 repriced | 10 delisted | 43 unchanged
 2026-04-16 19:30:57,934 INFO ============================================================
 2026-04-16 19:30:59,388 INFO Email alert sent
+2026-04-16 20:11:48,759 INFO ============================================================
+2026-04-16 20:11:48,759 INFO REPRICER STARTED — 2026-04-16 20:11:48
+2026-04-16 20:11:48,759 INFO fee=15.3%  min_profit=$1.00  undercut=12%
+2026-04-16 20:11:48,759 INFO ============================================================
+2026-04-16 20:11:48,759 INFO Checking 86 listings...
+2026-04-16 20:11:49,199 INFO Fetched 90 BooksGoat prices
+2026-04-16 20:11:49,707 INFO   Point-of-Care Ultrasound Techniques for the Small : no listing price recorded — skipping
+2026-04-16 20:11:49,707 INFO   PPI Fundamentals of Surveying Practice Exam, 5th E: no listing price recorded — skipping
+2026-04-16 20:11:49,707 INFO   The Art of Electronics, 3rd edition by Paul Horowi: no listing price recorded — skipping
+2026-04-16 20:11:49,707 INFO   Guides to the Evaluation of Permanent Impairment, : no listing price recorded — skipping
+2026-04-16 20:11:49,707 INFO   Milady Standard Barbering, 6th edition by Milady: no listing price recorded — skipping
+2026-04-16 20:11:49,707 INFO   Sterile Processing Technical Manual (CRCST 9th edi: no listing price recorded — skipping
+2026-04-16 20:11:49,707 INFO   NASCLA Contractors Guide to Business, Law, and Pro: no listing price recorded — skipping
+2026-04-16 20:11:49,707 INFO   Qualitative Inquiry and Research Design: Choosing : no listing price recorded — skipping
+2026-04-16 20:11:49,707 INFO   Low Pressure Boilers, *US HARDCOVER* 5th Ed. by Fr: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   ACI CODE-318-19(22): Building Code Requirements fo: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   The Foundations of Chinese Medicine *US HARDCOVER*: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Medical Terminology for Health Professions, 9th Ed: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Real Estate Development - 5th Edition: Principles : no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Dsm-5 -tr Handbook of Differential Diagnosis - 978: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Distressed Debt Analysis: Strategies for Speculati: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   DC:0-5: Diagnostic Classification of Mental Health: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Race Car Vehicle - 9781560915263: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Radiation Detection and Measurement *US HARDCOVER*: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Handbook of Bird Biology *US HARDCOVER* 3rd Ed. (C: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Milady Standard Cosmetology *US HARDCOVER* 13th Ed: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   HVAC Water Chillers and Cooling Towers: Fundamenta: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Design of CMOS Phase-Locked Loops: From Circuit Le: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Understanding and Applying Relational Frame Theory: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Laboratory Techniques in Organic Chemistry, 4th Ed: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Microwave Engineering 4th Edition by David Pozar (: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Vector Calculus, 6th Edition by Jerrold Marsden, A: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Aircraft Design: A Conceptual Approach, 6th Editio: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Formulas and Calculations for Drilling, Production: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Spacecraft Thermal Control Handbook — Edited by Da: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   The Art of Reading Buildings by John Mittendorf (I: no listing price recorded — skipping
+2026-04-16 20:11:49,708 INFO   Science and Practice of Strength Training, 3rd Edi: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   Introduction to the Thermodynamics of Materials, 7: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   Interpreting the MMPI-3 textbook by Martin Sellbom: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   2021 International Residential Code (IRC) by Inter: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   2018 International Residential Code for One- and T: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   Trading and Exchanges: Market Microstructure for P: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   Brinker, Piermattei and Flo's Handbook of Small An: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   The MBE Decoded: Multistate Bar Exam (Bar Review),: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   Cognitive Processing Therapy for PTSD: A Comprehen: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   Milady Standard Nail Technology, 7th Edition by Mi: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   A Workbook of Ethical Case Scenarios in Applied Be: no listing price recorded — skipping
+2026-04-16 20:11:49,709 INFO   The ASQ Certified Quality Auditor Handbook, 5th ed: MANUAL listing — alerting only if unprofitable
+2026-04-16 20:11:50,038 INFO   The ASQ Certified Quality Auditor Handbook, 5th ed: $104.68 → $92.12 profit=$17.04  method=EBAY_COMP (HIGH, floor=$104.68)
+2026-04-16 20:11:50,038 INFO   MANUAL listing — cannot reprice via API
+2026-04-16 20:11:50,839 INFO   Safety Professionalâs Reference and Study Guide,: $190.00 → $167.20 profit=$54.63  method=EBAY_COMP (HIGH, floor=$190.00)
+2026-04-16 20:11:52,378 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:11:52,380 ERROR   ❌ Reprice failed (9781032836072)
+2026-04-16 20:11:53,447 INFO   The ASQ Certified Quality Engineer Handbook 5th ed: $108.49 → $95.47 profit=$13.87  method=EBAY_COMP (HIGH, floor=$108.49)
+2026-04-16 20:11:55,093 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:11:55,095 ERROR   ❌ Reprice failed (9781636940267)
+2026-04-16 20:11:55,964 INFO   Larone's Medically Important Fungi: A Guide to Ide: $97.24 → $85.57 profit=$13.49  method=EBAY_COMP (HIGH, floor=$97.24)
+2026-04-16 20:11:57,555 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:11:57,557 ERROR   ❌ Reprice failed (9781683674405)
+2026-04-16 20:11:58,436 INFO   Textbook of Women's Reproductive Mental Health by : $117.55 → $94.71 profit=$23.23  method=EBAY_COMP (HIGH, floor=$107.63)
+2026-04-16 20:12:00,525 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:00,527 ERROR   ❌ Reprice failed (9781615373062)
+2026-04-16 20:12:01,314 INFO   The ASQ Certified Manager of Quality/Organizationa: $117.93 → $103.78 profit=$20.91  method=EBAY_COMP (HIGH, floor=$117.93)
+2026-04-16 20:12:02,966 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:02,968 ERROR   ❌ Reprice failed (9781951058067)
+2026-04-16 20:12:03,800 INFO   Ketogenic: The Science of Therapeutic Carbohydrate: $82.64 → $72.72 profit=$5.60  method=EBAY_COMP (HIGH, floor=$82.64)
+2026-04-16 20:12:05,582 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:05,584 ERROR   ❌ Reprice failed (9780128216170)
+2026-04-16 20:12:06,516 INFO   Considerations on the AI Endgame (Chapman & Hall/C: $26.24 → $23.09 profit=$2.57  method=EBAY_COMP (HIGH, floor=$26.24)
+2026-04-16 20:12:07,774 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:07,776 ERROR   ❌ Reprice failed (9781032933832)
+2026-04-16 20:12:08,557 INFO   Bioethics: Principles, Issues, and Cases, 5th Edit: $105.56 → $92.89 profit=$21.69  method=EBAY_COMP (MEDIUM, floor=$105.56)
+2026-04-16 20:12:10,099 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:10,101 ERROR   ❌ Reprice failed (9780197609026)
+2026-04-16 20:12:10,998 INFO   Bayesian Data Analysis (Chapman & Hall/CRC Texts i: $80.20 → $70.58 profit=$10.79  method=EBAY_COMP (HIGH, floor=$80.20)
+2026-04-16 20:12:12,368 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:12,370 ERROR   ❌ Reprice failed (9781439840955)
+2026-04-16 20:12:13,406 INFO   National Incident Management System: Principles an: $118.41 → $104.20 profit=$31.27  method=EBAY_COMP (MEDIUM, floor=$118.41)
+2026-04-16 20:12:15,805 INFO   ✅ Repriced
+2026-04-16 20:12:16,572 INFO   American Herbal Products Association's Botanical S: $163.07 → $143.50 profit=$44.55  method=EBAY_COMP (HIGH, floor=$163.07)
+2026-04-16 20:12:18,107 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:18,109 ERROR   ❌ Reprice failed (9781466516946)
+2026-04-16 20:12:18,926 INFO   Concrete Manual: Based on the 2015 IBC and ACI 318: $219.11 → $192.82 profit=$75.33  method=EBAY_COMP (MEDIUM, floor=$219.11)
+2026-04-16 20:12:20,298 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:20,300 ERROR   ❌ Reprice failed (9781609836184)
+2026-04-16 20:12:21,143 INFO   Factory Physics, 3rd Edition by Wallace J. Hopp & : $147.83 → $130.09 profit=$53.20  method=EBAY_COMP (MEDIUM, floor=$147.83)
+2026-04-16 20:12:22,480 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:22,482 ERROR   ❌ Reprice failed (9781577667391)
+2026-04-16 20:12:23,362 INFO   Small Animal Dermatology: A Color Atlas and Therap: $102.62 → $90.31 profit=$14.50  method=EBAY_COMP (HIGH, floor=$102.62)
+2026-04-16 20:12:24,926 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:24,928 ERROR   ❌ Reprice failed (9780323376518)
+2026-04-16 20:12:25,822 INFO   Qualitative Research & Evaluation Methods: Integra: $114.36 → $100.64 profit=$13.25  method=EBAY_COMP (HIGH, floor=$114.36)
+2026-04-16 20:12:27,450 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:27,452 ERROR   ❌ Reprice failed (9781412972123)
+2026-04-16 20:12:28,351 INFO   Lange Q & A Radiography Examination: $63.35 → $55.75 profit=$5.23  method=EBAY_COMP (HIGH, floor=$63.35)
+2026-04-16 20:12:29,493 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:29,495 ERROR   ❌ Reprice failed (9781260460445)
+2026-04-16 20:12:30,365 INFO   Strategies and Tactics of Behavioral Research and : $84.95 → $74.76 profit=$10.33  method=EBAY_COMP (HIGH, floor=$84.95)
+2026-04-16 20:12:31,658 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:31,660 ERROR   ❌ Reprice failed (9781138641594)
+2026-04-16 20:12:32,514 INFO   Behavior Analysis for Lasting Change, 5th Edition : $259.02 → $227.94 profit=$116.08  method=EBAY_COMP (MEDIUM, floor=$259.02)
+2026-04-16 20:12:34,051 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:34,053 ERROR   ❌ Reprice failed (9781597381000)
+2026-04-16 20:12:34,947 INFO   Developmental Biology, 13th Edition by Michael J.F: $123.90 → $109.03 profit=$4.36  method=EBAY_COMP (HIGH, floor=$123.90)
+2026-04-16 20:12:37,432 INFO   ✅ Repriced
+2026-04-16 20:12:38,343 INFO   Arboristsâ Certification Study Guide, 4th Editio: $120.57 → $106.10 profit=$12.88  method=EBAY_COMP (HIGH, floor=$120.57)
+2026-04-16 20:12:40,601 INFO   ✅ Repriced
+2026-04-16 20:12:41,407 INFO   Safety Professional's Reference and Study Guide, 3: AUTO-DELIST — Unprofitable — profit $-37.86 at $43.84 (cost $74.99, method: EBAY_COMP (HIGH, floor=$49.82))
+2026-04-16 20:12:41,664 ERROR   ❌ Delist failed
+2026-04-16 20:12:42,510 INFO   Exposure and Response (Ritual) Prevention for Obse: $46.97 → $41.33 profit=$9.02  method=EBAY_COMP (HIGH, floor=$46.97)
+2026-04-16 20:12:43,996 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-16 20:12:43,998 ERROR   ❌ Reprice failed (9780195335286)
+2026-04-16 20:12:44,859 INFO   Counseling Individuals Through the Lifespan 2nd ed: AUTO-DELIST — Unprofitable — profit $0.09 at $79.20 (cost $66.99, method: EBAY_COMP (HIGH, floor=$90.00))
+2026-04-16 20:12:45,086 ERROR   ❌ Delist failed
+2026-04-16 20:12:45,938 INFO   Functional Occlusion: From TMJ to Smile Design by : $112.75 → $99.22 profit=$7.05  method=EBAY_COMP (HIGH, floor=$112.75)
+2026-04-16 20:12:48,226 INFO   ✅ Repriced
+2026-04-16 20:12:49,118 INFO   Designing Effective Instruction, 8th Edition by Ga: AUTO-DELIST — Unprofitable — profit $-18.91 at $44.96 (cost $56.99, method: EBAY_COMP (HIGH, floor=$51.09))
+2026-04-16 20:12:49,284 ERROR   ❌ Delist failed
+2026-04-16 20:12:50,172 INFO   Ethnicity and Family Therapy, 3rd Edition by Monic: AUTO-DELIST — Unprofitable — profit $-7.55 at $56.01 (cost $54.99, method: EBAY_COMP (HIGH, floor=$63.65))
+2026-04-16 20:12:50,359 ERROR   ❌ Delist failed
+2026-04-16 20:12:51,260 INFO   Clinical Handbook of Couple Therapy, 6th Edition b: $125.84 → $110.74 profit=$26.81  method=EBAY_COMP (HIGH, floor=$125.84)
+2026-04-16 20:12:53,906 INFO   ✅ Repriced
+2026-04-16 20:12:54,818 INFO   The Contractor's Guide to Quality Concrete Constru: price OK ($65.99, profit=$6.90)
+2026-04-16 20:12:55,806 INFO   Zero Bone Loss Concepts by Tomas Linkevicius (ISBN: $151.36 → $133.20 profit=$25.83  method=EBAY_COMP (MEDIUM, floor=$151.36)
+2026-04-16 20:12:58,368 INFO   ✅ Repriced
+2026-04-16 20:12:59,220 INFO   Real Estate Finance and Investments: Risks and Opp: price OK ($288.74, profit=$147.57)
+2026-04-16 20:13:00,086 INFO   2021 Uniform Mechanical Code Soft Cover with Tabs : price OK ($175.99, profit=$72.07)
+2026-04-16 20:13:00,987 INFO   Research and Evaluation in Education and Psycholog: AUTO-DELIST — Unprofitable — profit $0.12 at $66.24 (cost $55.99, method: EBAY_COMP (HIGH, floor=$75.27))
+2026-04-16 20:13:01,821 INFO   ✅ Delisted
+2026-04-16 20:13:02,738 INFO   Understanding Behaviorism: Behavior, Culture, and : AUTO-DELIST — Unprofitable — profit $0.65 at $26.73 (cost $21.99, method: EBAY_COMP (HIGH, floor=$30.38))
+2026-04-16 20:13:03,459 INFO   ✅ Delisted
+2026-04-16 20:13:04,283 INFO   DBT Skills Training Handouts and Worksheets Second: AUTO-DELIST — Unprofitable — profit $-1.14 at $34.06 (cost $29.99, method: EBAY_COMP (HIGH, floor=$38.71))
+2026-04-16 20:13:05,383 INFO   ✅ Delisted
+2026-04-16 20:13:06,293 INFO   Qualitative Data Analysis: A Methods Sourcebook, 4: AUTO-DELIST — Unprofitable — profit $-5.07 at $62.48 (cost $57.99, method: EBAY_COMP (HIGH, floor=$71.00))
+2026-04-16 20:13:07,653 INFO   ✅ Delisted
+2026-04-16 20:13:08,631 INFO   Tests & Measurement for People Who (Think They) Ha: AUTO-DELIST — Unprofitable — profit $-9.31 at $59.84 (cost $59.99, method: EBAY_COMP (HIGH, floor=$68.00))
+2026-04-16 20:13:09,390 INFO   ✅ Delisted
+2026-04-16 20:13:10,265 INFO   Evolutionary Psychology: The New Science of the Mi: AUTO-DELIST — Unprofitable — profit $-7.54 at $57.20 (cost $55.99, method: EBAY_COMP (MEDIUM, floor=$65.00))
+2026-04-16 20:13:11,375 INFO   ✅ Delisted
+2026-04-16 20:13:12,254 INFO   Rocket Propulsion Elements, 9th Edition by George : AUTO-DELIST — Unprofitable — profit $-46.90 at $13.09 (cost $57.99, method: EBAY_COMP (HIGH, floor=$14.88))
+2026-04-16 20:13:13,061 INFO   ✅ Delisted
+2026-04-16 20:13:13,959 INFO   Introduction to Electrodynamics by David J. Griffi: AUTO-DELIST — Unprofitable — profit $-11.49 at $28.92 (cost $35.99, method: EBAY_COMP (HIGH, floor=$32.86))
+2026-04-16 20:13:15,129 INFO   ✅ Delisted
+2026-04-16 20:13:16,013 INFO   How to Write and Publish a Scientific Paper: $42.39 → $40.38 profit=$4.21  method=EBAY_COMP (HIGH, floor=$45.89)
+2026-04-16 20:13:18,577 INFO   ✅ Repriced
+2026-04-16 20:13:19,398 INFO   ACSM's Exercise Management for Persons With Chroni: $69.35 → $60.91 profit=$7.60  method=EBAY_COMP (HIGH, floor=$69.22)
+2026-04-16 20:13:22,972 INFO   ✅ Repriced
+2026-04-16 20:13:23,825 INFO   Encyclopedia of Counseling: AUTO-DELIST — Unprofitable — profit $-20.22 at $11.53 (cost $29.99, method: EBAY_COMP (HIGH, floor=$13.10))
+2026-04-16 20:13:24,928 INFO   ✅ Delisted
+2026-04-16 20:13:25,823 INFO   Eye Movement Desensitization and Reprocessing (EMD: AUTO-DELIST — Unprofitable — profit $-28.65 at $13.39 (cost $39.99, method: EBAY_COMP (HIGH, floor=$15.22))
+2026-04-16 20:13:26,442 INFO   ✅ Delisted
+2026-04-16 20:13:27,393 INFO   The Comprehensive Clinician's Guide to Cognitive B: $29.58 → $27.86 profit=$3.61  method=EBAY_COMP (HIGH, floor=$31.66)
+2026-04-16 20:13:30,033 INFO   ✅ Repriced
+2026-04-16 20:13:30,535 INFO ============================================================
+2026-04-16 20:13:30,535 INFO DONE: 9 repriced | 10 delisted | 45 unchanged
+2026-04-16 20:13:30,535 INFO ============================================================
+2026-04-16 20:13:31,198 INFO Email alert sent

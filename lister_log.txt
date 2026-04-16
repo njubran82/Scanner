@@ -2830,3 +2830,41 @@
 2026-04-16 19:28:56,437 INFO LISTER DONE: 12 listed, 3 drafts, 0 failed
 2026-04-16 19:28:56,437 INFO ============================================================
 2026-04-16 19:28:57,908 INFO Email alert sent
+2026-04-16 20:10:39,697 INFO ============================================================
+2026-04-16 20:10:39,697 INFO LISTER STARTED — 2026-04-16 20:10:39
+2026-04-16 20:10:39,697 INFO ============================================================
+2026-04-16 20:10:39,697 INFO Processing 10 opportunities...
+2026-04-16 20:10:39,950 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 20:10:42,785 INFO   Image: Open Library (9781506353074)
+2026-04-16 20:10:47,820 INFO   ✅ Listed | $76.99 | Profit: $7.22 | ListingID: 358453826450
+2026-04-16 20:10:48,820 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 20:10:50,033 INFO   Image: Open Library (9781071817179)
+2026-04-16 20:10:54,051 INFO   ✅ Listed | $99.43 | Profit: $24.23 | ListingID: 358453826551
+2026-04-16 20:10:55,052 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 20:10:56,504 INFO   Image: Open Library (9781138088610)
+2026-04-16 20:11:00,227 INFO   ✅ Listed | $79.07 | Profit: $10.98 | ListingID: 358453826611
+2026-04-16 20:11:01,228 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 20:11:03,275 INFO   Image: Open Library (9781118753651)
+2026-04-16 20:11:07,500 INFO   ✅ Listed | $116.37 | Profit: $40.58 | ListingID: 358453826689
+2026-04-16 20:11:08,500 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 20:11:10,141 INFO   Image: Open Library (9781009397759)
+2026-04-16 20:11:14,065 INFO   ✅ Listed | $49.18 | Profit: $5.67 | ListingID: 358453826778
+2026-04-16 20:11:15,065 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-16 20:11:15,786 INFO   Image: Amazon CDN
+2026-04-16 20:11:20,012 INFO   ✅ Listed | $42.39 | Profit: $5.91 | ListingID: 358453826831
+2026-04-16 20:11:21,012 INFO Listing: ACSM's Exercise Management for Persons With Chronic Diseases
+2026-04-16 20:11:22,091 INFO   Image: Open Library (9781450434140)
+2026-04-16 20:11:26,453 INFO   ✅ Listed | $69.35 | Profit: $14.75 | ListingID: 358453826910
+2026-04-16 20:11:27,454 INFO Listing: Encyclopedia of Counseling
+2026-04-16 20:11:28,566 INFO   Image: Open Library (9781138942653)
+2026-04-16 20:11:33,084 INFO   ✅ Listed | $37.62 | Profit: $1.87 | ListingID: 358453826991
+2026-04-16 20:11:34,084 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 20:11:35,129 INFO   Image: Open Library (9781462532766)
+2026-04-16 20:11:39,437 INFO   ✅ Listed | $70.49 | Profit: $19.72 | ListingID: 358453827093
+2026-04-16 20:11:40,437 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-16 20:11:41,495 INFO   Image: Open Library (9781683732556)
+2026-04-16 20:11:46,256 INFO   ✅ Listed | $29.58 | Profit: $5.06 | ListingID: 358453827159
+2026-04-16 20:11:47,258 INFO ============================================================
+2026-04-16 20:11:47,258 INFO LISTER DONE: 10 listed, 0 drafts, 0 failed
+2026-04-16 20:11:47,258 INFO ============================================================
+2026-04-16 20:11:48,618 INFO Email alert sent

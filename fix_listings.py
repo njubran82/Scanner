@@ -10,7 +10,7 @@ Does three things to every active atlas_commerce listing:
   3. Reprices to 12% undercut of current cheapest eBay competitor
 """
 
-import os, json, time, logging, base64
+import os, json, time, logging, base64, re
 from pathlib import Path
 from datetime import datetime
 
@@ -136,6 +136,84 @@ def fetch_all_offers(user_token: str) -> list[dict]:
     log.info(f"Fetched {len(offers)} active offers from eBay")
     return offers
 
+# ── IMAGE FETCHING ────────────────────────────────────────────────────────────
+def is_real_image(url: str, min_bytes: int = 5000) -> bool:
+    try:
+        r = requests.get(url, timeout=12, stream=True)
+        if r.status_code != 200:
+            return False
+        chunk = next(r.iter_content(chunk_size=min_bytes + 1), b"")
+        r.close()
+        is_jpg = chunk[:2] == b"\xff\xd8"
+        is_png = chunk[:4] == b"\x89PNG"
+        return (is_jpg or is_png) and len(chunk) >= min_bytes
+    except Exception:
+        return False
+
+def get_book_image(isbn13: str, isbn10: str = "") -> str | None:
+    """
+    4-source image fetcher — same logic as lister.py.
+    1. Open Library  2. Amazon CDN  3. Google Books  4. Library of Congress
+    """
+    # 1. Open Library
+    for isbn in [isbn13, isbn10]:
+        if not isbn:
+            continue
+        url = f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg"
+        if is_real_image(url, min_bytes=5000):
+            log.info(f"  Image: Open Library ({isbn})")
+            return url
+
+    # 2. Amazon CDN
+    amazon_patterns = [
+        f"https://images-na.ssl-images-amazon.com/images/P/{isbn13}.01.LZZZZZZZ.jpg",
+        f"https://images-na.ssl-images-amazon.com/images/P/{isbn13}.01._SX500_.jpg",
+    ]
+    if isbn10:
+        amazon_patterns += [
+            f"https://images-na.ssl-images-amazon.com/images/P/{isbn10}.01.LZZZZZZZ.jpg",
+            f"https://images-na.ssl-images-amazon.com/images/P/{isbn10}.01._SX500_.jpg",
+        ]
+    for url in amazon_patterns:
+        if is_real_image(url, min_bytes=8000):
+            log.info(f"  Image: Amazon CDN")
+            return url
+
+    # 3. Google Books
+    try:
+        r = requests.get(
+            "https://www.googleapis.com/books/v1/volumes",
+            params={"q": f"isbn:{isbn13}", "maxResults": 3},
+            timeout=8,
+        )
+        for item in r.json().get("items", []):
+            img = item.get("volumeInfo", {}).get("imageLinks", {})
+            for size_key, zoom in [("extraLarge", 3), ("large", 3), ("medium", 2), ("thumbnail", 1)]:
+                src = img.get(size_key)
+                if not src:
+                    continue
+                src = src.replace("http://", "https://")
+                src = re.sub(r"zoom=\d", f"zoom={zoom}", src)
+                if is_real_image(src, min_bytes=5000):
+                    log.info(f"  Image: Google Books ({size_key})")
+                    return src
+    except Exception as e:
+        log.warning(f"  Google Books failed for {isbn13}: {e}")
+
+    # 4. Library of Congress
+    try:
+        r = requests.get(f"https://www.loc.gov/books/?q={isbn13}&fo=json", timeout=8)
+        for result in r.json().get("results", [])[:3]:
+            img_url = (result.get("image_url") or [None])[0]
+            if img_url and is_real_image(img_url, min_bytes=5000):
+                log.info(f"  Image: Library of Congress")
+                return img_url
+    except Exception as e:
+        log.warning(f"  Library of Congress failed for {isbn13}: {e}")
+
+    return None
+
+
 # ── COMPS ─────────────────────────────────────────────────────────────────────
 def get_comps(isbn: str, app_token: str) -> tuple[list[float], str]:
     headers = {
@@ -243,25 +321,30 @@ def update_offer_price(offer_id: str, new_price: float, user_token: str) -> bool
 
 def update_inventory_description(sku: str, title: str,
                                   description: str, fmt: str,
-                                  user_token: str) -> bool:
+                                  user_token: str,
+                                  image_url: str | None = None) -> bool:
     headers = {
         "Authorization": f"Bearer {user_token}",
         "Content-Type": "application/json",
         "Content-Language": "en-US",
     }
     clean = clean_title(title)[:80]
-    payload = {
-        "product": {
-            "title": clean,
-            "description": description,
-            "isbn": [sku],
-            "aspects": {
-                "Book Title": [clean],
-                "ISBN":       [sku],
-                "Format":     [fmt],
-                "Language":   ["English"],
-            },
+    product = {
+        "title": clean,
+        "description": description,
+        "isbn": [sku],
+        "aspects": {
+            "Book Title": [clean],
+            "ISBN":       [sku],
+            "Format":     [fmt],
+            "Language":   ["English"],
         },
+    }
+    if image_url:
+        product["imageUrls"] = [image_url]
+
+    payload = {
+        "product": product,
         "condition": "NEW",
         "conditionDescription": "Brand new, unread copy.",
         "availability": {
@@ -338,8 +421,15 @@ def run():
         fmt  = extract_format(title)
         desc = generate_description(title, sku)
 
+        # Fetch fresh image using 4-source fetcher
+        image_url = get_book_image(sku)
+        if image_url:
+            log.info(f"  → Image found")
+        else:
+            log.warning(f"  → No image found — inventory item will be updated without image")
+
         # Apply updates
-        ok_desc  = update_inventory_description(sku, title, desc, fmt, user_token)
+        ok_desc  = update_inventory_description(sku, title, desc, fmt, user_token, image_url)
         ok_price = update_offer_price(offer_id, new_price, user_token)
 
         if ok_desc and ok_price:

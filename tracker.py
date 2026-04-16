@@ -42,7 +42,7 @@ EBAY_FEE_RATE = 0.153         # was 0.1325
 
 # State files — tracker merges both into one working set
 STATE_FILE         = 'lister_state.json'
-LOCAL_STATE_FILE   = 'scanner_local_state.json'  # produced by weekly_scanner_local.py
+LOCAL_STATE_FILE   = r'E:\Book\Lister\scanner_local_state.json'  # absolute path — different dir from repo
 LOG_FILE           = 'tracker_log.txt'
 
 USER_AGENTS = [

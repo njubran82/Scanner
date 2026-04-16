@@ -104,12 +104,16 @@ def is_real_image(url, min_bytes=5000):
 
 def get_book_image(isbn13, isbn10):
     """
-    Try image sources in order of quality:
-    1. Open Library large cover (ISBN-13, then ISBN-10)
-    2. Google Books — try extraLarge/large/medium at zoom=3
-    Returns None if no suitable image found (listing will be skipped).
+    Try image sources in priority order until a valid image is found:
+      1. Open Library     — free, high quality, good academic coverage
+      2. Amazon CDN       — predictable URL pattern, excellent coverage
+      3. Google Books     — API-based, good fallback
+      4. Library of Congress — good for US-published academic titles
+    Returns None only if all four sources fail.
     """
-    # Open Library large covers — 15KB minimum to filter placeholders
+    import re as _re
+
+    # ── 1. Open Library ───────────────────────────────────────────────────────
     for isbn in [isbn13, isbn10]:
         if not isbn:
             continue
@@ -118,7 +122,23 @@ def get_book_image(isbn13, isbn10):
             log.info(f"  Image: Open Library ({isbn})")
             return url
 
-    # Google Books — prefer larger sizes, enforce quality floor
+    # ── 2. Amazon CDN (no API key needed) ────────────────────────────────────
+    # Amazon cover images are publicly accessible at predictable ISBN-keyed URLs.
+    amazon_patterns = [
+        f'https://images-na.ssl-images-amazon.com/images/P/{isbn13}.01.LZZZZZZZ.jpg',
+        f'https://images-na.ssl-images-amazon.com/images/P/{isbn13}.01._SX500_.jpg',
+    ]
+    if isbn10:
+        amazon_patterns += [
+            f'https://images-na.ssl-images-amazon.com/images/P/{isbn10}.01.LZZZZZZZ.jpg',
+            f'https://images-na.ssl-images-amazon.com/images/P/{isbn10}.01._SX500_.jpg',
+        ]
+    for url in amazon_patterns:
+        if is_real_image(url, min_bytes=8000):
+            log.info(f"  Image: Amazon CDN")
+            return url
+
+    # ── 3. Google Books API ───────────────────────────────────────────────────
     try:
         r = requests.get(
             'https://www.googleapis.com/books/v1/volumes',
@@ -128,22 +148,31 @@ def get_book_image(isbn13, isbn10):
         items = r.json().get('items', [])
         for item in items:
             img = item.get('volumeInfo', {}).get('imageLinks', {})
-            # Try sizes in descending quality order
             for size_key, zoom in [('extraLarge', 3), ('large', 3), ('medium', 2), ('thumbnail', 1)]:
                 src = img.get(size_key)
                 if not src:
                     continue
                 src = src.replace('http://', 'https://')
-                # Force highest zoom available
-                import re as _re
                 src = _re.sub(r'zoom=\d', f'zoom={zoom}', src)
-                # Large images only — thumbnails are too small for eBay
-                min_b = 5000
-                if is_real_image(src, min_bytes=min_b):
+                if is_real_image(src, min_bytes=5000):
                     log.info(f"  Image: Google Books ({size_key})")
                     return src
     except Exception as e:
         log.warning(f"  Google Books image failed: {e}")
+
+    # ── 4. Library of Congress ────────────────────────────────────────────────
+    try:
+        r = requests.get(
+            f'https://www.loc.gov/books/?q={isbn13}&fo=json',
+            timeout=8
+        )
+        for result in r.json().get('results', [])[:3]:
+            img_url = (result.get('image_url') or [None])[0]
+            if img_url and is_real_image(img_url, min_bytes=5000):
+                log.info(f"  Image: Library of Congress")
+                return img_url
+    except Exception as e:
+        log.warning(f"  Library of Congress image failed: {e}")
 
     return None
 

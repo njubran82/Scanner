@@ -18,11 +18,12 @@ EBAY_CLIENT_ID     = os.getenv('EBAY_CLIENT_ID')
 EBAY_CLIENT_SECRET = os.getenv('EBAY_CLIENT_SECRET')
 EBAY_REFRESH_TOKEN = os.getenv('EBAY_REFRESH_TOKEN')
 
-MIN_PROFIT         = 5.0
-EBAY_FEE_RATE      = 0.1325
-UNDERCUT_PCT       = 0.125        # 12.5% = midpoint of 10–20% undercut
+MIN_PROFIT         = 1.00         # was 5.0
+EBAY_FEE_RATE      = 0.153        # was 0.1325
+UNDERCUT_PCT       = 0.12         # was 0.125
 STATE_FILE         = 'lister_state.json'
 OPPORTUNITIES_FILE = 'scan_opportunities.json'
+VALIDATED_FILE     = 'validated_isbns.json'   # produced by validator.py
 LOG_FILE           = 'scanner_log.txt'
 
 logging.basicConfig(
@@ -170,6 +171,26 @@ def calculate_profit(cost, listing_price):
     return round(listing_price - cost - fee, 2)
 
 
+def load_validated_isbns() -> set:
+    """
+    Load the allowlist produced by validator.py.
+    Returns set of ISBNs with status OK.
+    If the file doesn't exist, returns None — scanner runs unrestricted
+    (safe fallback so GitHub Actions still works before first local validator run).
+    """
+    if not os.path.exists(VALIDATED_FILE):
+        return None
+    try:
+        data = json.load(open(VALIDATED_FILE, encoding='utf-8'))
+        ok = {isbn for isbn, rec in data.get('validated', {}).items()
+              if rec.get('status') == 'OK'}
+        log.info(f'Loaded {len(ok)} validated ISBNs from {VALIDATED_FILE}')
+        return ok
+    except Exception as e:
+        log.warning(f'Could not load {VALIDATED_FILE}: {e} — running without allowlist')
+        return None
+
+
 # ── State ────────────────────────────────────────────────────────────────────
 def load_state():
     if os.path.exists(STATE_FILE):
@@ -184,10 +205,15 @@ def scan():
     log.info("SCANNER STARTED — " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     log.info("=" * 60)
 
-    state         = load_state()
+    state          = load_state()
     already_listed = set(state.get('listed_isbns', []))
-    token         = get_ebay_token()
-    log.info("eBay token acquired")
+    validated      = load_validated_isbns()   # None = no file yet, run unrestricted
+    token          = get_ebay_token()
+    log.info('eBay token acquired')
+    if validated is not None:
+        log.info(f'Allowlist active: {len(validated)} validated ISBNs')
+    else:
+        log.info('No validated_isbns.json found — running without availability filter')
 
     books = fetch_booksgoat()
 
@@ -202,6 +228,11 @@ def scan():
 
         if isbn13 in already_listed:
             skipped_listed += 1
+            continue
+
+        # Availability allowlist — skip if validator flagged as not purchasable
+        if validated is not None and isbn13 not in validated:
+            log.info(f'  SKIP (not validated / unavailable): {isbn13}')
             continue
 
         median, confidence, num_comps = get_ebay_prices(
@@ -264,6 +295,7 @@ def scan():
     log.info("=" * 60)
     log.info(f"SCAN COMPLETE: {len(opportunities)} opportunities found")
     log.info(f"  Already listed:   {skipped_listed}")
+    log.info(f"  Not validated:    {sum(1 for b in books if validated is not None and b['isbn13'] not in validated and b['isbn13'] not in already_listed)}")
     log.info(f"  No eBay data:     {skipped_no_data}")
     log.info(f"  Unprofitable:     {skipped_no_profit}")
     log.info(f"  Amazon fallbacks: {amazon_fallbacks}")

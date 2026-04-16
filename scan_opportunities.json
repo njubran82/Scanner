@@ -1,21 +1,7 @@
 {
-  "scan_date": "2026-04-16T15:19:17.647273",
-  "total_books": 91,
+  "scan_date": "2026-04-16T15:39:39.446365",
+  "total_books": 90,
   "opportunities": [
-    {
-      "title": "Sterile Processing Technical Manual Workbook (CRCST Workbook - 9th Edition)",
-      "isbn13": "B0C1XZ4BQV",
-      "isbn10": "B0C1XZ4BQV",
-      "cost": 48.99,
-      "amazon_price": 63.0,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=B0C1XZ4BQV",
-      "median_price": 90.0,
-      "listing_price": 59.85,
-      "profit": 1.7,
-      "confidence": "HIGH",
-      "num_comps": 3,
-      "scanned_at": "2026-04-16T15:18:18.327184"
-    },
     {
       "title": "Arborists\u00e2\u0080\u0099 Certification Study Guide, 4th Edition by Sharon Lilly, Corrine Bassett (ISBN: 9781943378210) - Paperback",
       "isbn13": "9781943378210",
@@ -28,7 +14,7 @@
       "profit": 39.06,
       "confidence": "MEDIUM",
       "num_comps": 2,
-      "scanned_at": "2026-04-16T15:18:21.015855"
+      "scanned_at": "2026-04-16T15:38:43.157846"
     },
     {
       "title": "The Contractor's Guide to Quality Concrete Construction, 4th Edition by American Concrete Institute (ISBN 9781641950473) - Paperback",
@@ -42,7 +28,7 @@
       "profit": 16.53,
       "confidence": "HIGH",
       "num_comps": 7,
-      "scanned_at": "2026-04-16T15:18:26.824065"
+      "scanned_at": "2026-04-16T15:38:48.497760"
     },
     {
       "title": "Safety Professional's Reference and Study Guide, 3rd Edition by W. David Yates (ISBN 9780367263638) - Hardcover",
@@ -56,7 +42,7 @@
       "profit": 27.2,
       "confidence": "HIGH",
       "num_comps": 6,
-      "scanned_at": "2026-04-16T15:18:29.058195"
+      "scanned_at": "2026-04-16T15:38:50.564518"
     },
     {
       "title": "Exposure and Response (Ritual) Prevention for Obsessive-Compulsive Disorder: Therapist Guide, 2nd Edition by Edna B. Foa (ISBN 9780195335286) - Paperback",
@@ -70,7 +56,7 @@
       "profit": 28.46,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-16T15:18:42.925699"
+      "scanned_at": "2026-04-16T15:39:04.005729"
     },
     {
       "title": "Qualitative Data Analysis: A Methods Sourcebook, 4th Edition By Matthew B. Miles, A. Michael Huberman & Johnny Salda\u00c3\u00b1a (ISBN: 9781506353074) - Paperback",
@@ -79,12 +65,12 @@
       "cost": 57.99,
       "amazon_price": 89.89,
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781506353074",
-      "median_price": 87.49,
-      "listing_price": 76.99,
-      "profit": 7.22,
+      "median_price": 97.65,
+      "listing_price": 85.93,
+      "profit": 14.79,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-16T15:18:46.802654"
+      "scanned_at": "2026-04-16T15:39:07.660423"
     },
     {
       "title": "Counseling Individuals Through the Lifespan 2nd edition (Counseling and Professional Identity) by Wong, Hall, Hernandez (ISBN: 9781544343242) - Paperback",
@@ -98,7 +84,21 @@
       "profit": 19.11,
       "confidence": "HIGH",
       "num_comps": 5,
-      "scanned_at": "2026-04-16T15:18:49.724340"
+      "scanned_at": "2026-04-16T15:39:10.177925"
+    },
+    {
+      "title": "Functional Occlusion: From TMJ to Smile Design by Peter E. Dawson 1st edition (ISBN: 9780323033718) - Hardcover",
+      "isbn13": "9780323033718",
+      "isbn10": "0323033717",
+      "cost": 76.99,
+      "amazon_price": 150.54,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780323033718",
+      "median_price": 228.2,
+      "listing_price": 143.01,
+      "profit": 44.14,
+      "confidence": "HIGH",
+      "num_comps": 3,
+      "scanned_at": "2026-04-16T15:39:12.192610"
     },
     {
       "title": "Tests & Measurement for People Who (Think They) Hate Tests & Measurement, 4th Edition by Neil J. Salkind \u00e2\u0080\u0093 Paperback (ISBN: 9781071817179)",
@@ -112,7 +112,7 @@
       "profit": 24.23,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-16T15:18:52.842682"
+      "scanned_at": "2026-04-16T15:39:14.673652"
     },
     {
       "title": "Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback",
@@ -126,7 +126,7 @@
       "profit": 10.98,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-16T15:18:57.129404"
+      "scanned_at": "2026-04-16T15:39:18.906109"
     },
     {
       "title": "Designing Effective Instruction, 8th Edition by Gary R. Morrison (ISBN 9781119465935) - Paperback",
@@ -140,7 +140,7 @@
       "profit": 30.47,
       "confidence": "HIGH",
       "num_comps": 7,
-      "scanned_at": "2026-04-16T15:18:59.354432"
+      "scanned_at": "2026-04-16T15:39:21.011907"
     },
     {
       "title": "Rocket Propulsion Elements, 9th Edition by George P. Sutton (ISBN 9781118753651) - Hardcover",
@@ -154,7 +154,7 @@
       "profit": 40.58,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-16T15:18:59.871404"
+      "scanned_at": "2026-04-16T15:39:21.412575"
     },
     {
       "title": "2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781944366445) - Paperback",
@@ -168,7 +168,7 @@
       "profit": 22.89,
       "confidence": "FALLBACK_AMAZON",
       "num_comps": 0,
-      "scanned_at": "2026-04-16T15:19:01.153125"
+      "scanned_at": "2026-04-16T15:39:22.744525"
     },
     {
       "title": "Ethnicity and Family Therapy, 3rd Edition by Monica McGoldrick, Joe Giordano & Nydia Garcia-Preto \u00e2\u0080\u0093 Hardcover (ISBN: 9781593850204)",
@@ -182,21 +182,7 @@
       "profit": 3.17,
       "confidence": "HIGH",
       "num_comps": 5,
-      "scanned_at": "2026-04-16T15:19:06.365150"
-    },
-    {
-      "title": "Developmental Biology, 13th Edition by Michael J.F. Gilbert (ISBN 9780197574591) - Hardcover",
-      "isbn13": "9780197574591",
-      "isbn10": "0197574599",
-      "cost": 87.99,
-      "amazon_price": 209.05,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780197574591",
-      "median_price": 209.05,
-      "listing_price": 183.96,
-      "profit": 67.82,
-      "confidence": "FALLBACK_AMAZON",
-      "num_comps": 0,
-      "scanned_at": "2026-04-16T15:19:08.415735"
+      "scanned_at": "2026-04-16T15:39:27.524895"
     },
     {
       "title": "Introduction to Electrodynamics by David J. Griffiths, 5th Edition (ISBN 9781009397759) - Hardcover",
@@ -210,21 +196,49 @@
       "profit": 5.67,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-16T15:19:10.626489"
+      "scanned_at": "2026-04-16T15:39:29.638536"
     },
     {
-      "title": "ACSM's Exercise Management for Persons With Chronic Diseases",
-      "isbn13": "9781450434140",
-      "isbn10": "1450434142",
-      "cost": 43.99,
-      "amazon_price": 73.0,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781450434140",
-      "median_price": 92.635,
-      "listing_price": 69.35,
-      "profit": 14.75,
+      "title": "How to Write and Publish a Scientific Paper",
+      "isbn13": "9781440878848",
+      "isbn10": "1440878846",
+      "cost": 29.99,
+      "amazon_price": 44.62,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781440878848",
+      "median_price": 56.775,
+      "listing_price": 42.39,
+      "profit": 5.91,
       "confidence": "HIGH",
-      "num_comps": 14,
-      "scanned_at": "2026-04-16T15:19:13.103961"
+      "num_comps": 20,
+      "scanned_at": "2026-04-16T15:39:31.749280"
+    },
+    {
+      "title": "Understanding Behaviorism: Behavior, Culture, and Evolution",
+      "isbn13": "9781119143642",
+      "isbn10": "1119143640",
+      "cost": 21.99,
+      "amazon_price": 35.9,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781119143642",
+      "median_price": 70.88,
+      "listing_price": 34.1,
+      "profit": 6.89,
+      "confidence": "MEDIUM",
+      "num_comps": 1,
+      "scanned_at": "2026-04-16T15:39:32.188371"
+    },
+    {
+      "title": "DBT Skills Training Handouts and Worksheets Second Edition",
+      "isbn13": "9781572307810",
+      "isbn10": "1572307811",
+      "cost": 29.99,
+      "amazon_price": 52.0,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781572307810",
+      "median_price": 79.99,
+      "listing_price": 49.4,
+      "profit": 11.85,
+      "confidence": "MEDIUM",
+      "num_comps": 1,
+      "scanned_at": "2026-04-16T15:39:32.710182"
     },
     {
       "title": "Encyclopedia of Counseling",
@@ -238,7 +252,7 @@
       "profit": 1.87,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-16T15:19:14.269150"
+      "scanned_at": "2026-04-16T15:39:33.570250"
     },
     {
       "title": "Eye Movement Desensitization and Reprocessing (EMDR) Therapy: Basic Principles, Protocols, and Procedures, 3rd edition",
@@ -252,7 +266,21 @@
       "profit": 19.72,
       "confidence": "MEDIUM",
       "num_comps": 2,
-      "scanned_at": "2026-04-16T15:19:15.166482"
+      "scanned_at": "2026-04-16T15:39:34.474910"
+    },
+    {
+      "title": "The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy",
+      "isbn13": "9781683732556",
+      "isbn10": "1683732553",
+      "cost": 19.99,
+      "amazon_price": 33.5,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781683732556",
+      "median_price": 33.61,
+      "listing_price": 29.58,
+      "profit": 5.06,
+      "confidence": "HIGH",
+      "num_comps": 20,
+      "scanned_at": "2026-04-16T15:39:36.751593"
     },
     {
       "title": "Exposure and Response (Ritual) Prevention for Obsessive-Compulsive Disorder: Therapist Guide (Treatments That Work) 2nd Edition",
@@ -266,7 +294,7 @@
       "profit": 13.46,
       "confidence": "MEDIUM",
       "num_comps": 1,
-      "scanned_at": "2026-04-16T15:19:17.647105"
+      "scanned_at": "2026-04-16T15:39:39.446209"
     }
   ]
 }

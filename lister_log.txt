@@ -2694,3 +2694,84 @@
 2026-04-16 15:20:53,542 INFO LISTER DONE: 11 listed, 8 failed
 2026-04-16 15:20:53,542 INFO ============================================================
 2026-04-16 15:20:54,825 INFO Email alert sent
+2026-04-16 15:39:39,745 INFO ============================================================
+2026-04-16 15:39:39,745 INFO LISTER STARTED — 2026-04-16 15:39:39
+2026-04-16 15:39:39,745 INFO ============================================================
+2026-04-16 15:39:39,745 INFO Processing 21 opportunities...
+2026-04-16 15:39:40,004 INFO Listing: Arboristsâ Certification Study Guide, 4th Edition by Sharo
+2026-04-16 15:39:41,512 INFO   Image: Amazon CDN
+2026-04-16 15:39:42,490 INFO   Offer already exists (152624611011) — updating and publishing
+2026-04-16 15:39:45,452 INFO   ✅ Listed | $137.01 | Profit: $39.06 | ListingID: 358453229037
+2026-04-16 15:39:46,452 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-16 15:39:48,618 WARNING   No image found for 9781641950473 — saving as draft for manual image upload
+2026-04-16 15:39:49,979 ERROR   Draft offer creation failed for 9781641950473: {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Offer entity already exists.","parameters":[{"name":"offerId","val
+2026-04-16 15:39:49,980 INFO Listing: Safety Professional's Reference and Study Guide, 3rd Edition
+2026-04-16 15:39:50,973 INFO   Image: Open Library (9780367263638)
+2026-04-16 15:39:52,148 INFO   Offer already exists (152624628011) — updating and publishing
+2026-04-16 15:39:56,215 INFO   ✅ Listed | $120.65 | Profit: $27.20 | ListingID: 358453229141
+2026-04-16 15:39:57,215 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-16 15:39:57,611 INFO   Image: Open Library (9780195335286)
+2026-04-16 15:40:01,018 INFO   ✅ Listed | $64.28 | Profit: $28.46 | ListingID: 358453229198
+2026-04-16 15:40:02,018 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 15:40:03,287 INFO   Image: Open Library (9781506353074)
+2026-04-16 15:40:07,977 INFO   ✅ Listed | $85.93 | Profit: $14.79 | ListingID: 358453229335
+2026-04-16 15:40:08,977 INFO Listing: Counseling Individuals Through the Lifespan 2nd edition (Cou
+2026-04-16 15:40:09,764 INFO   Image: Amazon CDN
+2026-04-16 15:40:13,789 INFO   ✅ Listed | $101.65 | Profit: $19.11 | ListingID: 358453229393
+2026-04-16 15:40:14,789 INFO Listing: Functional Occlusion: From TMJ to Smile Design by Peter E. D
+2026-04-16 15:40:15,907 INFO   Image: Open Library (9780323033718)
+2026-04-16 15:40:20,571 INFO   ✅ Listed | $143.01 | Profit: $44.14 | ListingID: 358453229530
+2026-04-16 15:40:21,571 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 15:40:23,065 INFO   Image: Open Library (9781071817179)
+2026-04-16 15:40:27,289 INFO   ✅ Listed | $99.43 | Profit: $24.23 | ListingID: 358453229786
+2026-04-16 15:40:28,289 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 15:40:29,454 INFO   Image: Open Library (9781138088610)
+2026-04-16 15:40:34,116 INFO   ✅ Listed | $79.07 | Profit: $10.98 | ListingID: 358453229867
+2026-04-16 15:40:35,116 INFO Listing: Designing Effective Instruction, 8th Edition by Gary R. Morr
+2026-04-16 15:40:36,200 INFO   Image: Amazon CDN
+2026-04-16 15:40:37,347 INFO   Offer already exists (152621837011) — updating and publishing
+2026-04-16 15:40:40,757 INFO   ✅ Listed | $103.26 | Profit: $30.47 | ListingID: 358453229941
+2026-04-16 15:40:41,757 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 15:40:43,046 INFO   Image: Open Library (9781118753651)
+2026-04-16 15:40:44,172 INFO   Offer already exists (152624721011) — updating and publishing
+2026-04-16 15:40:49,615 INFO   ✅ Listed | $116.37 | Profit: $40.58 | ListingID: 358453230023
+2026-04-16 15:40:50,615 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-16 15:40:51,288 WARNING   No image found for 9781944366445 — saving as draft for manual image upload
+2026-04-16 15:40:52,233 ERROR   Draft offer creation failed for 9781944366445: {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Offer entity already exists.","parameters":[{"name":"offerId","val
+2026-04-16 15:40:52,233 INFO Listing: Ethnicity and Family Therapy, 3rd Edition by Monica McGoldri
+2026-04-16 15:40:53,328 INFO   Image: Open Library (9781593850203)
+2026-04-16 15:40:57,432 INFO   ✅ Listed | $68.66 | Profit: $3.17 | ListingID: 358453230094
+2026-04-16 15:40:58,433 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 15:40:59,358 INFO   Image: Open Library (9781009397759)
+2026-04-16 15:41:03,147 INFO   ✅ Listed | $49.18 | Profit: $5.67 | ListingID: 358453230315
+2026-04-16 15:41:04,147 INFO Listing: How to Write and Publish a Scientific Paper
+2026-04-16 15:41:05,005 INFO   Image: Amazon CDN
+2026-04-16 15:41:09,716 INFO   ✅ Listed | $42.39 | Profit: $5.91 | ListingID: 358453230849
+2026-04-16 15:41:10,717 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-16 15:41:11,708 INFO   Image: Open Library (9781119143642)
+2026-04-16 15:41:13,149 WARNING   Error 25604 (orphaned item) for 9781119143642 — deleting and recreating
+2026-04-16 15:41:13,649 INFO   Retrying 9781119143642 after orphaned item cleanup...
+2026-04-16 15:41:15,163 WARNING   Error 25604 (orphaned item) for 9781119143642 — deleting and recreating
+2026-04-16 15:41:15,547 ERROR   Listing failed for 9781119143642
+2026-04-16 15:41:15,548 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-16 15:41:16,557 INFO   Image: Open Library (9781572307810)
+2026-04-16 15:41:18,452 WARNING   Error 25604 (orphaned item) for 9781572307810 — deleting and recreating
+2026-04-16 15:41:19,088 INFO   Retrying 9781572307810 after orphaned item cleanup...
+2026-04-16 15:41:19,945 WARNING   Error 25604 (orphaned item) for 9781572307810 — deleting and recreating
+2026-04-16 15:41:20,846 ERROR   Listing failed for 9781572307810
+2026-04-16 15:41:20,846 INFO Listing: Encyclopedia of Counseling
+2026-04-16 15:41:21,940 INFO   Image: Open Library (9781138942653)
+2026-04-16 15:41:26,028 INFO   ✅ Listed | $37.62 | Profit: $1.87 | ListingID: 358453232399
+2026-04-16 15:41:27,028 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 15:41:28,723 INFO   Image: Open Library (9781462532766)
+2026-04-16 15:41:32,689 INFO   ✅ Listed | $70.49 | Profit: $19.72 | ListingID: 358453233045
+2026-04-16 15:41:33,689 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-16 15:41:34,695 INFO   Image: Open Library (9781683732556)
+2026-04-16 15:41:38,519 INFO   ✅ Listed | $29.58 | Profit: $5.06 | ListingID: 358453233639
+2026-04-16 15:41:39,519 INFO Listing: Exposure and Response (Ritual) Prevention for Obsessive-Comp
+2026-04-16 15:41:39,886 INFO   Image: Open Library (9780195335286)
+2026-04-16 15:41:40,429 ERROR   create_inventory_item failed (500): {"errors":[{"errorId":25604,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"Input error. Seller Inventory Service can not publish the data. Product not found. Please try again or contact customer support.."}]}
+2026-04-16 15:41:40,432 INFO ============================================================
+2026-04-16 15:41:40,432 INFO LISTER DONE: 16 listed, 0 drafts, 5 failed
+2026-04-16 15:41:40,432 INFO ============================================================
+2026-04-16 15:41:41,806 INFO Email alert sent

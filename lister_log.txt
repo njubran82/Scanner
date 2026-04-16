@@ -2868,3 +2868,35 @@
 2026-04-16 20:11:47,258 INFO LISTER DONE: 10 listed, 0 drafts, 0 failed
 2026-04-16 20:11:47,258 INFO ============================================================
 2026-04-16 20:11:48,618 INFO Email alert sent
+2026-04-16 20:25:26,252 INFO ============================================================
+2026-04-16 20:25:26,252 INFO LISTER STARTED — 2026-04-16 20:25:26
+2026-04-16 20:25:26,252 INFO ============================================================
+2026-04-16 20:25:26,252 INFO Processing 8 opportunities...
+2026-04-16 20:25:26,548 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 20:25:28,029 INFO   Image: Open Library (9781506353074)
+2026-04-16 20:25:31,644 INFO   ✅ Listed | $76.99 | Profit: $7.22 | ListingID: 358453859759
+2026-04-16 20:25:32,645 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 20:25:33,669 INFO   Image: Open Library (9781071817179)
+2026-04-16 20:25:37,705 INFO   ✅ Listed | $99.43 | Profit: $24.23 | ListingID: 358453859832
+2026-04-16 20:25:38,705 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 20:25:40,053 INFO   Image: Open Library (9781138088610)
+2026-04-16 20:25:44,902 INFO   ✅ Listed | $79.07 | Profit: $10.98 | ListingID: 358453859938
+2026-04-16 20:25:45,902 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 20:25:47,062 INFO   Image: Open Library (9781118753651)
+2026-04-16 20:25:50,835 INFO   ✅ Listed | $116.37 | Profit: $40.58 | ListingID: 358453860045
+2026-04-16 20:25:51,835 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 20:25:54,087 INFO   Image: Open Library (9781009397759)
+2026-04-16 20:25:58,444 INFO   ✅ Listed | $49.18 | Profit: $5.67 | ListingID: 358453860190
+2026-04-16 20:25:59,444 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-16 20:26:00,491 INFO   Image: Open Library (9781119143642)
+2026-04-16 20:26:04,745 INFO   ✅ Listed | $34.10 | Profit: $6.89 | ListingID: 358453860275
+2026-04-16 20:26:05,745 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-16 20:26:06,933 INFO   Image: Open Library (9781572307810)
+2026-04-16 20:26:10,384 INFO   ✅ Listed | $49.40 | Profit: $11.85 | ListingID: 358453860412
+2026-04-16 20:26:11,385 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 20:26:12,367 INFO   Image: Open Library (9781462532766)
+2026-04-16 20:26:16,971 INFO   ✅ Listed | $70.49 | Profit: $19.72 | ListingID: 358453860507
+2026-04-16 20:26:17,973 INFO ============================================================
+2026-04-16 20:26:17,973 INFO LISTER DONE: 8 listed, 0 drafts, 0 failed
+2026-04-16 20:26:17,973 INFO ============================================================
+2026-04-16 20:26:18,855 INFO Email alert sent

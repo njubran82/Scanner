@@ -1712,3 +1712,34 @@
 2026-04-16 20:10:39,504 INFO   Unprofitable:     19
 2026-04-16 20:10:39,504 INFO   Amazon fallbacks: 0
 2026-04-16 20:10:39,504 INFO ============================================================
+2026-04-16 20:24:45,104 INFO ============================================================
+2026-04-16 20:24:45,104 INFO SCANNER STARTED — 2026-04-16 20:24:45
+2026-04-16 20:24:45,104 INFO ============================================================
+2026-04-16 20:24:45,453 INFO eBay token acquired
+2026-04-16 20:24:45,454 INFO No validated_isbns.json found — running without availability filter
+2026-04-16 20:24:45,454 INFO Fetching BooksGoat sheet...
+2026-04-16 20:24:46,068 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-16 20:24:46,068 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-16 20:24:46,069 INFO Fetched 90 books from BooksGoat
+2026-04-16 20:24:49,981 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-16 20:24:54,332 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-16 20:25:07,239 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-16 20:25:09,086 INFO ✅ Qualitative Data Analysis: A Methods Sourcebook, 4 | Cost: $57.99 | List: $76.99 | Profit: $7.22 | HIGH (20)
+2026-04-16 20:25:11,589 INFO ✅ Tests & Measurement for People Who (Think They) Ha | Cost: $59.99 | List: $99.43 | Profit: $24.23 | MEDIUM (1)
+2026-04-16 20:25:15,786 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $79.07 | Profit: $10.98 | HIGH (20)
+2026-04-16 20:25:16,276 INFO   Amazon ($122.49) < eBay ($142.67) — repricing to $116.37
+2026-04-16 20:25:16,276 INFO ✅ Rocket Propulsion Elements, 9th Edition by George  | Cost: $57.99 | List: $116.37 | Profit: $40.58 | MEDIUM (1)
+2026-04-16 20:25:21,019 INFO ✅ Introduction to Electrodynamics by David J. Griffi | Cost: $35.99 | List: $49.18 | Profit: $5.67 | HIGH (20)
+2026-04-16 20:25:21,465 INFO   Amazon ($35.90) < eBay ($62.37) — repricing to $34.10
+2026-04-16 20:25:21,466 INFO ✅ Understanding Behaviorism: Behavior, Culture, and  | Cost: $21.99 | List: $34.10 | Profit: $6.89 | MEDIUM (1)
+2026-04-16 20:25:21,896 INFO   Amazon ($52.00) < eBay ($70.39) — repricing to $49.40
+2026-04-16 20:25:21,896 INFO ✅ DBT Skills Training Handouts and Worksheets Second | Cost: $29.99 | List: $49.40 | Profit: $11.85 | MEDIUM (1)
+2026-04-16 20:25:23,881 INFO ✅ Eye Movement Desensitization and Reprocessing (EMD | Cost: $39.99 | List: $70.49 | Profit: $19.72 | MEDIUM (2)
+2026-04-16 20:25:25,994 INFO ============================================================
+2026-04-16 20:25:25,994 INFO SCAN COMPLETE: 8 opportunities found
+2026-04-16 20:25:25,994 INFO   Already listed:   61
+2026-04-16 20:25:25,994 INFO   Not validated:    0
+2026-04-16 20:25:25,994 INFO   No eBay data:     0
+2026-04-16 20:25:25,994 INFO   Unprofitable:     21
+2026-04-16 20:25:25,994 INFO   Amazon fallbacks: 0
+2026-04-16 20:25:25,994 INFO ============================================================

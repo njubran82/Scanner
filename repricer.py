@@ -123,7 +123,7 @@ def get_ebay_comps(isbn, app_token):
     params = {
         'q':            isbn,
         'category_ids': '267',
-        'filter':       'buyingOptions:{FIXED_PRICE}',
+        'filter':       'buyingOptions:{FIXED_PRICE},conditions:{NEW}',  # NEW only — exclude used/rental
         'sort':         'price',
         'limit':        '20',
     }
@@ -179,6 +179,7 @@ def calc_target_price(isbn, current_cost, current_listing_price,
 
 # ── eBay Offer Update ─────────────────────────────────────────────────────────
 def update_offer_price(token, offer_id, new_price):
+    # Fetch current offer only to extract required policy fields
     r = requests.get(
         f'https://api.ebay.com/sell/inventory/v1/offer/{offer_id}',
         headers={'Authorization': f'Bearer {token}'}, timeout=10
@@ -187,14 +188,21 @@ def update_offer_price(token, offer_id, new_price):
         log.error(f'  Could not fetch offer {offer_id}: {r.text[:200]}')
         return False
 
-    offer_data = r.json()
-    for field in ['offerId', 'status', 'listing', 'marketplaceId',
-                  'auditInfo', 'availableQuantity', 'soldQuantity',
-                  'warnings', 'errors']:
-        offer_data.pop(field, None)
+    current  = r.json()
+    policies = current.get('listingPolicies', {})
+    location = current.get('merchantLocationKey', '')
+    category = current.get('categoryId', '267')
 
-    offer_data['pricingSummary'] = {
-        'price': {'currency': 'USD', 'value': f'{new_price:.2f}'}
+    # Minimal payload — only fields we intend to change plus required structural fields.
+    # Avoids sending product/image data back which triggers eBay error 25002
+    # (image re-validation on offer update).
+    minimal = {
+        'pricingSummary': {
+            'price': {'currency': 'USD', 'value': f'{new_price:.2f}'}
+        },
+        'listingPolicies':    policies,
+        'merchantLocationKey': location,
+        'categoryId':         category,
     }
 
     r2 = requests.put(
@@ -204,7 +212,7 @@ def update_offer_price(token, offer_id, new_price):
             'Content-Type':     'application/json',
             'Content-Language': 'en-US'
         },
-        json=offer_data, timeout=15
+        json=minimal, timeout=15
     )
     if r2.status_code not in [200, 204]:
         log.error(f'  PUT failed ({r2.status_code}): {r2.text[:300]}')

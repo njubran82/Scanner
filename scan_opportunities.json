@@ -1,35 +1,7 @@
 {
-  "scan_date": "2026-04-16T21:12:31.316939",
+  "scan_date": "2026-04-16T21:31:35.533775",
   "total_books": 90,
   "opportunities": [
-    {
-      "title": "Clinical Handbook of Couple Therapy, 6th Edition by Jay L. Lebow (ISBN 9781462550128) - Hardcover",
-      "isbn13": "9781462550128",
-      "isbn10": "1462550126",
-      "cost": 66.99,
-      "amazon_price": 117.16,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781462550128",
-      "median_price": 168.735,
-      "listing_price": 111.3,
-      "profit": 27.28,
-      "confidence": "HIGH",
-      "num_comps": 14,
-      "scanned_at": "2026-04-16T21:11:52.220537"
-    },
-    {
-      "title": "Qualitative Data Analysis: A Methods Sourcebook, 4th Edition By Matthew B. Miles, A. Michael Huberman & Johnny Salda\u00c3\u00b1a (ISBN: 9781506353074) - Paperback",
-      "isbn13": "9781506353074",
-      "isbn10": "150635307X",
-      "cost": 57.99,
-      "amazon_price": 89.89,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781506353074",
-      "median_price": 87.49,
-      "listing_price": 76.99,
-      "profit": 7.22,
-      "confidence": "HIGH",
-      "num_comps": 20,
-      "scanned_at": "2026-04-16T21:12:10.826619"
-    },
     {
       "title": "Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback",
       "isbn13": "9781138088610",
@@ -42,77 +14,7 @@
       "profit": 10.98,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-16T21:12:17.172650"
-    },
-    {
-      "title": "Research and Evaluation in Education and Psychology, 6th Edition by Donna M. Mertens (ISBN 9781071853801) - Paperback",
-      "isbn13": "9781071853801",
-      "isbn10": "1071853805",
-      "cost": 55.99,
-      "amazon_price": 98.99,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781071853801",
-      "median_price": 79.34,
-      "listing_price": 69.82,
-      "profit": 3.15,
-      "confidence": "HIGH",
-      "num_comps": 20,
-      "scanned_at": "2026-04-16T21:12:19.670726"
-    },
-    {
-      "title": "Introduction to Electrodynamics by David J. Griffiths, 5th Edition (ISBN 9781009397759) - Hardcover",
-      "isbn13": "9781009397759",
-      "isbn10": "1009397753",
-      "cost": 35.99,
-      "amazon_price": 55.49,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781009397759",
-      "median_price": 55.89,
-      "listing_price": 49.18,
-      "profit": 5.67,
-      "confidence": "HIGH",
-      "num_comps": 20,
-      "scanned_at": "2026-04-16T21:12:21.733391"
-    },
-    {
-      "title": "How to Write and Publish a Scientific Paper",
-      "isbn13": "9781440878848",
-      "isbn10": "1440878846",
-      "cost": 29.99,
-      "amazon_price": 44.62,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781440878848",
-      "median_price": 56.775,
-      "listing_price": 42.39,
-      "profit": 5.91,
-      "confidence": "HIGH",
-      "num_comps": 20,
-      "scanned_at": "2026-04-16T21:12:23.801737"
-    },
-    {
-      "title": "ACSM's Exercise Management for Persons With Chronic Diseases",
-      "isbn13": "9781450434140",
-      "isbn10": "1450434142",
-      "cost": 43.99,
-      "amazon_price": 73.0,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781450434140",
-      "median_price": 92.635,
-      "listing_price": 69.35,
-      "profit": 14.75,
-      "confidence": "HIGH",
-      "num_comps": 14,
-      "scanned_at": "2026-04-16T21:12:25.889488"
-    },
-    {
-      "title": "The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy",
-      "isbn13": "9781683732556",
-      "isbn10": "1683732553",
-      "cost": 19.99,
-      "amazon_price": 33.5,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781683732556",
-      "median_price": 33.61,
-      "listing_price": 29.58,
-      "profit": 5.06,
-      "confidence": "HIGH",
-      "num_comps": 20,
-      "scanned_at": "2026-04-16T21:12:29.283755"
+      "scanned_at": "2026-04-16T21:31:31.402572"
     }
   ]
 }

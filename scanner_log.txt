@@ -1846,3 +1846,24 @@
 2026-04-16 21:12:31,317 INFO   Unprofitable:     20
 2026-04-16 21:12:31,317 INFO   Amazon fallbacks: 0
 2026-04-16 21:12:31,317 INFO ============================================================
+2026-04-16 21:31:01,054 INFO ============================================================
+2026-04-16 21:31:01,055 INFO SCANNER STARTED — 2026-04-16 21:31:01
+2026-04-16 21:31:01,055 INFO ============================================================
+2026-04-16 21:31:01,303 INFO eBay token acquired
+2026-04-16 21:31:01,304 INFO No validated_isbns.json found — running without availability filter
+2026-04-16 21:31:01,304 INFO Fetching BooksGoat sheet...
+2026-04-16 21:31:01,911 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-16 21:31:01,911 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-16 21:31:01,912 INFO Fetched 90 books from BooksGoat
+2026-04-16 21:31:06,528 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-16 21:31:10,931 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-16 21:31:24,854 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-16 21:31:31,402 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $79.07 | Profit: $10.98 | HIGH (20)
+2026-04-16 21:31:35,533 INFO ============================================================
+2026-04-16 21:31:35,534 INFO SCAN COMPLETE: 1 opportunities found
+2026-04-16 21:31:35,534 INFO   Already listed:   69
+2026-04-16 21:31:35,534 INFO   Not validated:    0
+2026-04-16 21:31:35,534 INFO   No eBay data:     0
+2026-04-16 21:31:35,534 INFO   Unprofitable:     20
+2026-04-16 21:31:35,534 INFO   Amazon fallbacks: 0
+2026-04-16 21:31:35,534 INFO ============================================================

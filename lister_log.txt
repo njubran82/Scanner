@@ -2775,3 +2775,58 @@
 2026-04-16 15:41:40,432 INFO LISTER DONE: 16 listed, 0 drafts, 5 failed
 2026-04-16 15:41:40,432 INFO ============================================================
 2026-04-16 15:41:41,806 INFO Email alert sent
+2026-04-16 19:27:37,488 INFO ============================================================
+2026-04-16 19:27:37,488 INFO LISTER STARTED — 2026-04-16 19:27:37
+2026-04-16 19:27:37,488 INFO ============================================================
+2026-04-16 19:27:37,488 INFO Processing 15 opportunities...
+2026-04-16 19:27:37,650 INFO Listing: Clinical Handbook of Couple Therapy, 6th Edition by Jay L. L
+2026-04-16 19:27:38,097 INFO   Image: Open Library (9781462550128)
+2026-04-16 19:27:42,617 INFO   ✅ Listed | $111.30 | Profit: $27.28 | ListingID: 358453724588
+2026-04-16 19:27:43,618 INFO Listing: The Contractor's Guide to Quality Concrete Construction, 4th
+2026-04-16 19:27:44,387 WARNING   No image found for 9781641950473 — saving as draft for manual image upload
+2026-04-16 19:27:46,022 INFO   Draft offer already exists (152565518011) — updating price, keeping unpublished
+2026-04-16 19:27:46,791 INFO   📋 Draft saved (offer 152565518011) — add image in Seller Hub to publish
+2026-04-16 19:27:46,792 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-16 19:27:47,249 INFO   Image: Open Library (9780867157994)
+2026-04-16 19:27:50,678 INFO   ✅ Listed | $151.36 | Profit: $41.21 | ListingID: 358453725269
+2026-04-16 19:27:51,678 INFO Listing: Qualitative Data Analysis: A Methods Sourcebook, 4th Edition
+2026-04-16 19:27:51,913 INFO   Image: Open Library (9781506353074)
+2026-04-16 19:27:56,333 INFO   ✅ Listed | $76.99 | Profit: $7.22 | ListingID: 358453725632
+2026-04-16 19:27:57,334 INFO Listing: Real Estate Finance and Investments: Risks and Opportunities
+2026-04-16 19:27:58,861 WARNING   No image found for 9798218328634 — saving as draft for manual image upload
+2026-04-16 19:28:00,934 INFO   📋 Draft saved (offer 152704613011) — add image in Seller Hub to publish
+2026-04-16 19:28:00,935 INFO Listing: Tests & Measurement for People Who (Think They) Hate Tests &
+2026-04-16 19:28:01,210 INFO   Image: Open Library (9781071817179)
+2026-04-16 19:28:06,527 INFO   ✅ Listed | $99.43 | Profit: $24.23 | ListingID: 358453726326
+2026-04-16 19:28:07,527 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-16 19:28:07,836 INFO   Image: Open Library (9781138088610)
+2026-04-16 19:28:12,223 INFO   ✅ Listed | $79.07 | Profit: $10.98 | ListingID: 358453727079
+2026-04-16 19:28:13,223 INFO Listing: Rocket Propulsion Elements, 9th Edition by George P. Sutton 
+2026-04-16 19:28:13,505 INFO   Image: Open Library (9781118753651)
+2026-04-16 19:28:18,046 INFO   ✅ Listed | $116.37 | Profit: $40.58 | ListingID: 358453728139
+2026-04-16 19:28:19,046 INFO Listing: 2021 Uniform Mechanical Code Soft Cover with Tabs (ISBN 9781
+2026-04-16 19:28:19,512 WARNING   No image found for 9781944366445 — saving as draft for manual image upload
+2026-04-16 19:28:20,390 INFO   Draft offer already exists (152565994011) — updating price, keeping unpublished
+2026-04-16 19:28:20,978 INFO   📋 Draft saved (offer 152565994011) — add image in Seller Hub to publish
+2026-04-16 19:28:20,982 INFO Listing: Research and Evaluation in Education and Psychology, 6th Edi
+2026-04-16 19:28:21,516 INFO   Image: Amazon CDN
+2026-04-16 19:28:25,429 INFO   ✅ Listed | $69.82 | Profit: $3.15 | ListingID: 358453728779
+2026-04-16 19:28:26,429 INFO Listing: Introduction to Electrodynamics by David J. Griffiths, 5th E
+2026-04-16 19:28:26,790 INFO   Image: Open Library (9781009397759)
+2026-04-16 19:28:31,605 INFO   ✅ Listed | $49.18 | Profit: $5.67 | ListingID: 358453729023
+2026-04-16 19:28:32,605 INFO Listing: Understanding Behaviorism: Behavior, Culture, and Evolution
+2026-04-16 19:28:32,911 INFO   Image: Open Library (9781119143642)
+2026-04-16 19:28:36,376 INFO   ✅ Listed | $34.10 | Profit: $6.89 | ListingID: 358453729327
+2026-04-16 19:28:37,376 INFO Listing: DBT Skills Training Handouts and Worksheets Second Edition
+2026-04-16 19:28:37,820 INFO   Image: Open Library (9781572307810)
+2026-04-16 19:28:42,945 INFO   ✅ Listed | $49.40 | Profit: $11.85 | ListingID: 358453729653
+2026-04-16 19:28:43,945 INFO Listing: Encyclopedia of Counseling
+2026-04-16 19:28:44,259 INFO   Image: Open Library (9781138942653)
+2026-04-16 19:28:49,069 INFO   ✅ Listed | $37.62 | Profit: $1.87 | ListingID: 358453729957
+2026-04-16 19:28:50,069 INFO Listing: Eye Movement Desensitization and Reprocessing (EMDR) Therapy
+2026-04-16 19:28:50,353 INFO   Image: Open Library (9781462532766)
+2026-04-16 19:28:55,435 INFO   ✅ Listed | $70.49 | Profit: $19.72 | ListingID: 358453730262
+2026-04-16 19:28:56,437 INFO ============================================================
+2026-04-16 19:28:56,437 INFO LISTER DONE: 12 listed, 3 drafts, 0 failed
+2026-04-16 19:28:56,437 INFO ============================================================
+2026-04-16 19:28:57,908 INFO Email alert sent

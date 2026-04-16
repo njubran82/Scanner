@@ -1636,3 +1636,46 @@
 2026-04-16 15:39:39,447 INFO   Unprofitable:     21
 2026-04-16 15:39:39,447 INFO   Amazon fallbacks: 1
 2026-04-16 15:39:39,447 INFO ============================================================
+2026-04-16 19:26:47,945 INFO ============================================================
+2026-04-16 19:26:47,945 INFO SCANNER STARTED — 2026-04-16 19:26:47
+2026-04-16 19:26:47,946 INFO ============================================================
+2026-04-16 19:26:48,191 INFO eBay token acquired
+2026-04-16 19:26:48,191 INFO No validated_isbns.json found — running without availability filter
+2026-04-16 19:26:48,191 INFO Fetching BooksGoat sheet...
+2026-04-16 19:26:49,107 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-16 19:26:49,107 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-16 19:26:49,108 INFO Fetched 90 books from BooksGoat
+2026-04-16 19:26:55,732 INFO   Amazon ($117.16) < eBay ($148.49) — repricing to $111.30
+2026-04-16 19:26:55,733 INFO ✅ Clinical Handbook of Couple Therapy, 6th Edition b | Cost: $66.99 | List: $111.30 | Profit: $27.28 | HIGH (14)
+2026-04-16 19:26:56,106 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-16 19:27:00,568 INFO   Amazon ($81.42) < eBay ($114.71) — repricing to $77.35
+2026-04-16 19:27:00,568 INFO ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $48.99 | List: $77.35 | Profit: $16.53 | HIGH (7)
+2026-04-16 19:27:02,707 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-16 19:27:09,403 INFO   Amazon fallback: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN
+2026-04-16 19:27:09,403 INFO ✅ Zero Bone Loss Concepts by Tomas Linkevicius (ISBN | Cost: $86.99 | List: $151.36 | Profit: $41.21 | FALLBACK_AMAZON (0)
+2026-04-16 19:27:16,940 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-16 19:27:18,733 INFO ✅ Qualitative Data Analysis: A Methods Sourcebook, 4 | Cost: $57.99 | List: $76.99 | Profit: $7.22 | HIGH (20)
+2026-04-16 19:27:20,329 INFO   Amazon fallback: Real Estate Finance and Investments: Risks and Opp
+2026-04-16 19:27:20,329 INFO ✅ Real Estate Finance and Investments: Risks and Opp | Cost: $96.99 | List: $166.89 | Profit: $44.37 | FALLBACK_AMAZON (0)
+2026-04-16 19:27:22,625 INFO ✅ Tests & Measurement for People Who (Think They) Ha | Cost: $59.99 | List: $99.43 | Profit: $24.23 | MEDIUM (1)
+2026-04-16 19:27:26,629 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $79.07 | Profit: $10.98 | HIGH (20)
+2026-04-16 19:27:27,038 INFO   Amazon ($122.49) < eBay ($142.67) — repricing to $116.37
+2026-04-16 19:27:27,038 INFO ✅ Rocket Propulsion Elements, 9th Edition by George  | Cost: $57.99 | List: $116.37 | Profit: $40.58 | MEDIUM (1)
+2026-04-16 19:27:28,323 INFO   Amazon fallback: 2021 Uniform Mechanical Code Soft Cover with Tabs 
+2026-04-16 19:27:28,323 INFO ✅ 2021 Uniform Mechanical Code Soft Cover with Tabs  | Cost: $76.99 | List: $117.92 | Profit: $22.89 | FALLBACK_AMAZON (0)
+2026-04-16 19:27:30,727 INFO ✅ Research and Evaluation in Education and Psycholog | Cost: $55.99 | List: $69.82 | Profit: $3.15 | HIGH (20)
+2026-04-16 19:27:32,683 INFO ✅ Introduction to Electrodynamics by David J. Griffi | Cost: $35.99 | List: $49.18 | Profit: $5.67 | HIGH (20)
+2026-04-16 19:27:33,096 INFO   Amazon ($35.90) < eBay ($62.37) — repricing to $34.10
+2026-04-16 19:27:33,096 INFO ✅ Understanding Behaviorism: Behavior, Culture, and  | Cost: $21.99 | List: $34.10 | Profit: $6.89 | MEDIUM (1)
+2026-04-16 19:27:33,538 INFO   Amazon ($52.00) < eBay ($70.39) — repricing to $49.40
+2026-04-16 19:27:33,538 INFO ✅ DBT Skills Training Handouts and Worksheets Second | Cost: $29.99 | List: $49.40 | Profit: $11.85 | MEDIUM (1)
+2026-04-16 19:27:34,390 INFO ✅ Encyclopedia of Counseling                         | Cost: $29.99 | List: $37.62 | Profit: $1.87 | MEDIUM (1)
+2026-04-16 19:27:35,275 INFO ✅ Eye Movement Desensitization and Reprocessing (EMD | Cost: $39.99 | List: $70.49 | Profit: $19.72 | MEDIUM (2)
+2026-04-16 19:27:37,064 INFO ============================================================
+2026-04-16 19:27:37,064 INFO SCAN COMPLETE: 15 opportunities found
+2026-04-16 19:27:37,064 INFO   Already listed:   56
+2026-04-16 19:27:37,064 INFO   Not validated:    0
+2026-04-16 19:27:37,064 INFO   No eBay data:     0
+2026-04-16 19:27:37,064 INFO   Unprofitable:     19
+2026-04-16 19:27:37,064 INFO   Amazon fallbacks: 3
+2026-04-16 19:27:37,064 INFO ============================================================

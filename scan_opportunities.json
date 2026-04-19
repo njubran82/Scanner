@@ -1,21 +1,7 @@
 {
-  "scan_date": "2026-04-19T17:32:12.568854",
+  "scan_date": "2026-04-19T17:41:44.924081",
   "total_books": 90,
   "opportunities": [
-    {
-      "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 9780867157994) - Hardcover",
-      "isbn13": "9780867157994",
-      "isbn10": "0867157992",
-      "cost": 86.99,
-      "amazon_price": 172.0,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994",
-      "median_price": 172.0,
-      "listing_price": 151.36,
-      "profit": 41.21,
-      "confidence": "FALLBACK_AMAZON",
-      "num_comps": 0,
-      "scanned_at": "2026-04-19T17:31:51.897622"
-    },
     {
       "title": "Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback",
       "isbn13": "9781138088610",
@@ -28,7 +14,7 @@
       "profit": 10.67,
       "confidence": "HIGH",
       "num_comps": 19,
-      "scanned_at": "2026-04-19T17:32:07.242893"
+      "scanned_at": "2026-04-19T17:41:39.960678"
     },
     {
       "title": "The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy",
@@ -42,7 +28,7 @@
       "profit": 5.07,
       "confidence": "HIGH",
       "num_comps": 20,
-      "scanned_at": "2026-04-19T17:32:10.691614"
+      "scanned_at": "2026-04-19T17:41:43.204421"
     }
   ]
 }

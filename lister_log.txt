@@ -3056,3 +3056,17 @@
 2026-04-19 17:32:33,816 INFO LISTER DONE: 3 listed, 0 drafts, 0 failed
 2026-04-19 17:32:33,816 INFO ============================================================
 2026-04-19 17:32:34,417 INFO Email alert sent
+2026-04-19 17:41:45,179 INFO ============================================================
+2026-04-19 17:41:45,179 INFO LISTER STARTED — 2026-04-19 17:41:45
+2026-04-19 17:41:45,179 INFO ============================================================
+2026-04-19 17:41:45,179 INFO Processing 2 opportunities...
+2026-04-19 17:41:45,459 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-19 17:41:45,934 INFO   Image: Open Library (9781138088610)
+2026-04-19 17:41:49,273 INFO   ✅ Listed | $78.70 | Profit: $10.67 | ListingID: 358463881000
+2026-04-19 17:41:50,274 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-19 17:41:50,643 INFO   Image: Open Library (9781683732556)
+2026-04-19 17:41:54,191 INFO   ✅ Listed | $29.59 | Profit: $5.07 | ListingID: 358463881050
+2026-04-19 17:41:55,193 INFO ============================================================
+2026-04-19 17:41:55,193 INFO LISTER DONE: 2 listed, 0 drafts, 0 failed
+2026-04-19 17:41:55,193 INFO ============================================================
+2026-04-19 17:41:56,554 INFO Email alert sent

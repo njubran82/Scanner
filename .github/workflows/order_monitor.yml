@@ -1,0 +1,49 @@
+﻿name: Order Monitor
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'  # Every 2 hours
+  workflow_dispatch:
+
+jobs:
+  check-orders:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests
+
+      - name: Check for new orders
+        env:
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_APP_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CERT_ID }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+          SMTP_HOST:          ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:          ${{ secrets.SMTP_PORT }}
+          SMTP_USER:          ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD:      ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:         ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:           ${{ secrets.EMAIL_TO }}
+        run: python order_monitor.py
+
+      - name: Save processed orders state
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add orders_processed.json || true
+          git stash || true
+          git pull --rebase origin main || true
+          git stash pop || true
+          git add orders_processed.json || true
+          git diff --staged --quiet || git commit -m "Order monitor $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push

@@ -1867,3 +1867,25 @@
 2026-04-16 21:31:35,534 INFO   Unprofitable:     20
 2026-04-16 21:31:35,534 INFO   Amazon fallbacks: 0
 2026-04-16 21:31:35,534 INFO ============================================================
+2026-04-19 14:03:44,400 INFO ============================================================
+2026-04-19 14:03:44,400 INFO SCANNER STARTED — 2026-04-19 14:03:44
+2026-04-19 14:03:44,400 INFO ============================================================
+2026-04-19 14:03:44,876 INFO eBay token acquired
+2026-04-19 14:03:44,876 INFO No validated_isbns.json found — running without availability filter
+2026-04-19 14:03:44,876 INFO Fetching BooksGoat sheet...
+2026-04-19 14:03:45,771 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-19 14:03:45,771 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-19 14:03:45,772 INFO Fetched 90 books from BooksGoat
+2026-04-19 14:03:49,686 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-19 14:03:53,897 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-19 14:04:06,080 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-19 14:04:12,172 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $78.70 | Profit: $10.67 | HIGH (19)
+2026-04-19 14:04:14,024 INFO ✅ Motivational Interviewing, Fourth Edition          | Cost: $21.99 | List: $48.40 | Profit: $19.00 | HIGH (4)
+2026-04-19 14:04:16,089 INFO ============================================================
+2026-04-19 14:04:16,089 INFO SCAN COMPLETE: 2 opportunities found
+2026-04-19 14:04:16,089 INFO   Already listed:   69
+2026-04-19 14:04:16,089 INFO   Not validated:    0
+2026-04-19 14:04:16,089 INFO   No eBay data:     0
+2026-04-19 14:04:16,089 INFO   Unprofitable:     19
+2026-04-19 14:04:16,089 INFO   Amazon fallbacks: 0
+2026-04-19 14:04:16,089 INFO ============================================================

@@ -1,5 +1,5 @@
 {
-  "scan_date": "2026-04-16T21:31:35.533775",
+  "scan_date": "2026-04-19T14:04:16.089340",
   "total_books": 90,
   "opportunities": [
     {
@@ -9,12 +9,26 @@
       "cost": 55.99,
       "amazon_price": 123.38,
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781138088610",
-      "median_price": 89.855,
-      "listing_price": 79.07,
-      "profit": 10.98,
+      "median_price": 89.43,
+      "listing_price": 78.7,
+      "profit": 10.67,
       "confidence": "HIGH",
-      "num_comps": 20,
-      "scanned_at": "2026-04-16T21:31:31.402572"
+      "num_comps": 19,
+      "scanned_at": "2026-04-19T14:04:12.172525"
+    },
+    {
+      "title": "Motivational Interviewing, Fourth Edition",
+      "isbn13": "9781462552795",
+      "isbn10": "146255279X",
+      "cost": 21.99,
+      "amazon_price": 61.49,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781462552795",
+      "median_price": 54.995,
+      "listing_price": 48.4,
+      "profit": 19.0,
+      "confidence": "HIGH",
+      "num_comps": 4,
+      "scanned_at": "2026-04-19T14:04:14.024449"
     }
   ]
 }

@@ -3025,3 +3025,17 @@
 2026-04-16 21:31:42,243 INFO LISTER DONE: 1 listed, 0 drafts, 0 failed
 2026-04-16 21:31:42,243 INFO ============================================================
 2026-04-16 21:31:43,050 INFO Email alert sent
+2026-04-19 14:04:16,350 INFO ============================================================
+2026-04-19 14:04:16,350 INFO LISTER STARTED — 2026-04-19 14:04:16
+2026-04-19 14:04:16,350 INFO ============================================================
+2026-04-19 14:04:16,350 INFO Processing 2 opportunities...
+2026-04-19 14:04:16,569 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-19 14:04:17,231 INFO   Image: Open Library (9781138088610)
+2026-04-19 14:04:21,229 INFO   ✅ Listed | $78.70 | Profit: $10.67 | ListingID: 358463422954
+2026-04-19 14:04:22,229 INFO Listing: Motivational Interviewing, Fourth Edition
+2026-04-19 14:04:22,805 INFO   Image: Open Library (9781462552795)
+2026-04-19 14:04:26,393 INFO   ✅ Listed | $48.40 | Profit: $19.00 | ListingID: 358463423035
+2026-04-19 14:04:27,395 INFO ============================================================
+2026-04-19 14:04:27,395 INFO LISTER DONE: 2 listed, 0 drafts, 0 failed
+2026-04-19 14:04:27,395 INFO ============================================================
+2026-04-19 14:04:28,529 INFO Email alert sent

@@ -1889,3 +1889,27 @@
 2026-04-19 14:04:16,089 INFO   Unprofitable:     19
 2026-04-19 14:04:16,089 INFO   Amazon fallbacks: 0
 2026-04-19 14:04:16,089 INFO ============================================================
+2026-04-19 17:31:36,585 INFO ============================================================
+2026-04-19 17:31:36,585 INFO SCANNER STARTED — 2026-04-19 17:31:36
+2026-04-19 17:31:36,585 INFO ============================================================
+2026-04-19 17:31:36,890 INFO eBay token acquired
+2026-04-19 17:31:36,891 INFO No validated_isbns.json found — running without availability filter
+2026-04-19 17:31:36,891 INFO Fetching BooksGoat sheet...
+2026-04-19 17:31:37,416 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-19 17:31:37,416 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-19 17:31:37,416 INFO Fetched 90 books from BooksGoat
+2026-04-19 17:31:41,365 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-19 17:31:45,636 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-19 17:31:51,897 INFO   Amazon fallback: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN
+2026-04-19 17:31:51,897 INFO ✅ Zero Bone Loss Concepts by Tomas Linkevicius (ISBN | Cost: $86.99 | List: $151.36 | Profit: $41.21 | FALLBACK_AMAZON (0)
+2026-04-19 17:32:00,900 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-19 17:32:07,242 INFO ✅ Evolutionary Psychology: The New Science of the Mi | Cost: $55.99 | List: $78.70 | Profit: $10.67 | HIGH (19)
+2026-04-19 17:32:10,691 INFO ✅ The Comprehensive Clinician's Guide to Cognitive B | Cost: $19.99 | List: $29.59 | Profit: $5.07 | HIGH (20)
+2026-04-19 17:32:12,569 INFO ============================================================
+2026-04-19 17:32:12,569 INFO SCAN COMPLETE: 3 opportunities found
+2026-04-19 17:32:12,569 INFO   Already listed:   68
+2026-04-19 17:32:12,569 INFO   Not validated:    0
+2026-04-19 17:32:12,569 INFO   No eBay data:     0
+2026-04-19 17:32:12,569 INFO   Unprofitable:     19
+2026-04-19 17:32:12,569 INFO   Amazon fallbacks: 1
+2026-04-19 17:32:12,569 INFO ============================================================

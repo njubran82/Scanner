@@ -3039,3 +3039,20 @@
 2026-04-19 14:04:27,395 INFO LISTER DONE: 2 listed, 0 drafts, 0 failed
 2026-04-19 14:04:27,395 INFO ============================================================
 2026-04-19 14:04:28,529 INFO Email alert sent
+2026-04-19 17:32:12,826 INFO ============================================================
+2026-04-19 17:32:12,826 INFO LISTER STARTED — 2026-04-19 17:32:12
+2026-04-19 17:32:12,826 INFO ============================================================
+2026-04-19 17:32:12,826 INFO Processing 3 opportunities...
+2026-04-19 17:32:13,100 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-19 17:32:14,214 INFO   Image: Open Library (9780867157994)
+2026-04-19 17:32:19,237 INFO   ✅ Listed | $151.36 | Profit: $41.21 | ListingID: 358463862177
+2026-04-19 17:32:20,237 INFO Listing: Evolutionary Psychology: The New Science of the Mind, 6th Ed
+2026-04-19 17:32:21,850 INFO   Image: Open Library (9781138088610)
+2026-04-19 17:32:26,625 INFO   ✅ Listed | $78.70 | Profit: $10.67 | ListingID: 358463862347
+2026-04-19 17:32:27,625 INFO Listing: The Comprehensive Clinician's Guide to Cognitive Behavioral 
+2026-04-19 17:32:28,849 INFO   Image: Open Library (9781683732556)
+2026-04-19 17:32:32,814 INFO   ✅ Listed | $29.59 | Profit: $5.07 | ListingID: 358463862471
+2026-04-19 17:32:33,816 INFO ============================================================
+2026-04-19 17:32:33,816 INFO LISTER DONE: 3 listed, 0 drafts, 0 failed
+2026-04-19 17:32:33,816 INFO ============================================================
+2026-04-19 17:32:34,417 INFO Email alert sent

@@ -1279,9 +1279,23 @@
       "listed_date": "2026-04-19T14:04:26.391471",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781462552795",
       "needs_image": false
+    },
+    "9780867157994": {
+      "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 9780867157994) - Hardcover",
+      "isbn13": "9780867157994",
+      "isbn10": "0867157992",
+      "offer_id": "153846451011",
+      "listing_id": "358463862177",
+      "cost": 86.99,
+      "listing_price": 151.36,
+      "profit": 41.21,
+      "confidence": "FALLBACK_AMAZON",
+      "listed_date": "2026-04-19T17:32:19.235622",
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994",
+      "needs_image": false
     }
   },
-  "last_run": "2026-04-19T14:04:27.393366",
+  "last_run": "2026-04-19T17:32:33.814576",
   "listed_isbns": [
     "9781560915263",
     "9781285769417",
@@ -1365,7 +1379,8 @@
     "9781009397759",
     "9781440878848",
     "9781450434140",
-    "9781462552795"
+    "9781462552795",
+    "9780867157994"
   ],
-  "last_repricer_run": "2026-04-19T14:06:15.354780"
+  "last_repricer_run": "2026-04-19T17:34:08.929544"
 }

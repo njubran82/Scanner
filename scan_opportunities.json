@@ -1,7 +1,21 @@
 {
-  "scan_date": "2026-04-19T14:04:16.089340",
+  "scan_date": "2026-04-19T17:32:12.568854",
   "total_books": 90,
   "opportunities": [
+    {
+      "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 9780867157994) - Hardcover",
+      "isbn13": "9780867157994",
+      "isbn10": "0867157992",
+      "cost": 86.99,
+      "amazon_price": 172.0,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994",
+      "median_price": 172.0,
+      "listing_price": 151.36,
+      "profit": 41.21,
+      "confidence": "FALLBACK_AMAZON",
+      "num_comps": 0,
+      "scanned_at": "2026-04-19T17:31:51.897622"
+    },
     {
       "title": "Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback",
       "isbn13": "9781138088610",
@@ -14,21 +28,21 @@
       "profit": 10.67,
       "confidence": "HIGH",
       "num_comps": 19,
-      "scanned_at": "2026-04-19T14:04:12.172525"
+      "scanned_at": "2026-04-19T17:32:07.242893"
     },
     {
-      "title": "Motivational Interviewing, Fourth Edition",
-      "isbn13": "9781462552795",
-      "isbn10": "146255279X",
-      "cost": 21.99,
-      "amazon_price": 61.49,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781462552795",
-      "median_price": 54.995,
-      "listing_price": 48.4,
-      "profit": 19.0,
+      "title": "The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy",
+      "isbn13": "9781683732556",
+      "isbn10": "1683732553",
+      "cost": 19.99,
+      "amazon_price": 33.5,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781683732556",
+      "median_price": 33.62,
+      "listing_price": 29.59,
+      "profit": 5.07,
       "confidence": "HIGH",
-      "num_comps": 4,
-      "scanned_at": "2026-04-19T14:04:14.024449"
+      "num_comps": 20,
+      "scanned_at": "2026-04-19T17:32:10.691614"
     }
   ]
 }

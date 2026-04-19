@@ -51,6 +51,30 @@ logging.basicConfig(
     ],
 )
 log = logging.getLogger(__name__)
+import smtplib
+from email.mime.text import MIMEText
+
+def send_alert(subject: str, body: str):
+    smtp_host     = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
+    smtp_port     = int(os.environ.get('SMTP_PORT', '587'))
+    smtp_user     = os.environ.get('SMTP_USER', '')
+    smtp_password = os.environ.get('SMTP_PASSWORD', '')
+    email_from    = os.environ.get('EMAIL_FROM', smtp_user)
+    email_to      = os.environ.get('EMAIL_TO', smtp_user)
+    if not smtp_user or not smtp_password:
+        return
+    try:
+        msg = MIMEText(body)
+        msg['Subject'] = subject
+        msg['From']    = email_from
+        msg['To']      = email_to
+        with smtplib.SMTP(smtp_host, smtp_port) as s:
+            s.starttls()
+            s.login(smtp_user, smtp_password)
+            s.sendmail(email_from, [email_to], msg.as_string())
+    except Exception as e:
+        pass
+
 
 
 # ════════════════════════════════════════════════════════════════

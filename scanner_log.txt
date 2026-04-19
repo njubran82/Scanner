@@ -1956,3 +1956,28 @@
 2026-04-19 17:50:14,126 INFO   Unprofitable:     21
 2026-04-19 17:50:14,126 INFO   Amazon fallbacks: 1
 2026-04-19 17:50:14,127 INFO ============================================================
+2026-04-19 23:40:48,608 INFO ============================================================
+2026-04-19 23:40:48,609 INFO SCANNER STARTED — 2026-04-19 23:40:48
+2026-04-19 23:40:48,609 INFO ============================================================
+2026-04-19 23:40:48,895 INFO eBay token acquired
+2026-04-19 23:40:48,896 INFO No validated_isbns.json found — running without availability filter
+2026-04-19 23:40:48,896 INFO Fetching BooksGoat sheet...
+2026-04-19 23:40:49,955 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-19 23:40:49,955 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-19 23:40:49,956 INFO Fetched 90 books from BooksGoat
+2026-04-19 23:40:53,905 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-19 23:40:58,230 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-19 23:41:04,562 INFO   Amazon fallback: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN
+2026-04-19 23:41:04,562 INFO ✅ Zero Bone Loss Concepts by Tomas Linkevicius (ISBN | Cost: $86.99 | List: $151.36 | Profit: $41.21 | FALLBACK_AMAZON (0)
+2026-04-19 23:41:06,554 INFO   Amazon fallback: Molecular Biology of the Cell, 7th Edition by Bruc
+2026-04-19 23:41:06,554 INFO ✅ Molecular Biology of the Cell, 7th Edition by Bruc | Cost: $146.99 | List: $220.72 | Profit: $39.96 | FALLBACK_AMAZON (0)
+2026-04-19 23:41:12,791 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-19 23:41:22,409 INFO   Amazon ($44.62) < eBay ($49.96) — repricing to $42.39
+2026-04-19 23:41:28,041 INFO ============================================================
+2026-04-19 23:41:28,041 INFO SCAN COMPLETE: 2 opportunities found
+2026-04-19 23:41:28,041 INFO   Already listed:   67
+2026-04-19 23:41:28,041 INFO   Not validated:    0
+2026-04-19 23:41:28,041 INFO   No eBay data:     0
+2026-04-19 23:41:28,041 INFO   Unprofitable:     21
+2026-04-19 23:41:28,041 INFO   Amazon fallbacks: 2
+2026-04-19 23:41:28,041 INFO ============================================================

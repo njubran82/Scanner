@@ -1,5 +1,34 @@
 {
-  "scan_date": "2026-04-19T17:50:14.126475",
+  "scan_date": "2026-04-19T23:41:28.040986",
   "total_books": 90,
-  "opportunities": []
+  "opportunities": [
+    {
+      "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 9780867157994) - Hardcover",
+      "isbn13": "9780867157994",
+      "isbn10": "0867157992",
+      "cost": 86.99,
+      "amazon_price": 172.0,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994",
+      "median_price": 172.0,
+      "listing_price": 151.36,
+      "profit": 41.21,
+      "confidence": "FALLBACK_AMAZON",
+      "num_comps": 0,
+      "scanned_at": "2026-04-19T23:41:04.562758"
+    },
+    {
+      "title": "Molecular Biology of the Cell, 7th Edition by Bruce Alberts (ISBN 9780393884821) - Hardcover",
+      "isbn13": "9780393884821",
+      "isbn10": "0393884821",
+      "cost": 146.99,
+      "amazon_price": 250.82,
+      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780393884821",
+      "median_price": 250.82,
+      "listing_price": 220.72,
+      "profit": 39.96,
+      "confidence": "FALLBACK_AMAZON",
+      "num_comps": 0,
+      "scanned_at": "2026-04-19T23:41:06.554937"
+    }
+  ]
 }

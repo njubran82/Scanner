@@ -3074,3 +3074,20 @@
 2026-04-19 17:50:14,484 INFO LISTER STARTED — 2026-04-19 17:50:14
 2026-04-19 17:50:14,484 INFO ============================================================
 2026-04-19 17:50:14,484 INFO No opportunities to list.
+2026-04-19 23:41:28,375 INFO ============================================================
+2026-04-19 23:41:28,376 INFO LISTER STARTED — 2026-04-19 23:41:28
+2026-04-19 23:41:28,376 INFO ============================================================
+2026-04-19 23:41:28,376 INFO Processing 2 opportunities...
+2026-04-19 23:41:28,650 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-19 23:41:30,596 INFO   Image: Open Library (9780867157994)
+2026-04-19 23:41:31,876 INFO   Offer already exists (153921433011) — updating and publishing
+2026-04-19 23:41:34,970 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. It looks like you've reached the amount you can list. You can list up to $1,000,000.00 in total sales this month. Request to list more: https://www.ebay.com/help/sell
+2026-04-19 23:41:34,972 ERROR   Listing failed for 9780867157994
+2026-04-19 23:41:34,973 INFO Listing: Molecular Biology of the Cell, 7th Edition by Bruce Alberts 
+2026-04-19 23:41:36,085 INFO   Image: Open Library (9780393884821)
+2026-04-19 23:41:37,268 INFO   Offer already exists (153921537011) — updating and publishing
+2026-04-19 23:41:40,696 ERROR   publish_offer failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. It looks like you've reached the amount you can list. You can list up to $1,000,000.00 in total sales this month. Request to list more: https://www.ebay.com/help/sell
+2026-04-19 23:41:40,698 ERROR   Listing failed for 9780393884821
+2026-04-19 23:41:40,699 INFO ============================================================
+2026-04-19 23:41:40,700 INFO LISTER DONE: 0 listed, 0 drafts, 2 failed
+2026-04-19 23:41:40,700 INFO ============================================================

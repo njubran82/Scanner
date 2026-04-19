@@ -1935,3 +1935,24 @@
 2026-04-19 17:41:44,924 INFO   Unprofitable:     19
 2026-04-19 17:41:44,924 INFO   Amazon fallbacks: 0
 2026-04-19 17:41:44,924 INFO ============================================================
+2026-04-19 17:49:39,724 INFO ============================================================
+2026-04-19 17:49:39,724 INFO SCANNER STARTED — 2026-04-19 17:49:39
+2026-04-19 17:49:39,724 INFO ============================================================
+2026-04-19 17:49:40,040 INFO eBay token acquired
+2026-04-19 17:49:40,040 INFO No validated_isbns.json found — running without availability filter
+2026-04-19 17:49:40,040 INFO Fetching BooksGoat sheet...
+2026-04-19 17:49:40,647 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-19 17:49:40,648 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-19 17:49:40,648 INFO Fetched 90 books from BooksGoat
+2026-04-19 17:49:44,879 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-19 17:49:49,408 INFO   Amazon ($72.99) < eBay ($98.33) — repricing to $69.34
+2026-04-19 17:50:02,150 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-19 17:50:11,921 INFO   Amazon fallback: The Comprehensive Clinician's Guide to Cognitive B
+2026-04-19 17:50:14,126 INFO ============================================================
+2026-04-19 17:50:14,126 INFO SCAN COMPLETE: 0 opportunities found
+2026-04-19 17:50:14,126 INFO   Already listed:   69
+2026-04-19 17:50:14,126 INFO   Not validated:    0
+2026-04-19 17:50:14,126 INFO   No eBay data:     0
+2026-04-19 17:50:14,126 INFO   Unprofitable:     21
+2026-04-19 17:50:14,126 INFO   Amazon fallbacks: 1
+2026-04-19 17:50:14,127 INFO ============================================================

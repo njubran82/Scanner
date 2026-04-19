@@ -1238,20 +1238,6 @@
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781009397759",
       "needs_image": false
     },
-    "9781440878848": {
-      "title": "How to Write and Publish a Scientific Paper",
-      "isbn13": "9781440878848",
-      "isbn10": "1440878846",
-      "offer_id": "152739124011",
-      "listing_id": "358453961704",
-      "cost": 29.99,
-      "listing_price": 51.39,
-      "profit": 13.54,
-      "confidence": "HIGH",
-      "listed_date": "2026-04-16T21:13:10.468231",
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781440878848",
-      "needs_image": false
-    },
     "9781450434140": {
       "title": "ACSM's Exercise Management for Persons With Chronic Diseases",
       "isbn13": "9781450434140",
@@ -1278,20 +1264,6 @@
       "confidence": "HIGH",
       "listed_date": "2026-04-19T14:04:26.391471",
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781462552795",
-      "needs_image": false
-    },
-    "9780867157994": {
-      "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 9780867157994) - Hardcover",
-      "isbn13": "9780867157994",
-      "isbn10": "0867157992",
-      "offer_id": "153846451011",
-      "listing_id": "358463862177",
-      "cost": 86.99,
-      "listing_price": 133.2,
-      "profit": 25.83,
-      "confidence": "FALLBACK_AMAZON",
-      "listed_date": "2026-04-19T17:32:19.235622",
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9780867157994",
       "needs_image": false
     }
   },
@@ -1377,10 +1349,8 @@
     "9781506353074",
     "9781071853801",
     "9781009397759",
-    "9781440878848",
     "9781450434140",
-    "9781462552795",
-    "9780867157994"
+    "9781462552795"
   ],
-  "last_repricer_run": "2026-04-19T17:43:22.302623"
+  "last_repricer_run": "2026-04-19T17:51:42.889243"
 }

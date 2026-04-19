@@ -1,34 +1,5 @@
 {
-  "scan_date": "2026-04-19T17:41:44.924081",
+  "scan_date": "2026-04-19T17:50:14.126475",
   "total_books": 90,
-  "opportunities": [
-    {
-      "title": "Evolutionary Psychology: The New Science of the Mind, 6th Edition by David M. Buss (ISBN 9781138088610) - Paperback",
-      "isbn13": "9781138088610",
-      "isbn10": "1138088617",
-      "cost": 55.99,
-      "amazon_price": 123.38,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781138088610",
-      "median_price": 89.43,
-      "listing_price": 78.7,
-      "profit": 10.67,
-      "confidence": "HIGH",
-      "num_comps": 19,
-      "scanned_at": "2026-04-19T17:41:39.960678"
-    },
-    {
-      "title": "The Comprehensive Clinician's Guide to Cognitive Behavioral Therapy",
-      "isbn13": "9781683732556",
-      "isbn10": "1683732553",
-      "cost": 19.99,
-      "amazon_price": 33.5,
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781683732556",
-      "median_price": 33.62,
-      "listing_price": 29.59,
-      "profit": 5.07,
-      "confidence": "HIGH",
-      "num_comps": 20,
-      "scanned_at": "2026-04-19T17:41:43.204421"
-    }
-  ]
+  "opportunities": []
 }

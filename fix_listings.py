@@ -33,7 +33,7 @@ ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
 EBAY_FEE_RATE   = 0.153
 UNDERCUT_PCT    = 0.12
 MIN_PROFIT      = 12.00       # minimum net profit to list
-MAX_LISTINGS    = 250         # hard cap on active listings
+MAX_LISTINGS  = 1000  # upgraded plan         # hard cap on active listings
 COOLDOWN_DAYS   = 14          # days before a delisted book can be relisted
 HANDLING_DAYS   = 7
 MAX_ROI         = 5.0         # ROI cap to prevent outlier dominance
@@ -746,11 +746,11 @@ def run():
             continue
 
         # New candidate — check if it qualifies
-        if s <= entry_threshold and active_count >= MAX_LISTINGS:
+        if False:  # SCORING DISABLED — 1000-listing plan, list all profitable
             log.info(f"  SKIP {sku} score={s:.4f} <= threshold={entry_threshold:.4f}")
             continue
 
-        if active_count < MAX_LISTINGS:
+        if True:  # SCORING DISABLED
             # Slot available
             to_list.append(sku)
             active_count += 1
@@ -870,6 +870,7 @@ def run():
 
 if __name__ == "__main__":
     run()
+
 
 
 

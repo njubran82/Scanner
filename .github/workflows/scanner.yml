@@ -70,43 +70,7 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_FROM:    ${{ secrets.EMAIL_FROM }}
           EMAIL_TO:      ${{ secrets.EMAIL_TO }}
-        run: python weekly_summary.py'
-          import os, smtplib
-          from email.mime.text import MIMEText
-          from datetime import datetime
-
-          scanner_log  = open('scanner_log.txt').read()[-3000:] if os.path.exists('scanner_log.txt') else 'N/A'
-          lister_log   = open('lister_log.txt').read()[-2000:] if os.path.exists('lister_log.txt') else 'N/A'
-          repricer_log = open('repricer_log.txt').read()[-3000:] if os.path.exists('repricer_log.txt') else 'N/A'
-
-          body = f"""BooksGoat Weekly Pipeline Summary
-          ===================================
-          Run date: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}
-
-          SCANNER
-          -------
-          {scanner_log}
-
-          LISTER
-          ------
-          {lister_log}
-
-          REPRICER
-          --------
-          {repricer_log}
-          """
-
-          msg = MIMEText(body)
-          msg['Subject'] = f"BooksGoat Weekly Summary - {datetime.utcnow().strftime('%Y-%m-%d')}"
-          msg['From'] = os.environ['EMAIL_FROM']
-          msg['To']   = os.environ['EMAIL_TO']
-
-          with smtplib.SMTP(os.environ['SMTP_HOST'], int(os.environ['SMTP_PORT'])) as s:
-              s.starttls()
-              s.login(os.environ['SMTP_USER'], os.environ['SMTP_PASSWORD'])
-              s.sendmail(os.environ['EMAIL_FROM'], [os.environ['EMAIL_TO']], msg.as_string())
-          print('Weekly summary sent')
-          EOF
+        run: python weekly_summary.py
 
       - name: Commit updated state
         run: |
@@ -119,4 +83,3 @@ jobs:
           git add lister_state.json scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
           git diff --staged --quiet || git commit -m "Scanner/Lister/Repricer run $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
-

@@ -1,33 +1,41 @@
 #!/usr/bin/env python3
 """
-booksgoat_scraper.py — BooksGoat weekly scraper
+booksgoat_scraper.py — BooksGoat weekly scraper (v3 — unified discovery)
 Location : E:\\Book\\Scraper\\booksgoat_scraper.py
-Schedule : Windows Task Scheduler, weekly
+Schedule : Windows Task Scheduler, Monday 6:00 AM
 
-Two-pass approach:
-  Pass 1 — collect all product URLs from category pages using page.evaluate()
-            (pure JS snapshot — no ElementHandle stale context issues)
-  Pass 2 — visit each product page in a NEW TAB to get ISBN
-            (never navigates away from category page)
+Sources:
+  1. BooksGoat category pages (5 URLs) — via Playwright
+  2. BooksGoat merchant sheet (Google Sheets CSV) — via requests
+
+Both sources are merged and deduplicated by ISBN-13.
+New ISBNs not in booksgoat_enhanced.csv are appended as pending.
 """
 
 import csv
 import logging
+import os
 import re
 import time
 from datetime import datetime
 from pathlib import Path
 
+import requests
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
 # ════════════════════════════════════════════════════════════════
 # CONFIG
 # ════════════════════════════════════════════════════════════════
-BASE_URL      = "https://www.booksgoat.com/index.php?route=product/category&path={path}"
-CATEGORIES    = [315, 327, 328, 329, 330]
-COOLDOWN_DAYS = 14
+BASE_URL           = "https://www.booksgoat.com/index.php?route=product/category&path={path}"
+CATEGORIES         = [315, 327, 328, 329, 330]
+MERCHANT_SHEET_URL = os.environ.get(
+    "BOOKSGOAT_CSV_URL",
+    "https://docs.google.com/spreadsheets/d/1uXD9-87xzSsU4wV0qw34r3OxmoZ5Gz4hw4vhrFykPfU/export?format=csv&gid=0"
+)
+
+COOLDOWN_DAYS          = 14
 PRICE_CHANGE_THRESHOLD = 0.05
-MAX_EMPTY_PAGES = 2
+MAX_EMPTY_PAGES        = 2
 
 CSV_PATH = Path(r"E:\Book\Lister\booksgoat_enhanced.csv")
 LOG_PATH = Path(r"E:\Book\Scraper\scraper.log")
@@ -87,13 +95,13 @@ def save_csv(rows: dict):
 # PARSING HELPERS
 # ════════════════════════════════════════════════════════════════
 def extract_isbn(text: str) -> str | None:
-    cleaned = re.sub(r'[-\s]', '', text)
-    m = re.search(r'(?<!\d)(97[89]\d{10})(?!\d)', cleaned)
+    cleaned = re.sub(r"[-\s]", "", text)
+    m = re.search(r"(?<!\d)(97[89]\d{10})(?!\d)", cleaned)
     return m.group(1) if m else None
 
 
 def extract_price(text: str) -> float | None:
-    m = re.search(r'\$\s*([\d,]+\.?\d*)', text)
+    m = re.search(r"\$([\d,]+\.?\d*)", text)
     if m:
         try:
             return float(m.group(1).replace(",", ""))
@@ -111,7 +119,59 @@ def detect_format(title: str) -> str:
 
 
 # ════════════════════════════════════════════════════════════════
-# PASS 1: Collect product URLs via JS snapshot (no stale handles)
+# SOURCE 1: Merchant sheet
+# ════════════════════════════════════════════════════════════════
+def scrape_merchant_sheet() -> dict:
+    """
+    Fetch BooksGoat Google Sheets merchant feed.
+    Returns {isbn13: {isbn13, title, cost, category_path}} dict.
+    Uses 10-qty price as cost (index 2 in price columns).
+    """
+    log.info("Fetching BooksGoat merchant sheet...")
+    try:
+        r = requests.get(MERCHANT_SHEET_URL, timeout=30)
+        r.raise_for_status()
+    except Exception as e:
+        log.error(f"Merchant sheet fetch failed: {e}")
+        return {}
+
+    results = {}
+    reader = csv.DictReader(r.text.splitlines())
+    skipped = 0
+
+    for row in reader:
+        # Normalize keys (strip whitespace)
+        row = {k.strip(): v.strip() for k, v in row.items() if k}
+
+        isbn13 = row.get("ISBN-13", "").strip().replace("-", "").replace(" ", "")
+        if not isbn13 or not re.match(r"^97[89]\d{10}$", isbn13):
+            skipped += 1
+            continue
+
+        title = row.get("Title", f"Book ISBN {isbn13}")
+
+        # Try 10-qty price first, fall back to 5-qty
+        price_str = row.get("10 Qty", "") or row.get("5 Qty", "")
+        cost = extract_price(price_str)
+        if not cost:
+            skipped += 1
+            continue
+
+        results[isbn13] = {
+            "isbn13":        isbn13,
+            "title":         title,
+            "format":        detect_format(title),
+            "cost":          str(round(cost, 2)),
+            "product_url":   "",
+            "category_path": "merchant_sheet",
+        }
+
+    log.info(f"Merchant sheet: {len(results)} valid books ({skipped} skipped)")
+    return results
+
+
+# ════════════════════════════════════════════════════════════════
+# SOURCE 2: Category pages (Playwright)
 # ════════════════════════════════════════════════════════════════
 def collect_urls_from_category(page, category_path: int) -> list[dict]:
     collected = []
@@ -132,7 +192,6 @@ def collect_urls_from_category(page, category_path: int) -> list[dict]:
             log.warning(f"  Timeout — stopping category {category_path}")
             break
 
-        # Single JS call — extracts everything while DOM is stable
         try:
             items = page.evaluate("""
                 () => {
@@ -153,7 +212,7 @@ def collect_urls_from_category(page, category_path: int) -> list[dict]:
                 }
             """)
         except Exception as e:
-            log.warning(f"  JS evaluate failed on page {page_num}: {e}")
+            log.warning(f"  JS evaluate failed: {e}")
             consecutive_empty += 1
             page_num += 1
             continue
@@ -186,9 +245,6 @@ def collect_urls_from_category(page, category_path: int) -> list[dict]:
     return collected
 
 
-# ════════════════════════════════════════════════════════════════
-# PASS 2: Get ISBN from product page in NEW TAB
-# ════════════════════════════════════════════════════════════════
 def enrich_with_isbns(context, products: list[dict]) -> list[dict]:
     enriched = []
     total = len(products)
@@ -202,15 +258,10 @@ def enrich_with_isbns(context, products: list[dict]) -> list[dict]:
                 tab = context.new_page()
                 tab.goto(product["url"], timeout=20000, wait_until="domcontentloaded")
                 tab.wait_for_timeout(600)
-
                 page_text = tab.evaluate("() => document.body.innerText")
                 isbn = extract_isbn(page_text)
-
-                # Grab price from product page if missing
                 if not product.get("price"):
                     product["price"] = extract_price(page_text)
-
-                # Better title from product page H1
                 if not product.get("title"):
                     try:
                         h1 = tab.query_selector("h1")
@@ -218,9 +269,8 @@ def enrich_with_isbns(context, products: list[dict]) -> list[dict]:
                             product["title"] = h1.inner_text().strip()
                     except Exception:
                         pass
-
             except Exception as e:
-                log.warning(f"  Tab error [{i+1}/{total}] {product['url'][:55]}: {e}")
+                log.warning(f"  Tab error [{i+1}/{total}]: {e}")
             finally:
                 if tab:
                     try:
@@ -239,17 +289,8 @@ def enrich_with_isbns(context, products: list[dict]) -> list[dict]:
     return enriched
 
 
-# ════════════════════════════════════════════════════════════════
-# MAIN
-# ════════════════════════════════════════════════════════════════
-def run():
-    log.info("=" * 70)
-    log.info(f"BooksGoat scraper started | {datetime.now().isoformat()}")
-
-    rows = load_csv()
-    now = datetime.now()
-    stats = {"new": 0, "updated": 0, "skipped_active": 0,
-             "skipped_cooldown": 0, "no_price": 0}
+def scrape_category_pages() -> dict:
+    """Scrape all 5 category pages. Returns {isbn13: product_dict}."""
     all_scraped = {}
 
     with sync_playwright() as p:
@@ -272,13 +313,13 @@ def run():
             log.info(f"Scraping category {cat}...")
             try:
                 products = collect_urls_from_category(cat_page, cat)
-                log.info(f"  Pass 1 done: {len(products)} URLs. Starting Pass 2 (product pages)...")
+                log.info(f"  Pass 1: {len(products)} URLs — starting ISBN extraction...")
                 enriched = enrich_with_isbns(context, products)
                 for prod in enriched:
                     isbn = prod["isbn13"]
                     if isbn not in all_scraped:
                         all_scraped[isbn] = prod
-                log.info(f"  Category {cat} complete: {len(enriched)} ISBNs found")
+                log.info(f"  Category {cat}: {len(enriched)} ISBNs found")
             except Exception as e:
                 log.error(f"Category {cat} failed: {e}")
             time.sleep(1)
@@ -287,11 +328,20 @@ def run():
         context.close()
         browser.close()
 
-    log.info(f"Total scraped: {len(all_scraped)} unique ISBNs")
+    log.info(f"Category pages total: {len(all_scraped)} unique ISBNs")
+    return all_scraped
+
+
+# ════════════════════════════════════════════════════════════════
+# MERGE + WRITE
+# ════════════════════════════════════════════════════════════════
+def apply_write_rules(rows: dict, all_scraped: dict, now: datetime) -> dict:
+    stats = {"new": 0, "updated": 0, "skipped_active": 0,
+             "skipped_cooldown": 0, "no_price": 0}
 
     for isbn, scraped in all_scraped.items():
-        cost = scraped.get("price")
-        if not cost:
+        cost = scraped.get("cost") or (str(round(scraped.get("price", 0), 2)) if scraped.get("price") else None)
+        if not cost or float(cost) == 0:
             stats["no_price"] += 1
             continue
 
@@ -311,14 +361,16 @@ def run():
                             continue
                     except Exception:
                         pass
-            if status == "pending":
+            if status in ("pending", ""):
                 old = float(existing.get("cost", 0) or 0)
                 new = float(cost)
                 if old > 0 and abs(new - old) / old > PRICE_CHANGE_THRESHOLD:
                     log.info(f"  COST CHANGE {isbn}: ${old} → ${new}")
                 existing["cost"] = str(round(float(cost), 2))
-                if not existing.get("product_url"):
+                if not existing.get("product_url") and scraped.get("url"):
                     existing["product_url"] = scraped.get("url", "")
+                if not existing.get("category_path"):
+                    existing["category_path"] = scraped.get("category_path", "")
                 stats["updated"] += 1
                 rows[isbn] = existing
         else:
@@ -327,7 +379,7 @@ def run():
             new_row.update({
                 "isbn13":        isbn,
                 "title":         title,
-                "format":        detect_format(title),
+                "format":        scraped.get("format", detect_format(title)),
                 "cost":          str(round(float(cost), 2)),
                 "product_url":   scraped.get("url", ""),
                 "category_path": scraped.get("category_path", ""),
@@ -337,12 +389,45 @@ def run():
             stats["new"] += 1
             log.info(f"  NEW {isbn} | ${cost} | {title[:50]}")
 
+    return stats
+
+
+# ════════════════════════════════════════════════════════════════
+# MAIN
+# ════════════════════════════════════════════════════════════════
+def run():
+    log.info("=" * 70)
+    log.info(f"BooksGoat scraper v3 started | {datetime.now().isoformat()}")
+
+    rows = load_csv()
+    now = datetime.now()
+
+    # Source 1: Merchant sheet (fast, no browser needed)
+    merchant_books = scrape_merchant_sheet()
+
+    # Source 2: Category pages (Playwright)
+    category_books = scrape_category_pages()
+
+    # Merge — category pages win on price/url if same ISBN in both
+    # (category pages have product URLs, merchant sheet does not)
+    all_scraped = {**merchant_books, **category_books}
+    log.info(f"Total unique ISBNs from all sources: {len(all_scraped)}")
+    log.info(f"  Merchant sheet: {len(merchant_books)}")
+    log.info(f"  Category pages: {len(category_books)}")
+    overlap = len(set(merchant_books) & set(category_books))
+    log.info(f"  Overlap (in both): {overlap}")
+
+    # Apply write rules and update CSV
+    stats = apply_write_rules(rows, all_scraped, now)
     save_csv(rows)
+
     log.info("-" * 70)
-    log.info(f"Done: {stats['new']} new | {stats['updated']} updated | "
-             f"{stats['skipped_active']} skipped active | "
-             f"{stats['skipped_cooldown']} skipped cooldown | "
-             f"{stats['no_price']} no price")
+    log.info(
+        f"Done: {stats['new']} new | {stats['updated']} updated | "
+        f"{stats['skipped_active']} skipped active | "
+        f"{stats['skipped_cooldown']} skipped cooldown | "
+        f"{stats['no_price']} no price"
+    )
     log.info("=" * 70)
 
 

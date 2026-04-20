@@ -33,6 +33,12 @@ ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
 EBAY_FEE_RATE   = 0.153
 UNDERCUT_PCT    = 0.12
 MIN_PROFIT      = 12.00       # minimum net profit to list
+
+# Minimum-quantity books - cannot be purchased as single units on BooksGoat
+MIN_QTY_BLOCKLIST = {
+    "9781260460445",  # Lange Q&A Radiography Examination
+    "9780990873853",  # Overcoming Gravity: Gymnastics
+}
 MAX_LISTINGS  = 1000  # upgraded plan         # hard cap on active listings
 COOLDOWN_DAYS   = 14          # days before a delisted book can be relisted
 HANDLING_DAYS   = 7
@@ -91,7 +97,9 @@ def score_book(
     Returns a score >= 0. Returns 0 if book should be skipped entirely.
     Higher score = higher priority for a listing slot.
     """
-    if conf == "NONE" or profit < MIN_PROFIT:
+    if sku in MIN_QTY_BLOCKLIST:
+        return None, None, "BLOCKLISTED"
+        if conf == "NONE" or profit < MIN_PROFIT:
         return 0.0
 
     # Profit (log scaled)

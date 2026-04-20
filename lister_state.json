@@ -1154,20 +1154,6 @@
       "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781119143642",
       "needs_image": false
     },
-    "9781572307810": {
-      "title": "DBT Skills Training Handouts and Worksheets Second Edition",
-      "isbn13": "9781572307810",
-      "isbn10": "1572307811",
-      "offer_id": "152736566011",
-      "listing_id": "358453930920",
-      "cost": 29.99,
-      "listing_price": 70.39,
-      "profit": 29.63,
-      "confidence": "MEDIUM",
-      "listed_date": "2026-04-16T20:59:59.409211",
-      "booksgoat_url": "https://www.booksgoat.com/index.php?route=product/search&search=9781572307810",
-      "needs_image": false
-    },
     "9781462532766": {
       "title": "Eye Movement Desensitization and Reprocessing (EMDR) Therapy: Basic Principles, Protocols, and Procedures, 3rd edition",
       "isbn13": "9781462532766",
@@ -1371,7 +1357,6 @@
     "9781071817179",
     "9781118753651",
     "9781119143642",
-    "9781572307810",
     "9781462532766",
     "9781462550128",
     "9781506353074",
@@ -1382,5 +1367,5 @@
     "9780867157994",
     "9780393884821"
   ],
-  "last_repricer_run": "2026-04-20T15:17:53.707262"
+  "last_repricer_run": "2026-04-20T17:36:08.346650"
 }

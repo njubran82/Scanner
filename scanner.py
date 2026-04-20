@@ -19,6 +19,13 @@ EBAY_CLIENT_SECRET = os.getenv('EBAY_CLIENT_SECRET')
 EBAY_REFRESH_TOKEN = os.getenv('EBAY_REFRESH_TOKEN')
 
 MIN_PROFIT    = 12.00         # was 1.00
+
+# Permanent blocklist — do not list these ISBNs under any circumstances
+BLOCKLIST = {
+    "9781260460445",  # Lange Q&A Radiography — min qty 5
+    "9780990873853",  # Overcoming Gravity — min qty 5
+    "9781119826798",  # Architect's Studio Companion — PDF only on BooksGoat
+}
 EBAY_FEE_RATE      = 0.153        # was 0.1325
 UNDERCUT_PCT       = 0.12         # was 0.125
 STATE_FILE         = 'lister_state.json'

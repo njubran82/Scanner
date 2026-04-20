@@ -486,16 +486,19 @@ def get_or_create_offer(sku: str, price: float, user_token: str) -> tuple[str | 
         "Content-Type": "application/json",
         "Content-Language": "en-US",
     }
+    # Check if an offer already exists for this SKU
     r = requests.get(
         "https://api.ebay.com/sell/inventory/v1/offer",
         headers=headers,
         params={"sku": sku},
         timeout=15,
     )
-    if False:  # Force new offer creation — merchantLocationKey only persists on POST
-        offers = []
-        if offers:
-            offer_id = offers[0]["offerId"]
+    offers = r.json().get("offers", []) if r.status_code == 200 else []
+    if offers:
+        offer_id = offers[0]["offerId"]
+        existing_location = offers[0].get("merchantLocationKey", "")
+        if existing_location == "home1":
+            # Offer already has correct merchantLocationKey — just update price
             r2 = requests.put(
                 f"https://api.ebay.com/sell/inventory/v1/offer/{offer_id}",
                 headers=headers,
@@ -505,11 +508,11 @@ def get_or_create_offer(sku: str, price: float, user_token: str) -> tuple[str | 
                     "format": "FIXED_PRICE",
                     "availableQuantity": 20,
                     "categoryId": "261186",
+                    "merchantLocationKey": "home1",
                     "listingPolicies": {
                         "fulfillmentPolicyId": FULFILLMENT_POLICY,
                         "paymentPolicyId":     PAYMENT_POLICY,
                         "returnPolicyId":      RETURN_POLICY,
-                        "merchantLocationKey": "home1",
                     },
                     "pricingSummary": {
                         "price": {"value": str(round(price, 2)), "currency": "USD"}

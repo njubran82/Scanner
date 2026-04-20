@@ -2006,3 +2006,25 @@
 2026-04-20 00:13:42,088 INFO   Unprofitable:     21
 2026-04-20 00:13:42,088 INFO   Amazon fallbacks: 2
 2026-04-20 00:13:42,088 INFO ============================================================
+2026-04-20 15:16:00,391 INFO ============================================================
+2026-04-20 15:16:00,391 INFO SCANNER STARTED — 2026-04-20 15:16:00
+2026-04-20 15:16:00,391 INFO ============================================================
+2026-04-20 15:16:00,692 INFO eBay token acquired
+2026-04-20 15:16:00,692 INFO No validated_isbns.json found — running without availability filter
+2026-04-20 15:16:00,692 INFO Fetching BooksGoat sheet...
+2026-04-20 15:16:01,509 WARNING Skipping invalid ISBN-13 'B0C1XZ4BQV' for: Sterile Processing Technical Manual Workbook (CRCS
+2026-04-20 15:16:01,509 WARNING Skipping row: could not convert string to float: 'N/A' | {'Title': 'Intuitive Biostatistics *US PAPERBACK* 4th Ed. A Nonmathematical Guide to Statistical Thinking By Harvey Motulsky - (9780190643560)', 'ISBN-13': '9780190643560', 'ISBN-10': '0190643560', '5 Qty': '$73.99', '10 Qty': '$69.99', '25 Qty': '$66.99', 'Amazon Price': 'N/A', 'Amazon Rank': '#550251'}
+2026-04-20 15:16:01,510 INFO Fetched 90 books from BooksGoat
+2026-04-20 15:16:05,639 INFO   Amazon ($21.80) < eBay ($61.60) — repricing to $20.71
+2026-04-20 15:16:09,771 INFO   Amazon ($72.99) < eBay ($97.98) — repricing to $69.34
+2026-04-20 15:16:12,212 INFO   Amazon ($84.95) < eBay ($85.36) — repricing to $80.70
+2026-04-20 15:16:18,287 INFO   Amazon ($15.00) < eBay ($211.99) — repricing to $14.25
+2026-04-20 15:16:27,071 INFO   Amazon ($44.62) < eBay ($48.47) — repricing to $42.39
+2026-04-20 15:16:31,753 INFO ============================================================
+2026-04-20 15:16:31,753 INFO SCAN COMPLETE: 0 opportunities found
+2026-04-20 15:16:31,753 INFO   Already listed:   69
+2026-04-20 15:16:31,753 INFO   Not validated:    0
+2026-04-20 15:16:31,753 INFO   No eBay data:     0
+2026-04-20 15:16:31,753 INFO   Unprofitable:     21
+2026-04-20 15:16:31,753 INFO   Amazon fallbacks: 0
+2026-04-20 15:16:31,754 INFO ============================================================

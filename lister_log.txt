@@ -3091,3 +3091,19 @@
 2026-04-19 23:41:40,699 INFO ============================================================
 2026-04-19 23:41:40,700 INFO LISTER DONE: 0 listed, 0 drafts, 2 failed
 2026-04-19 23:41:40,700 INFO ============================================================
+2026-04-20 00:13:42,339 INFO ============================================================
+2026-04-20 00:13:42,339 INFO LISTER STARTED — 2026-04-20 00:13:42
+2026-04-20 00:13:42,339 INFO ============================================================
+2026-04-20 00:13:42,339 INFO Processing 2 opportunities...
+2026-04-20 00:13:42,648 INFO Listing: Zero Bone Loss Concepts by Tomas Linkevicius (ISBN 978086715
+2026-04-20 00:13:43,678 INFO   Image: Open Library (9780867157994)
+2026-04-20 00:13:44,689 INFO   Offer already exists (153921433011) — updating and publishing
+2026-04-20 00:13:48,897 INFO   ✅ Listed | $151.36 | Profit: $41.21 | ListingID: 358464735676
+2026-04-20 00:13:49,897 INFO Listing: Molecular Biology of the Cell, 7th Edition by Bruce Alberts 
+2026-04-20 00:13:50,600 INFO   Image: Open Library (9780393884821)
+2026-04-20 00:13:51,610 INFO   Offer already exists (153921537011) — updating and publishing
+2026-04-20 00:13:54,335 INFO   ✅ Listed | $220.72 | Profit: $39.96 | ListingID: 358464735928
+2026-04-20 00:13:55,337 INFO ============================================================
+2026-04-20 00:13:55,338 INFO LISTER DONE: 2 listed, 0 drafts, 0 failed
+2026-04-20 00:13:55,338 INFO ============================================================
+2026-04-20 00:13:56,833 INFO Email alert sent

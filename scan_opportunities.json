@@ -1,5 +1,5 @@
 {
-  "scan_date": "2026-04-19T23:41:28.040986",
+  "scan_date": "2026-04-20T00:13:42.088365",
   "total_books": 90,
   "opportunities": [
     {
@@ -14,7 +14,7 @@
       "profit": 41.21,
       "confidence": "FALLBACK_AMAZON",
       "num_comps": 0,
-      "scanned_at": "2026-04-19T23:41:04.562758"
+      "scanned_at": "2026-04-20T00:13:21.527365"
     },
     {
       "title": "Molecular Biology of the Cell, 7th Edition by Bruce Alberts (ISBN 9780393884821) - Hardcover",
@@ -28,7 +28,7 @@
       "profit": 39.96,
       "confidence": "FALLBACK_AMAZON",
       "num_comps": 0,
-      "scanned_at": "2026-04-19T23:41:06.554937"
+      "scanned_at": "2026-04-20T00:13:23.251047"
     }
   ]
 }

@@ -1,37 +1,36 @@
+#!/usr/bin/env python3
 """
-scanner.py — BooksGoat → eBay Opportunity Scanner
-Runs weekly on GitHub Actions (Mondays)
-Finds profitable books and saves to scan_opportunities.json for lister.py
+scanner.py v2 — Unified discovery + scoring
+Reads from booksgoat_enhanced.csv (all 408 books) + BooksGoat merchant sheet.
+Merges both sources, scores all candidates, writes opportunities back to CSV.
+
+Run: GitHub Actions scanner.yml (Monday 9AM EST)
 """
 
-import os, csv, json, base64, time, logging, statistics
+import os, csv, json, base64, time, logging, requests, re
 from io import StringIO
-from datetime import datetime
-import requests
-from dotenv import load_dotenv
+from datetime import datetime, timezone
+from pathlib import Path
 
-load_dotenv()
-
-# ── Config ──────────────────────────────────────────────────────────────────
-BOOKSGOAT_CSV_URL  = os.getenv('BOOKSGOAT_CSV_URL')
 EBAY_CLIENT_ID     = os.getenv('EBAY_CLIENT_ID')
 EBAY_CLIENT_SECRET = os.getenv('EBAY_CLIENT_SECRET')
 EBAY_REFRESH_TOKEN = os.getenv('EBAY_REFRESH_TOKEN')
+BOOKSGOAT_CSV_URL  = os.getenv('BOOKSGOAT_CSV_URL')
 
-MIN_PROFIT    = 12.00         # was 1.00
+MIN_PROFIT    = 12.00
+EBAY_FEE_RATE = 0.153
+UNDERCUT_PCT  = 0.12
+AMAZON_CAP    = 0.95
+COOLDOWN_DAYS = 14
 
-# Permanent blocklist — do not list these ISBNs under any circumstances
+CSV_PATH      = Path('booksgoat_enhanced.csv')
+LOG_FILE      = 'scanner_log.txt'
+
 BLOCKLIST = {
-    "9781260460445",  # Lange Q&A Radiography — min qty 5
-    "9780990873853",  # Overcoming Gravity — min qty 5
-    "9781119826798",  # Architect's Studio Companion — PDF only on BooksGoat
+    '9781260460445',  # Lange Q&A Radiography — min qty 5
+    '9780990873853',  # Overcoming Gravity — min qty 5
+    '9781119826798',  # Architect's Studio Companion — PDF only
 }
-EBAY_FEE_RATE      = 0.153        # was 0.1325
-UNDERCUT_PCT       = 0.12         # was 0.125
-STATE_FILE         = 'lister_state.json'
-OPPORTUNITIES_FILE = 'scan_opportunities.json'
-VALIDATED_FILE     = 'validated_isbns.json'   # produced by validator.py
-LOG_FILE           = 'scanner_log.txt'
 
 logging.basicConfig(
     level=logging.INFO,
@@ -41,281 +40,291 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
-# ── eBay Auth ────────────────────────────────────────────────────────────────
-def get_ebay_token():
+# ── Auth ───────────────────────────────────────────────────────────────────
+def get_app_token():
     creds = base64.b64encode(f'{EBAY_CLIENT_ID}:{EBAY_CLIENT_SECRET}'.encode()).decode()
     r = requests.post(
         'https://api.ebay.com/identity/v1/oauth2/token',
-        headers={
-            'Authorization': f'Basic {creds}',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        data={
-            'grant_type': 'refresh_token',
-            'refresh_token': EBAY_REFRESH_TOKEN,
-            'scope': (
-                'https://api.ebay.com/oauth/api_scope '
-                'https://api.ebay.com/oauth/api_scope/sell.inventory '
-                'https://api.ebay.com/oauth/api_scope/sell.account'
-            )
-        }
+        headers={'Authorization': f'Basic {creds}',
+                 'Content-Type': 'application/x-www-form-urlencoded'},
+        data='grant_type=client_credentials&scope=https://api.ebay.com/oauth/api_scope'
     )
     data = r.json()
     if 'access_token' not in data:
-        raise RuntimeError(f"eBay token error: {data}")
+        raise RuntimeError(f'Token error: {data}')
+    log.info('eBay app token acquired')
     return data['access_token']
 
 
-# ── BooksGoat Sheet ──────────────────────────────────────────────────────────
-def fetch_booksgoat():
-    log.info("Fetching BooksGoat sheet...")
+# ── CSV ────────────────────────────────────────────────────────────────────
+CSV_FIELDS = [
+    'isbn13', 'title', 'format', 'cost', 'product_url', 'category_path',
+    'sell_price', 'status', 'score', 'listed_at', 'sold_at',
+    'delisted_at', 'delist_reason', 'checked_at', 'offer_id', 'description',
+]
+
+def load_csv() -> dict:
+    """Load CSV into {isbn13: row_dict}. Returns empty dict if not found."""
+    if not CSV_PATH.exists():
+        log.warning(f'CSV not found: {CSV_PATH}')
+        return {}
+    rows = {}
+    with CSV_PATH.open(encoding='utf-8') as f:
+        for row in csv.DictReader(f):
+            isbn = row.get('isbn13', '').strip()
+            if isbn:
+                for field in CSV_FIELDS:
+                    row.setdefault(field, '')
+                rows[isbn] = row
+    log.info(f'Loaded {len(rows)} books from CSV')
+    return rows
+
+def save_csv(rows: dict):
+    all_rows = list(rows.values())
+    all_fields = list(dict.fromkeys(CSV_FIELDS + [k for r in all_rows for k in r]))
+    tmp = CSV_PATH.with_suffix('.tmp')
+    with tmp.open('w', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=all_fields, extrasaction='ignore')
+        w.writeheader()
+        w.writerows(all_rows)
+    tmp.replace(CSV_PATH)
+    log.info(f'CSV saved: {len(all_rows)} rows')
+
+
+# ── BooksGoat merchant sheet ───────────────────────────────────────────────
+def fetch_merchant_sheet() -> dict:
+    """Returns {isbn13: {cost, amazon_price, title}} from merchant sheet."""
+    if not BOOKSGOAT_CSV_URL:
+        log.warning('BOOKSGOAT_CSV_URL not set')
+        return {}
     r = requests.get(BOOKSGOAT_CSV_URL, timeout=30)
     r.raise_for_status()
-    reader = csv.DictReader(StringIO(r.text))
-    books = []
-    for row in reader:
+    result = {}
+    skipped = 0
+    for row in csv.DictReader(StringIO(r.text)):
         try:
-            title = row.get('Title', '').strip()
-            isbn13 = row.get('ISBN-13', '').strip().replace('-', '').replace(' ', '')
-            isbn10 = row.get('ISBN-10', '').strip().replace('-', '').replace(' ', '')
-            cost_raw = row.get('5 Qty', '').replace('$', '').replace(',', '').strip()
+            isbn = row.get('ISBN-13', '').strip().replace('-', '')
+            if not isbn or not re.match(r'^97[89]\d{10}$', isbn):
+                skipped += 1
+                continue
+            cost_raw   = (row.get('10 Qty') or row.get('5 Qty', '')).replace('$', '').replace(',', '').strip()
             amazon_raw = row.get('Amazon Price', '').replace('$', '').replace(',', '').strip()
-
-            if not title or not isbn13 or not cost_raw:
+            if not cost_raw:
+                skipped += 1
                 continue
-
-            # Validate ISBN-13 format — must be 13 digits starting with 978 or 979.
-            # Rejects Amazon ASINs (e.g. B0C1XZ4BQV) and other non-ISBN identifiers.
-            import re as _re
-            if not _re.match(r'^97[89]\d{10}$', isbn13):
-                log.warning(f"Skipping invalid ISBN-13 '{isbn13}' for: {title[:50]}")
-                continue
-
-            books.append({
-                'title':         title,
-                'isbn13':        isbn13,
-                'isbn10':        isbn10,
-                'cost':          float(cost_raw),
-                'amazon_price':  float(amazon_raw) if amazon_raw else None,
-                'booksgoat_url': f'https://www.booksgoat.com/index.php?route=product/search&search={isbn13}',
-            })
-        except Exception as e:
-            log.warning(f"Skipping row: {e} | {row}")
-
-    log.info(f"Fetched {len(books)} books from BooksGoat")
-    return books
+            result[isbn] = {
+                'cost':         float(cost_raw),
+                'amazon_price': float(amazon_raw) if amazon_raw and amazon_raw != 'N/A' else None,
+                'title':        row.get('Title', f'Book {isbn}'),
+            }
+        except Exception:
+            skipped += 1
+    log.info(f'Merchant sheet: {len(result)} books ({skipped} skipped)')
+    return result
 
 
-# ── eBay Pricing ─────────────────────────────────────────────────────────────
-def get_ebay_prices(token, isbn13, isbn10, title):
-    """
-    Returns (median_price, confidence, num_comps)
-    Confidence: HIGH (3+ listings), MEDIUM (1-2), NO_DATA (0)
-    Strategy: ISBN GTIN search first, title search fallback
-    Amazon used only as last resort (flagged as FALLBACK)
-    """
+# ── eBay comps ─────────────────────────────────────────────────────────────
+def get_ebay_comps(isbn: str, app_token: str) -> tuple:
     headers = {
-        'Authorization': f'Bearer {token}',
+        'Authorization': f'Bearer {app_token}',
         'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
     }
-
     prices = []
-
-    # 1. GTIN search by ISBN-13 then ISBN-10
-    for isbn in [isbn13, isbn10]:
-        if not isbn or len(isbn) < 10:
+    for isbn_val in [isbn, isbn[3:] if len(isbn) == 13 else None]:
+        if not isbn_val or len(isbn_val) < 10:
             continue
         try:
             r = requests.get(
                 'https://api.ebay.com/buy/browse/v1/item_summary/search',
                 headers=headers,
-                params={
-                    'gtin': isbn,
-                    'filter': 'conditions:{NEW},buyingOptions:{FIXED_PRICE}',
-                    'limit': 50
-                },
-                timeout=10
+                params={'gtin': isbn_val,
+                        'filter': 'conditions:{NEW},buyingOptions:{FIXED_PRICE}',
+                        'limit': '50'},
+                timeout=15
             )
             for item in r.json().get('itemSummaries', []):
-                p = item.get('price', {}).get('value')
-                if p:
-                    prices.append(float(p))
+                try:
+                    prices.append(float(item['price']['value']))
+                except (KeyError, ValueError):
+                    pass
             if prices:
                 break
         except Exception as e:
-            log.warning(f"GTIN search error ({isbn}): {e}")
-        time.sleep(0.25)
+            log.warning(f'  GTIN error {isbn_val}: {e}')
 
-    # 2. Title search fallback (Books category only)
     if not prices:
         try:
             r = requests.get(
                 'https://api.ebay.com/buy/browse/v1/item_summary/search',
                 headers=headers,
-                params={
-                    'q': title[:80],
-                    'category_ids': '267',
-                    'filter': 'conditions:{NEW},buyingOptions:{FIXED_PRICE}',
-                    'limit': 20
-                },
-                timeout=10
+                params={'q': isbn, 'category_ids': '267',
+                        'filter': 'conditions:{NEW},buyingOptions:{FIXED_PRICE}',
+                        'sort': 'price', 'limit': '20'},
+                timeout=15
             )
             for item in r.json().get('itemSummaries', []):
-                p = item.get('price', {}).get('value')
-                if p:
-                    prices.append(float(p))
+                try:
+                    prices.append(float(item['price']['value']))
+                except (KeyError, ValueError):
+                    pass
         except Exception as e:
-            log.warning(f"Title search error ({title[:40]}): {e}")
-        time.sleep(0.25)
+            log.warning(f'  Keyword error {isbn}: {e}')
 
-    if len(prices) >= 3:
-        return statistics.median(prices), 'HIGH', len(prices)
-    elif len(prices) >= 1:
-        return statistics.median(prices), 'MEDIUM', len(prices)
+    if   len(prices) >= 3: conf = 'HIGH'
+    elif len(prices) >= 1: conf = 'MEDIUM'
+    else:                  conf = 'NONE'
+    return prices, conf
+
+
+# ── Pricing ────────────────────────────────────────────────────────────────
+def calc_price(isbn: str, cost: float, amazon_price, app_token: str) -> tuple:
+    comps, conf = get_ebay_comps(isbn, app_token)
+
+    if comps:
+        target = round(min(comps) * (1 - UNDERCUT_PCT), 2)
+        method = f'EBAY_COMP ({conf}, n={len(comps)})'
+    elif amazon_price:
+        target = round(amazon_price * (1 - UNDERCUT_PCT), 2)
+        method = f'AMAZON_FALLBACK'
+        conf   = 'FALLBACK'
     else:
-        return None, 'NO_DATA', 0
+        return None, None, 'NONE'
+
+    if amazon_price and target > amazon_price * AMAZON_CAP:
+        target = round(amazon_price * AMAZON_CAP, 2)
+        method += ' [amazon capped]'
+
+    profit = round(target * (1 - EBAY_FEE_RATE) - cost, 2)
+    return target, profit, f'{conf} | {method}'
 
 
-# ── Profit Formula ───────────────────────────────────────────────────────────
-def calculate_listing_price(median_price):
-    return round(median_price * (1 - UNDERCUT_PCT), 2)
-
-def calculate_profit(cost, listing_price):
-    fee = listing_price * EBAY_FEE_RATE
-    return round(listing_price - cost - fee, 2)
-
-
-def load_validated_isbns() -> set:
-    """
-    Load the allowlist produced by validator.py.
-    Returns set of ISBNs with status OK.
-    If the file doesn't exist, returns None — scanner runs unrestricted
-    (safe fallback so GitHub Actions still works before first local validator run).
-    """
-    if not os.path.exists(VALIDATED_FILE):
-        return None
-    try:
-        data = json.load(open(VALIDATED_FILE, encoding='utf-8'))
-        ok = {isbn for isbn, rec in data.get('validated', {}).items()
-              if rec.get('status') == 'OK'}
-        log.info(f'Loaded {len(ok)} validated ISBNs from {VALIDATED_FILE}')
-        return ok
-    except Exception as e:
-        log.warning(f'Could not load {VALIDATED_FILE}: {e} — running without allowlist')
-        return None
-
-
-# ── State ────────────────────────────────────────────────────────────────────
-def load_state():
-    if os.path.exists(STATE_FILE):
-        with open(STATE_FILE, encoding='utf-8') as f:
-            return json.load(f)
-    return {'listings': {}, 'listed_isbns': []}
-
-
-# ── Main ─────────────────────────────────────────────────────────────────────
+# ── Main ───────────────────────────────────────────────────────────────────
 def scan():
-    log.info("=" * 60)
-    log.info("SCANNER STARTED — " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    log.info("=" * 60)
+    log.info('=' * 60)
+    log.info(f'SCANNER STARTED — {datetime.now():%Y-%m-%d %H:%M:%S}')
+    log.info('=' * 60)
 
-    state          = load_state()
-    already_listed = set(state.get('listed_isbns', []))
-    validated      = load_validated_isbns()   # None = no file yet, run unrestricted
-    token          = get_ebay_token()
-    log.info('eBay token acquired')
-    if validated is not None:
-        log.info(f'Allowlist active: {len(validated)} validated ISBNs')
-    else:
-        log.info('No validated_isbns.json found — running without availability filter')
+    rows      = load_csv()
+    merchant  = fetch_merchant_sheet()
+    app_token = get_app_token()
+    now       = datetime.now(timezone.utc)
 
-    books = fetch_booksgoat()
+    # Merge merchant sheet into CSV — add new ISBNs, update cost on pending
+    new_from_sheet = 0
+    for isbn, data in merchant.items():
+        if isbn in BLOCKLIST:
+            continue
+        if isbn not in rows:
+            new_row = {f: '' for f in CSV_FIELDS}
+            new_row.update({
+                'isbn13':        isbn,
+                'title':         data['title'],
+                'format':        'Paperback',
+                'cost':          str(round(data['cost'], 2)),
+                'category_path': 'merchant_sheet',
+                'status':        'pending',
+            })
+            rows[isbn] = new_row
+            new_from_sheet += 1
+        elif rows[isbn].get('status') == 'pending':
+            rows[isbn]['cost'] = str(round(data['cost'], 2))
 
-    opportunities      = []
-    skipped_listed     = 0
-    skipped_no_data    = 0
-    skipped_no_profit  = 0
-    amazon_fallbacks   = 0
+    if new_from_sheet:
+        log.info(f'Added {new_from_sheet} new books from merchant sheet')
 
-    for book in books:
-        isbn13 = book['isbn13']
+    # Score all candidates
+    opportunities  = []
+    already_listed = 0
+    unprofitable   = 0
+    no_data        = 0
+    cooldown_skip  = 0
 
-        if isbn13 in already_listed:
-            skipped_listed += 1
+    for isbn, row in rows.items():
+        if isbn in BLOCKLIST:
             continue
 
-        # Availability allowlist — skip if validator flagged as not purchasable
-        if validated is not None and isbn13 not in validated:
-            log.info(f'  SKIP (not validated / unavailable): {isbn13}')
+        status = row.get('status', '')
+
+        # Skip active — repricer handles these
+        if status == 'active':
+            already_listed += 1
             continue
 
-        median, confidence, num_comps = get_ebay_prices(
-            token, isbn13, book['isbn10'], book['title']
-        )
+        # Skip cooldown delisted
+        if status == 'delisted':
+            delisted_at = row.get('delisted_at', '')
+            if delisted_at:
+                try:
+                    dt = datetime.fromisoformat(delisted_at.replace('Z', '+00:00'))
+                    if dt.tzinfo is None:
+                        dt = dt.replace(tzinfo=timezone.utc)
+                    days = (now - dt).days
+                    if days < COOLDOWN_DAYS:
+                        cooldown_skip += 1
+                        continue
+                    else:
+                        # Cooldown expired — reset to pending
+                        row['status'] = 'pending'
+                        log.info(f'  COOLDOWN_EXPIRED {isbn} — reset to pending')
+                except Exception:
+                    pass
 
-        # Amazon fallback — only when zero eBay data at all
-        if confidence == 'NO_DATA':
-            if book.get('amazon_price'):
-                median     = book['amazon_price']
-                confidence = 'FALLBACK_AMAZON'
-                num_comps  = 0
-                amazon_fallbacks += 1
-                log.info(f"  Amazon fallback: {book['title'][:50]}")
+        if status not in ('pending', ''):
+            continue
+
+        # Get cost and amazon price
+        cost_raw = row.get('cost', '')
+        if not cost_raw:
+            # Try merchant sheet
+            if isbn in merchant:
+                cost_raw = str(merchant[isbn]['cost'])
+                row['cost'] = cost_raw
             else:
-                skipped_no_data += 1
+                no_data += 1
                 continue
+        try:
+            cost = float(cost_raw)
+        except ValueError:
+            no_data += 1
+            continue
 
-        listing_price = calculate_listing_price(median)
+        amazon_price = merchant.get(isbn, {}).get('amazon_price')
 
-        # Amazon price check — undercut Amazon by 5% if it's cheaper than our eBay price
-        amazon_price = book.get('amazon_price')
-        if amazon_price and amazon_price < listing_price:
-            amazon_beating_price = round(amazon_price * 0.95, 2)
-            log.info(f"  Amazon (${amazon_price:.2f}) < eBay (${listing_price:.2f}) — repricing to ${amazon_beating_price:.2f}")
-            listing_price = amazon_beating_price
-
-        profit = calculate_profit(book['cost'], listing_price)
+        target, profit, method = calc_price(isbn, cost, amazon_price, app_token)
+        if target is None:
+            no_data += 1
+            continue
 
         if profit < MIN_PROFIT:
-            skipped_no_profit += 1
+            unprofitable += 1
             continue
 
-        opportunity = {
-            **book,
-            'median_price':   median,
-            'listing_price':  listing_price,
-            'profit':         profit,
-            'confidence':     confidence,
-            'num_comps':      num_comps,
-            'scanned_at':     datetime.now().isoformat()
-        }
-        opportunities.append(opportunity)
-        log.info(
-            f"✅ {book['title'][:50]:<50} | "
-            f"Cost: ${book['cost']:.2f} | "
-            f"List: ${listing_price:.2f} | "
-            f"Profit: ${profit:.2f} | "
-            f"{confidence} ({num_comps})"
-        )
+        opportunities.append({
+            'isbn13':  isbn,
+            'title':   row.get('title', isbn),
+            'cost':    cost,
+            'price':   target,
+            'profit':  profit,
+            'method':  method,
+        })
+        log.info(f'  \u2705 {row.get("title", isbn)[:50]} | Cost: ${cost} | List: ${target} | Profit: ${profit} | {method}')
+        time.sleep(0.3)
 
-    # Save for lister
-    with open(OPPORTUNITIES_FILE, 'w', encoding='utf-8') as f:
-        json.dump({
-            'scan_date':     datetime.now().isoformat(),
-            'total_books':   len(books),
-            'opportunities': opportunities
-        }, f, indent=2)
+    log.info('=' * 60)
+    log.info(f'SCAN COMPLETE: {len(opportunities)} opportunities found')
+    log.info(f'  Already listed:   {already_listed}')
+    log.info(f'  Unprofitable:     {unprofitable}')
+    log.info(f'  No eBay data:     {no_data}')
+    log.info(f'  Cooldown skip:    {cooldown_skip}')
+    log.info('=' * 60)
 
-    log.info("=" * 60)
-    log.info(f"SCAN COMPLETE: {len(opportunities)} opportunities found")
-    log.info(f"  Already listed:   {skipped_listed}")
-    log.info(f"  Not validated:    {sum(1 for b in books if validated is not None and b['isbn13'] not in validated and b['isbn13'] not in already_listed)}")
-    log.info(f"  No eBay data:     {skipped_no_data}")
-    log.info(f"  Unprofitable:     {skipped_no_profit}")
-    log.info(f"  Amazon fallbacks: {amazon_fallbacks}")
-    log.info("=" * 60)
+    # Save opportunities for lister
+    with open('scan_opportunities.json', 'w') as f:
+        json.dump(opportunities, f, indent=2)
 
-    return opportunities
+    # Save updated CSV (new books from sheet, cooldown resets)
+    save_csv(rows)
+    log.info(f'scan_opportunities.json written: {len(opportunities)} entries')
 
 
 if __name__ == '__main__':

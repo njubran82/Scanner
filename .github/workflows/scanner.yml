@@ -1,4 +1,4 @@
-﻿name: Weekly Book Scanner & Auto-Lister
+name: Weekly Book Scanner & Auto-Lister
 
 on:
   schedule:
@@ -25,6 +25,15 @@ jobs:
 
       - name: Install dependencies
         run: pip install requests python-dotenv
+
+      - name: Clear unstaged changes
+        run: git checkout -- . || true
+
+      - name: Pull latest CSV from repo
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git pull --rebase origin main || true
 
       - name: Run scanner
         env:
@@ -72,14 +81,12 @@ jobs:
           EMAIL_TO:      ${{ secrets.EMAIL_TO }}
         run: python weekly_summary.py
 
-      - name: Commit updated state
+      - name: Commit updated CSV and state
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          git add lister_state.json scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
-          git stash || true
+          git add booksgoat_enhanced.csv scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
           git pull --rebase origin main || true
-          git stash pop || true
-          git add lister_state.json scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
-          git diff --staged --quiet || git commit -m "Scanner/Lister/Repricer run $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git add booksgoat_enhanced.csv scan_opportunities.json scanner_log.txt lister_log.txt repricer_log.txt || true
+          git diff --staged --quiet || git commit -m "Pipeline run $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push

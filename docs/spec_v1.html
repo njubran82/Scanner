@@ -1,0 +1,549 @@
+<style>
+* { box-sizing: border-box; }
+.spec { padding: 1.2rem; font-family: var(--font-sans); color: var(--color-text-primary); }
+h2 { font-size: 17px; font-weight: 500; margin: 1.4rem 0 0.4rem; border-bottom: 1px solid var(--color-border-tertiary); padding-bottom: 5px; }
+h3 { font-size: 14px; font-weight: 500; margin: 1rem 0 0.3rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.03em; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 1rem; }
+th { text-align: left; padding: 6px 10px; background: var(--color-background-secondary); font-weight: 500; border-bottom: 1px solid var(--color-border-tertiary); font-size: 12px; }
+td { padding: 5px 10px; border-bottom: 1px solid var(--color-border-tertiary); vertical-align: top; line-height: 1.6; }
+td:first-child { white-space: nowrap; font-weight: 500; color: var(--color-text-secondary); min-width: 160px; }
+code { font-family: var(--font-mono); font-size: 11px; background: var(--color-background-secondary); padding: 1px 5px; border-radius: 3px; }
+.badge { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; font-weight: 500; }
+.bg { background: #E6F1FB; color: #0C447C; }
+.gg { background: #EAF3DE; color: #27500A; }
+.ba { background: #FAEEDA; color: #633806; }
+.br { background: #FCEBEB; color: #791F1F; }
+.bp { background: #EEEDFE; color: #3C3489; }
+@media (prefers-color-scheme: dark) {
+  .bg { background: #0C447C; color: #B5D4F4; }
+  .gg { background: #27500A; color: #C0DD97; }
+  .ba { background: #633806; color: #FAC775; }
+  .br { background: #791F1F; color: #F7C1C1; }
+  .bp { background: #3C3489; color: #CECBF6; }
+}
+.flow { font-family: var(--font-mono); font-size: 12px; background: var(--color-background-secondary); border: 1px solid var(--color-border-tertiary); border-radius: 8px; padding: 0.8rem 1rem; line-height: 2.1; margin-bottom: 1rem; white-space: pre; }
+ul { margin: 0.2rem 0 0.8rem; padding-left: 1.2rem; font-size: 13px; line-height: 1.9; }
+.note { font-size: 12px; color: var(--color-text-secondary); margin: -0.3rem 0 0.8rem; }
+.nav { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1rem; position: sticky; top: 0; background: var(--color-background-primary); padding: 8px 0; z-index: 10; border-bottom: 1px solid var(--color-border-tertiary); }
+.nav button { font-size: 12px; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); cursor: pointer; white-space: nowrap; }
+.nav button.active { background: var(--color-text-primary); color: var(--color-background-primary); border-color: var(--color-text-primary); }
+.section { display: none; }
+.section.visible { display: block; }
+</style>
+
+<div class="spec">
+<div class="nav">
+  <button class="active" onclick="show('identity',this)">Identity</button>
+  <button onclick="show('rules',this)">Business rules</button>
+  <button onclick="show('csv',this)">CSV</button>
+  <button onclick="show('scraping',this)">Scraping</button>
+  <button onclick="show('lister',this)">Lister</button>
+  <button onclick="show('tracker',this)">Tracker</button>
+  <button onclick="show('pipeline',this)">Pipeline</button>
+  <button onclick="show('alerts',this)">Alerts</button>
+  <button onclick="show('orders',this)">Orders</button>
+  <button onclick="show('blocklist',this)">Blocklist</button>
+  <button onclick="show('issues',this)">Issues</button>
+  <button onclick="show('tasks',this)">Tasks</button>
+</div>
+
+<!-- IDENTITY -->
+<div id="identity" class="section visible">
+<h2>Business identity</h2>
+<table>
+<tr><td>LLC</td><td>Jubran Industries LLC</td></tr>
+<tr><td>Brand</td><td>BooksGoat</td></tr>
+<tr><td>eBay seller</td><td><code>atlas_commerce</code></td></tr>
+<tr><td>eBay store URL</td><td><code>ebay.com/str/incrediblebookdiscounts</code></td></tr>
+<tr><td>eBay dev app</td><td>Profit Scanner — account <code>njubran82</code></td></tr>
+<tr><td>eBay subscription</td><td>Basic Store — $27.95/month — 1,000 zero-insertion-fee listings/month</td></tr>
+<tr><td>Model</td><td>Pure dropshipping — purchase on BooksGoat only after eBay sale confirmed</td></tr>
+<tr><td>GitHub repo</td><td><code>njubran82/Scanner</code></td></tr>
+<tr><td>Alert email</td><td><code>jubran.industries@gmail.com</code></td></tr>
+</table>
+
+<h2>Current inventory state (as of 04/20/2026)</h2>
+<table>
+<tr><td>Active listings (CSV-managed)</td><td>332</td></tr>
+<tr><td>Active listings (manual, not tracked)</td><td>~60</td></tr>
+<tr><td>Total on eBay</td><td>~392</td></tr>
+<tr><td>Pending in CSV</td><td>~16 (stuck — offer already exists bug)</td></tr>
+<tr><td>Total books in CSV</td><td>408</td></tr>
+</table>
+
+<h2>Environment variables</h2>
+<table>
+<tr><th>Variable</th><th>Purpose</th><th>Where stored</th></tr>
+<tr><td><code>EBAY_APP_ID</code></td><td>eBay OAuth client ID</td><td>GitHub secret + Windows machine env</td></tr>
+<tr><td><code>EBAY_CERT_ID</code></td><td>eBay OAuth client secret</td><td>GitHub secret + Windows machine env</td></tr>
+<tr><td><code>EBAY_CLIENT_ID</code></td><td>Alias for EBAY_APP_ID used by scanner/lister</td><td>GitHub secret</td></tr>
+<tr><td><code>EBAY_CLIENT_SECRET</code></td><td>Alias for EBAY_CERT_ID used by scanner/lister</td><td>GitHub secret</td></tr>
+<tr><td><code>EBAY_REFRESH_TOKEN</code></td><td>Long-lived OAuth refresh token. NEEDS sell.fulfillment scope added.</td><td>GitHub secret + Windows machine env</td></tr>
+<tr><td><code>ANTHROPIC_API_KEY</code></td><td>Claude API — AI description generation</td><td>GitHub secret + Windows machine env</td></tr>
+<tr><td><code>BOOKSGOAT_CSV_URL</code></td><td>Google Sheets CSV export of BooksGoat merchant feed</td><td>GitHub secret + Windows machine env</td></tr>
+<tr><td><code>SMTP_HOST / SMTP_PORT</code></td><td>smtp.gmail.com / 587</td><td>GitHub secret + Windows machine env</td></tr>
+<tr><td><code>SMTP_USER / SMTP_PASSWORD</code></td><td>Gmail App Password credentials</td><td>GitHub secret + Windows machine env</td></tr>
+<tr><td><code>EMAIL_FROM / EMAIL_TO</code></td><td>jubran.industries@gmail.com</td><td>GitHub secret + Windows machine env</td></tr>
+</table>
+
+<h2>File locations</h2>
+<table>
+<tr><th>Component</th><th>Path</th><th>Notes</th></tr>
+<tr><td>Main lister / repricer</td><td><code>E:\Book\Lister\fix_listings.py</code></td><td>Manual run. Scores, lists, reprices, delists.</td></tr>
+<tr><td>Full publisher</td><td><code>E:\Book\Lister\full_publish.py</code></td><td>Creates inventory item + offer + publishes for all pending books. The correct tool for bulk listing.</td></tr>
+<tr><td>Force publish</td><td><code>E:\Book\Lister\force_publish_all.py</code></td><td>Creates offer + publishes only (no inventory item creation). Use only when inventory items already exist.</td></tr>
+<tr><td>Working CSV</td><td><code>E:\Book\Lister\booksgoat_enhanced.csv</code></td><td>408 books — source of truth for all listing state</td></tr>
+<tr><td>Scraper</td><td><code>E:\Book\Scraper\booksgoat_scraper.py</code></td><td>Scrapes BooksGoat category pages + merchant sheet. Runs Monday 6AM via Task Scheduler.</td></tr>
+<tr><td>Local tracker</td><td><code>E:\Book\Tracker\booksgoat_tracker.py</code></td><td>OOS + price check via Playwright. Runs daily 7AM via Task Scheduler.</td></tr>
+<tr><td>Scanner repo</td><td><code>E:\Book\Scanner\</code></td><td>Local clone of github.com/njubran82/Scanner</td></tr>
+</table>
+
+<h2>eBay policies</h2>
+<table>
+<tr><td>Fulfillment policy</td><td><code>391308514023</code> — handling time 10 days</td></tr>
+<tr><td>Payment policy</td><td><code>391308491023</code></td></tr>
+<tr><td>Return policy</td><td><code>391308498023</code></td></tr>
+<tr><td>Merchant location</td><td><code>home1</code> — MUST be in offer POST payload or publish fails with Item.Country error 25002</td></tr>
+<tr><td>Category</td><td><code>261186</code> — correct Books category for Inventory API</td></tr>
+<tr><td>Marketplace</td><td><code>EBAY_US</code></td></tr>
+<tr><td>Listing format</td><td>Fixed price, GTC, quantity 20 (new listings) / 10 (150 listings from 04/19 — stuck)</td></tr>
+</table>
+
+<h2>Key API URLs</h2>
+<table>
+<tr><td>BooksGoat merchant feed</td><td><code>https://docs.google.com/spreadsheets/d/1uXD9-87xzSsU4wV0qw34r3OxmoZ5Gz4hw4vhrFykPfU/export?format=csv&gid=0</code></td></tr>
+<tr><td>eBay Browse API</td><td><code>https://api.ebay.com/buy/browse/v1/item_summary/search</code></td></tr>
+<tr><td>eBay Inventory item</td><td><code>https://api.ebay.com/sell/inventory/v1/inventory_item/{sku}</code></td></tr>
+<tr><td>eBay Offer API</td><td><code>https://api.ebay.com/sell/inventory/v1/offer</code></td></tr>
+<tr><td>eBay Orders API</td><td><code>https://api.ebay.com/sell/fulfillment/v1/order</code></td></tr>
+<tr><td>eBay OAuth token</td><td><code>https://api.ebay.com/identity/v1/oauth2/token</code></td></tr>
+<tr><td>eBay Fulfillment policy</td><td><code>https://api.ebay.com/sell/account/v1/fulfillment_policy/{id}</code></td></tr>
+<tr><td>Anthropic API</td><td><code>https://api.anthropic.com/v1/messages</code></td></tr>
+<tr><td>Open Library covers</td><td><code>https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg</code></td></tr>
+<tr><td>Google Books API</td><td><code>https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&maxResults=3</code></td></tr>
+<tr><td>Amazon CDN image</td><td><code>https://images-na.ssl-images-amazon.com/images/P/{isbn13}.01.LZZZZZZZ.jpg</code></td></tr>
+</table>
+</div>
+
+<!-- RULES -->
+<div id="rules" class="section">
+<h2>Business rules</h2>
+<table>
+<tr><th>Rule</th><th>Value</th><th>Notes</th></tr>
+<tr><td>eBay fee rate</td><td><code>15.3%</code></td><td><code>EBAY_FEE_RATE = 0.153</code> in all scripts</td></tr>
+<tr><td>Undercut</td><td><code>12%</code></td><td>Price set 12% below lowest eBay sold comp</td></tr>
+<tr><td>Min profit</td><td><code>$12.00</code></td><td>Hard floor — books below this are not listed or are delisted. Consistent across fix_listings.py, scanner.py, repricer.py.</td></tr>
+<tr><td>Max listings</td><td><code>1,000</code></td><td>eBay Basic Store cap. Score-based displacement DISABLED — all profitable books listed.</td></tr>
+<tr><td>Amazon cap</td><td><code>95%</code></td><td>Price cannot exceed 95% of Amazon list price from merchant sheet</td></tr>
+<tr><td>Delist cooldown</td><td><code>14 days</code></td><td>Delisted book cannot be relisted for 14 days</td></tr>
+<tr><td>Handling time</td><td><code>10 days</code></td><td>Set via fulfillment policy API. Applies to all listings automatically.</td></tr>
+<tr><td>Listing quantity</td><td><code>20</code></td><td>All new listings. 150 listings from 04/19 stuck at qty 10 — pending fix.</td></tr>
+</table>
+
+<h2>Pricing formula</h2>
+<table>
+<tr><th>Tier</th><th>Condition</th><th>Formula</th></tr>
+<tr><td><span class="badge gg">HIGH</span></td><td>3+ eBay sold comps</td><td><code>price = min(comps) × (1 - 0.12)</code></td></tr>
+<tr><td><span class="badge bg">MEDIUM</span></td><td>1–2 sold comps</td><td>Same formula, lower confidence weight</td></tr>
+<tr><td><span class="badge ba">LOW</span></td><td>Active listings only</td><td>Active listing floor, no sold data</td></tr>
+<tr><td><span class="badge br">FALLBACK</span></td><td>No comps at all</td><td><code>sell_price from CSV</code> or <code>cost × 1.3</code></td></tr>
+<tr><td>Amazon cap (all tiers)</td><td>Always applied</td><td>If <code>price > amazon_price × 0.95</code> → cap to <code>amazon_price × 0.95</code></td></tr>
+</table>
+
+<h2>Scoring — DISABLED</h2>
+<p class="note">Score-based displacement is disabled as of 04/19/2026. All books above MIN_PROFIT=$12 are listed regardless of score. Scoring code preserved in fix_listings.py with <code>if False</code> / <code>if True</code> guards. Re-enable if listing cap is reached.</p>
+
+<h2>BooksGoat supplier notes</h2>
+<table>
+<tr><td>Pricing tiers</td><td>Merchant sheet shows 5-qty, 10-qty, 25-qty prices. No 1-qty price exists. Assume minimum purchase is 5 units unless confirmed otherwise.</td></tr>
+<tr><td>Flat pricing signal</td><td>If 5-qty = 10-qty = 25-qty price, book may have a hard minimum order restriction. Handle cancellations case-by-case.</td></tr>
+<tr><td>PDF-only products</td><td>Some BooksGoat products are downloadable PDFs, not physical books. These are listed on BooksGoat product pages but cannot be shipped. Add to BLOCKLIST when discovered.</td></tr>
+<tr><td>Cost to use</td><td>Use 10-qty price as standard cost input</td></tr>
+</table>
+</div>
+
+<!-- CSV -->
+<div id="csv" class="section">
+<h2>CSV schema</h2>
+<p class="note">File: <code>E:\Book\Lister\booksgoat_enhanced.csv</code> — 408 books as of 04/20/2026</p>
+<table>
+<tr><th>Column</th><th>Type</th><th>Description</th></tr>
+<tr><td><code>isbn13</code></td><td>string</td><td>Primary key — immutable 13-digit ISBN</td></tr>
+<tr><td><code>title</code></td><td>string</td><td>Full book title</td></tr>
+<tr><td><code>format</code></td><td>string</td><td>Hardcover / Paperback / Spiral Bound / Loose Leaf</td></tr>
+<tr><td><code>cost</code></td><td>float</td><td>BooksGoat 10-qty supplier price</td></tr>
+<tr><td><code>product_url</code></td><td>string</td><td>BooksGoat product page URL — used by local tracker for OOS checks. All 332 active books have this populated.</td></tr>
+<tr><td><code>category_path</code></td><td>string</td><td>Source: 315/327/328/329/330 or <code>merchant_sheet</code></td></tr>
+<tr><td><code>sell_price</code></td><td>float</td><td>Current eBay listing price</td></tr>
+<tr><td><code>status</code></td><td>string</td><td><code>pending</code> / <code>active</code> / <code>delisted</code></td></tr>
+<tr><td><code>score</code></td><td>float</td><td>Last computed score — preserved but not used for cap</td></tr>
+<tr><td><code>listed_at</code></td><td>ISO datetime</td><td>When first listed on eBay</td></tr>
+<tr><td><code>sold_at</code></td><td>ISO datetime</td><td>When sale detected by tracker</td></tr>
+<tr><td><code>delisted_at</code></td><td>ISO datetime</td><td>When delisted</td></tr>
+<tr><td><code>delist_reason</code></td><td>string</td><td><code>unavailable</code> / <code>unprofitable</code> / <code>replaced_by_higher_score</code></td></tr>
+<tr><td><code>checked_at</code></td><td>ISO datetime</td><td>Last tracker availability check</td></tr>
+<tr><td><code>offer_id</code></td><td>string</td><td>eBay offer ID — required for API delist calls</td></tr>
+<tr><td><code>description</code></td><td>string</td><td>Cached AI description from Anthropic — regenerated only if empty</td></tr>
+</table>
+
+<h2>Status transitions</h2>
+<div class="flow">[new ISBN scraped or reset]
+      ↓
+   pending
+      ↓  (full_publish.py or fix_listings.py lists it)
+   active
+      ↓  (tracker: OOS / unprofitable / displaced)
+   delisted ──(14 day cooldown)──→ pending again</div>
+
+<h2>Write rules</h2>
+<table>
+<tr><th>Rule</th><th>Detail</th></tr>
+<tr><td>Append only</td><td>Scraper never overwrites existing rows — only adds new ISBNs</td></tr>
+<tr><td>Skip active ISBNs</td><td>If status=active → skip, do not update cost or title</td></tr>
+<tr><td>Skip cooldown delisted</td><td>If status=delisted and delisted_at &lt; 14 days ago → skip</td></tr>
+<tr><td>Update cost on pending</td><td>If status=pending → update cost with latest scraped price</td></tr>
+<tr><td>Atomic save</td><td>Write to .tmp file, rename to final — prevents corruption on crash</td></tr>
+<tr><td>Save every 10 books</td><td>full_publish.py saves progress every 10 books — crash-safe</td></tr>
+</table>
+</div>
+
+<!-- SCRAPING -->
+<div id="scraping" class="section">
+<h2>BooksGoat scraper v3 — unified discovery</h2>
+<p class="note">Location: <code>E:\Book\Scraper\booksgoat_scraper.py</code> — Monday 6:00 AM via Windows Task Scheduler</p>
+<p class="note">Scraper v3 merges both sources and deduplicates by ISBN. Category pages win on price/URL if same ISBN appears in both.</p>
+
+<h3>Source 1 — Merchant sheet</h3>
+<table>
+<tr><td>URL</td><td><code>BOOKSGOAT_CSV_URL</code> env var → Google Sheets CSV export</td></tr>
+<tr><td>Method</td><td>Simple HTTP request via <code>requests</code> — no browser needed</td></tr>
+<tr><td>Books</td><td>~90 books. Uses 10-qty price as cost. category_path = <code>merchant_sheet</code></td></tr>
+<tr><td>Limitation</td><td>No product_url — tracker cannot check OOS for merchant-sheet-only books</td></tr>
+</table>
+
+<h3>Source 2 — Category pages</h3>
+<table>
+<tr><th>Category</th><th>Path</th><th>Notes</th></tr>
+<tr><td>Bestsellers</td><td><code>315</code></td><td>Primary source</td></tr>
+<tr><td>50% discount</td><td><code>327</code></td><td>Keep even if empty</td></tr>
+<tr><td>60% discount</td><td><code>328</code></td><td>Keep even if empty</td></tr>
+<tr><td>70% discount</td><td><code>329</code></td><td>Keep even if empty</td></tr>
+<tr><td>80% discount</td><td><code>330</code></td><td>Keep even if empty</td></tr>
+</table>
+
+<h3>Scraper architecture (two-pass Playwright)</h3>
+<table>
+<tr><th>Pass</th><th>Method</th><th>Why</th></tr>
+<tr><td>Pass 1 — URL collection</td><td><code>page.evaluate()</code> JS snapshot</td><td>Avoids stale ElementHandle context errors</td></tr>
+<tr><td>Pass 2 — ISBN extraction</td><td>New Playwright tab per product page, closed after</td><td>Eliminates "execution context destroyed" errors</td></tr>
+</table>
+
+<h3>Scraping rules</h3>
+<table>
+<tr><td>Always scrape all 5 categories</td><td>Never remove — BooksGoat adds inventory dynamically</td></tr>
+<tr><td>Pagination</td><td>2 consecutive empty pages = stop</td></tr>
+<tr><td>Dedup</td><td>First occurrence wins if same ISBN in multiple categories</td></tr>
+<tr><td>Cloudflare</td><td>Run locally only — GitHub Actions datacenter IPs are blocked</td></tr>
+<tr><td>Current inventory</td><td>BooksGoat shows ~50 books live at any time. All already in CSV. Scraper adds new books as BooksGoat restocks weekly.</td></tr>
+</table>
+</div>
+
+<!-- LISTER -->
+<div id="lister" class="section">
+<h2>full_publish.py — primary listing tool</h2>
+<p class="note">Location: <code>E:\Book\Lister\full_publish.py</code> — use this for bulk listing of pending books.</p>
+<p class="note">This is the correct tool when books need to be listed from scratch. It handles the full sequence: inventory item → offer → publish.</p>
+
+<h3>Sequence per book</h3>
+<ul>
+<li>Check BLOCKLIST — skip if ISBN is blocked</li>
+<li>PUT inventory item — creates/updates with title, format, ISBN, qty=20, condition=NEW</li>
+<li>DELETE any existing offers for this SKU</li>
+<li>POST fresh offer WITH <code>merchantLocationKey: "home1"</code></li>
+<li>POST publish offer → live eBay listing</li>
+<li>Update CSV: status=active, offer_id, sell_price, listed_at</li>
+<li>Save CSV every 10 books</li>
+</ul>
+
+<h3>Why merchantLocationKey matters</h3>
+<p class="note">CRITICAL: <code>merchantLocationKey: "home1"</code> MUST be in the offer POST payload. It is silently dropped on PUT. Without it eBay cannot resolve Item.Country and publish fails with error 25002. full_publish.py always POSTs fresh offers — never PUTs existing ones.</p>
+
+<h2>fix_listings.py — scoring, repricing, delisting</h2>
+<p class="note">Location: <code>E:\Book\Lister\fix_listings.py</code> — manual run. Also synced to GitHub repo.</p>
+
+<h3>Phase 1 — scoring</h3>
+<ul>
+<li>Fetch eBay sold comps + active listings via Browse API for all 408 books</li>
+<li>Compute undercut price → apply Amazon cap → compute profit</li>
+<li>Filter: profit below $12 → skip</li>
+<li>Check BLOCKLIST → skip blocked ISBNs</li>
+<li>Determine to_list (pending above MIN_PROFIT) and to_delist (active below MIN_PROFIT)</li>
+</ul>
+
+<h3>Phase 2 — upsert (known bug)</h3>
+<p class="note">The <code>get_or_create_offer</code> function uses an <code>if False</code> hack that always forces POST. This means it always tries to create a new offer even if one exists, resulting in "Offer entity already exists" error 25002 for books that already have offers. Books that are truly new (no existing offer) get listed correctly. Books with existing offers fail silently and stay pending.</p>
+<ul>
+<li>AI description via Anthropic API (cached in CSV — only called if empty)</li>
+<li>Image lookup via 5-source fallback chain</li>
+<li>PUT inventory item → POST offer (always, due to if False hack) → publish_offer</li>
+</ul>
+
+<h3>Phase 3 — delist</h3>
+<ul>
+<li>DELETE offer for each book in to_delist list</li>
+<li>Update CSV: status=delisted, delisted_at, delist_reason=unprofitable</li>
+</ul>
+
+<h3>Image fallback chain</h3>
+<table>
+<tr><th>Order</th><th>Source</th></tr>
+<tr><td>1</td><td>Open Library Covers API (-L then -M size, ISBN-13 then ISBN-10)</td></tr>
+<tr><td>2</td><td>Open Library Works API data endpoint</td></tr>
+<tr><td>3</td><td>Amazon CDN (3 URL patterns for ISBN-13, 2 for ISBN-10)</td></tr>
+<tr><td>4</td><td>Google Books API (extraLarge → large → medium → thumbnail)</td></tr>
+<tr><td>5</td><td>Open Library search by cover ID</td></tr>
+</table>
+
+<h3>Known eBay API errors</h3>
+<table>
+<tr><th>Error</th><th>Meaning</th><th>Status</th></tr>
+<tr><td>25002 — Item.Country</td><td>merchantLocationKey missing from offer</td><td><span class="badge gg">Fixed</span> in full_publish.py — always POSTs fresh</td></tr>
+<tr><td>25002 — photo required</td><td>No image on inventory item</td><td><span class="badge br">Persistent</span> — upload photo in Seller Hub</td></tr>
+<tr><td>25002 — Offer entity already exists</td><td>if False hack tries to POST when offer exists</td><td><span class="badge ba">Known bug</span> in fix_listings.py — use full_publish.py instead</td></tr>
+<tr><td>25002 — description required</td><td>AI description missing from inventory item</td><td><span class="badge ba">Known</span> — full_publish.py doesn't call Anthropic API; run fix_listings.py for affected books</td></tr>
+<tr><td>25702 — offer not found</td><td>No inventory item exists for this SKU</td><td><span class="badge gg">Fixed</span> by full_publish.py which creates inventory item first</td></tr>
+<tr><td>25713 — offer not available</td><td>Offer deleted or in broken state (dead offer books)</td><td><span class="badge ba">Known</span> — Group B books. End + Sell Similar in Seller Hub.</td></tr>
+<tr><td>25402 — already published</td><td>Publish call on already-live listing</td><td><span class="badge gg">Harmless</span></td></tr>
+</table>
+</div>
+
+<!-- TRACKER -->
+<div id="tracker" class="section">
+<h2>Local Windows tracker</h2>
+<p class="note">Location: <code>E:\Book\Tracker\booksgoat_tracker.py</code> — daily 7:00 AM via Windows Task Scheduler</p>
+
+<h3>Purpose</h3>
+<p class="note">OOS (out-of-stock) detection and price change monitoring. The ONLY component that can detect BooksGoat availability changes. Cannot run on GitHub Actions due to Cloudflare IP blocking.</p>
+
+<h3>Technology</h3>
+<table>
+<tr><td>Playwright</td><td>Browser-based scraping of BooksGoat product pages</td></tr>
+<tr><td>Residential IP</td><td>Required — BooksGoat blocks datacenter IPs</td></tr>
+<tr><td>SQLite</td><td>Local state tracking between runs</td></tr>
+<tr><td>Windows Task Scheduler</td><td>External trigger — daily 7:00 AM</td></tr>
+</table>
+
+<h3>OOS detection logic</h3>
+<table>
+<tr><td>In-stock signal</td><td>Page title starts with "Buy..." AND <code>#button-cart</code> present</td></tr>
+<tr><td>OOS signal</td><td>Page title contains "not found" OR no <code>#button-cart</code></td></tr>
+<tr><td>OOS action</td><td>DELETE offer via eBay API → status=delisted, delist_reason=unavailable</td></tr>
+</table>
+
+<h3>Price change detection</h3>
+<table>
+<tr><td>Price up → still profitable</td><td>Update cost in CSV, keep listed</td></tr>
+<tr><td>Price up → profit below $12</td><td>Delist → delist_reason=unprofitable</td></tr>
+</table>
+
+<h3>Coverage</h3>
+<table>
+<tr><td>Tracks</td><td>All CSV rows with status=active that have a product_url. Currently: all 332 auto-listed books.</td></tr>
+<tr><td>Does NOT track</td><td>Manual listings (no offer_id in CSV). Books with empty product_url (none currently).</td></tr>
+<tr><td>Limitation</td><td>Merchant-sheet-only books may have no product_url. Tracker will skip these silently.</td></tr>
+</table>
+
+<h3>Pending: BooksGoat availability column</h3>
+<p class="note">BooksGoat will add an availability column to merchant sheet (e.g. "offline only"). When received: inspect headers, update cloud_tracker.py to delist OOS books from sheet, update scanner to filter OOS candidates, evaluate whether local tracker scraping can be simplified.</p>
+</div>
+
+<!-- PIPELINE -->
+<div id="pipeline" class="section">
+<h2>Full pipeline — data flow</h2>
+<div class="flow">BooksGoat website (5 category pages) + merchant sheet
+  ↓  [booksgoat_scraper.py — Monday 6:00 AM, Windows Task Scheduler]
+booksgoat_enhanced.csv (new pending rows appended, costs updated)
+  ↓  [full_publish.py — manual run when new pending books need listing]
+  ├─ PUT inventory item (title, format, ISBN, qty=20)
+  ├─ DELETE stale offers
+  ├─ POST offer WITH merchantLocationKey: home1
+  └─ publish_offer → live eBay listing
+  ↓  [fix_listings.py — manual run for repricing + scoring]
+  ├─ Phase 1: score all 408 books, apply $12 profit floor
+  ├─ Phase 2: reprice active listings (with if False bug — new offers only)
+  └─ Phase 3: delist unprofitable books
+  ↓
+  [booksgoat_tracker.py — daily 7:00 AM, Windows Task Scheduler]
+  └─ Playwright → visit product_url per active book
+     → OOS or price change → delist if needed → email alert</div>
+
+<h2>GitHub Actions pipeline (njubran82/Scanner)</h2>
+<table>
+<tr><th>Workflow</th><th>Schedule</th><th>Purpose</th></tr>
+<tr><td>scanner.yml — Weekly Scanner</td><td>Monday 9:00 AM EST</td><td>Fetches BooksGoat merchant sheet → scores ~90 books → lister.py lists new opportunities → repricer.py reprices active → weekly_summary.py sends email</td></tr>
+<tr><td>order_monitor.yml — Order Monitor</td><td>Every 2 hours</td><td>Polls eBay Orders API → emails fulfillment details on new sales. Currently running. Needs sell.fulfillment scope on refresh token to be fully functional.</td></tr>
+</table>
+
+<h3>GitHub Actions scripts</h3>
+<table>
+<tr><th>Script</th><th>Purpose</th><th>Notes</th></tr>
+<tr><td><code>scanner.py</code></td><td>Scans BooksGoat merchant sheet for arbitrage opportunities</td><td>Has BLOCKLIST. MIN_PROFIT=$12.</td></tr>
+<tr><td><code>lister.py</code></td><td>Lists opportunities found by scanner on eBay</td><td>QUANTITY=20. Has BLOCKLIST.</td></tr>
+<tr><td><code>repricer.py</code></td><td>Reprices active listings based on current eBay comps</td><td><span class="badge br">BUG</span> — instant-delist cycle. 496 errors in last run. Needs investigation.</td></tr>
+<tr><td><code>order_monitor.py</code></td><td>Polls eBay orders, emails fulfillment details</td><td>Needs sell.fulfillment scope on refresh token.</td></tr>
+<tr><td><code>weekly_summary.py</code></td><td>Sends structured weekly pipeline summary email</td><td>Body = short summary. Attachment = full detail. <span class="badge ba">Duplicate entries bug</span> in opportunities list.</td></tr>
+</table>
+
+<h3>GitHub Actions rules</h3>
+<ul>
+<li>All workflows need <code>permissions: contents: write</code></li>
+<li>Unstaged files cleared before <code>git pull --rebase</code></li>
+<li>Cannot scrape BooksGoat — datacenter IPs blocked by Cloudflare</li>
+<li>State persists via git commits — <code>scanner_state.json</code> must NOT be in .gitignore</li>
+</ul>
+
+<h2>Windows Task Scheduler</h2>
+<table>
+<tr><th>Task</th><th>Schedule</th><th>Script</th></tr>
+<tr><td>BooksGoat Weekly Scraper</td><td>Monday 6:00 AM</td><td><code>E:\Book\Scraper\booksgoat_scraper.py</code></td></tr>
+<tr><td>BooksGoat Daily Tracker</td><td>Daily 7:00 AM</td><td><code>E:\Book\Tracker\booksgoat_tracker.py</code></td></tr>
+</table>
+
+<h2>Component responsibilities</h2>
+<table>
+<tr><th>Task</th><th>Component</th></tr>
+<tr><td>Discover new books</td><td>booksgoat_scraper.py (local, Windows) — merges merchant sheet + 5 category pages</td></tr>
+<tr><td>Bulk list new books</td><td>full_publish.py (manual)</td></tr>
+<tr><td>Score + reprice + delist</td><td>fix_listings.py (manual) / repricer.py (GitHub Actions weekly)</td></tr>
+<tr><td>AI descriptions</td><td>fix_listings.py → Anthropic API (claude-sonnet-4-20250514)</td></tr>
+<tr><td>Cover images</td><td>fix_listings.py → 5-source fallback chain</td></tr>
+<tr><td>OOS detection + delist</td><td>booksgoat_tracker.py (local, daily)</td></tr>
+<tr><td>Order fulfillment alerts</td><td>order_monitor.py (GitHub Actions, every 2h)</td></tr>
+<tr><td>Weekly pipeline summary</td><td>weekly_summary.py (GitHub Actions, Monday)</td></tr>
+</table>
+</div>
+
+<!-- ALERTS -->
+<div id="alerts" class="section">
+<h2>Alert system</h2>
+<table>
+<tr><th>Alert</th><th>Trigger</th><th>Frequency</th><th>Source</th></tr>
+<tr><td>OOS delist</td><td>Book goes out of stock on BooksGoat</td><td>Immediate</td><td>booksgoat_tracker.py</td></tr>
+<tr><td>Unprofitable delist</td><td>BooksGoat price increase kills margin</td><td>Immediate</td><td>booksgoat_tracker.py</td></tr>
+<tr><td>Daily tracker summary</td><td>Always — even if no events</td><td>Daily ~7:00 AM</td><td>booksgoat_tracker.py</td></tr>
+<tr><td>New order alert</td><td>Sale detected on eBay</td><td>Within 2 hours of sale</td><td>order_monitor.py</td></tr>
+<tr><td>Weekly pipeline summary</td><td>Always — scanner+lister+repricer results</td><td>Monday after 9AM EST</td><td>weekly_summary.py</td></tr>
+</table>
+<p class="note">All alerts via SMTP Gmail. Delivery to jubran.industries@gmail.com.</p>
+<p class="note">Weekly summary email: short inline summary + full detail as dated .txt attachment.</p>
+<p class="note">Known issues: duplicate opportunities entries in weekly email. repricer instant-delist cycle causing 496 errors.</p>
+</div>
+
+<!-- ORDERS -->
+<div id="orders" class="section">
+<h2>Order fulfillment — semi-automated</h2>
+<p class="note">Full automation not feasible — BooksGoat has no order API. Playwright checkout automation is fragile and requires storing card details.</p>
+
+<h3>Current flow</h3>
+<table>
+<tr><th>Step</th><th>Automated?</th><th>Detail</th></tr>
+<tr><td>Detect new eBay order</td><td>✅ Automated</td><td>order_monitor.py polls every 2 hours</td></tr>
+<tr><td>Email with fulfillment details</td><td>✅ Automated</td><td>Buyer name, address, ISBN, BooksGoat URL, cost</td></tr>
+<tr><td>Verify single-unit available on BooksGoat</td><td>❌ Manual</td><td>Check BooksGoat URL from email before placing order. Some books require minimum 5 units.</td></tr>
+<tr><td>Place order on BooksGoat</td><td>❌ Manual</td><td>Open URL from email, add to cart, enter buyer address, pay</td></tr>
+<tr><td>eBay tracking update</td><td>❌ Manual</td><td>Enter tracking number in Seller Hub after BooksGoat ships</td></tr>
+</table>
+
+<h3>Order alert email contents</h3>
+<ul>
+<li>eBay order ID + sale date + total</li>
+<li>Buyer full name + phone + shipping address</li>
+<li>Book title + ISBN + sale price</li>
+<li>BooksGoat product URL (direct link)</li>
+<li>Your cost</li>
+</ul>
+
+<h3>Pending: sell.fulfillment scope</h3>
+<p class="note">Refresh token needs regeneration with sell.fulfillment scope. Steps: eBay Developer Portal → Profit Scanner app → OAuth Scopes → enable sell.fulfillment → regenerate token → update GitHub secret EBAY_REFRESH_TOKEN and Windows machine env var.</p>
+</div>
+
+<!-- BLOCKLIST -->
+<div id="blocklist" class="section">
+<h2>Permanent BLOCKLIST</h2>
+<p class="note">These ISBNs are permanently excluded from listing. Present in both <code>fix_listings.py</code> (as MIN_QTY_BLOCKLIST) and <code>scanner.py</code> (as BLOCKLIST). Add new entries as discovered.</p>
+<table>
+<tr><th>ISBN</th><th>Title</th><th>Reason</th><th>Date added</th></tr>
+<tr><td><code>9781260460445</code></td><td>Lange Q&A Radiography Examination</td><td>Minimum order qty 5 on BooksGoat — cannot dropship single units</td><td>04/20/2026</td></tr>
+<tr><td><code>9780990873853</code></td><td>Overcoming Gravity: A Systematic Approach to Gymnastics</td><td>Minimum order qty 5 on BooksGoat — cannot dropship single units</td><td>04/20/2026</td></tr>
+<tr><td><code>9781119826798</code></td><td>Architect's Studio Companion: Rules of Thumb for Preliminary Design</td><td>PDF-only product on BooksGoat — cannot ship physical book</td><td>04/20/2026</td></tr>
+</table>
+
+<h2>Identifying new blocklist candidates</h2>
+<table>
+<tr><td>Flat pricing signal</td><td>If 5-qty = 10-qty = 25-qty price on merchant sheet, book may have min-qty restriction. Verify before listing.</td></tr>
+<tr><td>PDF signal</td><td>If BooksGoat product page shows download/digital option only, add to blocklist immediately.</td></tr>
+<tr><td>Process</td><td>Cancel eBay order → add ISBN to blocklist in fix_listings.py locally → run add_to_blocklist.py → push to GitHub → mark CSV row as delisted</td></tr>
+</table>
+
+<h2>4 permanent ISBN-25002 catalog conflicts</h2>
+<p class="note">These books fail eBay's inventory upsert with error 25002 due to catalog conflicts. Not in BLOCKLIST — they can still be listed manually in Seller Hub. No clean API fix found.</p>
+<table>
+<tr><th>ISBN</th><th>Title</th></tr>
+<tr><td><code>9781609836184</code></td><td>Concrete Manual: Based on the 2015 IBC and ACI 318-14</td></tr>
+<tr><td><code>9780763781873</code></td><td>National Incident Management System: Principles and Practice</td></tr>
+<tr><td><code>9781951058067</code></td><td>The ASQ Certified Manager of Quality/Organizational Excellence Handbook</td></tr>
+<tr><td><code>9781951058098</code></td><td>The ASQ Certified Quality Auditor Handbook, 5th edition</td></tr>
+</table>
+</div>
+
+<!-- ISSUES -->
+<div id="issues" class="section">
+<h2>Active bugs (as of 04/20/2026)</h2>
+<table>
+<tr><th>#</th><th>Severity</th><th>Bug</th><th>Detail</th></tr>
+<tr><td>1</td><td><span class="badge br">Critical</span></td><td>repricer.py instant-delist cycle</td><td>Repricer delists books as unprofitable, scanner re-lists them, repricer delists again. 496 errors in last run. Many books appearing 10-15x in delist log. Needs root cause investigation.</td></tr>
+<tr><td>2</td><td><span class="badge br">Critical</span></td><td>weekly_summary.py duplicate opportunities</td><td>Opportunities list repeats the same books many times. Parser matching too broadly across full log instead of just scanner block.</td></tr>
+<tr><td>3</td><td><span class="badge br">High</span></td><td>fix_listings.py <code>if False</code> hack</td><td>get_or_create_offer always forces POST. Books with existing offers always fail with "Offer entity already exists" and stay pending. Workaround: use full_publish.py for new listings.</td></tr>
+<tr><td>4</td><td><span class="badge br">High</span></td><td>Blocklist not filtering in scanner.py</td><td>BLOCKLIST defined in scanner.py but no skip logic implemented in the scoring loop. Blocked ISBNs still appear as opportunities.</td></tr>
+<tr><td>5</td><td><span class="badge ba">Medium</span></td><td>Quantity stuck at 10</td><td>~150 listings created 04/19 via force_publish_all.py have qty=10. Inventory item PUT failing silently. New listings correctly use qty=20.</td></tr>
+<tr><td>6</td><td><span class="badge ba">Medium</span></td><td>sell.fulfillment scope missing</td><td>Refresh token lacks sell.fulfillment scope. order_monitor.py may not have full access to fulfillment details.</td></tr>
+<tr><td>7</td><td><span class="badge ba">Medium</span></td><td>full_publish.py no AI descriptions</td><td>full_publish.py doesn't call Anthropic API. Books published without descriptions fail with "description required" error 25002 on some listings.</td></tr>
+</table>
+</div>
+
+<!-- TASKS -->
+<div id="tasks" class="section">
+<h2>Manual task list (as of 04/20/2026)</h2>
+<table>
+<tr><th>#</th><th>Priority</th><th>Task</th></tr>
+<tr><td>1</td><td><span class="badge br">High</span></td><td>Fix repricer.py instant-delist cycle — investigate why repricer is generating negative profits for active listings and delisting them</td></tr>
+<tr><td>2</td><td><span class="badge br">High</span></td><td>Fix weekly_summary.py duplicate opportunities — parser needs to only read scanner SCAN COMPLETE block once</td></tr>
+<tr><td>3</td><td><span class="badge br">High</span></td><td>Add skip logic to scanner.py BLOCKLIST — BLOCKLIST defined but never checked against ISBNs in scoring loop</td></tr>
+<tr><td>4</td><td><span class="badge br">High</span></td><td>Delist 29 duplicate listings in Seller Hub (full list in previous session)</td></tr>
+<tr><td>5</td><td><span class="badge br">High</span></td><td>Upload photos for 42 no-photo books in Seller Hub (full list in previous session)</td></tr>
+<tr><td>6</td><td><span class="badge br">High</span></td><td>Group B — End + Sell Similar (NOT Relist) for 7 dead offer books: American Herbal, Functional Occlusion, Clinical Handbook, Arborists, Developmental Bio, Larone's Fungi, Small Animal Derm</td></tr>
+<tr><td>7</td><td><span class="badge br">High</span></td><td>Upload photos for 11 original manual listings: Safety Pro, ASQ QE, Ketogenic, AI Endgame, Bayesian, Exposure/Response, Qualitative Research, Lange Q&A, Strategies & Tactics, Women's Reproductive, Behavior Analysis</td></tr>
+<tr><td>8</td><td><span class="badge ba">Medium</span></td><td>Regenerate eBay refresh token with sell.fulfillment scope — eBay Developer Portal → Profit Scanner → OAuth Scopes → enable sell.fulfillment → regenerate → update GitHub secret + Windows env var</td></tr>
+<tr><td>9</td><td><span class="badge ba">Medium</span></td><td>Fix quantity stuck at 10 on ~150 listings from 04/19</td></tr>
+<tr><td>10</td><td><span class="badge ba">Medium</span></td><td>Safety Professional's Reference — manual listing, profit negative ($-12.38), delist manually in Seller Hub</td></tr>
+<tr><td>11</td><td><span class="badge ba">Medium</span></td><td>Add MIN_QTY_BLOCKLIST skip logic properly to fix_listings.py main candidate loop (not inside score_book function)</td></tr>
+<tr><td>12</td><td><span class="badge ba">Medium</span></td><td>Fix fix_listings.py <code>if False</code> hack — proper check for existing offer merchantLocationKey before POST vs PUT</td></tr>
+<tr><td>13</td><td><span class="badge ba">Medium</span></td><td>Run fix_listings.py to generate AI descriptions + republish 24 description-missing books</td></tr>
+<tr><td>14</td><td><span class="badge bg">Low</span></td><td>Ghost entry reconciliation — run audit_offers.py</td></tr>
+<tr><td>15</td><td><span class="badge bg">Low</span></td><td>Second eBay account (jubran.industries@gmail.com) — get eBay approval before building</td></tr>
+<tr><td>16</td><td><span class="badge bg">Low</span></td><td>7 Item.Country books — after fix_listings.py if False bug resolved, end manual listings and republish via API</td></tr>
+<tr><td>17</td><td><span class="badge bg">Low</span></td><td>Blocklist expansion — add more books as min-qty or PDF-only issues discovered. Current: 3 ISBNs.</td></tr>
+<tr><td>18</td><td><span class="badge bg">Low</span></td><td>Monitor weekly run — confirm repricer delist cycle is fixed</td></tr>
+</table>
+</div>
+
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('visible');
+  btn.classList.add('active');
+}
+</script>

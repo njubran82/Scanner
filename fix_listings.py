@@ -461,7 +461,7 @@ def upsert_inventory_item(
         "condition": "NEW",
         "conditionDescription": "Brand new, unread copy.",
         "availability": {
-            "shipToLocationAvailability": {"quantity": 100}
+            "shipToLocationAvailability": {"quantity": 20}
         },
     }
     r = requests.put(
@@ -496,7 +496,7 @@ def get_or_create_offer(sku: str, price: float, user_token: str) -> tuple[str | 
                     "sku": sku,
                     "marketplaceId": "EBAY_US",
                     "format": "FIXED_PRICE",
-                    "availableQuantity": 10,
+                    "availableQuantity": 20,
                     "categoryId": "261186",
                     "listingPolicies": {
                         "fulfillmentPolicyId": FULFILLMENT_POLICY,
@@ -519,7 +519,7 @@ def get_or_create_offer(sku: str, price: float, user_token: str) -> tuple[str | 
         "sku": sku,
         "marketplaceId": "EBAY_US",
         "format": "FIXED_PRICE",
-        "availableQuantity": 10,
+        "availableQuantity": 20,
         "categoryId": "261186",
         "listingPolicies": {
             "fulfillmentPolicyId": FULFILLMENT_POLICY,

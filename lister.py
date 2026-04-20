@@ -26,7 +26,7 @@ PAYMENT_POLICY_ID  = '391308491023'
 SHIPPING_POLICY_ID = '391308514023'
 RETURN_POLICY_ID   = '391308498023'
 
-QUANTITY           = 100
+QUANTITY           = 20
 STATE_FILE         = 'lister_state.json'
 OPPORTUNITIES_FILE = 'scan_opportunities.json'
 LOG_FILE           = 'lister_log.txt'

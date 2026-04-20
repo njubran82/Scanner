@@ -34,7 +34,7 @@ SMTP_PASSWORD      = os.getenv('SMTP_PASSWORD')
 EMAIL_FROM         = os.getenv('EMAIL_FROM')
 EMAIL_TO           = os.getenv('EMAIL_TO')
 
-MIN_PROFIT    = 15.00        # was 1.00
+MIN_PROFIT    = 12.00        # was 1.00
 EBAY_FEE_RATE  = 0.153       # was 0.1325
 UNDERCUT_PCT   = 0.12        # 12% — was 0.95 (5% off Amazon only)
 STATE_FILE     = 'lister_state.json'

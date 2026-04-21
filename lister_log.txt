@@ -3115,3 +3115,43 @@
 2026-04-20 17:34:54,728 INFO LISTER STARTED — 2026-04-20 17:34:54
 2026-04-20 17:34:54,728 INFO ============================================================
 2026-04-20 17:34:54,728 INFO No opportunities to list.
+2026-04-21 01:49:46,150 INFO ============================================================
+2026-04-21 01:49:46,150 INFO LISTER STARTED — 2026-04-21 01:49:46
+2026-04-21 01:49:46,150 INFO ============================================================
+2026-04-21 01:49:46,151 INFO Processing 11 opportunities...
+2026-04-21 01:49:46,349 INFO   Generating description for 9781641950565...
+2026-04-21 01:49:46,882 WARNING   No image found
+2026-04-21 01:49:49,379 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:49:50,996 WARNING   No image found
+2026-04-21 01:49:53,977 ERROR   FAIL 9780867157994: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:49:54,477 INFO   Generating description for 9781690384168...
+2026-04-21 01:49:54,881 WARNING   No image found
+2026-04-21 01:49:57,518 ERROR   FAIL 9781690384168: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:49:58,018 INFO   Generating description for 9781951058067...
+2026-04-21 01:49:58,428 INFO   Image found
+2026-04-21 01:50:03,273 INFO   ✅ Listed 9781951058067 | $103.78 | Profit: $23.91 | qty=20 | ListingID: 358468899018
+2026-04-21 01:50:03,779 INFO   Generating description for 9781951058098...
+2026-04-21 01:50:04,508 WARNING   No image found
+2026-04-21 01:50:07,695 ERROR   FAIL 9781951058098: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:50:08,196 INFO   Generating description for 9781071853801...
+2026-04-21 01:50:09,633 WARNING   No image found
+2026-04-21 01:50:12,702 ERROR   FAIL 9781071853801: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:50:13,202 INFO   Generating description for 9781609836184...
+2026-04-21 01:50:14,296 WARNING   No image found
+2026-04-21 01:50:17,156 ERROR   FAIL 9781609836184: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:50:17,656 INFO   Generating description for 9781032836072...
+2026-04-21 01:50:18,358 WARNING   No image found
+2026-04-21 01:50:21,605 ERROR   FAIL 9781032836072: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:50:22,106 INFO   Generating description for 9780879396961...
+2026-04-21 01:50:23,005 WARNING   No image found
+2026-04-21 01:50:25,526 ERROR   FAIL 9780879396961: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:50:26,026 INFO   Generating description for 9781636940267...
+2026-04-21 01:50:27,011 WARNING   No image found
+2026-04-21 01:50:30,388 ERROR   FAIL 9781636940267: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-21 01:50:30,888 INFO   Generating description for 9781439840955...
+2026-04-21 01:50:31,276 WARNING   No image found
+2026-04-21 01:50:36,990 INFO   ✅ Listed 9781439840955 | $80.2 | Profit: $19.44 | qty=20 | ListingID: 358468900079
+2026-04-21 01:50:37,501 INFO ============================================================
+2026-04-21 01:50:37,502 INFO LISTER DONE: 2 listed | 9 failed
+2026-04-21 01:50:37,502 INFO ============================================================
+2026-04-21 01:50:38,571 INFO Email alert sent

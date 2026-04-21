@@ -1,5 +1,90 @@
-{
-  "scan_date": "2026-04-20T17:34:54.431818",
-  "total_books": 90,
-  "opportunities": []
-}
+[
+  {
+    "isbn13": "9781641950565",
+    "title": "ACI CODE-318-19(22): Building Code Requirements fo...",
+    "cost": 73.99,
+    "price": 105.6,
+    "profit": 15.45,
+    "method": "HIGH | EBAY_COMP (HIGH, n=7)"
+  },
+  {
+    "isbn13": "9780867157994",
+    "title": "Zero Bone Loss Concepts by Tomas Linkevicius (ISBN...",
+    "cost": 83.99,
+    "price": 151.36,
+    "profit": 44.21,
+    "method": "FALLBACK | AMAZON_FALLBACK"
+  },
+  {
+    "isbn13": "9781690384168",
+    "title": "Advanced Placement United States Government & ...",
+    "cost": 23.99,
+    "price": 48.39,
+    "profit": 17.0,
+    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1)"
+  },
+  {
+    "isbn13": "9781951058067",
+    "title": "The ASQ Certified Manager of Quality/Organizationa...",
+    "cost": 63.99,
+    "price": 103.78,
+    "profit": 23.91,
+    "method": "HIGH | EBAY_COMP (HIGH, n=7)"
+  },
+  {
+    "isbn13": "9781951058098",
+    "title": "The ASQ Certified Quality Auditor Handbook, 5th ed...",
+    "cost": 57.99,
+    "price": 104.68,
+    "profit": 30.67,
+    "method": "HIGH | EBAY_COMP (HIGH, n=5) [amazon capped]"
+  },
+  {
+    "isbn13": "9781071853801",
+    "title": "Research and Evaluation in Education and Psycholog...",
+    "cost": 54.99,
+    "price": 79.93,
+    "profit": 12.71,
+    "method": "HIGH | EBAY_COMP (HIGH, n=9)"
+  },
+  {
+    "isbn13": "9781609836184",
+    "title": "Concrete Manual: Based on the 2015 IBC and ACI 318...",
+    "cost": 85.99,
+    "price": 175.74,
+    "profit": 62.86,
+    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
+  },
+  {
+    "isbn13": "9781032836072",
+    "title": "Safety Professional\u2019s Reference and Study Guide,...",
+    "cost": 83.99,
+    "price": 128.24,
+    "profit": 24.63,
+    "method": "HIGH | EBAY_COMP (HIGH, n=3) [amazon capped]"
+  },
+  {
+    "isbn13": "9780879396961",
+    "title": "Fire and Emergency Services Instructor, 9th Edition",
+    "cost": 55.99,
+    "price": 84.55,
+    "profit": 15.62,
+    "method": "HIGH | EBAY_COMP (HIGH, n=4) [amazon capped]"
+  },
+  {
+    "isbn13": "9781636940267",
+    "title": "The ASQ Certified Quality Engineer Handbook 5th edition (ISBN 9781636940267) by Scott A Laman - Hardcover",
+    "cost": 63.99,
+    "price": 113.05,
+    "profit": 31.76,
+    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
+  },
+  {
+    "isbn13": "9781439840955",
+    "title": "Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statistical Science), 3rd edition by Andrew Gelman, John B. Carlin, Hal S. Stern, David B. Dunson",
+    "cost": 48.49,
+    "price": 80.2,
+    "profit": 19.44,
+    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
+  }
+]

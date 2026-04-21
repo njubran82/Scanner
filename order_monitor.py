@@ -17,6 +17,7 @@ from datetime import datetime, timezone, timedelta
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from pathlib import Path
+from protection_patch import increment_sales
 
 # ── Config ────────────────────────────────────────────────────
 EBAY_APP_ID        = os.environ["EBAY_CLIENT_ID"]
@@ -32,6 +33,10 @@ EMAIL_TO      = os.environ.get("EMAIL_TO", SMTP_USER)
 
 STATE_FILE    = Path("orders_processed.json")
 STATE_FILE_LS = Path("lister_state.json")
+
+LISTER_CSV  = r"E:\Book\Lister\booksgoat_enhanced.csv"
+SCANNER_CSV = r"E:\Book\Scanner\booksgoat_enhanced.csv"
+
 
 # ── Auth ──────────────────────────────────────────────────────
 def get_token():
@@ -202,6 +207,15 @@ def run():
         send_order_alert(new_orders, lister_state)
         for o in new_orders:
             processed.add(o["orderId"])
+            # Increment sales_count for each ISBN sold
+            for item in o.get("lineItems", []):
+                sku = item.get("sku", "").strip()
+                if sku:
+                    qty = int(item.get("quantity", 1))
+                    for _ in range(qty):
+                        increment_sales(LISTER_CSV, sku)
+                        increment_sales(SCANNER_CSV, sku)
+                    print(f"  sales_count incremented: {sku} x{qty}")
         save_processed(processed)
     else:
         print("No new orders — no alert sent")

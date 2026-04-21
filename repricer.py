@@ -10,6 +10,7 @@ from io import StringIO
 from datetime import datetime, timezone
 from pathlib import Path
 from dotenv import load_dotenv
+from protection_patch import should_delist
 
 load_dotenv()
 
@@ -230,8 +231,10 @@ def reprice():
             unchanged += 1
             continue
 
-        if profit < MIN_PROFIT:
-            log.info(f'  {title[:50]}: AUTO-DELIST — profit ${profit:.2f} at ${target:.2f} (cost ${current_cost:.2f})')
+        if should_delist(row, profit):
+            protected_flag = row.get('protected', 'false') == 'true'
+            floor = 0.00 if protected_flag else MIN_PROFIT
+            log.info(f'  {title[:50]}: AUTO-DELIST — profit ${profit:.2f} at ${target:.2f} (cost ${current_cost:.2f}) [floor=${floor:.2f}{" PROTECTED" if protected_flag else ""}]')
             if delist_offer(user_token, isbn, offer_id):
                 rows[isbn]['status']      = 'delisted'
                 rows[isbn]['delisted_at'] = datetime.now(timezone.utc).isoformat()

@@ -240,6 +240,7 @@ def reprice():
                 rows[isbn]['delisted_at'] = datetime.now(timezone.utc).isoformat()
                 rows[isbn]['delist_reason'] = 'unprofitable'
                 delisted.append({'title': title, 'profit': profit})
+                save_csv(rows)  # write immediately — prevents orphan on canceled run
                 log.info(f'  \u2705 Delisted')
             else:
                 log.error(f'  \u274c Delist failed')
@@ -250,6 +251,7 @@ def reprice():
             if update_offer_price(user_token, offer_id, target):
                 rows[isbn]['sell_price'] = str(target)
                 repriced.append({'title': title, 'old': listing_price, 'new': target, 'profit': profit})
+                save_csv(rows)  # write immediately — keeps CSV in sync with eBay state
                 log.info(f'  \u2705 Repriced')
             else:
                 log.error(f'  \u274c Reprice failed ({isbn})')

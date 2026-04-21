@@ -129,9 +129,18 @@ def get_ebay_comps(isbn, app_token):
     conf = 'HIGH' if len(prices) >= 3 else 'MEDIUM' if prices else 'NONE'
     return prices, conf
 
+def filter_comps(prices: list, cost: float, multiplier: float = 1.1) -> list:
+    """Discard comps below cost * multiplier — eliminates used/wrong edition outliers."""
+    if not prices or not cost:
+        return prices
+    floor = cost * multiplier
+    filtered = [p for p in prices if p >= floor]
+    return filtered if filtered else prices  # fall back to unfiltered if all removed
+
 def calc_target(isbn, cost, amazon_price, app_token):
     comps, conf = get_ebay_comps(isbn, app_token)
     if comps:
+        comps = filter_comps(comps, cost)  # remove cheap outliers before taking min
         target = round(min(comps) * (1 - UNDERCUT_PCT), 2)
         method = f'EBAY_COMP ({conf}, n={len(comps)})'
     elif amazon_price:

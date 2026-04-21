@@ -57,8 +57,7 @@ jobs:
           EMAIL_TO:           ${{ secrets.EMAIL_TO }}
         run: python lister.py
 
-      - name: Run repricer (DISABLED)
-        if: false
+      - name: Run repricer
         env:
           EBAY_CLIENT_ID:     ${{ secrets.EBAY_APP_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CERT_ID }}

@@ -2077,3 +2077,41 @@
 2026-04-21 01:49:45,895 INFO ============================================================
 2026-04-21 01:49:45,901 INFO CSV saved: 417 rows
 2026-04-21 01:49:45,901 INFO scan_opportunities.json written: 11 entries
+2026-04-22 00:12:34,726 INFO ============================================================
+2026-04-22 00:12:34,726 INFO SCANNER STARTED — 2026-04-22 00:12:34
+2026-04-22 00:12:34,726 INFO ============================================================
+2026-04-22 00:12:34,731 INFO Loaded 408 books from CSV
+2026-04-22 00:12:35,262 INFO Merchant sheet: 89 books (1 skipped)
+2026-04-22 00:12:35,559 INFO eBay app token acquired
+2026-04-22 00:12:35,560 INFO Added 9 new books from merchant sheet
+2026-04-22 00:12:36,963 INFO   ✅ ACI CODE-318-19(22): Building Code Requirements fo | Cost: $73.99 | List: $105.6 | Profit: $15.45 | HIGH | EBAY_COMP (HIGH, n=7)
+2026-04-22 00:12:41,783 INFO   ✅ Zero Bone Loss Concepts by Tomas Linkevicius (ISBN | Cost: $83.99 | List: $151.36 | Profit: $44.21 | FALLBACK | AMAZON_FALLBACK
+2026-04-22 00:12:44,367 INFO   ✅ Interpreting the MMPI-3 textbook by Martin Sellbom | Cost: $53.99 | List: $70.4 | Profit: $5.64 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-04-22 00:12:51,708 INFO   ✅ Low Pressure Boilers, 5th Edition by Frederick M.  | Cost: $55.99 | List: $79.2 | Profit: $11.09 | HIGH | EBAY_COMP (HIGH, n=4)
+2026-04-22 00:13:03,662 INFO   ✅ Mastering the Art of Patient Care, 1st Edition (20 | Cost: $29.99 | List: $45.68 | Profit: $8.7 | HIGH | EBAY_COMP (HIGH, n=5)
+2026-04-22 00:13:04,349 INFO   ✅ Advanced Placement United States Government & ... | Cost: $23.99 | List: $48.39 | Profit: $17.0 | MEDIUM | EBAY_COMP (MEDIUM, n=1)
+2026-04-22 00:13:08,022 INFO   ✅ Tiny Humans, Big Emotions: How to Navigate Tantrum | Cost: $9.99 | List: $25.08 | Profit: $11.25 | MEDIUM | EBAY_COMP (MEDIUM, n=1)
+2026-04-22 00:13:10,216 INFO   ✅ Uneven Roads: An Introduction to U.S. Racial and E | Cost: $56.99 | List: $77.39 | Profit: $8.56 | HIGH | EBAY_COMP (HIGH, n=6)
+2026-04-22 00:13:13,031 INFO   ✅ Beyond the Science of Reading: Connecting Literacy | Cost: $16.99 | List: $26.79 | Profit: $5.7 | HIGH | EBAY_COMP (HIGH, n=10)
+2026-04-22 00:13:17,929 INFO   ✅ State Estimation for Robotics, 2nd Edition by Timo | Cost: $54.99 | List: $75.57 | Profit: $9.02 | HIGH | EBAY_COMP (HIGH, n=11)
+2026-04-22 00:13:26,540 INFO   ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $47.99 | List: $65.99 | Profit: $7.9 | HIGH | EBAY_COMP (HIGH, n=3)
+2026-04-22 00:13:34,900 INFO   ✅ Considerations on the AI Endgame by Soenke Ziesche | Cost: $16.99 | List: $28.49 | Profit: $7.14 | HIGH | EBAY_COMP (HIGH, n=10) [amazon capped]
+2026-04-22 00:13:37,505 INFO   ✅ Introduction to the Thermodynamics of Materials, 7 | Cost: $53.99 | List: $70.4 | Profit: $5.64 | HIGH | EBAY_COMP (HIGH, n=10)
+2026-04-22 00:13:38,983 INFO   ✅ The ASQ Certified Quality Auditor Handbook, 5th ed | Cost: $57.99 | List: $104.68 | Profit: $30.67 | HIGH | EBAY_COMP (HIGH, n=5) [amazon capped]
+2026-04-22 00:13:42,689 INFO   ✅ Research and Evaluation in Education and Psycholog | Cost: $54.99 | List: $79.93 | Profit: $12.71 | HIGH | EBAY_COMP (HIGH, n=9)
+2026-04-22 00:13:45,200 INFO   ✅ Concrete Manual: Based on the 2015 IBC and ACI 318 | Cost: $85.99 | List: $175.74 | Profit: $62.86 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-22 00:13:46,523 INFO   ✅ Safety Professional’s Reference and Study Guide,.. | Cost: $83.99 | List: $128.24 | Profit: $24.63 | MEDIUM | EBAY_COMP (MEDIUM, n=2) [amazon capped]
+2026-04-22 00:13:54,622 INFO   ✅ Fire and Emergency Services Instructor, 9th Editio | Cost: $55.99 | List: $84.55 | Profit: $15.62 | HIGH | EBAY_COMP (HIGH, n=3) [amazon capped]
+2026-04-22 00:13:57,510 INFO   ✅ The ASQ Certified Quality Engineer Handbook 5th ed | Cost: $63.99 | List: $113.05 | Profit: $31.76 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-22 00:13:58,254 INFO   ✅ Bayesian Data Analysis (Chapman & Hall/CRC Texts i | Cost: $48.49 | List: $80.2 | Profit: $19.44 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-22 00:13:59,675 INFO   ✅ Ethnicity and Family Therapy, 3rd Edition by Monic | Cost: $52.99 | List: $68.66 | Profit: $5.17 | HIGH | EBAY_COMP (HIGH, n=8) [amazon capped]
+2026-04-22 00:14:00,403 INFO   ✅ DBT Skills Training Handouts and Worksheets Second | Cost: $29.99 | List: $49.4 | Profit: $11.85 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-22 00:14:02,379 INFO ============================================================
+2026-04-22 00:14:02,379 INFO SCAN COMPLETE: 22 opportunities found
+2026-04-22 00:14:02,380 INFO   Already listed:   340
+2026-04-22 00:14:02,380 INFO   Unprofitable:     38
+2026-04-22 00:14:02,380 INFO   No eBay data:     14
+2026-04-22 00:14:02,380 INFO   Cooldown skip:    0
+2026-04-22 00:14:02,380 INFO ============================================================
+2026-04-22 00:14:02,386 INFO CSV saved: 417 rows
+2026-04-22 00:14:02,386 INFO scan_opportunities.json written: 22 entries

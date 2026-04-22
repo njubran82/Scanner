@@ -25,7 +25,7 @@ SMTP_PASSWORD      = os.getenv('SMTP_PASSWORD')
 EMAIL_FROM         = os.getenv('EMAIL_FROM')
 EMAIL_TO           = os.getenv('EMAIL_TO')
 
-MIN_PROFIT    = 12.00
+MIN_PROFIT    = 5.00
 EBAY_FEE_RATE = 0.153
 UNDERCUT_PCT  = 0.12
 AMAZON_CAP    = 0.95

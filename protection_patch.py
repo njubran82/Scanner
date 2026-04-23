@@ -51,7 +51,7 @@ from datetime import datetime, timezone
 
 PROTECTION_THRESHOLD = 3    # sales_count >= this → protected
 PROTECTED_MIN_PROFIT = 0.0  # protected books only delist below this (selling at a loss)
-NORMAL_MIN_PROFIT    = 12.0 # normal books delist below this
+NORMAL_MIN_PROFIT    = 5.0  # normal books delist below this
 
 
 # ─── CORE LOGIC ──────────────────────────────────────────────────────────────

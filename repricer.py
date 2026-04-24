@@ -37,6 +37,8 @@ BLOCKLIST = {
     '9780990873853',
     '9781119826798',
     '9781628257830',  # Process Groups: A Practice Guide — min qty 5 on BooksGoat
+    '9780415708234',  # Healing the Fragmented Selves of Trauma Survivors — min qty 6 on BooksGoat
+    '9781591264507',  # PPI FE Electrical and Computer Practice Problems — min qty 5 on BooksGoat
 }
 
 logging.basicConfig(

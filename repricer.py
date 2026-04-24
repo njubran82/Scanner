@@ -36,6 +36,7 @@ BLOCKLIST = {
     '9781260460445',
     '9780990873853',
     '9781119826798',
+    '9781628257830',  # Process Groups: A Practice Guide — min qty 5 on BooksGoat
 }
 
 logging.basicConfig(

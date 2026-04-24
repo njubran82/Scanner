@@ -30,6 +30,7 @@ BLOCKLIST = {
     '9781260460445',  # Lange Q&A Radiography — min qty 5
     '9780990873853',  # Overcoming Gravity — min qty 5
     '9781119826798',  # Architect's Studio Companion — PDF only
+    '9781628257830',  # Process Groups: A Practice Guide — min qty 5 on BooksGoat
 }
 
 logging.basicConfig(

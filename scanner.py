@@ -33,6 +33,11 @@ BLOCKLIST = {
     '9781628257830',  # Process Groups: A Practice Guide — min qty 5 on BooksGoat
     '9780415708234',  # Healing the Fragmented Selves of Trauma Survivors — min qty 6 on BooksGoat
     '9781591264507',  # PPI FE Electrical and Computer Practice Problems — min qty 5 on BooksGoat
+    '9780091816971',  # Who Moved My Cheese — min qty 50 on BooksGoat
+    '9781108724265',  # Trustworthy Online Controlled Experiments — min qty 5 on BooksGoat
+    '9780415898058',  # Even if it Costs Me My Life — min qty 5 on BooksGoat
+    '9781118115121',  # Art and Science of Technical Analysis — min qty 5 on BooksGoat
+    '9780393979503',  # C Programming: A Modern Approach — download only on BooksGoat
 }
 
 logging.basicConfig(

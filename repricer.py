@@ -29,6 +29,7 @@ MIN_PROFIT    = 5.00
 EBAY_FEE_RATE = 0.153
 UNDERCUT_PCT  = 0.12
 AMAZON_CAP    = 0.95
+MIN_PRICE_MULT = 1.20   # never list below cost × 1.2 regardless of comps
 CSV_PATH      = Path('booksgoat_enhanced.csv')
 LOG_FILE      = 'repricer_log.txt'
 
@@ -120,20 +121,7 @@ def get_ebay_comps(isbn, app_token):
             if prices: break
         except Exception as e:
             log.warning(f'  GTIN error {isbn_val}: {e}')
-    if not prices:
-        try:
-            r = requests.get(
-                'https://api.ebay.com/buy/browse/v1/item_summary/search',
-                headers=headers,
-                params={'q': isbn, 'category_ids': '267',
-                        'filter': 'conditions:{NEW},buyingOptions:{FIXED_PRICE}',
-                        'sort': 'price', 'limit': '20'},
-                timeout=15)
-            for item in r.json().get('itemSummaries', []):
-                try: prices.append(float(item['price']['value']))
-                except: pass
-        except Exception as e:
-            log.warning(f'  Keyword error {isbn}: {e}')
+    # No keyword fallback — broad title searches match wrong editions and corrupt pricing
     conf = 'HIGH' if len(prices) >= 3 else 'MEDIUM' if prices else 'NONE'
     return prices, conf
 
@@ -160,6 +148,11 @@ def calc_target(isbn, cost, amazon_price, app_token):
     if amazon_price and target > amazon_price * AMAZON_CAP:
         target = round(amazon_price * AMAZON_CAP, 2)
         method += ' [amazon capped]'
+    # Never list below cost × MIN_PRICE_MULT — prevents bad comps from killing margin
+    min_price = round(cost * MIN_PRICE_MULT, 2)
+    if target < min_price:
+        target = min_price
+        method += ' [min floor]'
     profit = round(target * (1 - EBAY_FEE_RATE) - cost, 2)
     return target, profit, method
 

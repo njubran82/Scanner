@@ -1,21 +1,19 @@
-name: Weekly Book Scanner & Auto-Lister
+name: Weekly Scanner
 
 on:
   schedule:
-    - cron: '0 14 * * 1'
+    - cron: '0 14 * * 1'   # Monday 9:00 AM EST
   workflow_dispatch:
 
-jobs:
-  scan-and-list:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+permissions:
+  contents: write
 
+jobs:
+  scan:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Set up Python
@@ -26,27 +24,24 @@ jobs:
       - name: Install dependencies
         run: pip install requests python-dotenv
 
-      - name: Clear unstaged changes
-        run: git checkout -- . || true
+      - name: Clear unstaged files
+        run: git checkout -- .
 
-      - name: Pull latest CSV from repo
-        run: |
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git pull --rebase origin main || true
+      - name: Pull latest
+        run: git pull --rebase origin main
 
       - name: Run scanner
         env:
           BOOKSGOAT_CSV_URL:  ${{ secrets.BOOKSGOAT_CSV_URL }}
-          EBAY_CLIENT_ID:     ${{ secrets.EBAY_APP_ID }}
-          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CERT_ID }}
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
         run: python scanner.py
 
       - name: Run lister
         env:
-          EBAY_CLIENT_ID:     ${{ secrets.EBAY_APP_ID }}
-          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CERT_ID }}
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
           BOOKSGOAT_CSV_URL:  ${{ secrets.BOOKSGOAT_CSV_URL }}
           SMTP_HOST:          ${{ secrets.SMTP_HOST }}
@@ -59,8 +54,8 @@ jobs:
 
       - name: Run repricer
         env:
-          EBAY_CLIENT_ID:     ${{ secrets.EBAY_APP_ID }}
-          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CERT_ID }}
+          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
           BOOKSGOAT_CSV_URL:  ${{ secrets.BOOKSGOAT_CSV_URL }}
           SMTP_HOST:          ${{ secrets.SMTP_HOST }}
@@ -71,22 +66,12 @@ jobs:
           EMAIL_TO:           ${{ secrets.EMAIL_TO }}
         run: python repricer.py
 
-      - name: Send weekly summary
-        env:
-          SMTP_HOST:     ${{ secrets.SMTP_HOST }}
-          SMTP_PORT:     ${{ secrets.SMTP_PORT }}
-          SMTP_USER:     ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          EMAIL_FROM:    ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO:      ${{ secrets.EMAIL_TO }}
-        run: python weekly_summary.py
-
       - name: Commit state
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add -A
-          git stash
+          git stash || true
           git pull --rebase origin main
           git stash pop || true
           git add -A

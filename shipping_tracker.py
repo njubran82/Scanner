@@ -180,7 +180,7 @@ def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
     log.warning(f'No eBay order match for ISBN={isbn}, buyer={buyer_name}')
     return None
 
-def post_tracking(ebay_order_id: str, tracking: str, carrier: str, token: str, order: dict) -> bool:
+def post_shipped(ebay_order_id: str, token: str, order: dict, tracking: str = None, carrier: str = None) -> bool:
     carrier_map = {'FEDEX': 'FedEx', 'UPS': 'UPS', 'USPS': 'USPS'}
     line_items = [
         {'lineItemId': item['lineItemId']}
@@ -188,11 +188,14 @@ def post_tracking(ebay_order_id: str, tracking: str, carrier: str, token: str, o
         if 'lineItemId' in item
     ]
     payload = {
-        'trackingNumber': tracking,
-        'shippingCarrierCode': carrier_map.get(carrier, 'FedEx'),
         'shippedDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.000Z'),
         'lineItems': line_items
     }
+    # Only add tracking if provided
+    if tracking:
+        payload['trackingNumber'] = tracking
+        payload['shippingCarrierCode'] = carrier_map.get(carrier, 'FedEx')
+
     r = requests.post(
         f'https://api.ebay.com/sell/fulfillment/v1/order/{ebay_order_id}/shipping_fulfillment',
         headers={'Authorization': f'Bearer {token}',
@@ -201,7 +204,10 @@ def post_tracking(ebay_order_id: str, tracking: str, carrier: str, token: str, o
         timeout=15
     )
     if r.status_code in (200, 201):
-        log.info(f'  ✅ Tracking {tracking} posted to eBay order {ebay_order_id}')
+        if tracking:
+            log.info(f'  ✅ Marked shipped + tracking {tracking} → eBay order {ebay_order_id}')
+        else:
+            log.info(f'  ✅ Marked shipped (no tracking) → eBay order {ebay_order_id}')
         return True
     else:
         log.error(f'  ❌ Failed: {r.status_code} {r.text[:300]}')
@@ -268,7 +274,7 @@ def run():
             continue
 
         ebay_order_id = ebay_order['orderId']
-        ok = post_tracking(ebay_order_id, tracking, carrier, token, ebay_order)
+        ok = post_shipped(ebay_order_id, token, ebay_order)
         state[order_id] = {
             'status': 'posted' if ok else 'failed',
             'ebay_order_id': ebay_order_id,

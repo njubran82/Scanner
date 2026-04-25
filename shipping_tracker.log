@@ -1,0 +1,46 @@
+2026-04-25 11:55:34,024 INFO ============================================================
+2026-04-25 11:55:34,024 INFO shipping_tracker.py started
+2026-04-25 11:55:34,024 INFO Connecting to Gmail IMAP...
+2026-04-25 11:55:37,087 INFO Found 157 BooksGoat Order Update emails in last 14 days
+2026-04-25 11:56:04,112 INFO 48 shipping emails parsed
+2026-04-25 11:56:04,271 INFO eBay token acquired
+2026-04-25 11:56:04,954 WARNING No eBay order match for ISBN=9781517912482, buyer=Lawrence Ball
+2026-04-25 11:56:05,602 WARNING No eBay order match for ISBN=9781437723649, buyer=Michal Bene
+2026-04-25 11:56:06,462 WARNING No eBay order match for ISBN=9781285080475, buyer=Tammy Graham
+2026-04-25 11:56:07,007 WARNING No eBay order match for ISBN=9781305100558, buyer=Aba Beauty
+2026-04-25 11:56:07,495 WARNING No eBay order match for ISBN=9781285769417, buyer=Aba Beauty
+2026-04-25 11:56:07,972 WARNING No eBay order match for ISBN=9781285080475, buyer=Aba Beauty
+2026-04-25 11:56:08,753 WARNING No eBay order match for ISBN=9780763781873, buyer=John Preuer
+2026-04-25 11:56:08,755 INFO Order #26704: no tracking yet — will retry next run
+2026-04-25 11:56:09,540 WARNING No eBay order match for ISBN=9781641950565, buyer=Robert Cavaliere
+2026-04-25 11:56:10,031 WARNING No eBay order match for ISBN=9788350705218, buyer=Tammy Slim
+2026-04-25 11:56:10,672 WARNING No eBay order match for ISBN=9780867157994, buyer=Bach Nguyen
+2026-04-25 11:56:11,367 WARNING No eBay order match for ISBN=9781560915263, buyer=Michael Fishback
+2026-04-25 11:56:11,912 WARNING No eBay order match for ISBN=9781641950565, buyer=Elijah Wessel
+2026-04-25 11:56:12,562 WARNING No eBay order match for ISBN=9781683674405, buyer=None
+2026-04-25 11:56:13,203 WARNING No eBay order match for ISBN=9781483343723, buyer=Michelle Bosu
+2026-04-25 11:56:13,754 WARNING No eBay order match for ISBN=9781118431436, buyer=None
+2026-04-25 11:56:14,469 WARNING No eBay order match for ISBN=9780071769679, buyer=Danielle Dent
+2026-04-25 11:56:15,043 WARNING No eBay order match for ISBN=9781735141640, buyer=Lan Truong
+2026-04-25 11:56:15,045 INFO Order #26831: no tracking yet — will retry next run
+2026-04-25 11:56:15,607 WARNING No eBay order match for ISBN=9781483343723, buyer=Justyna Nagorska
+2026-04-25 11:56:16,074 WARNING No eBay order match for ISBN=9781544391250, buyer=Sheri Dodson
+2026-04-25 11:56:16,075 INFO Order #26823: no tracking yet — will retry next run
+2026-04-25 11:56:16,645 WARNING No eBay order match for ISBN=9781498754415, buyer=Juan Guerra
+2026-04-25 11:56:17,392 WARNING No eBay order match for ISBN=9781641950565, buyer=Zabrina Melrose
+2026-04-25 11:56:17,892 WARNING No eBay order match for ISBN=9781591268468, buyer=Cole Robison
+2026-04-25 11:56:18,421 WARNING No eBay order match for ISBN=9781118909508, buyer=Emerson Jones
+2026-04-25 11:56:18,965 WARNING No eBay order match for ISBN=9781579478889, buyer=Kim Anders
+2026-04-25 11:56:19,488 INFO   Matched eBay order 07-14545-18237 (isbn=False, name=True)
+2026-04-25 11:56:19,696 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:56:20,655 WARNING No eBay order match for ISBN=9781492592006, buyer=Kyle Kurtek
+2026-04-25 11:56:21,315 INFO   Matched eBay order 22-14521-53325 (isbn=False, name=True)
+2026-04-25 11:56:21,493 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:56:22,581 INFO   Matched eBay order 21-14523-71943 (isbn=False, name=True)
+2026-04-25 11:56:22,793 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:56:23,781 WARNING No eBay order match for ISBN=9781560915263, buyer=Csaba Milian
+2026-04-25 11:56:24,520 INFO   Matched eBay order 08-14548-33266 (isbn=False, name=True)
+2026-04-25 11:56:24,700 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:56:25,202 INFO ============================================================
+2026-04-25 11:56:25,202 INFO DONE: 0 posted | 3 awaiting tracking | 0 already done | 30 failed/no match
+2026-04-25 11:56:25,202 INFO ============================================================

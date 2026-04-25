@@ -166,7 +166,7 @@ def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
             isbn_match = isbn and isbn in title
             if not isbn_match:
                 for prop in item.get('properties', []):
-                    if prop.get('name') == 'ISBN' and prop.get('value') == isbn:
+                    if isinstance(prop, dict) and prop.get('name') == 'ISBN' and prop.get('value') == isbn:
                         isbn_match = True
                         break
 

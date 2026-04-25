@@ -44,3 +44,72 @@
 2026-04-25 11:56:25,202 INFO ============================================================
 2026-04-25 11:56:25,202 INFO DONE: 0 posted | 3 awaiting tracking | 0 already done | 30 failed/no match
 2026-04-25 11:56:25,202 INFO ============================================================
+2026-04-25 11:59:09,935 INFO ============================================================
+2026-04-25 11:59:09,935 INFO shipping_tracker.py started
+2026-04-25 11:59:09,935 INFO Connecting to Gmail IMAP...
+2026-04-25 11:59:12,102 INFO Found 157 BooksGoat Order Update emails in last 14 days
+2026-04-25 11:59:42,890 INFO 48 shipping emails parsed
+2026-04-25 11:59:43,076 INFO eBay token acquired
+2026-04-25 11:59:44,089 INFO   Matched eBay order 14-14474-75297 (isbn=False, name=True)
+2026-04-25 11:59:44,275 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:45,709 INFO   Matched eBay order 09-14486-54210 (isbn=False, name=True)
+2026-04-25 11:59:45,890 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:47,125 INFO   Matched eBay order 20-14470-49029 (isbn=False, name=True)
+2026-04-25 11:59:47,316 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:48,773 INFO   Matched eBay order 08-14507-00758 (isbn=False, name=True)
+2026-04-25 11:59:48,945 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:50,484 INFO   Matched eBay order 08-14507-00758 (isbn=False, name=True)
+2026-04-25 11:59:50,682 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:52,016 INFO   Matched eBay order 08-14507-00758 (isbn=False, name=True)
+2026-04-25 11:59:52,231 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:53,720 INFO   Matched eBay order 03-14518-96984 (isbn=False, name=True)
+2026-04-25 11:59:53,929 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:54,431 INFO Order #26704: no tracking yet — will retry next run
+2026-04-25 11:59:55,701 INFO   Matched eBay order 09-14514-03066 (isbn=False, name=True)
+2026-04-25 11:59:55,876 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:57,402 INFO   Matched eBay order 25-14492-78180 (isbn=False, name=True)
+2026-04-25 11:59:57,606 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 11:59:58,953 INFO   Matched eBay order 25-14501-32168 (isbn=True, name=True)
+2026-04-25 11:59:59,169 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:00,596 INFO   Matched eBay order 18-14513-44448 (isbn=False, name=True)
+2026-04-25 12:00:00,807 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:02,135 INFO   Matched eBay order 05-14533-51506 (isbn=False, name=True)
+2026-04-25 12:00:02,328 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:03,759 WARNING No eBay order match for ISBN=9781683674405, buyer=None
+2026-04-25 12:00:04,682 INFO   Matched eBay order 01-14541-71409 (isbn=False, name=True)
+2026-04-25 12:00:04,868 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:06,642 WARNING No eBay order match for ISBN=9781118431436, buyer=None
+2026-04-25 12:00:07,741 INFO   Matched eBay order 23-14512-52082 (isbn=False, name=True)
+2026-04-25 12:00:07,929 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:09,479 INFO   Matched eBay order 12-14527-71952 (isbn=False, name=True)
+2026-04-25 12:00:09,642 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:10,144 INFO Order #26831: no tracking yet — will retry next run
+2026-04-25 12:00:11,051 INFO   Matched eBay order 24-14523-86743 (isbn=False, name=True)
+2026-04-25 12:00:11,238 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:12,847 INFO   Matched eBay order 13-14523-66941 (isbn=False, name=True)
+2026-04-25 12:00:13,020 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:13,522 INFO Order #26823: no tracking yet — will retry next run
+2026-04-25 12:00:14,748 INFO   Matched eBay order 19-14514-11277 (isbn=False, name=True)
+2026-04-25 12:00:14,944 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:16,310 INFO   Matched eBay order 06-14542-54898 (isbn=False, name=True)
+2026-04-25 12:00:16,508 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:18,109 INFO   Matched eBay order 02-14548-30496 (isbn=False, name=True)
+2026-04-25 12:00:18,289 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:19,693 INFO   Matched eBay order 05-14542-60060 (isbn=False, name=True)
+2026-04-25 12:00:19,873 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:21,319 INFO   Matched eBay order 09-14535-78677 (isbn=False, name=True)
+2026-04-25 12:00:21,508 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:22,973 INFO   Matched eBay order 07-14545-18237 (isbn=False, name=True)
+2026-04-25 12:00:23,155 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:24,585 INFO   Matched eBay order 02-14549-69429 (isbn=False, name=True)
+2026-04-25 12:00:24,765 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:26,177 INFO   Matched eBay order 22-14521-53325 (isbn=False, name=True)
+2026-04-25 12:00:26,398 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:27,654 INFO   Matched eBay order 21-14523-71943 (isbn=False, name=True)
+2026-04-25 12:00:27,837 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:29,341 WARNING No eBay order match for ISBN=9781560915263, buyer=Csaba Milian
+2026-04-25 12:00:30,636 INFO   Matched eBay order 08-14548-33266 (isbn=False, name=True)
+2026-04-25 12:00:30,834 ERROR   ❌ Failed: 400 {"errors":[{"errorId":32200,"domain":"API_FULFILLMENT","category":"REQUEST","message":"Invalid line item id: ''"}]}
+2026-04-25 12:00:31,336 INFO ============================================================
+2026-04-25 12:00:31,336 INFO DONE: 0 posted | 3 awaiting tracking | 0 already done | 30 failed/no match
+2026-04-25 12:00:31,336 INFO ============================================================

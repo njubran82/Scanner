@@ -113,3 +113,72 @@
 2026-04-25 12:00:31,336 INFO ============================================================
 2026-04-25 12:00:31,336 INFO DONE: 0 posted | 3 awaiting tracking | 0 already done | 30 failed/no match
 2026-04-25 12:00:31,336 INFO ============================================================
+2026-04-25 12:02:23,818 INFO ============================================================
+2026-04-25 12:02:23,818 INFO shipping_tracker.py started
+2026-04-25 12:02:23,818 INFO Connecting to Gmail IMAP...
+2026-04-25 12:02:25,200 INFO Found 157 BooksGoat Order Update emails in last 14 days
+2026-04-25 12:02:40,019 INFO 48 shipping emails parsed
+2026-04-25 12:02:40,302 INFO eBay token acquired
+2026-04-25 12:02:41,262 INFO   Matched eBay order 14-14474-75297 (isbn=False, name=True)
+2026-04-25 12:02:42,155 INFO   ✅ Tracking 870846104331 posted to eBay order 14-14474-75297
+2026-04-25 12:02:43,694 INFO   Matched eBay order 09-14486-54210 (isbn=False, name=True)
+2026-04-25 12:02:44,386 INFO   ✅ Tracking 870553345558 posted to eBay order 09-14486-54210
+2026-04-25 12:02:45,916 INFO   Matched eBay order 20-14470-49029 (isbn=False, name=True)
+2026-04-25 12:02:46,574 INFO   ✅ Tracking 870553352332 posted to eBay order 20-14470-49029
+2026-04-25 12:02:48,078 INFO   Matched eBay order 08-14507-00758 (isbn=False, name=True)
+2026-04-25 12:02:49,341 INFO   ✅ Tracking 870686345611 posted to eBay order 08-14507-00758
+2026-04-25 12:02:50,866 INFO   Matched eBay order 08-14507-00758 (isbn=False, name=True)
+2026-04-25 12:02:52,139 INFO   ✅ Tracking 870779523944 posted to eBay order 08-14507-00758
+2026-04-25 12:02:53,520 INFO   Matched eBay order 08-14507-00758 (isbn=False, name=True)
+2026-04-25 12:02:54,687 INFO   ✅ Tracking 870810066380 posted to eBay order 08-14507-00758
+2026-04-25 12:02:56,525 INFO   Matched eBay order 03-14518-96984 (isbn=False, name=True)
+2026-04-25 12:02:57,759 INFO   ✅ Tracking 870810320468 posted to eBay order 03-14518-96984
+2026-04-25 12:02:58,261 INFO Order #26704: no tracking yet — will retry next run
+2026-04-25 12:02:59,284 INFO   Matched eBay order 09-14514-03066 (isbn=False, name=True)
+2026-04-25 12:03:00,534 INFO   ✅ Tracking 870778611031 posted to eBay order 09-14514-03066
+2026-04-25 12:03:02,032 INFO   Matched eBay order 25-14492-78180 (isbn=False, name=True)
+2026-04-25 12:03:02,974 INFO   ✅ Tracking 870810088731 posted to eBay order 25-14492-78180
+2026-04-25 12:03:04,670 INFO   Matched eBay order 25-14501-32168 (isbn=True, name=True)
+2026-04-25 12:03:05,848 INFO   ✅ Tracking 870846278336 posted to eBay order 25-14501-32168
+2026-04-25 12:03:07,251 INFO   Matched eBay order 18-14513-44448 (isbn=False, name=True)
+2026-04-25 12:03:08,182 INFO   ✅ Tracking 870846389954 posted to eBay order 18-14513-44448
+2026-04-25 12:03:09,674 INFO   Matched eBay order 05-14533-51506 (isbn=False, name=True)
+2026-04-25 12:03:10,614 INFO   ✅ Tracking 870846420314 posted to eBay order 05-14533-51506
+2026-04-25 12:03:12,158 WARNING No eBay order match for ISBN=9781683674405, buyer=None
+2026-04-25 12:03:12,958 INFO   Matched eBay order 01-14541-71409 (isbn=False, name=True)
+2026-04-25 12:03:13,723 INFO   ✅ Tracking 870846473785 posted to eBay order 01-14541-71409
+2026-04-25 12:03:15,244 WARNING No eBay order match for ISBN=9781118431436, buyer=None
+2026-04-25 12:03:16,176 INFO   Matched eBay order 23-14512-52082 (isbn=False, name=True)
+2026-04-25 12:03:17,145 INFO   ✅ Tracking 870989071103 posted to eBay order 23-14512-52082
+2026-04-25 12:03:18,711 INFO   Matched eBay order 12-14527-71952 (isbn=False, name=True)
+2026-04-25 12:03:19,611 INFO   ✅ Tracking 870989050767 posted to eBay order 12-14527-71952
+2026-04-25 12:03:20,113 INFO Order #26831: no tracking yet — will retry next run
+2026-04-25 12:03:21,111 INFO   Matched eBay order 24-14523-86743 (isbn=False, name=True)
+2026-04-25 12:03:22,326 INFO   ✅ Tracking 870988993530 posted to eBay order 24-14523-86743
+2026-04-25 12:03:23,849 INFO   Matched eBay order 13-14523-66941 (isbn=False, name=True)
+2026-04-25 12:03:24,998 INFO   ✅ Tracking 870988972748 posted to eBay order 13-14523-66941
+2026-04-25 12:03:25,500 INFO Order #26823: no tracking yet — will retry next run
+2026-04-25 12:03:26,772 INFO   Matched eBay order 19-14514-11277 (isbn=False, name=True)
+2026-04-25 12:03:27,927 INFO   ✅ Tracking 870988769562 posted to eBay order 19-14514-11277
+2026-04-25 12:03:29,613 INFO   Matched eBay order 06-14542-54898 (isbn=False, name=True)
+2026-04-25 12:03:30,918 INFO   ✅ Tracking 870989245307 posted to eBay order 06-14542-54898
+2026-04-25 12:03:32,537 INFO   Matched eBay order 02-14548-30496 (isbn=False, name=True)
+2026-04-25 12:03:33,805 INFO   ✅ Tracking 870989220830 posted to eBay order 02-14548-30496
+2026-04-25 12:03:35,158 INFO   Matched eBay order 05-14542-60060 (isbn=False, name=True)
+2026-04-25 12:03:36,190 INFO   ✅ Tracking 870989177961 posted to eBay order 05-14542-60060
+2026-04-25 12:03:37,815 INFO   Matched eBay order 09-14535-78677 (isbn=False, name=True)
+2026-04-25 12:03:38,891 INFO   ✅ Tracking 870989137177 posted to eBay order 09-14535-78677
+2026-04-25 12:03:40,471 INFO   Matched eBay order 07-14545-18237 (isbn=False, name=True)
+2026-04-25 12:03:41,427 INFO   ✅ Tracking 870988831002 posted to eBay order 07-14545-18237
+2026-04-25 12:03:42,887 INFO   Matched eBay order 02-14549-69429 (isbn=False, name=True)
+2026-04-25 12:03:43,872 INFO   ✅ Tracking 870989359707 posted to eBay order 02-14549-69429
+2026-04-25 12:03:45,542 INFO   Matched eBay order 22-14521-53325 (isbn=False, name=True)
+2026-04-25 12:03:46,506 INFO   ✅ Tracking 870989412642 posted to eBay order 22-14521-53325
+2026-04-25 12:03:48,088 INFO   Matched eBay order 21-14523-71943 (isbn=False, name=True)
+2026-04-25 12:03:49,250 INFO   ✅ Tracking 870989529629 posted to eBay order 21-14523-71943
+2026-04-25 12:03:50,681 WARNING No eBay order match for ISBN=9781560915263, buyer=Csaba Milian
+2026-04-25 12:03:51,624 INFO   Matched eBay order 08-14548-33266 (isbn=False, name=True)
+2026-04-25 12:03:53,120 INFO   ✅ Tracking 871032544492 posted to eBay order 08-14548-33266
+2026-04-25 12:03:53,622 INFO ============================================================
+2026-04-25 12:03:53,622 INFO DONE: 27 posted | 3 awaiting tracking | 0 already done | 3 failed/no match
+2026-04-25 12:03:53,622 INFO ============================================================

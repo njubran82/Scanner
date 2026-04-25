@@ -3228,3 +3228,85 @@
 2026-04-22 00:15:56,403 INFO LISTER DONE: 5 listed | 17 failed
 2026-04-22 00:15:56,403 INFO ============================================================
 2026-04-22 00:15:57,165 INFO Email alert sent
+2026-04-25 12:59:20,602 INFO ============================================================
+2026-04-25 12:59:20,603 INFO LISTER STARTED — 2026-04-25 12:59:20
+2026-04-25 12:59:20,603 INFO ============================================================
+2026-04-25 12:59:20,603 INFO Processing 25 opportunities...
+2026-04-25 12:59:20,965 INFO   Generating description for 9781641950565...
+2026-04-25 12:59:22,098 WARNING   No image found
+2026-04-25 12:59:25,555 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 12:59:27,307 WARNING   No image found
+2026-04-25 12:59:30,111 ERROR   FAIL 9780867157994: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 12:59:30,611 INFO   Generating description for 9781517912482...
+2026-04-25 12:59:30,916 INFO   Image found
+2026-04-25 12:59:35,290 INFO   ✅ Listed 9781517912482 | $70.4 | Profit: $5.64 | qty=20 | ListingID: 358485886977
+2026-04-25 12:59:35,797 INFO   Generating description for 9780826943729...
+2026-04-25 12:59:36,439 WARNING   No image found
+2026-04-25 12:59:39,565 ERROR   FAIL 9780826943729: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 12:59:40,065 INFO   Generating description for 9783031209222...
+2026-04-25 12:59:40,372 INFO   Image found
+2026-04-25 12:59:44,308 INFO   ✅ Listed 9783031209222 | $45.67 | Profit: $8.69 | qty=20 | ListingID: 358485887173
+2026-04-25 12:59:44,814 INFO   Generating description for 9781690384168...
+2026-04-25 12:59:45,423 INFO   Image found
+2026-04-25 12:59:50,492 ERROR   FAIL 9781690384168: A user error has occurred. The resolution for provided picture(s) does not meet eBay's Picture Polic
+2026-04-25 12:59:50,993 INFO   Generating description for 9780973501827...
+2026-04-25 12:59:51,704 WARNING   No image found
+2026-04-25 12:59:55,001 ERROR   FAIL 9780973501827: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-25 12:59:55,502 INFO   Generating description for 9780063390157...
+2026-04-25 12:59:56,057 WARNING   No image found
+2026-04-25 12:59:59,889 ERROR   FAIL 9780063390157: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-25 13:00:00,390 INFO   Generating description for 9781071824566...
+2026-04-25 13:00:00,954 INFO   Image found
+2026-04-25 13:00:04,293 INFO   ✅ Listed 9781071824566 | $77.39 | Profit: $8.56 | qty=20 | ListingID: 358485887594
+2026-04-25 13:00:04,799 INFO   Generating description for 9781416633563...
+2026-04-25 13:00:05,657 INFO   Image found
+2026-04-25 13:00:10,140 INFO   ✅ Listed 9781416633563 | $26.79 | Profit: $5.7 | qty=20 | ListingID: 358485887709
+2026-04-25 13:00:10,646 INFO   Generating description for 9780415790529...
+2026-04-25 13:00:11,306 INFO   Image found
+2026-04-25 13:00:14,475 ERROR   FAIL 9780415790529: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-25 13:00:14,975 INFO   Generating description for 9781009299893...
+2026-04-25 13:00:15,698 INFO   Image found
+2026-04-25 13:00:19,049 INFO   ✅ Listed 9781009299893 | $75.55 | Profit: $9.0 | qty=20 | ListingID: 358485887907
+2026-04-25 13:00:19,556 INFO   Generating description for 9781641950473...
+2026-04-25 13:00:20,113 WARNING   No image found
+2026-04-25 13:00:23,544 ERROR   FAIL 9781641950473: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 13:00:24,668 WARNING   No image found
+2026-04-25 13:00:27,395 ERROR   FAIL 9798670880909: A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a 
+2026-04-25 13:00:27,895 INFO   Generating description for 9781032933832...
+2026-04-25 13:00:28,484 INFO   Image found
+2026-04-25 13:00:31,818 INFO   ✅ Listed 9781032933832 | $28.49 | Profit: $7.14 | qty=20 | ListingID: 358485888681
+2026-04-25 13:00:32,324 INFO   Generating description for 9781032450995...
+2026-04-25 13:00:33,074 INFO   Image found
+2026-04-25 13:00:36,412 INFO   ✅ Listed 9781032450995 | $70.4 | Profit: $5.64 | qty=20 | ListingID: 358485889260
+2026-04-25 13:00:36,918 INFO   Generating description for 9781951058098...
+2026-04-25 13:00:37,565 INFO   Image found
+2026-04-25 13:00:43,624 ERROR   FAIL 9781951058098: A user error has occurred. The resolution for provided picture(s) does not meet eBay's Picture Polic
+2026-04-25 13:00:44,125 INFO   Generating description for 9781009397759...
+2026-04-25 13:00:45,210 INFO   Image found
+2026-04-25 13:00:49,884 ERROR   FAIL 9781009397759: A user error has occurred. The resolution for provided picture(s) does not meet eBay's Picture Polic
+2026-04-25 13:00:50,384 INFO   Generating description for 9781071853801...
+2026-04-25 13:00:51,017 INFO   Image found
+2026-04-25 13:00:55,589 INFO   ✅ Listed 9781071853801 | $92.35 | Profit: $23.23 | qty=20 | ListingID: 358485891472
+2026-04-25 13:00:56,095 INFO   Generating description for 9781609836184...
+2026-04-25 13:00:57,269 WARNING   No image found
+2026-04-25 13:01:00,155 ERROR   FAIL 9781609836184: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 13:01:00,655 INFO   Generating description for 9781032836072...
+2026-04-25 13:01:01,218 INFO   Image found
+2026-04-25 13:01:06,598 ERROR   FAIL 9781032836072: A user error has occurred. The resolution for provided picture(s) does not meet eBay's Picture Polic
+2026-04-25 13:01:07,098 INFO   Generating description for 9780879396961...
+2026-04-25 13:01:08,520 WARNING   No image found
+2026-04-25 13:01:11,138 ERROR   FAIL 9780879396961: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 13:01:11,639 INFO   Generating description for 9781636940267...
+2026-04-25 13:01:12,479 INFO   Image found
+2026-04-25 13:01:16,818 ERROR   FAIL 9781636940267: A user error has occurred. The resolution for provided picture(s) does not meet eBay's Picture Polic
+2026-04-25 13:01:17,319 INFO   Generating description for 9781439840955...
+2026-04-25 13:01:18,124 INFO   Image found
+2026-04-25 13:01:21,836 ERROR   FAIL 9781439840955: A user error has occurred. The resolution for provided picture(s) does not meet eBay's Picture Polic
+2026-04-25 13:01:22,519 INFO   25/25 — token refreshed
+2026-04-25 13:01:22,519 INFO   Generating description for 9781572307810...
+2026-04-25 13:01:23,840 INFO   Image found
+2026-04-25 13:01:27,930 ERROR   FAIL 9781572307810: A user error has occurred. The resolution for provided picture(s) does not meet eBay's Picture Polic
+2026-04-25 13:01:28,436 INFO ============================================================
+2026-04-25 13:01:28,436 INFO LISTER DONE: 8 listed | 17 failed
+2026-04-25 13:01:28,436 INFO ============================================================
+2026-04-25 13:01:29,498 INFO Email alert sent

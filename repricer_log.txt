@@ -5384,3 +5384,302 @@
 2026-04-22 00:29:52,439 INFO ============================================================
 2026-04-22 00:29:52,439 INFO DONE: 52 repriced | 254 delisted | 13 unchanged
 2026-04-22 00:29:52,439 INFO ============================================================
+2026-04-25 13:01:29,681 INFO ============================================================
+2026-04-25 13:01:29,681 INFO REPRICER STARTED — 2026-04-25 13:01:29
+2026-04-25 13:01:29,681 INFO fee=15.3%  min_profit=$5.00  undercut=12%
+2026-04-25 13:01:29,681 INFO ============================================================
+2026-04-25 13:01:29,686 INFO Checking 340 active listings...
+2026-04-25 13:01:29,996 INFO Fetched 90 BooksGoat prices
+2026-04-25 13:01:31,768 INFO   Gardner and Sutherland’s Chromosome Abnormalitie..: $103.99 → $108.23 profit=$11.68  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:01:32,569 INFO   ✅ Repriced
+2026-04-25 13:01:35,351 INFO   DSM-5-TR: Diagnostic and Statistical Manual of Men: AUTO-DELIST — profit $1.48 at $107.99 (cost $89.99) [floor=$5.00]
+2026-04-25 13:01:35,536 ERROR   ❌ Delist failed
+2026-04-25 13:01:37,533 INFO   Site Planning and Design Handbook by Thomas Russ, : $90.99 → $212.96 profit=$110.39  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:01:38,502 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:01:38,504 ERROR   ❌ Reprice failed (9781265620424)
+2026-04-25 13:01:43,204 INFO   Counseling Individuals Through the Lifespan 2nd ed: $90.99 → $94.16 profit=$15.76  method=AMAZON_FALLBACK
+2026-04-25 13:01:43,400 ERROR   Could not fetch offer 155655846011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155655846011"}]}]}
+2026-04-25 13:01:43,402 ERROR   ❌ Reprice failed (9781544343242)
+2026-04-25 13:01:45,003 INFO   Milady Standard Cosmetology 2016, 13th edition (IS: $142.99 → $132.00 profit=$5.81  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:01:45,681 INFO   ✅ Repriced
+2026-04-25 13:01:48,150 INFO   Guides to the Evaluation of Permanent Impairment, : $116.99 → $170.72 profit=$64.61  method=AMAZON_FALLBACK
+2026-04-25 13:01:50,284 INFO   ✅ Repriced
+2026-04-25 13:01:52,186 INFO   Factory Physics, 3rd Edition by Wallace J. Hopp &a: $121.55 → $112.60 profit=$41.38  method=AMAZON_FALLBACK
+2026-04-25 13:01:53,294 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:01:53,296 ERROR   ❌ Reprice failed (9781577667391)
+2026-04-25 13:01:55,842 INFO   2021 Uniform Mechanical Code Soft Cover with Tabs : $127.30 → $117.92 profit=$25.89  method=AMAZON_FALLBACK
+2026-04-25 13:01:56,586 INFO   ✅ Repriced
+2026-04-25 13:01:58,008 INFO   FYI: For Your Improvement – For Learners, Manage..: AUTO-DELIST — profit $0.67 at $48.59 (cost $40.49) [floor=$5.00]
+2026-04-25 13:01:58,241 ERROR   ❌ Delist failed
+2026-04-25 13:01:59,085 INFO   Milady Standard Nail Technology, 7th Edition by Mi: AUTO-DELIST — profit $1.22 at $88.79 (cost $73.99) [floor=$5.00]
+2026-04-25 13:01:59,369 ERROR   ❌ Delist failed
+2026-04-25 13:02:00,936 INFO   Stahl’s Essential Psychopharmacology: Neuroscien..: $103.99 → $123.19 profit=$24.35  method=EBAY_COMP (HIGH, n=4)
+2026-04-25 13:02:03,429 INFO   ✅ Repriced
+2026-04-25 13:02:07,479 INFO   Research Design: Qualitative, Quantitative, and Mi: AUTO-DELIST — profit $0.87 at $63.59 (cost $52.99) [floor=$5.00]
+2026-04-25 13:02:07,709 ERROR   ❌ Delist failed
+2026-04-25 13:02:08,521 INFO   Treating Nonepileptic Seizures: Therapist Guide (T: AUTO-DELIST — profit $0.94 at $68.39 (cost $56.99) [floor=$5.00]
+2026-04-25 13:02:08,649 ERROR   ❌ Delist failed
+2026-04-25 13:02:09,673 INFO   Designing Effective Instruction, 8th Edition by Ga: $77.99 → $95.65 profit=$27.03  method=AMAZON_FALLBACK
+2026-04-25 13:02:09,833 ERROR   Could not fetch offer 155656477011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155656477011"}]}]}
+2026-04-25 13:02:09,834 ERROR   ❌ Reprice failed (9781119465935)
+2026-04-25 13:02:10,693 INFO   Sexuality Counseling: Theory, Research, and Practi: $58.49 → $136.39 profit=$70.53  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:02:12,346 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:02:12,348 ERROR   ❌ Reprice failed (9781483343723)
+2026-04-25 13:02:13,179 INFO   DAMA-DMBOK: Data Management Body of Knowledge, 2nd: $64.99 → $128.48 profit=$58.83  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:02:16,053 INFO   ✅ Repriced
+2026-04-25 13:02:18,909 INFO   Laboratory Techniques in Organic Chemistry, 4th Ed: AUTO-DELIST — profit $1.31 at $95.99 (cost $79.99) [floor=$5.00]
+2026-04-25 13:02:19,087 ERROR   ❌ Delist failed
+2026-04-25 13:02:19,970 INFO   Roark's Formulas for Stress and Strain 9th edition: $93.59 → $181.28 profit=$81.55  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:02:21,523 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:02:21,525 ERROR   ❌ Reprice failed (9781260453751)
+2026-04-25 13:02:22,408 INFO   Asset Pricing: Revised Edition by John H. Cochrane: $61.09 → $70.39 profit=$12.63  method=EBAY_COMP (HIGH, n=4)
+2026-04-25 13:02:25,107 INFO   ✅ Repriced
+2026-04-25 13:02:32,461 INFO   The Foundations of Chinese Medicine: A Comprehensi: $129.99 → $123.17 profit=$10.33  method=AMAZON_FALLBACK
+2026-04-25 13:02:32,629 ERROR   Could not fetch offer 155656784011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155656784011"}]}]}
+2026-04-25 13:02:32,631 ERROR   ❌ Reprice failed (9780702052163)
+2026-04-25 13:02:34,926 INFO   Encyclopedia of Counseling, 4th Edition (ISBN 9781: AUTO-DELIST — profit $1.87 at $37.62 (cost $29.99) [floor=$5.00]
+2026-04-25 13:02:35,255 ERROR   ❌ Delist failed
+2026-04-25 13:02:39,168 INFO   Fire Officer’s Handbook of Tactics, 5th Edition ..: $84.49 → $80.70 profit=$7.36  method=EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 13:02:41,445 INFO   ✅ Repriced
+2026-04-25 13:02:42,654 INFO   Principles of Radiographic Imaging: An Art and a S: AUTO-DELIST — profit $1.03 at $74.99 (cost $62.49) [floor=$5.00]
+2026-04-25 13:02:42,768 ERROR   ❌ Delist failed
+2026-04-25 13:02:43,612 INFO   Science and Practice of Strength Training, 3rd Edi: $64.99 → $79.20 profit=$17.09  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:02:46,621 INFO   ✅ Repriced
+2026-04-25 13:02:49,987 INFO   Molecular Biology of the Cell, 7th Edition by Bruc: $194.99 → $220.72 profit=$42.96  method=AMAZON_FALLBACK
+2026-04-25 13:02:50,110 ERROR   Could not fetch offer 155657152011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155657152011"}]}]}
+2026-04-25 13:02:50,111 ERROR   ❌ Reprice failed (9780393884821)
+2026-04-25 13:02:52,164 INFO   Design of CMOS Phase-Locked Loops: From Circuit Le: $74.09 → $91.34 profit=$20.37  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:02:54,442 INFO   ✅ Repriced
+2026-04-25 13:02:55,313 INFO   Health Policy Issues: An Economic Perspective, 8th: $77.99 → $112.63 profit=$35.41  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:02:57,596 INFO   ✅ Repriced
+2026-04-25 13:03:02,917 INFO   Real Estate Development: Principles and Process, 5: $64.99 → $72.16 profit=$16.13  method=AMAZON_FALLBACK
+2026-04-25 13:03:03,030 ERROR   Could not fetch offer 155657335011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155657335011"}]}]}
+2026-04-25 13:03:03,031 ERROR   ❌ Reprice failed (9780874203431)
+2026-04-25 13:03:03,881 INFO   School Law and the Public Schools: A Practical Gui: $116.99 → $239.79 profit=$113.11  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:03:06,288 INFO   ✅ Repriced
+2026-04-25 13:03:07,205 INFO   Applied Behavior Analysis, 3rd Edition by John O. : AUTO-DELIST — profit $1.48 at $107.99 (cost $89.99) [floor=$5.00]
+2026-04-25 13:03:07,360 ERROR   ❌ Delist failed
+2026-04-25 13:03:12,786 INFO   Strategies and Tactics of Behavioral Research and : $70.19 → $79.19 profit=$15.58  method=AMAZON_FALLBACK
+2026-04-25 13:03:12,938 ERROR   Could not fetch offer 155657677011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155657677011"}]}]}
+2026-04-25 13:03:12,939 ERROR   ❌ Reprice failed (9781138641594)
+2026-04-25 13:03:13,798 INFO   Eye Movement Desensitization and Reprocessing (EMD: $70.19 → $70.69 profit=$19.88  method=EBAY_COMP (HIGH, n=3)
+2026-04-25 13:03:16,806 INFO   ✅ Repriced
+2026-04-25 13:03:17,622 INFO   Explain Pain 2nd edition by Butler David & G. ...: $64.99 → $131.99 profit=$61.81  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:03:19,162 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:03:19,164 ERROR   ❌ Reprice failed (9780987342669)
+2026-04-25 13:03:20,962 INFO   The Art of Reading Buildings by John Mittendorf (I: $77.99 → $88.00 profit=$20.55  method=AMAZON_FALLBACK
+2026-04-25 13:03:21,173 ERROR   Could not fetch offer 155657799011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155657799011"}]}]}
+2026-04-25 13:03:21,174 ERROR   ❌ Reprice failed (9781593703424)
+2026-04-25 13:03:22,055 INFO   Clinical Handbook of Psychological Disorders: A St: AUTO-DELIST — profit $1.15 at $83.99 (cost $69.99) [floor=$5.00]
+2026-04-25 13:03:22,222 ERROR   ❌ Delist failed
+2026-04-25 13:03:24,704 INFO   Goldfrank's Toxicologic Emergencies by Lewis Nelso: AUTO-DELIST — profit $2.95 at $215.99 (cost $179.99) [floor=$5.00]
+2026-04-25 13:03:24,895 ERROR   ❌ Delist failed
+2026-04-25 13:03:26,389 INFO   Articulation and Phonology in Speech Sound Disorde: $116.99 → $161.80 profit=$47.05  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:03:27,891 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:03:27,892 ERROR   ❌ Reprice failed (9780134990576)
+2026-04-25 13:03:28,768 INFO   A Guide to the Project Management Body of Knowledg: AUTO-DELIST — profit $0.74 at $53.99 (cost $44.99) [floor=$5.00]
+2026-04-25 13:03:28,916 ERROR   ❌ Delist failed
+2026-04-25 13:03:33,307 INFO   DC:0-5: Diagnostic Classification of Mental Health: $61.09 → $64.23 profit=$11.41  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:03:34,142 INFO   ✅ Repriced
+2026-04-25 13:03:36,411 INFO   Qualitative Data Analysis: A Methods Sourcebook, 4: $77.99 → $79.10 profit=$11.01  method=AMAZON_FALLBACK
+2026-04-25 13:03:36,538 ERROR   Could not fetch offer 155658130011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155658130011"}]}]}
+2026-04-25 13:03:36,539 ERROR   ❌ Reprice failed (9781506353074)
+2026-04-25 13:03:38,384 INFO   Atlas of Ultrasound-Guided Musculoskeletal Injecti: $103.99 → $253.44 profit=$134.67  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:03:39,389 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:03:39,391 ERROR   ❌ Reprice failed (9780071769679)
+2026-04-25 13:03:44,864 INFO   Medical Terminology for Health Professions, 9th Ed: AUTO-DELIST — profit $3.29 at $81.80 (cost $65.99) [floor=$5.00]
+2026-04-25 13:03:45,030 ERROR   ❌ Delist failed
+2026-04-25 13:03:47,656 INFO   Developmental Biology, 13th Edition by Michael J.F: $116.99 → $183.96 profit=$69.82  method=AMAZON_FALLBACK
+2026-04-25 13:03:48,402 INFO   ✅ Repriced
+2026-04-25 13:03:49,319 INFO   Social Work Treatment: Interlocking Theoretical Ap: $84.49 → $143.43 profit=$56.50  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:03:50,810 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:03:50,811 ERROR   ❌ Reprice failed (9780190239596)
+2026-04-25 13:03:51,957 INFO   How to Write and Publish a Scientific Paper by Bar: AUTO-DELIST — profit $3.27 at $39.27 (cost $29.99) [floor=$5.00]
+2026-04-25 13:03:52,169 ERROR   ❌ Delist failed
+2026-04-25 13:03:53,163 INFO   Introduction to Quantum Mechanics, 3rd Edition by : AUTO-DELIST — profit $0.56 at $40.79 (cost $33.99) [floor=$5.00]
+2026-04-25 13:03:53,439 ERROR   ❌ Delist failed
+2026-04-25 13:03:54,390 INFO   Practical Imaging Informatics: Foundations and App: $90.99 → $164.55 profit=$69.38  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:03:55,845 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:03:55,846 ERROR   ❌ Reprice failed (9781071617557)
+2026-04-25 13:03:56,779 INFO   Desk Reference to the Diagnostic Criteria from DSM: $58.49 → $76.39 profit=$19.71  method=EBAY_COMP (HIGH, n=3)
+2026-04-25 13:03:57,509 INFO   ✅ Repriced
+2026-04-25 13:03:59,136 INFO   Construction Estimating Using Excel by Steven J. P: $103.99 → $215.97 profit=$102.94  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:04:00,931 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:04:00,933 ERROR   ❌ Reprice failed (9780134405506)
+2026-04-25 13:04:05,369 INFO   Introduction to Criminal Justice by Kenneth J. Pea: $103.99 → $154.62 profit=$56.97  method=AMAZON_FALLBACK
+2026-04-25 13:04:06,195 INFO   ✅ Repriced
+2026-04-25 13:04:07,582 INFO   Radiation Detection and Measurement, 4th Edition b: $90.99 → $109.20 profit=$25.50  method=EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 13:04:09,992 INFO   ✅ Repriced
+2026-04-25 13:04:10,863 INFO   Understanding Behaviorism: Behavior, Culture, and : $28.59 → $34.10 profit=$6.89  method=EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 13:04:11,541 INFO   ✅ Repriced
+2026-04-25 13:04:12,642 INFO   A Workbook of Ethical Case Scenarios in Applied Be: $25.99 → $38.64 profit=$12.74  method=AMAZON_FALLBACK
+2026-04-25 13:04:12,823 ERROR   Could not fetch offer 155658700011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155658700011"}]}]}
+2026-04-25 13:04:12,824 ERROR   ❌ Reprice failed (9780323988131)
+2026-04-25 13:04:14,810 INFO   Theory and Practice of Group Counseling, 10th Edit: $49.39 → $154.88 profit=$93.19  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:04:17,716 INFO   ✅ Repriced
+2026-04-25 13:04:18,865 INFO   Brinker, Piermattei and Flo's Handbook of Small An: $90.99 → $87.45 profit=$10.08  method=AMAZON_FALLBACK
+2026-04-25 13:04:19,068 ERROR   Could not fetch offer 155658767011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155658767011"}]}]}
+2026-04-25 13:04:19,069 ERROR   ❌ Reprice failed (9781437723649)
+2026-04-25 13:04:27,205 INFO   Tests & Measurement for People Who (Think They...: $83.19 → $99.43 profit=$27.23  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:04:30,257 INFO   ✅ Repriced
+2026-04-25 13:04:31,802 INFO   Nonlinear Dynamics and Chaos, 3rd Edition by Steve: $64.99 → $87.99 profit=$24.54  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:04:32,781 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:04:32,783 ERROR   ❌ Reprice failed (9780367026509)
+2026-04-25 13:04:34,835 INFO   Practices of Looking: An Introduction to Visual Cu: AUTO-DELIST — profit $0.69 at $50.39 (cost $41.99) [floor=$5.00]
+2026-04-25 13:04:34,976 ERROR   ❌ Delist failed
+2026-04-25 13:04:37,810 INFO   Small Animal Dermatology: A Color Atlas and Therap: $83.19 → $126.57 profit=$47.21  method=AMAZON_FALLBACK
+2026-04-25 13:04:37,974 ERROR   Could not fetch offer 155659365011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155659365011"}]}]}
+2026-04-25 13:04:37,975 ERROR   ❌ Reprice failed (9780323376518)
+2026-04-25 13:04:38,825 INFO   Cognitive Behavioral Treatment of Insomnia: A Sess: $77.99 → $115.28 profit=$37.65  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:04:39,963 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:04:39,965 ERROR   ❌ Reprice failed (9780387774404)
+2026-04-25 13:04:40,795 INFO   PMBOK® Guide – Seventh Edition & The Standa...: $48.09 → $58.07 profit=$12.20  method=EBAY_COMP (HIGH, n=8)
+2026-04-25 13:04:44,039 INFO   ✅ Repriced
+2026-04-25 13:04:46,813 INFO   Classical Mechanics by John R. Taylor ISBN: 978189: AUTO-DELIST — profit $1.15 at $83.99 (cost $69.99) [floor=$5.00]
+2026-04-25 13:04:46,986 ERROR   ❌ Delist failed
+2026-04-25 13:04:49,400 INFO   Standard Methods for the Examination of Water and : $233.99 → $297.72 profit=$82.18  method=AMAZON_FALLBACK
+2026-04-25 13:04:50,202 INFO   ✅ Repriced
+2026-04-25 13:04:51,953 INFO   Clinical Handbook of Couple Therapy, 6th Edition b: $90.99 → $103.10 profit=$23.34  method=AMAZON_FALLBACK
+2026-04-25 13:04:52,139 ERROR   Could not fetch offer 155659997011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155659997011"}]}]}
+2026-04-25 13:04:52,140 ERROR   ❌ Reprice failed (9781462550128)
+2026-04-25 13:04:54,879 INFO   Gapenski’s Healthcare Finance: An Introduction t..: AUTO-DELIST — profit $1.08 at $79.19 (cost $65.99) [floor=$5.00]
+2026-04-25 13:04:55,007 ERROR   ❌ Delist failed
+2026-04-25 13:04:56,482 INFO   String Theory and M-Theory: A Modern Introduction : $90.99 → $121.95 profit=$33.30  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:04:58,755 INFO   ✅ Repriced
+2026-04-25 13:05:00,248 INFO   Option Volatility and Pricing: Advanced Trading St: $61.09 → $129.36 profit=$62.58  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:05:02,672 INFO   ✅ Repriced
+2026-04-25 13:05:04,791 INFO   The ASQ Certified Six Sigma Green Belt Handbook, 3: $90.99 → $112.96 profit=$31.69  method=AMAZON_FALLBACK
+2026-04-25 13:05:05,965 INFO   ✅ Repriced
+2026-04-25 13:05:07,232 INFO   Race Car Vehicle Dynamics by William Milliken (ISB: $90.99 → $99.86 profit=$20.59  method=AMAZON_FALLBACK
+2026-04-25 13:05:09,808 INFO   ✅ Repriced
+2026-04-25 13:05:10,829 INFO   Abstract Algebra, 3rd Edition by David S. Dummit a: $77.99 → $118.80 profit=$40.63  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:05:13,615 INFO   ✅ Repriced
+2026-04-25 13:05:15,387 INFO   Diagnostic Dermoscopy: The Illustrated Guide (2nd : $38.99 → $98.56 profit=$53.49  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:05:16,902 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:05:16,903 ERROR   ❌ Reprice failed (9781118930489)
+2026-04-25 13:05:21,901 INFO   Ketogenic: The Science of Therapeutic Carbohydrate: $74.09 → $86.42 profit=$17.71  method=AMAZON_FALLBACK
+2026-04-25 13:05:22,204 ERROR   Could not fetch offer 155660756011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155660756011"}]}]}
+2026-04-25 13:05:22,205 ERROR   ❌ Reprice failed (9780128216170)
+2026-04-25 13:05:23,136 INFO   The SAGE Handbook of Qualitative Research, 6th Edi: $90.99 → $102.95 profit=$17.21  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:05:24,879 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:05:24,880 ERROR   ❌ Reprice failed (9781071836743)
+2026-04-25 13:05:26,522 INFO   Fundamentals of Oil & Gas Accounting, 6th Edit...: $103.99 → $155.75 profit=$51.93  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:05:28,209 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:05:28,211 ERROR   ❌ Reprice failed (9781593703639)
+2026-04-25 13:05:31,126 INFO   Arborists’ Certification Study Guide, 4th Editio..: $103.99 → $126.98 profit=$33.56  method=AMAZON_FALLBACK
+2026-04-25 13:05:31,483 ERROR   Could not fetch offer 155660817011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155660817011"}]}]}
+2026-04-25 13:05:31,484 ERROR   ❌ Reprice failed (9781943378210)
+2026-04-25 13:05:37,957 INFO   Larone's Medically Important Fungi: A Guide to Ide: $77.99 → $85.42 profit=$14.36  method=AMAZON_FALLBACK
+2026-04-25 13:05:38,679 INFO   ✅ Repriced
+2026-04-25 13:05:39,849 INFO   Cancer as a Metabolic Disease: On the Origin, Mana: $71.49 → $80.63 profit=$17.30  method=AMAZON_FALLBACK
+2026-04-25 13:05:40,069 ERROR   Could not fetch offer 155660915011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155660915011"}]}]}
+2026-04-25 13:05:40,071 ERROR   ❌ Reprice failed (9780470584927)
+2026-04-25 13:05:41,286 INFO   ACSM’s Exercise Management for Persons with Chro..: $57.19 → $64.24 profit=$10.42  method=AMAZON_FALLBACK
+2026-04-25 13:05:41,535 ERROR   Could not fetch offer 155660939011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155660939011"}]}]}
+2026-04-25 13:05:41,536 ERROR   ❌ Reprice failed (9781450434140)
+2026-04-25 13:05:42,829 INFO   Real Estate Finance and Investments: Risks and Opp: $180.17 → $166.89 profit=$47.37  method=AMAZON_FALLBACK
+2026-04-25 13:05:43,567 INFO   ✅ Repriced
+2026-04-25 13:05:46,318 INFO   Evolutionary Psychology: The New Science of the Mi: $74.09 → $108.57 profit=$36.97  method=AMAZON_FALLBACK
+2026-04-25 13:05:46,720 ERROR   Could not fetch offer 155661062011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155661062011"}]}]}
+2026-04-25 13:05:46,721 ERROR   ❌ Reprice failed (9781138088610)
+2026-04-25 13:05:48,569 INFO   Demystifying Opioid Conversion Calculations: A Gui: $55.89 → $124.96 profit=$62.85  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:05:50,884 INFO   ✅ Repriced
+2026-04-25 13:05:51,759 INFO   Algorithmic and High-Frequency Trading by Álvaro .: $64.99 → $79.39 profit=$17.25  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:05:53,974 INFO   ✅ Repriced
+2026-04-25 13:05:55,518 INFO   Explicit Instruction: Effective and Efficient Teac: $25.99 → $54.75 profit=$26.38  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:05:57,947 INFO   ✅ Repriced
+2026-04-25 13:06:00,938 INFO   Comprehensive NCLEX-RN Review, 19th Edition by ATI: price OK ($70.39, profit=$15.63)
+2026-04-25 13:06:01,873 INFO   Distressed Debt Analysis: Strategies for Speculati: $64.99 → $87.99 profit=$28.54  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:06:04,330 INFO   ✅ Repriced
+2026-04-25 13:06:05,572 INFO   American Herbal Products Association's Botanical S: $103.99 → $141.64 profit=$45.98  method=AMAZON_FALLBACK
+2026-04-25 13:06:05,826 ERROR   Could not fetch offer 155661206011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155661206011"}]}]}
+2026-04-25 13:06:05,826 ERROR   ❌ Reprice failed (9781466516946)
+2026-04-25 13:06:06,717 INFO   The Five Dysfunctions of a Team: A Leadership Fabl: AUTO-DELIST — profit $0.12 at $8.39 (cost $6.99) [floor=$5.00]
+2026-04-25 13:06:07,049 ERROR   ❌ Delist failed
+2026-04-25 13:06:07,955 INFO   Japanese Candlestick Charting Techniques, Second E: $54.59 → $83.60 profit=$28.82  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:06:10,899 INFO   ✅ Repriced
+2026-04-25 13:06:17,884 INFO   Exposure and Response (Ritual) Prevention for Obse: AUTO-DELIST — profit $0.66 at $47.99 (cost $39.99) [floor=$5.00]
+2026-04-25 13:06:18,105 ERROR   ❌ Delist failed
+2026-04-25 13:06:22,305 INFO   Medical Terminology: A Living Language, 7th Editio: $90.99 → $94.25 profit=$13.84  method=AMAZON_FALLBACK
+2026-04-25 13:06:22,567 ERROR   Could not fetch offer 155661449011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155661449011"}]}]}
+2026-04-25 13:06:22,568 ERROR   ❌ Reprice failed (9780134701202)
+2026-04-25 13:06:23,709 INFO   Bioethics: Principles, Issues, and Cases, 5th Edit: $92.89 → $105.56 profit=$35.42  method=AMAZON_FALLBACK
+2026-04-25 13:06:25,302 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:06:25,303 ERROR   ❌ Reprice failed (9780197609026)
+2026-04-25 13:06:34,281 INFO   Leadership: Theory and Practice, 9th Edition by Pe: AUTO-DELIST — profit $1.31 at $95.99 (cost $79.99) [floor=$5.00]
+2026-04-25 13:06:34,562 ERROR   ❌ Delist failed
+2026-04-25 13:06:35,505 INFO   Research Design: Qualitative, Quantitative, and Mi: AUTO-DELIST — profit $0.79 at $57.59 (cost $47.99) [floor=$5.00]
+2026-04-25 13:06:35,817 ERROR   ❌ Delist failed
+2026-04-25 13:06:38,902 INFO   Considerations on the AI Endgame by Soenke Ziesche: $28.49 → $26.39 profit=$5.36  method=AMAZON_FALLBACK
+2026-04-25 13:06:40,404 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:06:40,405 ERROR   ❌ Reprice failed (9781032933832)
+2026-04-25 13:06:41,708 INFO   Qualitative Research & Evaluation Methods: Int...: $96.19 → $111.87 profit=$24.76  method=AMAZON_FALLBACK
+2026-04-25 13:06:42,854 INFO   ✅ Repriced
+2026-04-25 13:06:44,211 INFO   The MBE Decoded: Multistate Bar Exam (Bar Review),: $51.99 → $58.78 profit=$9.80  method=AMAZON_FALLBACK
+2026-04-25 13:06:44,429 ERROR   Could not fetch offer 155661707011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155661707011"}]}]}
+2026-04-25 13:06:44,430 ERROR   ❌ Reprice failed (9781543830903)
+2026-04-25 13:06:47,085 INFO   Rocket Propulsion Elements, 9th Edition by George : $77.99 → $116.37 profit=$42.58  method=EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 13:06:50,303 INFO   ✅ Repriced
+2026-04-25 13:06:52,635 INFO   Behavior Analysis for Lasting Change, 5th Edition : $138.03 → $127.86 profit=$34.31  method=AMAZON_FALLBACK
+2026-04-25 13:06:54,199 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:06:54,201 ERROR   ❌ Reprice failed (9781597381000)
+2026-04-25 13:07:00,168 INFO   Intuitive Biostatistics: A Nonmathematical Guide t: AUTO-DELIST — profit $1.15 at $83.99 (cost $69.99) [floor=$5.00]
+2026-04-25 13:07:00,438 ERROR   ❌ Delist failed
+2026-04-25 13:07:02,349 INFO   National Incident Management System: Principles an: $77.99 → $106.35 profit=$36.09  method=EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 13:07:04,987 INFO   ✅ Repriced
+2026-04-25 13:07:10,742 INFO   Varcarolis' Foundations of Psychiatric-Mental Heal: AUTO-DELIST — profit $0.89 at $64.79 (cost $53.99) [floor=$5.00]
+2026-04-25 13:07:11,019 ERROR   ❌ Delist failed
+2026-04-25 13:07:12,605 INFO   Brown's Boundary Control and Legal Principles, 7th: $90.99 → $128.47 profit=$38.82  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:07:14,402 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:07:14,403 ERROR   ❌ Reprice failed (9781118431436)
+2026-04-25 13:07:15,357 INFO   Foodservice Organizations: A Managerial and System: $103.99 → $193.21 profit=$83.66  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:07:16,867 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:07:16,868 ERROR   ❌ Reprice failed (9780134038940)
+2026-04-25 13:07:18,652 INFO   Trades, Quotes and Prices: Financial Markets Under: $71.49 → $132.00 profit=$56.81  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:07:21,314 INFO   ✅ Repriced
+2026-04-25 13:07:23,244 INFO   Research and Evaluation in Education and Psycholog: $92.35 → $87.11 profit=$18.79  method=AMAZON_FALLBACK
+2026-04-25 13:07:24,837 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:07:24,838 ERROR   ❌ Reprice failed (9781071853801)
+2026-04-25 13:07:28,730 INFO   A Clinician's Pearls & Myths in Rheumatology *...: AUTO-DELIST — profit $1.15 at $83.99 (cost $69.99) [floor=$5.00]
+2026-04-25 13:07:28,911 ERROR   ❌ Delist failed
+2026-04-25 13:07:29,786 INFO   Trading and Exchanges: Market Microstructure for P: $90.99 → $105.90 profit=$25.71  method=EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 13:07:32,243 INFO   ✅ Repriced
+2026-04-25 13:07:33,194 INFO   DSM-5™ Handbook of Differential Diagnosis, 1st E..: AUTO-DELIST — profit $1.15 at $83.99 (cost $69.99) [floor=$5.00]
+2026-04-25 13:07:33,438 ERROR   ❌ Delist failed
+2026-04-25 13:07:39,298 INFO   Aircraft Control and Simulation: Dynamics, Control: $90.99 → $131.11 profit=$41.06  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:07:40,687 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:07:40,688 ERROR   ❌ Reprice failed (9781118870983)
+2026-04-25 13:07:42,259 INFO   Inter-Act: Interpersonal Communication – Concept..: $103.99 → $146.95 profit=$44.48  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:07:43,602 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:07:43,603 ERROR   ❌ Reprice failed (9780199398010)
+2026-04-25 13:07:49,074 INFO   2021 International Fuel Gas Code (IFGC) by Interna: $77.99 → $96.80 profit=$22.00  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:07:50,322 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:07:50,324 ERROR   ❌ Reprice failed (9781609839666)
+2026-04-25 13:07:51,171 INFO   2018 International Fuel Gas Code by International : $77.99 → $96.79 profit=$21.99  method=EBAY_COMP (MEDIUM, n=2)
+2026-04-25 13:07:54,291 INFO   ✅ Repriced
+2026-04-25 13:07:56,346 INFO   Safety Professional's Reference and Study Guide, 3: $103.99 → $111.76 profit=$24.67  method=AMAZON_FALLBACK
+2026-04-25 13:07:58,999 INFO   ✅ Repriced
+2026-04-25 13:08:01,301 INFO   Mass Communication: Living in a Media World, 8th E: AUTO-DELIST — profit $1.15 at $83.99 (cost $69.99) [floor=$5.00]
+2026-04-25 13:08:01,557 ERROR   ❌ Delist failed
+2026-04-25 13:08:03,484 INFO   Functional Occlusion: From TMJ to Smile Design by : $103.99 → $132.48 profit=$38.22  method=AMAZON_FALLBACK
+2026-04-25 13:08:03,710 ERROR   Could not fetch offer 155663273011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155663273011"}]}]}
+2026-04-25 13:08:03,711 ERROR   ❌ Reprice failed (9780323033718)
+2026-04-25 13:08:04,957 INFO   Milady Standard Barbering, 6th Edition by Milady I: $103.99 → $111.76 profit=$20.67  method=AMAZON_FALLBACK
+2026-04-25 13:08:05,203 ERROR   Could not fetch offer 155663305011: {"errors":[{"errorId":25713,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"This Offer is not available.","parameters":[{"name":"text1","value":"155663305011"}]}]}
+2026-04-25 13:08:05,204 ERROR   ❌ Reprice failed (9781305100558)
+2026-04-25 13:08:06,392 INFO   Textbook of Women's Reproductive Mental Health by : $94.41 → $118.80 profit=$46.63  method=AMAZON_FALLBACK
+2026-04-25 13:08:07,799 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:08:07,801 ERROR   ❌ Reprice failed (9781615373062)
+2026-04-25 13:08:09,272 INFO   Trauma-Focused ACT: A Practitioner’s Guide to Wo..: $33.79 → $50.99 profit=$17.20  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:08:11,520 INFO   ✅ Repriced
+2026-04-25 13:08:13,838 INFO   Handbook of Bird Biology (Cornell Lab of Ornitholo: $83.19 → $95.07 profit=$18.03  method=EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 13:08:16,517 INFO   ✅ Repriced
+2026-04-25 13:08:20,859 INFO   Psychodynamic Psychotherapy: A Clinical Manual, 2n: $38.99 → $198.56 profit=$138.19  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:08:21,966 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. Buyers love large photos that clearly show the item, so please upload high-resolution photos that are at least 500 pixels on the longest side. If you're uploading a p
+2026-04-25 13:08:21,968 ERROR   ❌ Reprice failed (9781119141983)
+2026-04-25 13:08:23,559 INFO   Research Methods and Statistics for Public and Non: $90.99 → $105.59 profit=$19.44  method=EBAY_COMP (MEDIUM, n=1)
+2026-04-25 13:08:24,851 ERROR   PUT failed (400): {"errors":[{"errorId":25002,"domain":"API_INVENTORY","subdomain":"Selling","category":"Request","message":"A user error has occurred. The ISBN field is missing. Please add ISBN to the listing and try again.","parameters":[{"name":"0","value":"The ISBN field is missing."},{"name":"1","value":"The ISB
+2026-04-25 13:08:24,852 ERROR   ❌ Reprice failed (9781452203522)
+2026-04-25 13:08:25,916 INFO ============================================================
+2026-04-25 13:08:25,916 INFO DONE: 44 repriced | 0 delisted | 220 unchanged
+2026-04-25 13:08:25,916 INFO ============================================================

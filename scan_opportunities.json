@@ -29,14 +29,14 @@
     "cost": 55.99,
     "price": 79.2,
     "profit": 11.09,
-    "method": "HIGH | EBAY_COMP (HIGH, n=4)"
+    "method": "HIGH | EBAY_COMP (HIGH, n=3)"
   },
   {
     "isbn13": "9783031209222",
     "title": "Mastering the Art of Patient Care, 1st Edition (20...",
     "cost": 29.99,
-    "price": 45.68,
-    "profit": 8.7,
+    "price": 45.67,
+    "profit": 8.69,
     "method": "HIGH | EBAY_COMP (HIGH, n=5)"
   },
   {
@@ -46,6 +46,14 @@
     "price": 48.39,
     "profit": 17.0,
     "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1)"
+  },
+  {
+    "isbn13": "9780973501827",
+    "title": "Back Mechanic by Dr. Stuart McGill (2015 Edition) ...",
+    "cost": 19.99,
+    "price": 35.19,
+    "profit": 9.82,
+    "method": "HIGH | EBAY_COMP (HIGH, n=20)"
   },
   {
     "isbn13": "9780063390157",
@@ -61,7 +69,7 @@
     "cost": 56.99,
     "price": 77.39,
     "profit": 8.56,
-    "method": "HIGH | EBAY_COMP (HIGH, n=6)"
+    "method": "HIGH | EBAY_COMP (HIGH, n=7)"
   },
   {
     "isbn13": "9781416633563",
@@ -69,14 +77,22 @@
     "cost": 16.99,
     "price": 26.79,
     "profit": 5.7,
-    "method": "HIGH | EBAY_COMP (HIGH, n=10)"
+    "method": "HIGH | EBAY_COMP (HIGH, n=9)"
+  },
+  {
+    "isbn13": "9780415790529",
+    "title": "Understanding Research Methods, 10th Edition by Mi...",
+    "cost": 59.99,
+    "price": 83.73,
+    "profit": 10.93,
+    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=2)"
   },
   {
     "isbn13": "9781009299893",
     "title": "State Estimation for Robotics, 2nd Edition by Timo...",
     "cost": 54.99,
-    "price": 75.57,
-    "profit": 9.02,
+    "price": 75.55,
+    "profit": 9.0,
     "method": "HIGH | EBAY_COMP (HIGH, n=11)"
   },
   {
@@ -85,7 +101,15 @@
     "cost": 47.99,
     "price": 65.99,
     "profit": 7.9,
-    "method": "HIGH | EBAY_COMP (HIGH, n=3)"
+    "method": "HIGH | EBAY_COMP (HIGH, n=4)"
+  },
+  {
+    "isbn13": "9798670880909",
+    "title": "Study Guide for FE Electrical & Computer CBT E...",
+    "cost": 44.99,
+    "price": 78.72,
+    "profit": 21.69,
+    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=2)"
   },
   {
     "isbn13": "9781032933832",
@@ -107,16 +131,24 @@
     "isbn13": "9781951058098",
     "title": "The ASQ Certified Quality Auditor Handbook, 5th ed...",
     "cost": 57.99,
-    "price": 104.68,
-    "profit": 30.67,
-    "method": "HIGH | EBAY_COMP (HIGH, n=5) [amazon capped]"
+    "price": 92.12,
+    "profit": 20.04,
+    "method": "HIGH | EBAY_COMP (HIGH, n=6)"
+  },
+  {
+    "isbn13": "9781009397759",
+    "title": "Introduction to Electrodynamics by David J. Griffi...",
+    "cost": 35.99,
+    "price": 52.72,
+    "profit": 8.66,
+    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
   },
   {
     "isbn13": "9781071853801",
     "title": "Research and Evaluation in Education and Psycholog...",
     "cost": 54.99,
-    "price": 79.93,
-    "profit": 12.71,
+    "price": 92.35,
+    "profit": 23.23,
     "method": "HIGH | EBAY_COMP (HIGH, n=9)"
   },
   {
@@ -131,9 +163,9 @@
     "isbn13": "9781032836072",
     "title": "Safety Professional\u2019s Reference and Study Guide,...",
     "cost": 83.99,
-    "price": 128.24,
-    "profit": 24.63,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=2) [amazon capped]"
+    "price": 112.85,
+    "profit": 11.59,
+    "method": "HIGH | EBAY_COMP (HIGH, n=3)"
   },
   {
     "isbn13": "9780879396961",
@@ -158,14 +190,6 @@
     "price": 80.2,
     "profit": 19.44,
     "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
-  },
-  {
-    "isbn13": "9781593850203",
-    "title": "Ethnicity and Family Therapy, 3rd Edition by Monica McGoldrick, Joe Giordano & Nydia Garcia-Preto \u00e2\u0080\u0093 Hardcover (ISBN: 9781593850204)",
-    "cost": 52.99,
-    "price": 68.66,
-    "profit": 5.17,
-    "method": "HIGH | EBAY_COMP (HIGH, n=8) [amazon capped]"
   },
   {
     "isbn13": "9781572307810",

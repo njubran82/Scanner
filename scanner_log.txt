@@ -2156,3 +2156,37 @@
 2026-04-25 12:59:20,350 INFO ============================================================
 2026-04-25 12:59:20,356 INFO CSV saved: 417 rows
 2026-04-25 12:59:20,356 INFO scan_opportunities.json written: 25 entries
+2026-04-25 20:04:17,732 INFO ============================================================
+2026-04-25 20:04:17,732 INFO SCANNER STARTED — 2026-04-25 20:04:17
+2026-04-25 20:04:17,732 INFO ============================================================
+2026-04-25 20:04:17,737 INFO Loaded 408 books from CSV
+2026-04-25 20:04:18,743 INFO Merchant sheet: 89 books (1 skipped)
+2026-04-25 20:04:19,115 INFO eBay app token acquired
+2026-04-25 20:04:19,116 INFO Added 9 new books from merchant sheet
+2026-04-25 20:04:20,361 INFO   ✅ ACI CODE-318-19(22): Building Code Requirements fo | Cost: $73.99 | List: $105.6 | Profit: $15.45 | HIGH | EBAY_COMP (HIGH, n=7)
+2026-04-25 20:04:25,220 INFO   ✅ Zero Bone Loss Concepts by Tomas Linkevicius (ISBN | Cost: $83.99 | List: $151.36 | Profit: $44.21 | FALLBACK | AMAZON_FALLBACK
+2026-04-25 20:04:34,105 INFO   ✅ Low Pressure Boilers, 5th Edition by Frederick M.  | Cost: $55.99 | List: $79.2 | Profit: $11.09 | HIGH | EBAY_COMP (HIGH, n=3)
+2026-04-25 20:04:42,838 INFO   ✅ Advanced Placement United States Government & ... | Cost: $23.99 | List: $48.39 | Profit: $17.0 | MEDIUM | EBAY_COMP (MEDIUM, n=1)
+2026-04-25 20:04:44,248 INFO   ✅ Back Mechanic by Dr. Stuart McGill (2015 Edition)  | Cost: $19.99 | List: $35.19 | Profit: $9.82 | HIGH | EBAY_COMP (HIGH, n=20)
+2026-04-25 20:04:46,698 INFO   ✅ Tiny Humans, Big Emotions: How to Navigate Tantrum | Cost: $9.99 | List: $25.08 | Profit: $11.25 | MEDIUM | EBAY_COMP (MEDIUM, n=1)
+2026-04-25 20:04:53,992 INFO   ✅ Understanding Research Methods, 10th Edition by Mi | Cost: $59.99 | List: $83.73 | Profit: $10.93 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-04-25 20:05:03,247 INFO   ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $47.99 | List: $65.99 | Profit: $7.9 | HIGH | EBAY_COMP (HIGH, n=4)
+2026-04-25 20:05:05,601 INFO   ✅ Study Guide for FE Electrical & Computer CBT E... | Cost: $44.99 | List: $78.72 | Profit: $21.69 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-04-25 20:05:14,386 INFO   ✅ The ASQ Certified Quality Auditor Handbook, 5th ed | Cost: $57.99 | List: $104.68 | Profit: $30.67 | HIGH | EBAY_COMP (HIGH, n=5) [amazon capped]
+2026-04-25 20:05:15,118 INFO   ✅ Introduction to Electrodynamics by David J. Griffi | Cost: $35.99 | List: $52.72 | Profit: $8.66 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 20:05:17,767 INFO   ✅ Research and Evaluation in Education and Psycholog | Cost: $54.99 | List: $79.93 | Profit: $12.71 | HIGH | EBAY_COMP (HIGH, n=10)
+2026-04-25 20:05:20,729 INFO   ✅ Concrete Manual: Based on the 2015 IBC and ACI 318 | Cost: $85.99 | List: $175.74 | Profit: $62.86 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 20:05:22,402 INFO   ✅ Safety Professional’s Reference and Study Guide,.. | Cost: $83.99 | List: $128.24 | Profit: $24.63 | MEDIUM | EBAY_COMP (MEDIUM, n=2) [amazon capped]
+2026-04-25 20:05:31,725 INFO   ✅ Fire and Emergency Services Instructor, 9th Editio | Cost: $55.99 | List: $84.55 | Profit: $15.62 | HIGH | EBAY_COMP (HIGH, n=3) [amazon capped]
+2026-04-25 20:05:35,107 INFO   ✅ The ASQ Certified Quality Engineer Handbook 5th ed | Cost: $63.99 | List: $113.05 | Profit: $31.76 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 20:05:35,808 INFO   ✅ Bayesian Data Analysis (Chapman & Hall/CRC Texts i | Cost: $48.49 | List: $80.2 | Profit: $19.44 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 20:05:37,827 INFO   ✅ DBT Skills Training Handouts and Worksheets Second | Cost: $29.99 | List: $49.4 | Profit: $11.85 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 20:05:40,117 INFO ============================================================
+2026-04-25 20:05:40,118 INFO SCAN COMPLETE: 18 opportunities found
+2026-04-25 20:05:40,118 INFO   Already listed:   332
+2026-04-25 20:05:40,118 INFO   Unprofitable:     42
+2026-04-25 20:05:40,118 INFO   No eBay data:     14
+2026-04-25 20:05:40,118 INFO   Cooldown skip:    0
+2026-04-25 20:05:40,118 INFO ============================================================
+2026-04-25 20:05:40,124 INFO CSV saved: 417 rows
+2026-04-25 20:05:40,124 INFO scan_opportunities.json written: 18 entries

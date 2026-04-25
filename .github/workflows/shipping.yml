@@ -37,7 +37,9 @@ jobs:
           EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
           SMTP_USER:          ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD:      ${{ secrets.SMTP_PASSWORD }}
-        run: python shipping_tracker.py
+        run: |
+          python test_token.py
+          python shipping_tracker.py
 
       - name: Commit state
         run: |

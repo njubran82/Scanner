@@ -52,19 +52,9 @@ jobs:
           EMAIL_TO:           ${{ secrets.EMAIL_TO }}
         run: python lister.py
 
-      - name: Run repricer
-        env:
-          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
-          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
-          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
-          BOOKSGOAT_CSV_URL:  ${{ secrets.BOOKSGOAT_CSV_URL }}
-          SMTP_HOST:          ${{ secrets.SMTP_HOST }}
-          SMTP_PORT:          ${{ secrets.SMTP_PORT }}
-          SMTP_USER:          ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD:      ${{ secrets.SMTP_PASSWORD }}
-          EMAIL_FROM:         ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO:           ${{ secrets.EMAIL_TO }}
-        run: python repricer.py
+      # REPRICER DISABLED — 2026-04-25 — mass delist bug under investigation
+      # - name: Run repricer
+      #   run: python repricer.py
 
       - name: Commit state
         run: |

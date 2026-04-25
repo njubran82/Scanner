@@ -134,7 +134,7 @@ def get_ebay_token() -> str:
         data={
             'grant_type': 'refresh_token',
             'refresh_token': EBAY_REFRESH_TOKEN,
-            'scope': 'https://api.ebay.com/oauth/api_scope/sell.fulfillment'
+            'scope': 'https://api.ebay.com/oauth/api_scope https://api.ebay.com/oauth/api_scope/sell.inventory https://api.ebay.com/oauth/api_scope/sell.fulfillment'
         }
     )
     data = r.json()

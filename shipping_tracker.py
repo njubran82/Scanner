@@ -149,10 +149,7 @@ def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
     r = requests.get(
         'https://api.ebay.com/sell/fulfillment/v1/order',
         headers=headers,
-        params={
-            'filter': 'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}',
-            'limit': 200,
-        },
+        params={'limit': 200},
         timeout=15
     )
     if r.status_code != 200:
@@ -189,7 +186,6 @@ def post_tracking(ebay_order_id: str, tracking: str, carrier: str, token: str) -
         'trackingNumber': tracking,
         'shippingCarrierCode': carrier_map.get(carrier, 'FedEx'),
         'shippedDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.000Z'),
-        'lineItems': []
     }
     r = requests.post(
         f'https://api.ebay.com/sell/fulfillment/v1/order/{ebay_order_id}/shipping_fulfillment',

@@ -3370,3 +3370,32 @@
 2026-04-25 20:07:13,726 INFO LISTER DONE: 7 listed | 11 failed
 2026-04-25 20:07:13,726 INFO ============================================================
 2026-04-25 20:07:14,870 INFO Email alert sent
+2026-04-25 20:46:46,565 INFO ============================================================
+2026-04-25 20:46:46,565 INFO LISTER STARTED — 2026-04-25 20:46:46
+2026-04-25 20:46:46,565 INFO ============================================================
+2026-04-25 20:46:46,565 INFO Processing 11 opportunities...
+2026-04-25 20:46:47,923 WARNING   No image found
+2026-04-25 20:46:51,455 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 20:46:53,492 WARNING   No image found
+2026-04-25 20:46:56,883 ERROR   FAIL 9780867157994: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 20:46:58,171 WARNING   No image found
+2026-04-25 20:47:01,087 ERROR   FAIL 9780826943729: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 20:47:02,421 WARNING   No image found
+2026-04-25 20:47:05,241 ERROR   FAIL 9780973501827: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-25 20:47:06,548 WARNING   No image found
+2026-04-25 20:47:09,445 ERROR   FAIL 9780063390157: A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a 
+2026-04-25 20:47:10,372 WARNING   No image found
+2026-04-25 20:47:14,113 ERROR   FAIL 9780415790529: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-25 20:47:15,057 WARNING   No image found
+2026-04-25 20:47:18,268 ERROR   FAIL 9781641950473: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 20:47:19,162 WARNING   No image found
+2026-04-25 20:47:22,434 ERROR   FAIL 9798670880909: A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a 
+2026-04-25 20:47:23,521 WARNING   No image found
+2026-04-25 20:47:26,431 ERROR   FAIL 9781071853801: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 20:47:28,042 WARNING   No image found
+2026-04-25 20:47:31,166 ERROR   FAIL 9781609836184: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 20:47:32,974 WARNING   No image found
+2026-04-25 20:47:36,157 ERROR   FAIL 9780879396961: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-25 20:47:36,663 INFO ============================================================
+2026-04-25 20:47:36,663 INFO LISTER DONE: 0 listed | 11 failed
+2026-04-25 20:47:36,663 INFO ============================================================

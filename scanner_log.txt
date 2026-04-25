@@ -2190,3 +2190,29 @@
 2026-04-25 20:05:40,118 INFO ============================================================
 2026-04-25 20:05:40,124 INFO CSV saved: 417 rows
 2026-04-25 20:05:40,124 INFO scan_opportunities.json written: 18 entries
+2026-04-25 20:45:31,651 INFO ============================================================
+2026-04-25 20:45:31,651 INFO SCANNER STARTED — 2026-04-25 20:45:31
+2026-04-25 20:45:31,651 INFO ============================================================
+2026-04-25 20:45:31,656 INFO Loaded 417 books from CSV
+2026-04-25 20:45:32,111 INFO Merchant sheet: 89 books (1 skipped)
+2026-04-25 20:45:32,336 INFO eBay app token acquired
+2026-04-25 20:45:33,670 INFO   ✅ ACI CODE-318-19(22): Building Code Requirements fo | Cost: $73.99 | List: $105.6 | Profit: $15.45 | HIGH | EBAY_COMP (HIGH, n=7)
+2026-04-25 20:45:38,433 INFO   ✅ Zero Bone Loss Concepts by Tomas Linkevicius (ISBN | Cost: $83.99 | List: $151.36 | Profit: $44.21 | FALLBACK | AMAZON_FALLBACK
+2026-04-25 20:45:53,323 INFO   ✅ Low Pressure Boilers, 5th Edition by Frederick M.  | Cost: $55.99 | List: $79.2 | Profit: $11.09 | HIGH | EBAY_COMP (HIGH, n=3)
+2026-04-25 20:46:02,214 INFO   ✅ Back Mechanic by Dr. Stuart McGill (2015 Edition)  | Cost: $19.99 | List: $35.19 | Profit: $9.82 | HIGH | EBAY_COMP (HIGH, n=20)
+2026-04-25 20:46:04,533 INFO   ✅ Tiny Humans, Big Emotions: How to Navigate Tantrum | Cost: $9.99 | List: $25.08 | Profit: $11.25 | MEDIUM | EBAY_COMP (MEDIUM, n=1)
+2026-04-25 20:46:11,075 INFO   ✅ Understanding Research Methods, 10th Edition by Mi | Cost: $59.99 | List: $83.73 | Profit: $10.93 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-04-25 20:46:19,470 INFO   ✅ The Contractor's Guide to Quality Concrete Constru | Cost: $47.99 | List: $65.99 | Profit: $7.9 | HIGH | EBAY_COMP (HIGH, n=4)
+2026-04-25 20:46:21,709 INFO   ✅ Study Guide for FE Electrical & Computer CBT E... | Cost: $44.99 | List: $78.72 | Profit: $21.69 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-04-25 20:46:31,171 INFO   ✅ Research and Evaluation in Education and Psycholog | Cost: $54.99 | List: $79.93 | Profit: $12.71 | HIGH | EBAY_COMP (HIGH, n=9)
+2026-04-25 20:46:33,408 INFO   ✅ Concrete Manual: Based on the 2015 IBC and ACI 318 | Cost: $85.99 | List: $175.74 | Profit: $62.86 | MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]
+2026-04-25 20:46:40,924 INFO   ✅ Fire and Emergency Services Instructor, 9th Editio | Cost: $55.99 | List: $84.55 | Profit: $15.62 | HIGH | EBAY_COMP (HIGH, n=3) [amazon capped]
+2026-04-25 20:46:46,300 INFO ============================================================
+2026-04-25 20:46:46,300 INFO SCAN COMPLETE: 11 opportunities found
+2026-04-25 20:46:46,300 INFO   Already listed:   339
+2026-04-25 20:46:46,300 INFO   Unprofitable:     43
+2026-04-25 20:46:46,300 INFO   No eBay data:     13
+2026-04-25 20:46:46,301 INFO   Cooldown skip:    0
+2026-04-25 20:46:46,301 INFO ============================================================
+2026-04-25 20:46:46,307 INFO CSV saved: 417 rows
+2026-04-25 20:46:46,307 INFO scan_opportunities.json written: 11 entries

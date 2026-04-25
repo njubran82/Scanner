@@ -24,14 +24,6 @@
     "method": "HIGH | EBAY_COMP (HIGH, n=3)"
   },
   {
-    "isbn13": "9781690384168",
-    "title": "Advanced Placement United States Government & ...",
-    "cost": 23.99,
-    "price": 48.39,
-    "profit": 17.0,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1)"
-  },
-  {
     "isbn13": "9780973501827",
     "title": "Back Mechanic by Dr. Stuart McGill (2015 Edition) ...",
     "cost": 19.99,
@@ -72,28 +64,12 @@
     "method": "MEDIUM | EBAY_COMP (MEDIUM, n=2)"
   },
   {
-    "isbn13": "9781951058098",
-    "title": "The ASQ Certified Quality Auditor Handbook, 5th ed...",
-    "cost": 57.99,
-    "price": 104.68,
-    "profit": 30.67,
-    "method": "HIGH | EBAY_COMP (HIGH, n=5) [amazon capped]"
-  },
-  {
-    "isbn13": "9781009397759",
-    "title": "Introduction to Electrodynamics by David J. Griffi...",
-    "cost": 35.99,
-    "price": 52.72,
-    "profit": 8.66,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
-  },
-  {
     "isbn13": "9781071853801",
     "title": "Research and Evaluation in Education and Psycholog...",
     "cost": 54.99,
     "price": 79.93,
     "profit": 12.71,
-    "method": "HIGH | EBAY_COMP (HIGH, n=10)"
+    "method": "HIGH | EBAY_COMP (HIGH, n=9)"
   },
   {
     "isbn13": "9781609836184",
@@ -104,43 +80,11 @@
     "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
   },
   {
-    "isbn13": "9781032836072",
-    "title": "Safety Professional\u2019s Reference and Study Guide,...",
-    "cost": 83.99,
-    "price": 128.24,
-    "profit": 24.63,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=2) [amazon capped]"
-  },
-  {
     "isbn13": "9780879396961",
     "title": "Fire and Emergency Services Instructor, 9th Edition",
     "cost": 55.99,
     "price": 84.55,
     "profit": 15.62,
     "method": "HIGH | EBAY_COMP (HIGH, n=3) [amazon capped]"
-  },
-  {
-    "isbn13": "9781636940267",
-    "title": "The ASQ Certified Quality Engineer Handbook 5th edition (ISBN 9781636940267) by Scott A Laman - Hardcover",
-    "cost": 63.99,
-    "price": 113.05,
-    "profit": 31.76,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
-  },
-  {
-    "isbn13": "9781439840955",
-    "title": "Bayesian Data Analysis (Chapman & Hall/CRC Texts in Statistical Science), 3rd edition by Andrew Gelman, John B. Carlin, Hal S. Stern, David B. Dunson",
-    "cost": 48.49,
-    "price": 80.2,
-    "profit": 19.44,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
-  },
-  {
-    "isbn13": "9781572307810",
-    "title": "DBT Skills Training Handouts and Worksheets Second Edition",
-    "cost": 29.99,
-    "price": 49.4,
-    "profit": 11.85,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1) [amazon capped]"
   }
 ]

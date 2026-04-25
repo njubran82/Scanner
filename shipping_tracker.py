@@ -180,12 +180,18 @@ def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
     log.warning(f'No eBay order match for ISBN={isbn}, buyer={buyer_name}')
     return None
 
-def post_tracking(ebay_order_id: str, tracking: str, carrier: str, token: str) -> bool:
+def post_tracking(ebay_order_id: str, tracking: str, carrier: str, token: str, order: dict) -> bool:
     carrier_map = {'FEDEX': 'FedEx', 'UPS': 'UPS', 'USPS': 'USPS'}
+    line_items = [
+        {'lineItemId': item['lineItemId']}
+        for item in order.get('lineItems', [])
+        if 'lineItemId' in item
+    ]
     payload = {
         'trackingNumber': tracking,
         'shippingCarrierCode': carrier_map.get(carrier, 'FedEx'),
         'shippedDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.000Z'),
+        'lineItems': line_items
     }
     r = requests.post(
         f'https://api.ebay.com/sell/fulfillment/v1/order/{ebay_order_id}/shipping_fulfillment',
@@ -262,7 +268,7 @@ def run():
             continue
 
         ebay_order_id = ebay_order['orderId']
-        ok = post_tracking(ebay_order_id, tracking, carrier, token)
+        ok = post_tracking(ebay_order_id, tracking, carrier, token, ebay_order)
         state[order_id] = {
             'status': 'posted' if ok else 'failed',
             'ebay_order_id': ebay_order_id,

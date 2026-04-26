@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-repricer.py v2 — reads from booksgoat_enhanced.csv (not lister_state.json)
+repricer.py v3 — reads from booksgoat_enhanced.csv (not lister_state.json)
 Reprices all status=active rows. Updates CSV with new sell_price.
 Delists if profit < MIN_PROFIT.
 """
@@ -45,6 +45,7 @@ BLOCKLIST = {
     '9780415898058',  # Even if it Costs Me My Life — min qty 5 on BooksGoat
     '9781118115121',  # Art and Science of Technical Analysis — min qty 5 on BooksGoat
     '9780393979503',  # C Programming: A Modern Approach — download only on BooksGoat
+    '9781119141983',  # Psychodynamic Psychotherapy: A Clinical Manual — min qty 5 on BooksGoat
 }
 
 logging.basicConfig(
@@ -136,7 +137,7 @@ def filter_comps(prices: list, cost: float, multiplier: float = 1.1) -> list:
 def calc_target(isbn, cost, amazon_price, app_token):
     comps, conf = get_ebay_comps(isbn, app_token)
     if comps:
-        comps = filter_comps(comps, cost)  # remove cheap outliers before taking min
+        comps = filter_comps(comps, cost)
         target = round(min(comps) * (1 - UNDERCUT_PCT), 2)
         method = f'EBAY_COMP ({conf}, n={len(comps)})'
     elif amazon_price:
@@ -148,7 +149,7 @@ def calc_target(isbn, cost, amazon_price, app_token):
     if amazon_price and target > amazon_price * AMAZON_CAP:
         target = round(amazon_price * AMAZON_CAP, 2)
         method += ' [amazon capped]'
-    # Never list below cost × MIN_PRICE_MULT — prevents bad comps from killing margin
+    # Never list below cost × MIN_PRICE_MULT
     min_price = round(cost * MIN_PRICE_MULT, 2)
     if target < min_price:
         target = min_price
@@ -212,6 +213,14 @@ def reprice():
     log.info('=' * 60)
 
     rows = load_csv()
+
+    # ── SAFETY CHECK: abort if CSV looks suspicious ──────────────────────────
+    active_count = sum(1 for r in rows.values() if r.get('status') == 'active')
+    if active_count < 50:
+        log.error(f'SAFETY ABORT: only {active_count} active rows in CSV — looks like a bad state. Exiting without changes.')
+        return
+    # ─────────────────────────────────────────────────────────────────────────
+
     active = {isbn: row for isbn, row in rows.items()
               if row.get('status') == 'active' and row.get('offer_id') and isbn not in BLOCKLIST}
     log.info(f'Checking {len(active)} active listings...')
@@ -224,6 +233,7 @@ def reprice():
     delisted = []
     unchanged = 0
     errors = 0
+    csv_dirty = False  # track whether we actually made any changes
 
     for isbn, row in list(active.items()):
         title         = row.get('title', isbn)
@@ -244,27 +254,30 @@ def reprice():
         if should_delist(row, profit):
             protected_flag = row.get('protected', 'false') == 'true'
             floor = 0.00 if protected_flag else MIN_PROFIT
-            log.info(f'  {title[:50]}: AUTO-DELIST — profit ${profit:.2f} at ${target:.2f} (cost ${current_cost:.2f}) [floor=${floor:.2f}{" PROTECTED" if protected_flag else ""}]')
+            log.info(f'  {title[:50]}: AUTO-DELIST — profit ${profit:.2f} at ${target:.2f} (cost ${current_cost:.2f}) [floor=${floor:.2f}]')
             if delist_offer(user_token, isbn, offer_id):
-                rows[isbn]['status']      = 'delisted'
-                rows[isbn]['delisted_at'] = datetime.now(timezone.utc).isoformat()
+                rows[isbn]['status']        = 'delisted'
+                rows[isbn]['delisted_at']   = datetime.now(timezone.utc).isoformat()
                 rows[isbn]['delist_reason'] = 'unprofitable'
                 delisted.append({'title': title, 'profit': profit})
-                save_csv(rows)  # write immediately — prevents orphan on canceled run
-                log.info(f'  \u2705 Delisted')
+                csv_dirty = True
+                save_csv(rows)
+                log.info(f'  ✅ Delisted')
             else:
-                log.error(f'  \u274c Delist failed')
+                log.error(f'  ❌ Delist failed')
                 errors += 1
+                # DO NOT modify rows[isbn] — failed delist means listing still live
 
         elif abs(target - listing_price) > 0.01:
-            log.info(f'  {title[:50]}: ${listing_price:.2f} \u2192 ${target:.2f} profit=${profit:.2f}  method={method}')
+            log.info(f'  {title[:50]}: ${listing_price:.2f} → ${target:.2f} profit=${profit:.2f}  method={method}')
             if update_offer_price(user_token, offer_id, target):
                 rows[isbn]['sell_price'] = str(target)
                 repriced.append({'title': title, 'old': listing_price, 'new': target, 'profit': profit})
-                save_csv(rows)  # write immediately — keeps CSV in sync with eBay state
-                log.info(f'  \u2705 Repriced')
+                csv_dirty = True
+                save_csv(rows)
+                log.info(f'  ✅ Repriced')
             else:
-                log.error(f'  \u274c Reprice failed ({isbn})')
+                log.error(f'  ❌ Reprice failed ({isbn})')
                 errors += 1
         else:
             log.info(f'  {title[:50]}: price OK (${listing_price:.2f}, profit=${profit:.2f})')
@@ -272,7 +285,12 @@ def reprice():
 
         time.sleep(0.5)
 
-    save_csv(rows)
+    # Only write final CSV if we actually changed something
+    if csv_dirty:
+        save_csv(rows)
+        log.info('CSV saved.')
+    else:
+        log.info('No changes made — CSV not written.')
 
     log.info('=' * 60)
     log.info(f'DONE: {len(repriced)} repriced | {len(delisted)} delisted | {unchanged} unchanged')

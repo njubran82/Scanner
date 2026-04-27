@@ -18,3 +18,10 @@ scan_results/*.csv
 # OS junk
 .DS_Store
 Thumbs.db
+
+*.log
+*.db
+*.zip
+Scanner/
+repricer_input.py
+repricer_output.py

@@ -27,6 +27,7 @@ CSV_PATH      = Path('booksgoat_enhanced.csv')
 LOG_FILE      = 'scanner_log.txt'
 
 BLOCKLIST = {
+    '9781119143642',  # Understanding Behaviorism — blocklisted 2026-04-27
     '9781260460445',  # Lange Q&A Radiography — min qty 5
     '9780990873853',  # Overcoming Gravity — min qty 5
     '9781119826798',  # Architect's Studio Companion — PDF only

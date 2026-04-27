@@ -224,3 +224,51 @@
 2026-04-25 12:21:30,794 INFO ============================================================
 2026-04-25 12:21:30,794 INFO DONE: 0 posted | 3 awaiting tracking | 27 already done | 3 failed/no match
 2026-04-25 12:21:30,794 INFO ============================================================
+2026-04-27 12:16:49,846 INFO ============================================================
+2026-04-27 12:16:49,846 INFO shipping_tracker.py started
+2026-04-27 12:16:49,846 INFO Connecting to Gmail IMAP...
+2026-04-27 12:16:51,487 INFO Found 185 BooksGoat Order Update emails in last 14 days
+2026-04-27 12:17:18,852 INFO 53 shipping emails parsed
+2026-04-27 12:17:19,220 INFO eBay token acquired
+2026-04-27 12:17:19,220 INFO Order #26596: already posted — skipping
+2026-04-27 12:17:19,220 INFO Order #26597: already posted — skipping
+2026-04-27 12:17:19,220 INFO Order #26694: already posted — skipping
+2026-04-27 12:17:19,220 INFO Order #26693: already posted — skipping
+2026-04-27 12:17:19,221 INFO Order #26691: already posted — skipping
+2026-04-27 12:17:19,221 INFO Order #26719: already posted — skipping
+2026-04-27 12:17:19,221 INFO Order #26704: no tracking yet — will retry next run
+2026-04-27 12:17:19,222 INFO Order #26752: already posted — skipping
+2026-04-27 12:17:19,222 INFO Order #26770: already posted — skipping
+2026-04-27 12:17:19,222 INFO Order #26555: already posted — skipping
+2026-04-27 12:17:19,222 INFO Order #26805: already posted — skipping
+2026-04-27 12:17:19,222 INFO Order #26811: already posted — skipping
+2026-04-27 12:17:19,222 INFO Order #26812: already posted — skipping
+2026-04-27 12:17:20,498 WARNING No eBay order match for ISBN=9781683674405, buyer=None
+2026-04-27 12:17:20,500 INFO Order #26817: already posted — skipping
+2026-04-27 12:17:22,033 WARNING No eBay order match for ISBN=9781118431436, buyer=None
+2026-04-27 12:17:22,035 INFO Order #26840: already posted — skipping
+2026-04-27 12:17:22,035 INFO Order #26833: already posted — skipping
+2026-04-27 12:17:22,035 INFO Order #26831: no tracking yet — will retry next run
+2026-04-27 12:17:22,035 INFO Order #26828: already posted — skipping
+2026-04-27 12:17:22,035 INFO Order #26824: already posted — skipping
+2026-04-27 12:17:22,035 INFO Order #26823: no tracking yet — will retry next run
+2026-04-27 12:17:22,036 INFO Order #26822: already posted — skipping
+2026-04-27 12:17:22,036 INFO Order #26879: already posted — skipping
+2026-04-27 12:17:22,036 INFO Order #26878: already posted — skipping
+2026-04-27 12:17:22,036 INFO Order #26859: already posted — skipping
+2026-04-27 12:17:22,036 INFO Order #26857: already posted — skipping
+2026-04-27 12:17:22,036 INFO Order #26917: already posted — skipping
+2026-04-27 12:17:22,036 INFO Order #26890: already posted — skipping
+2026-04-27 12:17:22,036 INFO Order #26899: already posted — skipping
+2026-04-27 12:17:22,036 INFO Order #26918: already posted — skipping
+2026-04-27 12:17:23,710 WARNING No eBay order match for ISBN=9781560915263, buyer=Csaba Milian
+2026-04-27 12:17:23,712 INFO Order #26947: already posted — skipping
+2026-04-27 12:17:23,712 INFO Order #26993: no tracking yet — will retry next run
+2026-04-27 12:17:23,712 INFO Order #26989: no tracking yet — will retry next run
+2026-04-27 12:17:23,713 INFO Order #26988: no tracking yet — will retry next run
+2026-04-27 12:17:23,713 INFO Order #26984: no tracking yet — will retry next run
+2026-04-27 12:17:23,714 INFO Order #26965: no tracking yet — will retry next run
+2026-04-27 12:17:23,714 INFO Order #26960: no tracking yet — will retry next run
+2026-04-27 12:17:23,714 INFO ============================================================
+2026-04-27 12:17:23,715 INFO DONE: 0 posted | 9 awaiting tracking | 27 already done | 3 failed/no match
+2026-04-27 12:17:23,715 INFO ============================================================

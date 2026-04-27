@@ -1,0 +1,31 @@
+2026-04-23 16:04:21,448 ERROR DB not found at E:\Book\Scanner\protection.db — run protection_patch.py first
+2026-04-23 20:11:04,166 ERROR DB not found at E:\Book\Scanner\protection.db — run protection_patch.py first
+2026-04-23 20:11:26,955 ERROR DB not found at E:\Book\Scanner\protection.db — run protection_patch.py first
+2026-04-23 20:40:39,649 ERROR DB not found at E:\Book\Scanner\protection.db — run protection_patch.py first
+2026-04-23 20:42:25,417 INFO Seeding 24 ISBNs
+2026-04-23 20:42:25,419 INFO   INSERT 9780071769679 | Atlas Ultrasound Musculoskeletal              | 1 units → qty 30
+2026-04-23 20:42:25,419 INFO   INSERT 9780521809269 | Art of Electronics 3rd Ed                     | 47 units → qty 100
+2026-04-23 20:42:25,419 INFO   INSERT 9780763781873 | NIMS 2nd Ed                                   | 7 units → qty 40
+2026-04-23 20:42:25,420 INFO   INSERT 9780867157994 | Zero Bone Loss Concepts                       | 1 units → qty 30
+2026-04-23 20:42:25,420 INFO   INSERT 9780899705538 | Guides Permanent Impairment 6th AMA           | 10 units → qty 60
+2026-04-23 20:42:25,420 INFO   INSERT 9781118431436 | Brown's Boundary Control 7th                  | 1 units → qty 30
+2026-04-23 20:42:25,421 INFO   INSERT 9781118909508 | Architectural Graphic Standards 12th          | 1 units → qty 30
+2026-04-23 20:42:25,421 INFO   INSERT 9781285080475 | Milady Standard Nail Technology 7th           | 17 units → qty 60
+2026-04-23 20:42:25,422 INFO   INSERT 9781285769417 | Milady Standard Cosmetology 2016              | 5 units → qty 40
+2026-04-23 20:42:25,422 INFO   INSERT 9781305100558 | Milady Standard Barbering 6th                 | 5 units → qty 40
+2026-04-23 20:42:25,423 INFO   INSERT 9781439840955 | Radiation Detection and Measurement           | 1 units → qty 30
+2026-04-23 20:42:25,423 INFO   INSERT 9781483343723 | Sexuality Counseling                          | 2 units → qty 30
+2026-04-23 20:42:25,424 INFO   INSERT 9781492592006 | Science Practice of Strength Training 3rd     | 1 units → qty 30
+2026-04-23 20:42:25,424 INFO   INSERT 9781498754415 | Essentials Clinical Anatomy Equine            | 1 units → qty 30
+2026-04-23 20:42:25,424 INFO   INSERT 9781517912482 | Interpreting the MMPI-3                       | 4 units → qty 30
+2026-04-23 20:42:25,425 INFO   INSERT 9781544391250 | Constitutional Law for a Changing America     | 1 units → qty 30
+2026-04-23 20:42:25,426 INFO   INSERT 9781560915263 | Race Car Vehicle Dynamics                     | 3 units → qty 30
+2026-04-23 20:42:25,426 INFO   INSERT 9781579478889 | Guides Permanent Impairment other ed          | 6 units → qty 40
+2026-04-23 20:42:25,427 INFO   INSERT 9781591268468 | PPI PE Structural Reference Manual 10th       | 1 units → qty 30
+2026-04-23 20:42:25,428 INFO   INSERT 9781641950565 | ACI 318-19 Building Code Requirements         | 3 units → qty 30
+2026-04-23 20:42:25,428 INFO   INSERT 9781683674405 | Larone's Medically Important Fungi            | 1 units → qty 30
+2026-04-23 20:42:25,429 INFO   INSERT 9781735141640 | The Behavior Operations Manual                | 1 units → qty 30
+2026-04-23 20:42:25,429 INFO   INSERT 9781951058067 | ASQ Certified Manager of Quality              | 2 units → qty 30
+2026-04-23 20:42:25,430 INFO   INSERT 9798350705218 | Sterile Processing CRCST 9th Ed               | 4 units → qty 30
+2026-04-23 20:42:25,544 INFO Done: 0 updated | 24 inserted
+2026-04-23 20:42:25,544 INFO Now run: python update_quantities.py

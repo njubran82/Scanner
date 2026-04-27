@@ -146,32 +146,75 @@ def generate_description(title: str, isbn: str) -> str:
 
 # ── Cover image ────────────────────────────────────────────────────────────
 def get_cover_image(isbn: str):
-    sources = [
-        f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg",
-        f"https://images-na.ssl-images-amazon.com/images/P/{isbn}.01.LZZZZZZZ.jpg",
-    ]
-    for url in sources:
+    """
+    Returns a working image URL or None.
+    Uses GET+stream to check actual content — not HEAD+Content-Length,
+    which is unreliable on Open Library and Amazon CDN.
+    """
+    import requests
+
+    def _valid(url: str, min_bytes: int = 2000) -> bool:
+        """Return True if URL serves an image larger than min_bytes."""
         try:
-            r = requests.head(url, timeout=5, allow_redirects=True)
-            if r.status_code == 200 and int(r.headers.get('Content-Length', 0)) > 1000:
-                return url
+            r = requests.get(url, timeout=8, stream=True,
+                             headers={"User-Agent": "Mozilla/5.0"})
+            if r.status_code != 200:
+                return False
+            # Read up to 4 KB to check size without downloading full image
+            chunk = next(r.iter_content(min_bytes + 1), b"")
+            r.close()
+            return len(chunk) >= min_bytes
         except Exception:
-            pass
+            return False
+
+    # 1. Open Library — Large then Medium, ISBN-13 then ISBN-10
+    for size in ("-L", "-M"):
+        for id_val in (isbn,):           # add isbn10 here if you compute it
+            url = f"https://covers.openlibrary.org/b/isbn/{id_val}{size}.jpg"
+            if _valid(url):
+                return url
+
+    # 2. Amazon CDN — two patterns
+    for pattern in (
+        f"https://images-na.ssl-images-amazon.com/images/P/{isbn}.01.LZZZZZZZ.jpg",
+        f"https://m.media-amazon.com/images/P/{isbn}.01.LZZZZZZZ.jpg",
+    ):
+        if _valid(pattern):
+            return pattern
+
+    # 3. Google Books API — most reliable fallback
     try:
         r = requests.get(
-            f'https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&maxResults=1',
-            timeout=5)
+            f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&maxResults=3",
+            timeout=8)
         if r.status_code == 200:
-            items = r.json().get('items', [])
-            if items:
-                links = items[0].get('volumeInfo', {}).get('imageLinks', {})
-                img = links.get('extraLarge') or links.get('large') or links.get('thumbnail')
-                if img:
-                    return img.replace('http://', 'https://').replace('&edge=curl', '')
+            for item in r.json().get("items", []):
+                links = item.get("volumeInfo", {}).get("imageLinks", {})
+                for size_key in ("extraLarge", "large", "medium", "thumbnail"):
+                    img = links.get(size_key)
+                    if img:
+                        img = img.replace("http://", "https://").replace("&edge=curl", "")
+                        # Google Books thumbnails are always valid — use without size check
+                        return img
     except Exception:
         pass
-    return None
 
+    # 4. Open Library search by cover_i
+    try:
+        r = requests.get(
+            f"https://openlibrary.org/search.json?isbn={isbn}&fields=cover_i",
+            timeout=8)
+        if r.status_code == 200:
+            docs = r.json().get("docs", [])
+            if docs and docs[0].get("cover_i"):
+                cid = docs[0]["cover_i"]
+                url = f"https://covers.openlibrary.org/b/id/{cid}-L.jpg"
+                if _valid(url):
+                    return url
+    except Exception:
+        pass
+
+    return None
 
 # ── Quantity tier ──────────────────────────────────────────────────────────
 def get_quantity(row: dict) -> int:
@@ -222,9 +265,24 @@ def delete_existing_offers(isbn: str, token: str):
         time.sleep(0.1)
 
 def create_offer(isbn: str, price: float, qty: int, token: str):
-    hdrs = {'Authorization': f'Bearer {token}',
-            'Content-Type': 'application/json',
-            'Content-Language': 'en-US'}
+    """
+    Posts a fresh offer to eBay.
+    includeCatalogProductDetails: False prevents eBay from requiring
+    catalog-supplied Book Title and Author fields when the ISBN isn't
+    in their catalog.
+    """
+    import requests, time
+
+    FULFILLMENT_POLICY = '391308514023'
+    PAYMENT_POLICY     = '391308491023'
+    RETURN_POLICY      = '391308498023'
+    CATEGORY_ID        = '261186'
+
+    hdrs = {
+        'Authorization':  f'Bearer {token}',
+        'Content-Type':   'application/json',
+        'Content-Language': 'en-US',
+    }
     payload = {
         'sku':               isbn,
         'marketplaceId':     'EBAY_US',
@@ -237,14 +295,19 @@ def create_offer(isbn: str, price: float, qty: int, token: str):
             'paymentPolicyId':     PAYMENT_POLICY,
             'returnPolicyId':      RETURN_POLICY,
         },
-        'pricingSummary': {'price': {'value': str(round(price, 2)), 'currency': 'USD'}},
-        'includeCatalogProductDetails': True,
+        'pricingSummary': {
+            'price': {'value': str(round(price, 2)), 'currency': 'USD'}
+        },
+        'includeCatalogProductDetails': False,   # ← THE FIX for Bug B
     }
-    r = requests.post('https://api.ebay.com/sell/inventory/v1/offer',
-                      headers=hdrs, json=payload, timeout=15)
+    r = requests.post(
+        'https://api.ebay.com/sell/inventory/v1/offer',
+        headers=hdrs, json=payload, timeout=15)
     if r.status_code in (200, 201):
         return r.json().get('offerId')
-    log.warning(f'  POST offer failed {r.status_code}: {r.text[:100]}')
+    import logging
+    logging.getLogger(__name__).warning(
+        f'  POST offer failed {r.status_code}: {r.text[:120]}')
     return None
 
 def publish_offer(offer_id: str, token: str):

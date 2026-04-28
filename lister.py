@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 """
-lister.py v2.1 — Lists opportunities from scan_opportunities.json
+lister.py v2.3 — Lists opportunities from scan_opportunities.json
 Uses full_publish logic: PUT inventory item → DELETE stale offer →
 POST fresh offer WITH merchantLocationKey → publish.
 Updates booksgoat_enhanced.csv with status=active, offer_id, sell_price.
 Includes AI description generation and protection_patch support.
 
+Fixes applied:
+  v2.2 — get_cover_image: use GET+stream instead of HEAD+Content-Length
+  v2.2 — create_offer: includeCatalogProductDetails=False
+  v2.3 — ensure_inventory_item: add Author aspect (required by eBay Books)
+  v2.3 — publish_offer: safe JSON parsing, no crash on empty body
+
 Run: GitHub Actions scanner.yml after scanner.py
 """
 
-import os, csv, json, base64, time, logging, requests, smtplib, sys
+import os, csv, json, base64, time, logging, requests, smtplib, sys, re
 from datetime import datetime, timezone
 from pathlib import Path
 from email.mime.text import MIMEText
@@ -17,11 +23,10 @@ from email.mime.text import MIMEText
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
-# Import protection support if available
 try:
     from protection_patch import is_protected
 except ImportError:
-    def is_protected(row): return str(row.get('protected','')).lower() == 'true'
+    def is_protected(row): return str(row.get('protected', '')).lower() == 'true'
 
 EBAY_CLIENT_ID     = os.getenv('EBAY_CLIENT_ID')
 EBAY_CLIENT_SECRET = os.getenv('EBAY_CLIENT_SECRET')
@@ -146,31 +151,75 @@ def generate_description(title: str, isbn: str) -> str:
 
 # ── Cover image ────────────────────────────────────────────────────────────
 def get_cover_image(isbn: str):
-    sources = [
-        f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg",
-        f"https://images-na.ssl-images-amazon.com/images/P/{isbn}.01.LZZZZZZZ.jpg",
-    ]
-    for url in sources:
+    def _valid(url: str, min_bytes: int = 2000) -> bool:
         try:
-            r = requests.head(url, timeout=5, allow_redirects=True)
-            if r.status_code == 200 and int(r.headers.get('Content-Length', 0)) > 1000:
-                return url
+            r = requests.get(url, timeout=8, stream=True,
+                             headers={"User-Agent": "Mozilla/5.0"})
+            if r.status_code != 200:
+                return False
+            chunk = next(r.iter_content(min_bytes + 1), b"")
+            r.close()
+            return len(chunk) >= min_bytes
         except Exception:
-            pass
+            return False
+
+    # 1. Open Library
+    for size in ("-L", "-M"):
+        url = f"https://covers.openlibrary.org/b/isbn/{isbn}{size}.jpg"
+        if _valid(url):
+            return url
+
+    # 2. Amazon CDN
+    for pattern in (
+        f"https://images-na.ssl-images-amazon.com/images/P/{isbn}.01.LZZZZZZZ.jpg",
+        f"https://m.media-amazon.com/images/P/{isbn}.01.LZZZZZZZ.jpg",
+    ):
+        if _valid(pattern):
+            return pattern
+
+    # 3. Google Books API
     try:
         r = requests.get(
-            f'https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&maxResults=1',
-            timeout=5)
+            f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&maxResults=3",
+            timeout=8)
         if r.status_code == 200:
-            items = r.json().get('items', [])
-            if items:
-                links = items[0].get('volumeInfo', {}).get('imageLinks', {})
-                img = links.get('extraLarge') or links.get('large') or links.get('thumbnail')
-                if img:
-                    return img.replace('http://', 'https://').replace('&edge=curl', '')
+            for item in r.json().get("items", []):
+                links = item.get("volumeInfo", {}).get("imageLinks", {})
+                for size_key in ("extraLarge", "large", "medium", "thumbnail"):
+                    img = links.get(size_key)
+                    if img:
+                        return img.replace("http://", "https://").replace("&edge=curl", "")
     except Exception:
         pass
+
+    # 4. Open Library search by cover_i
+    try:
+        r = requests.get(
+            f"https://openlibrary.org/search.json?isbn={isbn}&fields=cover_i",
+            timeout=8)
+        if r.status_code == 200:
+            docs = r.json().get("docs", [])
+            if docs and docs[0].get("cover_i"):
+                cid = docs[0]["cover_i"]
+                url = f"https://covers.openlibrary.org/b/id/{cid}-L.jpg"
+                if _valid(url):
+                    return url
+    except Exception:
+        pass
+
     return None
+
+
+# ── Author extraction ──────────────────────────────────────────────────────
+def _extract_author(title: str) -> str:
+    """
+    Extract author from 'Title by Author Name' pattern.
+    Falls back to 'See Description' — satisfies eBay's required Author aspect.
+    """
+    m = re.search(r'\bby\s+([A-Z][^\(\n,]{2,40})(?:\s*[\(,]|$)', title, re.IGNORECASE)
+    if m:
+        return m.group(1).strip()
+    return 'See Description'
 
 
 # ── Quantity tier ──────────────────────────────────────────────────────────
@@ -192,24 +241,34 @@ def ensure_inventory_item(isbn: str, title: str, fmt: str,
     hdrs = {'Authorization': f'Bearer {token}',
             'Content-Type': 'application/json',
             'Content-Language': 'en-US'}
+
+    author = _extract_author(title)
+
     payload = {
-        'sku':     isbn,
+        'sku': isbn,
         'product': {
             'title':       title[:80],
             'description': f"{description}\n\n{CLOSING_STATEMENT}",
             'isbn':        [isbn],
-            'aspects':     {'Format': [fmt or 'Paperback'], 'Language': ['English']},
+            'aspects': {
+                'Book Title': [title[:65]],
+                'Format':     [fmt or 'Paperback'],
+                'Language':   ['English'],
+                'Author':     [author],
+            },
         },
         'availability': {'shipToLocationAvailability': {'quantity': qty}},
     }
     if cover_url:
         payload['product']['imageUrls'] = [cover_url]
+
     r = requests.put(
         f'https://api.ebay.com/sell/inventory/v1/inventory_item/{isbn}',
         headers=hdrs, json=payload, timeout=15)
     if r.status_code not in (200, 204):
         log.warning(f'  INV fail {r.status_code}: {r.text[:100]}')
     return r.status_code in (200, 204)
+
 
 def delete_existing_offers(isbn: str, token: str):
     hdrs = {'Authorization': f'Bearer {token}'}
@@ -221,10 +280,13 @@ def delete_existing_offers(isbn: str, token: str):
             headers=hdrs, timeout=10)
         time.sleep(0.1)
 
+
 def create_offer(isbn: str, price: float, qty: int, token: str):
-    hdrs = {'Authorization': f'Bearer {token}',
-            'Content-Type': 'application/json',
-            'Content-Language': 'en-US'}
+    hdrs = {
+        'Authorization':    f'Bearer {token}',
+        'Content-Type':     'application/json',
+        'Content-Language': 'en-US',
+    }
     payload = {
         'sku':               isbn,
         'marketplaceId':     'EBAY_US',
@@ -237,25 +299,35 @@ def create_offer(isbn: str, price: float, qty: int, token: str):
             'paymentPolicyId':     PAYMENT_POLICY,
             'returnPolicyId':      RETURN_POLICY,
         },
-        'pricingSummary': {'price': {'value': str(round(price, 2)), 'currency': 'USD'}},
-        'includeCatalogProductDetails': True,
+        'pricingSummary': {
+            'price': {'value': str(round(price, 2)), 'currency': 'USD'}
+        },
+        'includeCatalogProductDetails': False,
     }
     r = requests.post('https://api.ebay.com/sell/inventory/v1/offer',
                       headers=hdrs, json=payload, timeout=15)
     if r.status_code in (200, 201):
         return r.json().get('offerId')
-    log.warning(f'  POST offer failed {r.status_code}: {r.text[:100]}')
+    log.warning(f'  POST offer failed {r.status_code}: {r.text[:120]}')
     return None
+
 
 def publish_offer(offer_id: str, token: str):
     r = requests.post(
         f'https://api.ebay.com/sell/inventory/v1/offer/{offer_id}/publish',
         headers={'Authorization': f'Bearer {token}',
-                 'Content-Type': 'application/json'},
+                 'Content-Type':  'application/json'},
         timeout=15)
     if r.status_code == 200:
         return r.json().get('listingId'), None
-    err = r.json().get('errors', [{}])[0].get('message', '')[:100]
+    # Safe error extraction — body may be empty on some failure codes
+    err = f'HTTP {r.status_code}'
+    if r.text:
+        try:
+            errs = r.json().get('errors', [])
+            err  = errs[0].get('message', '')[:100] if errs else r.text[:100]
+        except Exception:
+            err = r.text[:100]
     return None, err
 
 
@@ -275,8 +347,8 @@ def list_books():
         return
 
     log.info(f'Processing {len(opportunities)} opportunities...')
-    rows  = load_csv()
-    token = get_user_token()
+    rows   = load_csv()
+    token  = get_user_token()
     listed = []
     failed = []
 
@@ -291,15 +363,12 @@ def list_books():
             log.info(f'  SKIP_BLOCKLIST {isbn}')
             continue
 
-        # Refresh token every 25 books
         if (i + 1) % 25 == 0:
             token = get_user_token()
             log.info(f'  {i+1}/{len(opportunities)} — token refreshed')
 
-        # Get quantity tier
         qty = get_quantity(row)
 
-        # Get or generate description
         description = row.get('description', '').strip()
         if not description:
             log.info(f'  Generating description for {isbn}...')
@@ -307,25 +376,21 @@ def list_books():
             if isbn in rows:
                 rows[isbn]['description'] = description
 
-        # Get cover image
         cover_url = get_cover_image(isbn)
         if cover_url:
             log.info(f'  Image found')
         else:
             log.warning(f'  No image found')
 
-        # Step 1: ensure inventory item
         if not ensure_inventory_item(isbn, title, fmt, description, cover_url, qty, token):
             log.error(f'  INV FAIL {isbn}')
             failed.append(isbn)
             time.sleep(0.5)
             continue
 
-        # Step 2: delete stale offers
         delete_existing_offers(isbn, token)
         time.sleep(0.2)
 
-        # Step 3: create fresh offer with merchantLocationKey
         offer_id = create_offer(isbn, price, qty, token)
         if not offer_id:
             log.error(f'  OFFER FAIL {isbn}')
@@ -333,7 +398,6 @@ def list_books():
             time.sleep(0.5)
             continue
 
-        # Step 4: publish
         listing_id, err = publish_offer(offer_id, token)
         if listing_id:
             log.info(f'  \u2705 Listed {isbn} | ${price} | Profit: ${opp["profit"]} | qty={qty} | ListingID: {listing_id}')
@@ -343,7 +407,6 @@ def list_books():
                 rows[isbn]['offer_id']   = offer_id
                 rows[isbn]['sell_price'] = str(price)
                 rows[isbn]['listed_at']  = datetime.now(timezone.utc).isoformat()
-            # Atomic save after each successful listing
             save_csv(rows)
         else:
             log.error(f'  FAIL {isbn}: {err}')
@@ -366,8 +429,8 @@ def list_books():
                 lines.append(f"  {b['title'][:50]} | ${b['price']} | Profit: ${b['profit']}")
             msg = MIMEText('\n'.join(lines))
             msg['Subject'] = f'[Lister] {len(listed)} new listings'
-            msg['From'] = EMAIL_FROM or SMTP_USER
-            msg['To']   = EMAIL_TO
+            msg['From']    = EMAIL_FROM or SMTP_USER
+            msg['To']      = EMAIL_TO
             with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
                 s.starttls()
                 s.login(SMTP_USER, SMTP_PASSWORD)

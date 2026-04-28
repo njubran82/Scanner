@@ -115,15 +115,34 @@ def _extract_isbn(text: str) -> str | None:
 
 def _extract_buyer_name(text: str) -> str | None:
     """
-    Extract buyer name from shipping address section. Handles:
-      - "Shipping Address: John Smith"
+    Extract buyer name from BooksGoat shipping email. Handles:
+      - "Dear Csaba Milian," (most reliable — greeting line)
+      - "Shipping Address: Csaba\nMilian\n123 Main St" (name split across lines)
       - "Ship to: Mary Jane O'Brien"
-      - "Shipping Address John Smith 123 Main St"
       - Multi-word, hyphenated, apostrophe names
     """
-    # Try common address label patterns
+    # Best source: "Dear <name>," greeting
+    m = re.search(r'Dear\s+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})\s*,', text)
+    if m:
+        return m.group(1).strip()
+
+    # Shipping address — handle name split across lines
+    m = re.search(
+        r'[Ss]hipping\s+[Aa]ddress[:\s]+'
+        r'([A-Z][A-Za-z\'\-]+(?:[\s\n]+[A-Z][A-Za-z\'\-]+){1,4})',
+        text
+    )
+    if m:
+        name = m.group(1).strip()
+        # Stop at address lines (digits, PO Box, etc.)
+        name = re.split(r'[\s\n]+(?:\d|PO\b|P\.O\.|Box\b|Suite\b|Apt\b|Unit\b)', name)[0].strip()
+        # Normalize internal newlines to spaces
+        name = re.sub(r'\s*\n\s*', ' ', name)
+        if len(name) >= 3:
+            return name
+
+    # Other label patterns
     for pattern in [
-        r'[Ss]hipping\s+[Aa]ddress[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
         r'[Ss]hip\s*[Tt]o[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
         r'[Dd]eliver\s*[Tt]o[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
         r'[Rr]ecipient[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
@@ -131,7 +150,6 @@ def _extract_buyer_name(text: str) -> str | None:
         m = re.search(pattern, text)
         if m:
             name = m.group(1).strip()
-            # Stop at common address words (don't capture street as part of name)
             name = re.split(r'\s+(?:\d|PO\b|P\.O\.|Box\b|Suite\b|Apt\b|Unit\b)', name)[0].strip()
             if len(name) >= 3:
                 return name
@@ -227,12 +245,21 @@ def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
     for order in orders:
         for item in order.get('lineItems', []):
             title = item.get('title', '')
-            isbn_match = isbn and isbn in title
-            if not isbn_match:
-                for prop in item.get('properties', []):
-                    if isinstance(prop, dict) and prop.get('name') == 'ISBN' and prop.get('value') == isbn:
-                        isbn_match = True
-                        break
+            sku   = item.get('sku', '')
+
+            # ISBN matching — check SKU first (most reliable, ISBN = SKU in our system)
+            isbn_match = False
+            if isbn:
+                if sku == isbn:
+                    isbn_match = True
+                elif isbn in title:
+                    isbn_match = True
+                else:
+                    # Check properties as fallback
+                    for prop in item.get('properties', []):
+                        if isinstance(prop, dict) and prop.get('name') == 'ISBN' and prop.get('value') == isbn:
+                            isbn_match = True
+                            break
 
             ship_to = (order.get('fulfillmentStartInstructions') or [{}])[0] \
                 .get('shippingStep', {}).get('shipTo', {})

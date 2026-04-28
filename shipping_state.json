@@ -75,8 +75,8 @@
     "tracking": null,
     "carrier": "FEDEX",
     "buyer": "Code Red Hvac Code Red",
-    "attempts": 7,
-    "last_attempt": "2026-04-28T20:23:36.893402"
+    "attempts": 8,
+    "last_attempt": "2026-04-28T20:33:26.777051"
   },
   "26752": {
     "status": "posted",
@@ -149,13 +149,14 @@
     "last_attempt": "2026-04-25T12:03:13.724644"
   },
   "26841": {
-    "status": "no_match",
+    "status": "posted",
+    "ebay_order_id": "26-14542-26068",
     "isbn": "9781118431436",
     "tracking": "870989090808",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 7,
-    "last_attempt": "2026-04-28T20:23:40.703247"
+    "shipped_at": "2026-04-28T20:33:29.015020",
+    "tracking_posted_at": "2026-04-28T20:33:29.015029"
   },
   "26840": {
     "status": "posted",
@@ -307,8 +308,8 @@
     "tracking": "871032649578",
     "carrier": "FEDEX",
     "buyer": "Csaba Milian",
-    "attempts": 7,
-    "last_attempt": "2026-04-28T20:23:46.820042"
+    "attempts": 8,
+    "last_attempt": "2026-04-28T20:33:30.514488"
   },
   "26947": {
     "status": "posted",
@@ -397,8 +398,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 2,
-    "last_attempt": "2026-04-28T20:23:54.661131"
+    "attempts": 3,
+    "last_attempt": "2026-04-28T20:33:31.631948"
   },
   "27022": {
     "status": "posted",
@@ -431,13 +432,11 @@
     "tracking_posted_at": "2026-04-28T20:23:56.818140"
   },
   "27021": {
-    "status": "no_match",
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "19-14541-14756",
     "isbn": "9780071769679",
-    "tracking": null,
-    "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 2,
-    "last_attempt": "2026-04-28T20:23:58.405412"
+    "shipped_at": "2026-04-28T20:33:32.964695"
   },
   "27011": {
     "status": "shipped_no_tracking",

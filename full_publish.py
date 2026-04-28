@@ -2,6 +2,7 @@
 """
 full_publish.py — Creates inventory item + offer + publishes for all pending books.
 Handles both 25702 (no inventory item) and existing offer cases correctly.
+Includes duplicate guard: checks eBay for existing listings before creating new ones.
 """
 import os, base64, requests, csv, time, json
 from pathlib import Path
@@ -23,11 +24,49 @@ POLICIES = {
 def get_token():
     r = requests.post('https://api.ebay.com/identity/v1/oauth2/token',
         headers={'Authorization': f'Basic {creds}', 'Content-Type': 'application/x-www-form-urlencoded'},
-        data=f'grant_type=refresh_token&refresh_token={refresh}&scope=https://api.ebay.com/oauth/api_scope/sell.inventory https://api.ebay.com/oauth/api_scope/sell.account')
+        data=f'grant_type=refresh_token&refresh_token={refresh}&scope=https://api.ebay.com/oauth/api_scope/sell.inventory https://api.ebay.com/oauth/api_scope/sell.account https://api.ebay.com/oauth/api_scope/buy.browse')
     return r.json()['access_token']
 
 def hdrs(token):
     return {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json', 'Content-Language': 'en-US'}
+
+# ──────────────────────────────────────────────────────────
+# DUPLICATE GUARD — prevents creating listings for books
+# that already exist on eBay under atlas_commerce
+# ──────────────────────────────────────────────────────────
+def check_existing_listing(isbn, token, seller='atlas_commerce'):
+    """
+    Query eBay Browse API for active listings matching this ISBN
+    under our seller account. Returns match info dict or None.
+    """
+    try:
+        r = requests.get(
+            'https://api.ebay.com/buy/browse/v1/item_summary/search',
+            headers={
+                'Authorization': f'Bearer {token}',
+                'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
+            },
+            params={
+                'q': isbn,
+                'filter': f'sellers:{{{seller}}}',
+                'limit': 5,
+            },
+            timeout=15)
+        r.raise_for_status()
+        items = r.json().get('itemSummaries', [])
+        if items:
+            item = items[0]
+            return {
+                'item_id': item.get('itemId', ''),
+                'title':   item.get('title', ''),
+                'price':   float(item.get('price', {}).get('value', 0)),
+            }
+        return None
+    except Exception as e:
+        print(f'  WARNING: duplicate check failed for {isbn}: {e}')
+        return None  # fail open — allow listing if check errors
+
+# ──────────────────────────────────────────────────────────
 
 def ensure_inventory_item(isbn, title, fmt, price, token):
     """Create or update inventory item."""
@@ -101,6 +140,15 @@ for i, row in enumerate(pending):
     if (i+1) % 50 == 0:
         token = get_token()
         print(f'  {i+1}/{len(pending)} - token refreshed')
+
+    # --- DUPLICATE GUARD ---
+    existing = check_existing_listing(isbn, token)
+    if existing:
+        print(f'  [{i+1}] SKIP {isbn} — already listed: #{existing["item_id"]} @ ${existing["price"]:.2f}')
+        skipped += 1
+        time.sleep(0.3)
+        continue
+    # --- END DUPLICATE GUARD ---
 
     # Step 1: ensure inventory item exists
     ok = ensure_inventory_item(isbn, title, fmt, price, token)

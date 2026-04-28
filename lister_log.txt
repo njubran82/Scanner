@@ -3474,3 +3474,29 @@
 2026-04-28 01:03:32,959 INFO ============================================================
 2026-04-28 01:03:32,959 INFO LISTER DONE: 0 listed | 9 failed
 2026-04-28 01:03:32,959 INFO ============================================================
+2026-04-28 01:16:51,155 INFO ============================================================
+2026-04-28 01:16:51,155 INFO LISTER STARTED — 2026-04-28 01:16:51
+2026-04-28 01:16:51,155 INFO ============================================================
+2026-04-28 01:16:51,155 INFO Processing 9 opportunities...
+2026-04-28 01:16:52,675 WARNING   No image found
+2026-04-28 01:16:55,099 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-28 01:16:56,495 INFO   Image found
+2026-04-28 01:17:00,445 INFO   ✅ Listed 9780867157994 | $151.36 | Profit: $44.21 | qty=20 | ListingID: 358494466983
+2026-04-28 01:17:03,088 INFO   Image found
+2026-04-28 01:17:07,266 INFO   ✅ Listed 9780826943729 | $79.2 | Profit: $11.09 | qty=20 | ListingID: 358494467279
+2026-04-28 01:17:08,070 INFO   Image found
+2026-04-28 01:17:12,666 INFO   ✅ Listed 9780973501827 | $35.19 | Profit: $9.82 | qty=20 | ListingID: 358494467740
+2026-04-28 01:17:14,459 WARNING   No image found
+2026-04-28 01:17:17,197 ERROR   FAIL 9780063390157: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-28 01:17:18,721 WARNING   No image found
+2026-04-28 01:17:21,362 ERROR   FAIL 9798670880909: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-28 01:17:23,752 INFO   Image found
+2026-04-28 01:17:29,498 INFO   ✅ Listed 9781071853801 | $79.93 | Profit: $12.71 | qty=20 | ListingID: 358494469254
+2026-04-28 01:17:30,760 INFO   Image found
+2026-04-28 01:17:34,705 INFO   ✅ Listed 9781609836184 | $175.74 | Profit: $62.86 | qty=20 | ListingID: 358494469700
+2026-04-28 01:17:36,117 INFO   Image found
+2026-04-28 01:17:41,471 INFO   ✅ Listed 9780879396961 | $84.55 | Profit: $15.62 | qty=20 | ListingID: 358494470035
+2026-04-28 01:17:41,983 INFO ============================================================
+2026-04-28 01:17:41,983 INFO LISTER DONE: 6 listed | 3 failed
+2026-04-28 01:17:41,983 INFO ============================================================
+2026-04-28 01:17:43,104 INFO Email alert sent

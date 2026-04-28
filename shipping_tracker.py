@@ -84,19 +84,82 @@ def extract_raw_and_text(msg) -> tuple[str, str]:
         text = payload.decode('utf-8', errors='ignore')
     return raw.decode('utf-8', errors='ignore'), text
 
+def _extract_isbn(text: str) -> str | None:
+    """
+    Extract ISBN-13 from email text. Handles:
+      - Bare: 9781492592006
+      - Hyphenated: 978-1-4925-9200-6
+      - Spaced: 978 1 4925 9200 6
+      - With label: ISBN: 978-1492592006, ISBN-13: 9781492592006
+    """
+    # Try labeled ISBN first (most reliable)
+    m = re.search(r'ISBN[\-\s]*(?:13)?[:\s]*(97[89][\d\-\s]{10,17})', text, re.IGNORECASE)
+    if m:
+        digits = re.sub(r'[^\d]', '', m.group(1))
+        if len(digits) == 13 and digits[:3] in ('978', '979'):
+            return digits
+
+    # Fallback: any 13-digit sequence starting with 978/979 (with optional hyphens/spaces)
+    m = re.search(r'(97[89][\d\-\s]{10,17})', text)
+    if m:
+        digits = re.sub(r'[^\d]', '', m.group(1))
+        if len(digits) == 13:
+            return digits
+
+    # Last resort: bare 13-digit number anywhere
+    m = re.search(r'\b(97[89]\d{10})\b', text)
+    if m:
+        return m.group(1)
+
+    return None
+
+def _extract_buyer_name(text: str) -> str | None:
+    """
+    Extract buyer name from shipping address section. Handles:
+      - "Shipping Address: John Smith"
+      - "Ship to: Mary Jane O'Brien"
+      - "Shipping Address John Smith 123 Main St"
+      - Multi-word, hyphenated, apostrophe names
+    """
+    # Try common address label patterns
+    for pattern in [
+        r'[Ss]hipping\s+[Aa]ddress[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
+        r'[Ss]hip\s*[Tt]o[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
+        r'[Dd]eliver\s*[Tt]o[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
+        r'[Rr]ecipient[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
+    ]:
+        m = re.search(pattern, text)
+        if m:
+            name = m.group(1).strip()
+            # Stop at common address words (don't capture street as part of name)
+            name = re.split(r'\s+(?:\d|PO\b|P\.O\.|Box\b|Suite\b|Apt\b|Unit\b)', name)[0].strip()
+            if len(name) >= 3:
+                return name
+
+    return None
+
 def parse_shipping_email(text: str) -> dict:
     result = {}
+
+    # Order ID
     m = re.search(r'[Oo]rder\s*(?:ID|#|No\.?)[:\s#]*(\d+)', text)
     result['order_id'] = m.group(1) if m else None
+
+    # Tracking number
     m = re.search(r'[Tt]racking\s*[Nn]umber[:\s]*([A-Za-z0-9]{8,30})', text)
     result['tracking'] = m.group(1) if m else None
+
+    # Carrier
     result['carrier'] = 'FEDEX'
     if re.search(r'\bups\b', text, re.IGNORECASE): result['carrier'] = 'UPS'
     elif re.search(r'\busps\b', text, re.IGNORECASE): result['carrier'] = 'USPS'
-    m = re.search(r'ISBN[:\s]*(97[89]\d{10})', text)
-    result['isbn'] = m.group(1) if m else None
-    m = re.search(r'Shipping\s+Address[:\s]*([A-Z][a-z]+\s+[A-Z][a-z]+)', text)
-    result['buyer_name'] = m.group(1).strip() if m else None
+
+    # ISBN (robust extraction)
+    result['isbn'] = _extract_isbn(text)
+
+    # Buyer name (robust extraction)
+    result['buyer_name'] = _extract_buyer_name(text)
+
     return result
 
 def get_shipping_emails() -> list[dict]:

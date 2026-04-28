@@ -251,10 +251,16 @@ def ensure_inventory_item(isbn: str, title: str, fmt: str,
             'description': f"{description}\n\n{CLOSING_STATEMENT}",
             'isbn':        [isbn],
             'aspects': {
+<<<<<<< HEAD
                 'Book Title': [title[:65]],
                 'Format':     [fmt or 'Paperback'],
                 'Language':   ['English'],
                 'Author':     [author],
+=======
+                'Format':   [fmt or 'Paperback'],
+                'Language': ['English'],
+                'Author':   [author],
+>>>>>>> 681060050a606ee11a0d16772dfdb1ea79af5f20
             },
         },
         'availability': {'shipToLocationAvailability': {'quantity': qty}},

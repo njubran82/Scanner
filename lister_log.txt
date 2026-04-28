@@ -3399,3 +3399,78 @@
 2026-04-25 20:47:36,663 INFO ============================================================
 2026-04-25 20:47:36,663 INFO LISTER DONE: 0 listed | 11 failed
 2026-04-25 20:47:36,663 INFO ============================================================
+2026-04-27 19:51:34,700 INFO ============================================================
+2026-04-27 19:51:34,700 INFO LISTER STARTED — 2026-04-27 19:51:34
+2026-04-27 19:51:34,701 INFO ============================================================
+2026-04-27 19:51:34,701 INFO Processing 9 opportunities...
+2026-04-27 19:51:36,001 WARNING   No image found
+2026-04-27 19:51:39,741 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-27 19:51:41,574 WARNING   No image found
+2026-04-27 19:51:45,670 ERROR   FAIL 9780867157994: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-27 19:51:46,903 WARNING   No image found
+2026-04-27 19:51:49,864 ERROR   FAIL 9780826943729: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-27 19:51:51,535 WARNING   No image found
+2026-04-27 19:51:54,400 ERROR   FAIL 9780973501827: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-27 19:51:55,523 WARNING   No image found
+2026-04-27 19:51:58,617 ERROR   FAIL 9780063390157: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-27 19:52:00,013 WARNING   No image found
+2026-04-27 19:52:02,956 ERROR   FAIL 9798670880909: A user error has occurred. The item specific Author is missing. Add Author to this listing, enter a 
+2026-04-27 19:52:04,123 WARNING   No image found
+2026-04-27 19:52:06,829 ERROR   FAIL 9781071853801: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-27 19:52:08,333 WARNING   No image found
+2026-04-27 19:52:11,600 ERROR   FAIL 9781609836184: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-27 19:52:13,286 WARNING   No image found
+2026-04-27 19:52:16,521 ERROR   FAIL 9780879396961: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-27 19:52:17,026 INFO ============================================================
+2026-04-27 19:52:17,026 INFO LISTER DONE: 0 listed | 9 failed
+2026-04-27 19:52:17,026 INFO ============================================================
+2026-04-28 00:53:38,514 INFO ============================================================
+2026-04-28 00:53:38,514 INFO LISTER STARTED — 2026-04-28 00:53:38
+2026-04-28 00:53:38,514 INFO ============================================================
+2026-04-28 00:53:38,514 INFO Processing 9 opportunities...
+2026-04-28 00:53:42,222 WARNING   No image found
+2026-04-28 00:53:44,943 ERROR   FAIL 9781641950565: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:53:46,503 INFO   Image found
+2026-04-28 00:53:49,693 ERROR   FAIL 9780867157994: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:53:54,567 INFO   Image found
+2026-04-28 00:53:58,187 ERROR   FAIL 9780826943729: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:53:59,308 INFO   Image found
+2026-04-28 00:54:02,515 ERROR   FAIL 9780973501827: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:54:06,756 WARNING   No image found
+2026-04-28 00:54:10,185 ERROR   FAIL 9780063390157: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:54:14,788 WARNING   No image found
+2026-04-28 00:54:18,235 ERROR   FAIL 9798670880909: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:54:27,039 INFO   Image found
+2026-04-28 00:54:30,019 ERROR   FAIL 9781071853801: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:54:31,582 INFO   Image found
+2026-04-28 00:54:34,268 ERROR   FAIL 9781609836184: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:54:35,773 INFO   Image found
+2026-04-28 00:54:39,029 ERROR   FAIL 9780879396961: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 00:54:39,535 INFO ============================================================
+2026-04-28 00:54:39,535 INFO LISTER DONE: 0 listed | 9 failed
+2026-04-28 00:54:39,535 INFO ============================================================
+2026-04-28 01:02:45,377 INFO ============================================================
+2026-04-28 01:02:45,377 INFO LISTER STARTED — 2026-04-28 01:02:45
+2026-04-28 01:02:45,377 INFO ============================================================
+2026-04-28 01:02:45,378 INFO Processing 9 opportunities...
+2026-04-28 01:02:47,233 WARNING   No image found
+2026-04-28 01:02:50,349 ERROR   FAIL 9781641950565: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:02:51,694 INFO   Image found
+2026-04-28 01:02:54,938 ERROR   FAIL 9780867157994: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:02:58,696 INFO   Image found
+2026-04-28 01:03:01,868 ERROR   FAIL 9780826943729: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:03:02,689 INFO   Image found
+2026-04-28 01:03:05,471 ERROR   FAIL 9780973501827: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:03:07,462 WARNING   No image found
+2026-04-28 01:03:10,577 ERROR   FAIL 9780063390157: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:03:13,887 WARNING   No image found
+2026-04-28 01:03:16,739 ERROR   FAIL 9798670880909: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:03:20,964 INFO   Image found
+2026-04-28 01:03:23,863 ERROR   FAIL 9781071853801: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:03:25,354 INFO   Image found
+2026-04-28 01:03:28,262 ERROR   FAIL 9781609836184: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:03:29,603 INFO   Image found
+2026-04-28 01:03:32,453 ERROR   FAIL 9780879396961: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-04-28 01:03:32,959 INFO ============================================================
+2026-04-28 01:03:32,959 INFO LISTER DONE: 0 listed | 9 failed
+2026-04-28 01:03:32,959 INFO ============================================================

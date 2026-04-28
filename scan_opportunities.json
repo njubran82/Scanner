@@ -40,22 +40,6 @@
     "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1)"
   },
   {
-    "isbn13": "9780415790529",
-    "title": "Understanding Research Methods, 10th Edition by Mi...",
-    "cost": 59.99,
-    "price": 83.73,
-    "profit": 10.93,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=2)"
-  },
-  {
-    "isbn13": "9781641950473",
-    "title": "The Contractor's Guide to Quality Concrete Constru...",
-    "cost": 47.99,
-    "price": 65.99,
-    "profit": 7.9,
-    "method": "HIGH | EBAY_COMP (HIGH, n=4)"
-  },
-  {
     "isbn13": "9798670880909",
     "title": "Study Guide for FE Electrical & Computer CBT E...",
     "cost": 44.99,

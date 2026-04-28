@@ -3500,3 +3500,16 @@
 2026-04-28 01:17:41,983 INFO LISTER DONE: 6 listed | 3 failed
 2026-04-28 01:17:41,983 INFO ============================================================
 2026-04-28 01:17:43,104 INFO Email alert sent
+2026-04-28 20:02:57,039 INFO ============================================================
+2026-04-28 20:02:57,039 INFO LISTER STARTED — 2026-04-28 20:02:57
+2026-04-28 20:02:57,039 INFO ============================================================
+2026-04-28 20:02:57,039 INFO Processing 3 opportunities...
+2026-04-28 20:03:04,914 WARNING   No image found
+2026-04-28 20:03:07,832 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-28 20:03:18,389 WARNING   No image found
+2026-04-28 20:03:21,348 ERROR   FAIL 9780063390157: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-28 20:03:28,178 WARNING   No image found
+2026-04-28 20:03:31,339 ERROR   FAIL 9798670880909: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-04-28 20:03:31,845 INFO ============================================================
+2026-04-28 20:03:31,845 INFO LISTER DONE: 0 listed | 3 failed
+2026-04-28 20:03:31,845 INFO ============================================================

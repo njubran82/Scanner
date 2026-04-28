@@ -2312,3 +2312,21 @@
 2026-04-28 01:16:50,750 INFO ============================================================
 2026-04-28 01:16:50,756 INFO CSV saved: 417 rows
 2026-04-28 01:16:50,756 INFO scan_opportunities.json written: 9 entries
+2026-04-28 20:01:53,297 INFO ============================================================
+2026-04-28 20:01:53,297 INFO SCANNER STARTED — 2026-04-28 20:01:53
+2026-04-28 20:01:53,297 INFO ============================================================
+2026-04-28 20:01:53,302 INFO Loaded 417 books from CSV
+2026-04-28 20:01:54,177 INFO Merchant sheet: 89 books (1 skipped)
+2026-04-28 20:01:54,571 INFO eBay app token acquired
+2026-04-28 20:01:55,661 INFO   ✅ ACI CODE-318-19(22): Building Code Requirements fo | Cost: $73.99 | List: $105.6 | Profit: $15.45 | HIGH | EBAY_COMP (HIGH, n=7)
+2026-04-28 20:02:15,037 INFO   ✅ Tiny Humans, Big Emotions: How to Navigate Tantrum | Cost: $9.99 | List: $25.08 | Profit: $11.25 | MEDIUM | EBAY_COMP (MEDIUM, n=1)
+2026-04-28 20:02:35,278 INFO   ✅ Study Guide for FE Electrical & Computer CBT E... | Cost: $44.99 | List: $78.72 | Profit: $21.69 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-04-28 20:02:56,658 INFO ============================================================
+2026-04-28 20:02:56,658 INFO SCAN COMPLETE: 3 opportunities found
+2026-04-28 20:02:56,658 INFO   Already listed:   344
+2026-04-28 20:02:56,658 INFO   Unprofitable:     44
+2026-04-28 20:02:56,658 INFO   No eBay data:     14
+2026-04-28 20:02:56,658 INFO   Cooldown skip:    0
+2026-04-28 20:02:56,658 INFO ============================================================
+2026-04-28 20:02:56,665 INFO CSV saved: 417 rows
+2026-04-28 20:02:56,665 INFO scan_opportunities.json written: 3 entries

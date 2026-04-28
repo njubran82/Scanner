@@ -2,6 +2,10 @@
 """
 shipping_tracker.py — Automated BooksGoat shipping email → eBay tracking update.
 
+Two-pass flow:
+  Pass 1: BooksGoat confirms shipment → mark eBay order as shipped (no tracking yet)
+  Pass 2: Tracking number appears in email → update eBay order with tracking
+
 - Polls Gmail via IMAP for BooksGoat shipping emails
 - Parses order ID, tracking number, carrier, ISBN, buyer name
 - Finds matching eBay order via Orders API
@@ -180,7 +184,8 @@ def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
     log.warning(f'No eBay order match for ISBN={isbn}, buyer={buyer_name}')
     return None
 
-def post_shipped(ebay_order_id: str, token: str, order: dict, tracking: str = None, carrier: str = None) -> bool:
+def post_shipped(ebay_order_id: str, token: str, order: dict,
+                 tracking: str = None, carrier: str = None) -> bool:
     carrier_map = {'FEDEX': 'FedEx', 'UPS': 'UPS', 'USPS': 'USPS'}
     line_items = [
         {'lineItemId': item['lineItemId']}
@@ -230,7 +235,7 @@ def run():
     token = get_ebay_token()
     log.info('eBay token acquired')
 
-    posted = skipped = pending = failed = 0
+    posted = shipped_no_tracking = skipped = pending = failed = 0
 
     # Deduplicate: for each order_id, use the latest email (last occurrence = most recent tracking)
     by_order = {}
@@ -244,28 +249,53 @@ def run():
         buyer      = parsed['buyer_name']
         existing   = state.get(order_id, {})
 
+        # ── FULLY DONE: shipped + tracking already posted ─────────────
         if existing.get('status') == 'posted':
-            log.info(f'Order #{order_id}: already posted — skipping')
+            log.info(f'Order #{order_id}: fully complete — skipping')
             skipped += 1
             continue
 
-        if not tracking:
-            log.info(f'Order #{order_id}: no tracking yet — will retry next run')
-            state[order_id] = {
-                'status': 'pending_tracking',
-                'isbn': isbn, 'buyer': buyer,
-                'attempts': existing.get('attempts', 0) + 1,
-                'last_attempt': datetime.now().isoformat()
-            }
-            pending += 1
+        # ── PASS 2: already marked shipped, now tracking is available ─
+        if existing.get('status') == 'shipped_no_tracking':
+            if not tracking:
+                log.info(f'Order #{order_id}: shipped, still no tracking — waiting')
+                pending += 1
+                continue
+
+            # Tracking now available — post update to eBay
+            ebay_order_id = existing.get('ebay_order_id')
+            if ebay_order_id:
+                # Re-fetch order object for line items
+                ebay_order = find_ebay_order(isbn, buyer, token)
+                if ebay_order:
+                    ok = post_shipped(ebay_order_id, token, ebay_order,
+                                      tracking=tracking, carrier=carrier)
+                    if ok:
+                        state[order_id]['status'] = 'posted'
+                        state[order_id]['tracking'] = tracking
+                        state[order_id]['carrier'] = carrier
+                        state[order_id]['tracking_posted_at'] = datetime.now().isoformat()
+                        posted += 1
+                    else:
+                        log.warning(f'Order #{order_id}: tracking update failed — will retry')
+                        pending += 1
+                else:
+                    log.warning(f'Order #{order_id}: could not re-match eBay order for tracking update')
+                    pending += 1
+            else:
+                log.warning(f'Order #{order_id}: no stored ebay_order_id — cannot add tracking')
+                pending += 1
             save_state(state)
+            time.sleep(0.5)
             continue
 
+        # ── PASS 1: new order — find eBay match and mark shipped ──────
         ebay_order = find_ebay_order(isbn, buyer, token)
         if not ebay_order:
             state[order_id] = {
                 'status': 'no_match',
-                'isbn': isbn, 'tracking': tracking,
+                'isbn': isbn, 'tracking': tracking, 'carrier': carrier,
+                'buyer': buyer,
                 'attempts': existing.get('attempts', 0) + 1,
                 'last_attempt': datetime.now().isoformat()
             }
@@ -274,23 +304,58 @@ def run():
             continue
 
         ebay_order_id = ebay_order['orderId']
-        ok = post_shipped(ebay_order_id, token, ebay_order)
-        state[order_id] = {
-            'status': 'posted' if ok else 'failed',
-            'ebay_order_id': ebay_order_id,
-            'isbn': isbn, 'tracking': tracking, 'carrier': carrier,
-            'buyer': buyer,
-            'attempts': existing.get('attempts', 0) + 1,
-            'last_attempt': datetime.now().isoformat()
-        }
-        if ok: posted += 1
-        else: failed += 1
+
+        if tracking:
+            # Have tracking already — post shipped + tracking in one call (skip pass 2)
+            ok = post_shipped(ebay_order_id, token, ebay_order,
+                              tracking=tracking, carrier=carrier)
+            if ok:
+                state[order_id] = {
+                    'status': 'posted',
+                    'ebay_order_id': ebay_order_id,
+                    'isbn': isbn, 'tracking': tracking, 'carrier': carrier,
+                    'buyer': buyer,
+                    'shipped_at': datetime.now().isoformat(),
+                    'tracking_posted_at': datetime.now().isoformat()
+                }
+                posted += 1
+            else:
+                state[order_id] = {
+                    'status': 'failed',
+                    'ebay_order_id': ebay_order_id,
+                    'isbn': isbn, 'tracking': tracking, 'carrier': carrier,
+                    'buyer': buyer,
+                    'attempts': existing.get('attempts', 0) + 1,
+                    'last_attempt': datetime.now().isoformat()
+                }
+                failed += 1
+        else:
+            # No tracking yet — mark shipped anyway (pass 1), tracking comes later
+            ok = post_shipped(ebay_order_id, token, ebay_order)
+            if ok:
+                state[order_id] = {
+                    'status': 'shipped_no_tracking',
+                    'ebay_order_id': ebay_order_id,
+                    'isbn': isbn, 'buyer': buyer,
+                    'shipped_at': datetime.now().isoformat()
+                }
+                shipped_no_tracking += 1
+            else:
+                state[order_id] = {
+                    'status': 'failed',
+                    'ebay_order_id': ebay_order_id,
+                    'isbn': isbn, 'buyer': buyer,
+                    'attempts': existing.get('attempts', 0) + 1,
+                    'last_attempt': datetime.now().isoformat()
+                }
+                failed += 1
+
         save_state(state)
         time.sleep(0.5)
 
     log.info('=' * 60)
-    log.info(f'DONE: {posted} posted | {pending} awaiting tracking | '
-             f'{skipped} already done | {failed} failed/no match')
+    log.info(f'DONE: {posted} posted w/tracking | {shipped_no_tracking} marked shipped (no tracking) | '
+             f'{pending} awaiting tracking | {skipped} already done | {failed} failed/no match')
     log.info('=' * 60)
 
 if __name__ == '__main__':

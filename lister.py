@@ -1,16 +1,16 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-lister.py v2.3 — Lists opportunities from scan_opportunities.json
-Uses full_publish logic: PUT inventory item → DELETE stale offer →
-POST fresh offer WITH merchantLocationKey → publish.
+lister.py v2.3 ΓÇö Lists opportunities from scan_opportunities.json
+Uses full_publish logic: PUT inventory item ΓåÆ DELETE stale offer ΓåÆ
+POST fresh offer WITH merchantLocationKey ΓåÆ publish.
 Updates booksgoat_enhanced.csv with status=active, offer_id, sell_price.
 Includes AI description generation and protection_patch support.
 
 Fixes applied:
-  v2.2 — get_cover_image: use GET+stream instead of HEAD+Content-Length
-  v2.2 — create_offer: includeCatalogProductDetails=False
-  v2.3 — ensure_inventory_item: add Author aspect (required by eBay Books)
-  v2.3 — publish_offer: safe JSON parsing, no crash on empty body
+  v2.2 ΓÇö get_cover_image: use GET+stream instead of HEAD+Content-Length
+  v2.2 ΓÇö create_offer: includeCatalogProductDetails=False
+  v2.3 ΓÇö ensure_inventory_item: add Author aspect (required by eBay Books)
+  v2.3 ΓÇö publish_offer: safe JSON parsing, no crash on empty body
 
 Run: GitHub Actions scanner.yml after scanner.py
 """
@@ -67,7 +67,7 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
-# ── Auth ───────────────────────────────────────────────────────────────────
+# ΓöÇΓöÇ Auth ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def get_user_token():
     creds = base64.b64encode(f'{EBAY_CLIENT_ID}:{EBAY_CLIENT_SECRET}'.encode()).decode()
     r = requests.post(
@@ -90,7 +90,7 @@ def get_user_token():
     return data['access_token']
 
 
-# ── CSV helpers ────────────────────────────────────────────────────────────
+# ΓöÇΓöÇ CSV helpers ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def load_csv() -> dict:
     if not CSV_PATH.exists():
         return {}
@@ -113,7 +113,7 @@ def save_csv(rows: dict):
     tmp.replace(CSV_PATH)
 
 
-# ── AI description ─────────────────────────────────────────────────────────
+# ΓöÇΓöÇ AI description ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def generate_description(title: str, isbn: str) -> str:
     if not ANTHROPIC_API_KEY:
         return f"{title}\n\nISBN-13: {isbn}"
@@ -149,7 +149,7 @@ def generate_description(title: str, isbn: str) -> str:
     return f"{title}\n\nISBN-13: {isbn}"
 
 
-# ── Cover image ────────────────────────────────────────────────────────────
+# ΓöÇΓöÇ Cover image ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def get_cover_image(isbn: str):
     def _valid(url: str, min_bytes: int = 2000) -> bool:
         try:
@@ -210,11 +210,11 @@ def get_cover_image(isbn: str):
     return None
 
 
-# ── Author extraction ──────────────────────────────────────────────────────
+# ΓöÇΓöÇ Author extraction ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def _extract_author(title: str) -> str:
     """
     Extract author from 'Title by Author Name' pattern.
-    Falls back to 'See Description' — satisfies eBay's required Author aspect.
+    Falls back to 'See Description' ΓÇö satisfies eBay's required Author aspect.
     """
     m = re.search(r'\bby\s+([A-Z][^\(\n,]{2,40})(?:\s*[\(,]|$)', title, re.IGNORECASE)
     if m:
@@ -222,7 +222,7 @@ def _extract_author(title: str) -> str:
     return 'See Description'
 
 
-# ── Quantity tier ──────────────────────────────────────────────────────────
+# ΓöÇΓöÇ Quantity tier ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def get_quantity(row: dict) -> int:
     try:
         sales = int(row.get('sales_count') or 0)
@@ -235,7 +235,7 @@ def get_quantity(row: dict) -> int:
     return 20
 
 
-# ── eBay listing ───────────────────────────────────────────────────────────
+# ΓöÇΓöÇ eBay listing ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def ensure_inventory_item(isbn: str, title: str, fmt: str,
                            description: str, cover_url, qty: int, token: str) -> bool:
     hdrs = {'Authorization': f'Bearer {token}',
@@ -326,7 +326,7 @@ def publish_offer(offer_id: str, token: str):
         timeout=15)
     if r.status_code == 200:
         return r.json().get('listingId'), None
-    # Safe error extraction — body may be empty on some failure codes
+    # Safe error extraction ΓÇö body may be empty on some failure codes
     err = f'HTTP {r.status_code}'
     if r.text:
         try:
@@ -337,10 +337,10 @@ def publish_offer(offer_id: str, token: str):
     return None, err
 
 
-# ── Main ───────────────────────────────────────────────────────────────────
+# ΓöÇΓöÇ Main ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def list_books():
     log.info('=' * 60)
-    log.info(f'LISTER STARTED — {datetime.now():%Y-%m-%d %H:%M:%S}')
+    log.info(f'LISTER STARTED ΓÇö {datetime.now():%Y-%m-%d %H:%M:%S}')
     log.info('=' * 60)
 
     opps_path = Path('scan_opportunities.json')
@@ -371,7 +371,7 @@ def list_books():
 
         if (i + 1) % 25 == 0:
             token = get_user_token()
-            log.info(f'  {i+1}/{len(opportunities)} — token refreshed')
+            log.info(f'  {i+1}/{len(opportunities)} ΓÇö token refreshed')
 
         qty = get_quantity(row)
 

@@ -622,3 +622,68 @@
 2026-04-29 10:42:27,127 INFO ============================================================
 2026-04-29 10:42:27,127 INFO DONE: 4 posted w/tracking | 0 marked shipped (no tracking) | 7 awaiting tracking | 36 already done | 1 failed/no match
 2026-04-29 10:42:27,127 INFO ============================================================
+2026-04-29 13:23:36,288 INFO ============================================================
+2026-04-29 13:23:36,288 INFO shipping_tracker.py started
+2026-04-29 13:23:36,288 INFO Connecting to Gmail IMAP...
+2026-04-29 13:23:39,169 INFO Found 248 BooksGoat Order Update emails in last 14 days
+2026-04-29 13:24:57,428 INFO 70 shipping emails parsed
+2026-04-29 13:24:57,674 INFO eBay token acquired
+2026-04-29 13:24:57,674 INFO Order #26694: fully complete — skipping
+2026-04-29 13:24:57,674 INFO Order #26693: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26691: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26719: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26704: shipped, still no tracking — waiting
+2026-04-29 13:24:57,675 INFO Order #26752: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26770: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26555: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26805: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26811: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26812: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26813: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26817: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26841: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26840: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26833: fully complete — skipping
+2026-04-29 13:24:57,675 INFO Order #26831: shipped, still no tracking — waiting
+2026-04-29 13:24:57,676 INFO Order #26828: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26824: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26823: shipped, still no tracking — waiting
+2026-04-29 13:24:57,676 INFO Order #26822: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26879: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26878: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26859: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26857: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26917: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26890: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26899: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26918: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26928: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26947: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26993: fully complete — skipping
+2026-04-29 13:24:57,676 INFO Order #26989: shipped, still no tracking — waiting
+2026-04-29 13:24:57,676 INFO Order #26988: shipped, still no tracking — waiting
+2026-04-29 13:24:57,677 INFO Order #26984: fully complete — skipping
+2026-04-29 13:24:57,677 INFO Order #26965: fully complete — skipping
+2026-04-29 13:24:57,677 INFO Order #26960: fully complete — skipping
+2026-04-29 13:24:57,677 INFO Order #26996: fully complete — skipping
+2026-04-29 13:24:57,677 INFO Order #27001: fully complete — skipping
+2026-04-29 13:24:59,782 WARNING No eBay order match for ISBN=9781579478889, buyer=None
+2026-04-29 13:24:59,784 INFO Order #27022: fully complete — skipping
+2026-04-29 13:24:59,784 INFO Order #27025: fully complete — skipping
+2026-04-29 13:24:59,784 INFO Order #27027: fully complete — skipping
+2026-04-29 13:24:59,784 INFO Order #27021: shipped, still no tracking — waiting
+2026-04-29 13:24:59,784 INFO Order #27011: shipped, still no tracking — waiting
+2026-04-29 13:24:59,784 INFO Order #27040: fully complete — skipping
+2026-04-29 13:24:59,784 INFO Order #27041: fully complete — skipping
+2026-04-29 13:24:59,784 INFO Order #27039: fully complete — skipping
+2026-04-29 13:25:00,535 INFO   Matched eBay order 10-14561-98922 (isbn=True, name=True)
+2026-04-29 13:25:01,186 INFO   ✅ Marked shipped (no tracking) → eBay order 10-14561-98922
+2026-04-29 13:25:02,458 INFO   Matched eBay order 21-14543-15659 (isbn=True, name=False)
+2026-04-29 13:25:03,216 INFO   ✅ Marked shipped (no tracking) → eBay order 21-14543-15659
+2026-04-29 13:25:04,497 INFO   Matched eBay order 06-14567-28021 (isbn=False, name=True)
+2026-04-29 13:25:05,177 INFO   ✅ Marked shipped (no tracking) → eBay order 06-14567-28021
+2026-04-29 13:25:06,410 INFO   Matched eBay order 14-14554-58676 (isbn=True, name=True)
+2026-04-29 13:25:07,194 INFO   ✅ Marked shipped (no tracking) → eBay order 14-14554-58676
+2026-04-29 13:25:07,695 INFO ============================================================
+2026-04-29 13:25:07,695 INFO DONE: 0 posted w/tracking | 4 marked shipped (no tracking) | 7 awaiting tracking | 40 already done | 1 failed/no match
+2026-04-29 13:25:07,695 INFO ============================================================

@@ -230,46 +230,96 @@ def get_ebay_token() -> str:
 
 # ── eBay Orders API ───────────────────────────────────────────────────────────
 def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
+    """
+    Find matching eBay order by ISBN or buyer name.
+    
+    Search strategy (in order):
+      1. SKU == ISBN (auto-listed books)
+      2. ISBN in line item title
+      3. ISBN in line item properties
+      4. ISBN in legacyVariationId or customLabel
+      5. Buyer name match (fallback)
+    
+    Fetches unfulfilled orders first (most relevant), then falls back
+    to all recent orders. Handles pagination for stores with 200+ orders.
+    """
     headers = {'Authorization': f'Bearer {token}'}
-    r = requests.get(
-        'https://api.ebay.com/sell/fulfillment/v1/order',
-        headers=headers,
-        params={'limit': 200},
-        timeout=15
-    )
-    if r.status_code != 200:
-        log.error(f'Orders API error: {r.status_code} {r.text[:200]}')
-        return None
 
-    orders = r.json().get('orders', [])
-    for order in orders:
-        for item in order.get('lineItems', []):
-            title = item.get('title', '')
-            sku   = item.get('sku', '')
+    # Try unfulfilled orders first (smaller set, most likely to need action)
+    # Then fall back to all orders if no match found
+    filter_sets = [
+        'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}',
+        None,  # no filter = all recent orders
+    ]
 
-            # ISBN matching — check SKU first (most reliable, ISBN = SKU in our system)
-            isbn_match = False
-            if isbn:
-                if sku == isbn:
-                    isbn_match = True
-                elif isbn in title:
-                    isbn_match = True
-                else:
-                    # Check properties as fallback
-                    for prop in item.get('properties', []):
-                        if isinstance(prop, dict) and prop.get('name') == 'ISBN' and prop.get('value') == isbn:
+    for order_filter in filter_sets:
+        offset = 0
+        while True:
+            params = {'limit': 200, 'offset': offset}
+            if order_filter:
+                params['filter'] = order_filter
+
+            try:
+                r = requests.get(
+                    'https://api.ebay.com/sell/fulfillment/v1/order',
+                    headers=headers,
+                    params=params,
+                    timeout=15
+                )
+            except Exception as e:
+                log.error(f'Orders API request failed: {e}')
+                return None
+
+            if r.status_code != 200:
+                log.error(f'Orders API error: {r.status_code} {r.text[:200]}')
+                return None
+
+            data = r.json()
+            orders = data.get('orders', [])
+            if not orders:
+                break  # no more pages
+
+            for order in orders:
+                for item in order.get('lineItems', []):
+                    title       = item.get('title', '')
+                    sku         = item.get('sku', '')
+                    custom_label = item.get('legacyVariationId', '')
+
+                    # ISBN matching — multiple fallbacks
+                    isbn_match = False
+                    if isbn:
+                        if sku == isbn:
                             isbn_match = True
-                            break
+                        elif isbn in title:
+                            isbn_match = True
+                        elif custom_label == isbn:
+                            isbn_match = True
+                        else:
+                            for prop in item.get('properties', []):
+                                if isinstance(prop, dict) and prop.get('name') == 'ISBN' and prop.get('value') == isbn:
+                                    isbn_match = True
+                                    break
 
-            ship_to = (order.get('fulfillmentStartInstructions') or [{}])[0] \
-                .get('shippingStep', {}).get('shipTo', {})
-            ebay_name = ship_to.get('fullName', '').lower()
-            name_match = buyer_name and buyer_name.lower() in ebay_name
+                    # Buyer name matching
+                    ship_to = (order.get('fulfillmentStartInstructions') or [{}])[0] \
+                        .get('shippingStep', {}).get('shipTo', {})
+                    ebay_name = ship_to.get('fullName', '').lower()
+                    # Try both directions for partial matches
+                    name_match = False
+                    if buyer_name and ebay_name:
+                        bn = buyer_name.lower()
+                        name_match = bn in ebay_name or ebay_name in bn
 
-            if isbn_match or name_match:
-                log.info(f"  Matched eBay order {order['orderId']} "
-                         f"(isbn={isbn_match}, name={name_match})")
-                return order
+                    if isbn_match or name_match:
+                        log.info(f"  Matched eBay order {order['orderId']} "
+                                 f"(isbn={isbn_match}, name={name_match})")
+                        return order
+
+            # Check for more pages
+            total = data.get('total', 0)
+            offset += len(orders)
+            if offset >= total:
+                break  # no more pages
 
     log.warning(f'No eBay order match for ISBN={isbn}, buyer={buyer_name}')
     return None

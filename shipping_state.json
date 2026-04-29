@@ -345,11 +345,14 @@
     "shipped_at": "2026-04-28T20:23:50.854591"
   },
   "26984": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "12-14546-21521",
     "isbn": "9780323033718",
     "buyer": "Peggy Stepan",
-    "shipped_at": "2026-04-28T20:23:53.182306"
+    "shipped_at": "2026-04-28T20:23:53.182306",
+    "tracking": "871158342902",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-04-29T10:42:17.154088"
   },
   "26965": {
     "status": "posted",
@@ -397,8 +400,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 5,
-    "last_attempt": "2026-04-29T09:34:46.846679"
+    "attempts": 6,
+    "last_attempt": "2026-04-29T10:42:19.463530"
   },
   "27022": {
     "status": "posted",
@@ -443,5 +446,35 @@
     "isbn": "9780240818269",
     "buyer": "Jeremy Denouden",
     "shipped_at": "2026-04-28T20:24:00.406224"
+  },
+  "27040": {
+    "status": "posted",
+    "ebay_order_id": "07-14545-18237",
+    "isbn": "9788350705218",
+    "tracking": "871158671540",
+    "carrier": "FEDEX",
+    "buyer": "Tracy Smith",
+    "shipped_at": "2026-04-29T10:42:21.994376",
+    "tracking_posted_at": "2026-04-29T10:42:21.994384"
+  },
+  "27041": {
+    "status": "posted",
+    "ebay_order_id": "23-14540-98253",
+    "isbn": "9780357764565",
+    "tracking": "871158500669",
+    "carrier": "FEDEX",
+    "buyer": "Jill Weinmann",
+    "shipped_at": "2026-04-29T10:42:24.358480",
+    "tracking_posted_at": "2026-04-29T10:42:24.358487"
+  },
+  "27039": {
+    "status": "posted",
+    "ebay_order_id": "15-14553-42498",
+    "isbn": "9781466516946",
+    "tracking": "871158452089",
+    "carrier": "FEDEX",
+    "buyer": "Brenda Brandt",
+    "shipped_at": "2026-04-29T10:42:26.626230",
+    "tracking_posted_at": "2026-04-29T10:42:26.626238"
   }
 }

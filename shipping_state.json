@@ -70,13 +70,11 @@
     "last_attempt": "2026-04-25T12:02:57.760769"
   },
   "26704": {
-    "status": "no_match",
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "08-14508-46084",
     "isbn": "9781948558396",
-    "tracking": null,
-    "carrier": "FEDEX",
     "buyer": "Code Red Hvac Code Red",
-    "attempts": 8,
-    "last_attempt": "2026-04-28T20:33:26.777051"
+    "shipped_at": "2026-04-29T02:15:04.450650"
   },
   "26752": {
     "status": "posted",
@@ -308,8 +306,8 @@
     "tracking": "871032649578",
     "carrier": "FEDEX",
     "buyer": "Csaba Milian",
-    "attempts": 8,
-    "last_attempt": "2026-04-28T20:33:30.514488"
+    "attempts": 9,
+    "last_attempt": "2026-04-29T02:15:06.956970"
   },
   "26947": {
     "status": "posted",
@@ -398,8 +396,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 3,
-    "last_attempt": "2026-04-28T20:33:31.631948"
+    "attempts": 4,
+    "last_attempt": "2026-04-29T02:15:08.814366"
   },
   "27022": {
     "status": "posted",

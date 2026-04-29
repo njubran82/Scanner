@@ -301,13 +301,14 @@
     "last_attempt": "2026-04-25T12:03:49.251642"
   },
   "26928": {
-    "status": "no_match",
+    "status": "posted",
+    "ebay_order_id": "20-14527-89914",
     "isbn": "9781560915263",
     "tracking": "871032649578",
     "carrier": "FEDEX",
     "buyer": "Csaba Milian",
-    "attempts": 9,
-    "last_attempt": "2026-04-29T02:15:06.956970"
+    "shipped_at": "2026-04-29T09:34:44.483881",
+    "tracking_posted_at": "2026-04-29T09:34:44.483890"
   },
   "26947": {
     "status": "posted",
@@ -396,8 +397,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 4,
-    "last_attempt": "2026-04-29T02:15:08.814366"
+    "attempts": 5,
+    "last_attempt": "2026-04-29T09:34:46.846679"
   },
   "27022": {
     "status": "posted",

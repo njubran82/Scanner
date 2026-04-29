@@ -2,7 +2,7 @@ name: Weekly Scanner
 
 on:
   schedule:
-    - cron: '0 14 * * 1'   # Monday 9:00 AM EST
+    - cron: '0 8 * * 1'        # Monday 8:00 AM UTC
   workflow_dispatch:
 
 permissions:
@@ -13,64 +13,54 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install requests python-dotenv
-
-      - name: Pull latest CSV from remote
-        run: |
-          git fetch origin
-          git checkout origin/main -- booksgoat_enhanced.csv || true
+      - name: Install deps
+        run: pip install requests python-dotenv anthropic
 
       - name: Run scanner
         env:
-          BOOKSGOAT_CSV_URL:  ${{ secrets.BOOKSGOAT_CSV_URL }}
-          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BOOKSGOAT_CSV_URL: ${{ secrets.BOOKSGOAT_CSV_URL }}
         run: python scanner.py
 
       - name: Run lister
         env:
-          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
-          BOOKSGOAT_CSV_URL:  ${{ secrets.BOOKSGOAT_CSV_URL }}
-          SMTP_HOST:          ${{ secrets.SMTP_HOST }}
-          SMTP_PORT:          ${{ secrets.SMTP_PORT }}
-          SMTP_USER:          ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD:      ${{ secrets.SMTP_PASSWORD }}
-          EMAIL_FROM:         ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO:           ${{ secrets.EMAIL_TO }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python lister.py
 
       - name: Run repricer
         env:
-          EBAY_CLIENT_ID:     ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
-          BOOKSGOAT_CSV_URL:  ${{ secrets.BOOKSGOAT_CSV_URL }}
-          SMTP_HOST:          ${{ secrets.SMTP_HOST }}
-          SMTP_PORT:          ${{ secrets.SMTP_PORT }}
-          SMTP_USER:          ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD:      ${{ secrets.SMTP_PASSWORD }}
-          EMAIL_FROM:         ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO:           ${{ secrets.EMAIL_TO }}
+          DELIST_ENABLED: 'false'
+          DRY_RUN: 'false'
         run: python repricer.py
 
-      - name: Commit state
+      - name: Run weekly summary
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python weekly_summary.py
+
+      - name: Commit results
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git fetch origin
-          git rebase origin/main || (git rebase --abort && git reset --hard origin/main && git add -A)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "Pipeline run $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git push || true
+          git diff --cached --quiet || git commit -m "chore: weekly scan results [skip ci]"
+          git push

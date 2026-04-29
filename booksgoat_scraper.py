@@ -1,23 +1,32 @@
 #!/usr/bin/env python3
 """
-booksgoat_scraper.py — BooksGoat weekly scraper (v3 — unified discovery)
+booksgoat_scraper.py — BooksGoat weekly scraper (v4 — three sources)
 Location : E:\\Book\\Scraper\\booksgoat_scraper.py
 Schedule : Windows Task Scheduler, Monday 6:00 AM
 
 Sources:
   1. BooksGoat category pages (5 URLs) — via Playwright
   2. BooksGoat merchant sheet (Google Sheets CSV) — via requests
+  3. BooksGoat "On Sale" homepage carousel — via Playwright (same browser session)
 
-Both sources are merged and deduplicated by ISBN-13.
+All three sources are merged and deduplicated by ISBN-13.
 New ISBNs not in booksgoat_enhanced.csv are appended as pending.
+
+Email alerts:
+  - Sent on completion with full stats summary
+  - Sent on failure with error details
+  - Requires SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, EMAIL_TO env vars
 """
 
 import csv
 import logging
 import os
 import re
+import smtplib
 import time
+import traceback
 from datetime import datetime
+from email.mime.text import MIMEText
 from pathlib import Path
 
 import requests
@@ -27,6 +36,7 @@ from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 # CONFIG
 # ════════════════════════════════════════════════════════════════
 BASE_URL           = "https://www.booksgoat.com/index.php?route=product/category&path={path}"
+HOMEPAGE_URL       = "https://www.booksgoat.com/"
 CATEGORIES         = [315, 327, 328, 329, 330]
 MERCHANT_SHEET_URL = os.environ.get(
     "BOOKSGOAT_CSV_URL",
@@ -59,6 +69,38 @@ logging.basicConfig(
     ],
 )
 log = logging.getLogger(__name__)
+
+
+# ════════════════════════════════════════════════════════════════
+# EMAIL ALERTS
+# ════════════════════════════════════════════════════════════════
+def send_email(subject: str, body: str):
+    """Send email alert via SMTP. Fails silently if env vars not set."""
+    smtp_host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
+    smtp_port = int(os.environ.get("SMTP_PORT", "587"))
+    smtp_user = os.environ.get("SMTP_USER", "")
+    smtp_pass = os.environ.get("SMTP_PASSWORD", "")
+    email_to  = os.environ.get("EMAIL_TO", os.environ.get("SMTP_USER", ""))
+
+    if not smtp_user or not smtp_pass:
+        log.warning("Email not sent — SMTP_USER / SMTP_PASSWORD not set")
+        return
+
+    try:
+        msg = MIMEText(body, "plain")
+        msg["Subject"] = subject
+        msg["From"]    = smtp_user
+        msg["To"]      = email_to
+
+        with smtplib.SMTP(smtp_host, smtp_port) as s:
+            s.ehlo()
+            s.starttls()
+            s.login(smtp_user, smtp_pass)
+            s.sendmail(smtp_user, email_to, msg.as_string())
+
+        log.info(f"Email sent: {subject}")
+    except Exception as e:
+        log.warning(f"Email failed: {e}")
 
 
 # ════════════════════════════════════════════════════════════════
@@ -125,7 +167,7 @@ def scrape_merchant_sheet() -> dict:
     """
     Fetch BooksGoat Google Sheets merchant feed.
     Returns {isbn13: {isbn13, title, cost, category_path}} dict.
-    Uses 10-qty price as cost (index 2 in price columns).
+    Uses 5-qty price as cost basis.
     """
     log.info("Fetching BooksGoat merchant sheet...")
     try:
@@ -140,7 +182,6 @@ def scrape_merchant_sheet() -> dict:
     skipped = 0
 
     for row in reader:
-        # Normalize keys (strip whitespace)
         row = {k.strip(): v.strip() for k, v in row.items() if k}
 
         isbn13 = row.get("ISBN-13", "").strip().replace("-", "").replace(" ", "")
@@ -150,8 +191,8 @@ def scrape_merchant_sheet() -> dict:
 
         title = row.get("Title", f"Book ISBN {isbn13}")
 
-        # Try 10-qty price first, fall back to 5-qty
-        price_str = row.get("10 Qty", "") or row.get("5 Qty", "")
+        # Use 5-qty price as cost basis (corrected from 10-qty)
+        price_str = row.get("5 Qty", "") or row.get("10 Qty", "")
         cost = extract_price(price_str)
         if not cost:
             skipped += 1
@@ -289,47 +330,212 @@ def enrich_with_isbns(context, products: list[dict]) -> list[dict]:
     return enriched
 
 
-def scrape_category_pages() -> dict:
+def scrape_category_pages(context) -> dict:
     """Scrape all 5 category pages. Returns {isbn13: product_dict}."""
     all_scraped = {}
+    cat_page = context.new_page()
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(
-            headless=True,
-            args=["--no-sandbox", "--disable-blink-features=AutomationControlled",
-                  "--disable-dev-shm-usage"],
-        )
-        context = browser.new_context(
-            user_agent=(
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/122.0.0.0 Safari/537.36"
-            ),
-            viewport={"width": 1280, "height": 800},
-        )
-        cat_page = context.new_page()
+    for cat in CATEGORIES:
+        log.info(f"Scraping category {cat}...")
+        try:
+            products = collect_urls_from_category(cat_page, cat)
+            log.info(f"  Pass 1: {len(products)} URLs — starting ISBN extraction...")
+            enriched = enrich_with_isbns(context, products)
+            for prod in enriched:
+                isbn = prod["isbn13"]
+                if isbn not in all_scraped:
+                    all_scraped[isbn] = prod
+            log.info(f"  Category {cat}: {len(enriched)} ISBNs found")
+        except Exception as e:
+            log.error(f"Category {cat} failed: {e}")
+        time.sleep(1)
 
-        for cat in CATEGORIES:
-            log.info(f"Scraping category {cat}...")
-            try:
-                products = collect_urls_from_category(cat_page, cat)
-                log.info(f"  Pass 1: {len(products)} URLs — starting ISBN extraction...")
-                enriched = enrich_with_isbns(context, products)
-                for prod in enriched:
-                    isbn = prod["isbn13"]
-                    if isbn not in all_scraped:
-                        all_scraped[isbn] = prod
-                log.info(f"  Category {cat}: {len(enriched)} ISBNs found")
-            except Exception as e:
-                log.error(f"Category {cat} failed: {e}")
-            time.sleep(1)
-
-        cat_page.close()
-        context.close()
-        browser.close()
-
+    cat_page.close()
     log.info(f"Category pages total: {len(all_scraped)} unique ISBNs")
     return all_scraped
+
+
+# ════════════════════════════════════════════════════════════════
+# SOURCE 3: On Sale homepage carousel (Playwright)
+# ════════════════════════════════════════════════════════════════
+def scrape_on_sale_section(context) -> dict:
+    """
+    Scrape the 'On Sale' carousel from booksgoat.com homepage.
+    Reuses the existing Playwright browser context — no second browser launch.
+
+    Uses CAROUSEL prices as cost (what BooksGoat charges us).
+    Product page prices are retail/Amazon prices — NOT used as cost.
+
+    Returns {isbn13: product_dict} ready for apply_write_rules().
+    """
+    log.info("Scraping On Sale homepage carousel (Source 3)...")
+    results = {}
+
+    try:
+        page = context.new_page()
+        page.goto(HOMEPAGE_URL, wait_until="domcontentloaded", timeout=30000)
+        page.wait_for_timeout(4000)  # let carousel JS initialize
+
+        # Extract all products with CAROUSEL prices from On Sale section
+        carousel_products = page.evaluate('''() => {
+            const results = [];
+            const seen = new Set();
+
+            // Find On Sale container by heading text
+            let saleContainer = null;
+            const allElements = document.querySelectorAll(
+                'h1, h2, h3, h4, h5, span, p, div, strong'
+            );
+            for (const el of allElements) {
+                const ownText = Array.from(el.childNodes)
+                    .filter(n => n.nodeType === 3)
+                    .map(n => n.textContent.trim())
+                    .join(' ');
+                const fullText = el.textContent?.trim() || '';
+                if (ownText.match(/^On\\s+sale$/i) ||
+                    (fullText.match(/^On\\s+sale$/i) && el.children.length === 0)) {
+                    let parent = el.parentElement;
+                    for (let i = 0; i < 10; i++) {
+                        if (!parent) break;
+                        if (parent.querySelectorAll('a[href]').length >= 3 &&
+                            parent.querySelectorAll('img').length >= 2) {
+                            saleContainer = parent;
+                            break;
+                        }
+                        parent = parent.parentElement;
+                    }
+                    if (saleContainer) break;
+                }
+            }
+
+            if (!saleContainer) return results;
+
+            const links = saleContainer.querySelectorAll('a[href]');
+            for (const a of links) {
+                const href = a.href || '';
+                if (!href || href === '#' || seen.has(href)) continue;
+                if (!href.includes('booksgoat.com') ||
+                    href === 'https://www.booksgoat.com/') continue;
+
+                const parent = a.closest('div') || a.parentElement;
+                const text = (parent || a).textContent || '';
+
+                if (/\\$\\d+/.test(text) || /add\\s*to\\s*cart/i.test(text)) {
+                    seen.add(href);
+
+                    // Title
+                    const card = a.closest('[class*="product"], [class*="item"]') || parent;
+                    const titleEl = card?.querySelector(
+                        '.product-name, h3, h4, h5, [class*="name"]'
+                    );
+                    let title = titleEl ? titleEl.textContent.trim() : a.textContent.trim();
+                    title = title.replace(/add\\s*to\\s*cart/i, '')
+                                 .replace(/\\$[\\d,.]+/g, '').trim();
+
+                    // CAROUSEL price = BooksGoat cost
+                    const priceMatch = text.match(/\\$(\\d+[.,]?\\d*)/);
+                    const cost = priceMatch ? priceMatch[1] : '';
+
+                    results.push({
+                        url: href,
+                        title: title.substring(0, 100),
+                        cost: cost,
+                    });
+                }
+            }
+            return results;
+        }''')
+
+        page.close()
+
+        if not carousel_products:
+            log.warning("On Sale: no products found in carousel")
+            return {}
+
+        log.info(f"On Sale carousel: {len(carousel_products)} products visible")
+
+        # Visit each product page for ISBN (price already from carousel)
+        for i, prod in enumerate(carousel_products):
+            url  = prod.get("url", "")
+            cost = prod.get("cost", "")
+            title_guess = prod.get("title", "")
+
+            if not url:
+                continue
+
+            tab = None
+            try:
+                tab = context.new_page()
+                tab.goto(url, wait_until="domcontentloaded", timeout=15000)
+                tab.wait_for_timeout(1500)
+
+                page_text = tab.evaluate("() => document.body.innerText || ''")
+
+                # Extract ISBN
+                isbn = None
+                for pattern in [
+                    r'ISBN[\s:\-]*(97[89][\d\s\-]{10,17})',
+                    r'\(ISBN\s*(97[89]\d{10})\)',
+                    r'\b(97[89]\d{10})\b',
+                ]:
+                    m = re.search(pattern, page_text, re.IGNORECASE)
+                    if m:
+                        isbn = re.sub(r'[\s\-]', '', m.group(1))
+                        if len(isbn) == 13:
+                            break
+                        isbn = None
+
+                if not isbn:
+                    log.info(f"  [{i+1}/{len(carousel_products)}] SKIP no ISBN | {url[:60]}")
+                    continue
+
+                # Full title from page
+                title = tab.evaluate("""() => {
+                    for (const sel of ['h1', 'h2', '.product-title']) {
+                        const el = document.querySelector(sel);
+                        if (el && el.textContent.trim().length > 5)
+                            return el.textContent.trim();
+                    }
+                    return document.title || '';
+                }""") or title_guess
+
+                # Format detection
+                fmt_m = re.search(
+                    r'(Hardcover|Paperback|Spiral Bound|Loose Leaf)',
+                    page_text, re.IGNORECASE
+                )
+                fmt = fmt_m.group(1) if fmt_m else detect_format(title)
+
+                results[isbn] = {
+                    "isbn13":        isbn,
+                    "title":         title,
+                    "format":        fmt,
+                    "cost":          cost,          # ← carousel price (BooksGoat cost)
+                    "price":         float(cost) if cost else 0,
+                    "url":           url,
+                    "product_url":   url,
+                    "category_path": "on_sale",
+                }
+                log.info(
+                    f"  [{i+1}/{len(carousel_products)}] {isbn} | "
+                    f"${cost} | {title[:45]}"
+                )
+
+            except Exception as e:
+                log.warning(f"  [{i+1}/{len(carousel_products)}] Error {url[:60]}: {e}")
+            finally:
+                if tab:
+                    try:
+                        tab.close()
+                    except Exception:
+                        pass
+            time.sleep(0.3)
+
+    except Exception as e:
+        log.error(f"On Sale scraper failed: {e}")
+
+    log.info(f"On Sale total: {len(results)} unique ISBNs with valid ISBNs")
+    return results
 
 
 # ════════════════════════════════════════════════════════════════
@@ -396,39 +602,105 @@ def apply_write_rules(rows: dict, all_scraped: dict, now: datetime) -> dict:
 # MAIN
 # ════════════════════════════════════════════════════════════════
 def run():
+    start_time = datetime.now()
     log.info("=" * 70)
-    log.info(f"BooksGoat scraper v3 started | {datetime.now().isoformat()}")
+    log.info(f"BooksGoat scraper v4 started | {start_time.isoformat()}")
 
-    rows = load_csv()
-    now = datetime.now()
+    try:
+        rows = load_csv()
+        now = datetime.now()
 
-    # Source 1: Merchant sheet (fast, no browser needed)
-    merchant_books = scrape_merchant_sheet()
+        # Source 1: Merchant sheet (fast, no browser)
+        merchant_books = scrape_merchant_sheet()
 
-    # Source 2: Category pages (Playwright)
-    category_books = scrape_category_pages()
+        # Sources 2 + 3: Category pages + On Sale — single Playwright session
+        with sync_playwright() as p:
+            browser = p.chromium.launch(
+                headless=True,
+                args=["--no-sandbox", "--disable-blink-features=AutomationControlled",
+                      "--disable-dev-shm-usage"],
+            )
+            context = browser.new_context(
+                user_agent=(
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/122.0.0.0 Safari/537.36"
+                ),
+                viewport={"width": 1280, "height": 800},
+            )
 
-    # Merge — category pages win on price/url if same ISBN in both
-    # (category pages have product URLs, merchant sheet does not)
-    all_scraped = {**merchant_books, **category_books}
-    log.info(f"Total unique ISBNs from all sources: {len(all_scraped)}")
-    log.info(f"  Merchant sheet: {len(merchant_books)}")
-    log.info(f"  Category pages: {len(category_books)}")
-    overlap = len(set(merchant_books) & set(category_books))
-    log.info(f"  Overlap (in both): {overlap}")
+            # Source 2: Category pages
+            category_books = scrape_category_pages(context)
 
-    # Apply write rules and update CSV
-    stats = apply_write_rules(rows, all_scraped, now)
-    save_csv(rows)
+            # Source 3: On Sale homepage carousel
+            on_sale_books = scrape_on_sale_section(context)
 
-    log.info("-" * 70)
-    log.info(
-        f"Done: {stats['new']} new | {stats['updated']} updated | "
-        f"{stats['skipped_active']} skipped active | "
-        f"{stats['skipped_cooldown']} skipped cooldown | "
-        f"{stats['no_price']} no price"
-    )
-    log.info("=" * 70)
+            context.close()
+            browser.close()
+
+        # Merge all three sources
+        # Priority: category pages > on_sale > merchant_sheet
+        # (category pages have verified product URLs)
+        all_scraped = {**merchant_books, **on_sale_books, **category_books}
+
+        log.info(f"Total unique ISBNs from all sources: {len(all_scraped)}")
+        log.info(f"  Source 1 — Merchant sheet:  {len(merchant_books)}")
+        log.info(f"  Source 2 — Category pages:  {len(category_books)}")
+        log.info(f"  Source 3 — On Sale section: {len(on_sale_books)}")
+        overlap_12 = len(set(merchant_books) & set(category_books))
+        overlap_3  = len(set(on_sale_books) - set(merchant_books) - set(category_books))
+        log.info(f"  Overlap (sheet + category): {overlap_12}")
+        log.info(f"  On Sale only (new ISBNs):   {overlap_3}")
+
+        # Apply write rules and save
+        stats = apply_write_rules(rows, all_scraped, now)
+        save_csv(rows)
+
+        elapsed = (datetime.now() - start_time).seconds
+        summary = (
+            f"BooksGoat scraper v4 completed at {datetime.now().strftime('%Y-%m-%d %H:%M')}\n"
+            f"Elapsed: {elapsed}s\n\n"
+            f"Sources:\n"
+            f"  Merchant sheet:  {len(merchant_books)} books\n"
+            f"  Category pages:  {len(category_books)} books\n"
+            f"  On Sale section: {len(on_sale_books)} books\n"
+            f"  Total unique:    {len(all_scraped)} books\n\n"
+            f"CSV changes:\n"
+            f"  New books added:       {stats['new']}\n"
+            f"  Costs updated:         {stats['updated']}\n"
+            f"  Skipped (active):      {stats['skipped_active']}\n"
+            f"  Skipped (cooldown):    {stats['skipped_cooldown']}\n"
+            f"  Skipped (no price):    {stats['no_price']}\n\n"
+            f"CSV total rows: {len(rows)}"
+        )
+
+        log.info("-" * 70)
+        log.info(f"Done: {stats['new']} new | {stats['updated']} updated | "
+                 f"{stats['skipped_active']} skipped active | "
+                 f"{stats['skipped_cooldown']} skipped cooldown | "
+                 f"{stats['no_price']} no price")
+        log.info("=" * 70)
+
+        # Success email
+        send_email(
+            subject=f"✅ BooksGoat Scraper — {stats['new']} new books | {datetime.now().strftime('%a %b %d')}",
+            body=summary
+        )
+
+    except Exception as e:
+        error_msg = traceback.format_exc()
+        log.error(f"SCRAPER FAILED: {e}\n{error_msg}")
+
+        # Failure email
+        send_email(
+            subject=f"❌ BooksGoat Scraper FAILED — {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+            body=(
+                f"BooksGoat scraper failed at {datetime.now().isoformat()}\n\n"
+                f"Error: {e}\n\n"
+                f"Full traceback:\n{error_msg}"
+            )
+        )
+        raise  # re-raise so Task Scheduler marks the job as failed
 
 
 if __name__ == "__main__":

@@ -15,7 +15,7 @@ Two-pass flow:
 - Runs every 2 hours via GitHub Actions
 """
 
-import os, json, imaplib, email, re, base64, logging, time, requests
+import os, json, imaplib, email, re, base64, logging, time, requests, unicodedata
 from email.header import decode_header as _dh
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
@@ -300,15 +300,20 @@ def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
                                     isbn_match = True
                                     break
 
-                    # Buyer name matching
+                    # Buyer name matching — normalize accents and strip C/O prefixes
                     ship_to = (order.get('fulfillmentStartInstructions') or [{}])[0] \
                         .get('shippingStep', {}).get('shipTo', {})
-                    ebay_name = ship_to.get('fullName', '').lower()
-                    # Try both directions for partial matches
+                    ebay_name_raw = ship_to.get('fullName', '')
+                    # Strip eIS/GSP C/O prefixes from eBay International Shipping
+                    ebay_name_clean = re.sub(r'^(?:eIS|GSP)\s+C/O\s+', '', ebay_name_raw, flags=re.IGNORECASE)
+                    # Normalize accents: Milián → Milian
+                    ebay_name_norm = unicodedata.normalize('NFKD', ebay_name_clean.lower()) \
+                        .encode('ascii', 'ignore').decode('ascii')
                     name_match = False
-                    if buyer_name and ebay_name:
-                        bn = buyer_name.lower()
-                        name_match = bn in ebay_name or ebay_name in bn
+                    if buyer_name:
+                        bn = unicodedata.normalize('NFKD', buyer_name.lower()) \
+                            .encode('ascii', 'ignore').decode('ascii')
+                        name_match = bn in ebay_name_norm or ebay_name_norm in bn
 
                     if isbn_match or name_match:
                         log.info(f"  Matched eBay order {order['orderId']} "

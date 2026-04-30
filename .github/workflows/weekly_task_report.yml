@@ -1,0 +1,26 @@
+name: Weekly Task Report
+
+on:
+  schedule:
+    - cron: '0 13 * * 1'  # Monday 8AM EST = 13:00 UTC
+  workflow_dispatch:       # manual trigger any time
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Send weekly task report
+        env:
+          SMTP_HOST:     ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:     ${{ secrets.SMTP_PORT }}
+          SMTP_USER:     ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:    ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:      ${{ secrets.EMAIL_TO }}
+        run: python weekly_task_report.py

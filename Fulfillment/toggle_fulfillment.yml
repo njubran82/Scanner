@@ -1,0 +1,48 @@
+name: Toggle Auto-Fulfillment
+
+on:
+  workflow_dispatch:
+    inputs:
+      enabled:
+        description: 'Enable auto-fulfillment (true/false)'
+        required: true
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  toggle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update toggle
+        run: |
+          echo '{"auto_fulfill_enabled": ${{ inputs.enabled }}, "updated_at": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'", "updated_by": "${{ github.actor }}"}' > fulfill_toggle.json
+          cat fulfill_toggle.json
+
+      - name: Commit toggle state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add fulfill_toggle.json
+          git diff --cached --quiet || git commit -m "Auto-fulfillment: ${{ inputs.enabled }}"
+          git push
+
+      - name: Confirm
+        run: |
+          if [ "${{ inputs.enabled }}" = "true" ]; then
+            echo "✅ Auto-fulfillment is now ON"
+            echo "  - Deadline guard will mark orders shipped before deadline"
+            echo "  - Order sync will send fulfillment alerts"
+            echo "  - Email tracking parser will push tracking to eBay"
+          else
+            echo "⛔ Auto-fulfillment is now OFF"
+            echo "  - All automated fulfillment paused"
+            echo "  - shipping_tracker.py continues to run independently"
+          fi

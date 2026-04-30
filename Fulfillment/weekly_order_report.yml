@@ -1,0 +1,38 @@
+name: Weekly Order Report
+
+on:
+  schedule:
+    - cron: '0 16 * * 1'    # Monday 16:00 UTC (12 PM EST) — after scanner finishes
+  workflow_dispatch:
+    inputs:
+      lookback_days:
+        description: 'Number of days to include in report'
+        required: false
+        default: '7'
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate report
+        env:
+          EBAY_APP_ID: ${{ secrets.EBAY_APP_ID }}
+          EBAY_CERT_ID: ${{ secrets.EBAY_CERT_ID }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+          BOOKSGOAT_CSV_URL: ${{ secrets.BOOKSGOAT_CSV_URL }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          REPORT_LOOKBACK_DAYS: ${{ inputs.lookback_days || '7' }}
+        run: python weekly_order_report.py

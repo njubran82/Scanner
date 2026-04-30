@@ -1,0 +1,55 @@
+name: Ship Deadline Guard
+
+on:
+  schedule:
+    - cron: '0 6,12,18,0 * * *'   # Every 6 hours UTC
+  workflow_dispatch:                # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Check toggle
+        id: toggle
+        run: |
+          if [ -f fulfill_toggle.json ]; then
+            ENABLED=$(python3 -c "import json; print(json.load(open('fulfill_toggle.json')).get('auto_fulfill_enabled', False))")
+            echo "enabled=$ENABLED" >> $GITHUB_OUTPUT
+          else
+            echo "enabled=False" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run deadline guard
+        if: steps.toggle.outputs.enabled == 'True' || github.event_name == 'workflow_dispatch'
+        env:
+          EBAY_APP_ID: ${{ secrets.EBAY_APP_ID }}
+          EBAY_CERT_ID: ${{ secrets.EBAY_CERT_ID }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: python ship_deadline_guard.py
+
+      - name: Skip notice
+        if: steps.toggle.outputs.enabled != 'True' && github.event_name != 'workflow_dispatch'
+        run: echo "⛔ Auto-fulfillment is OFF. Skipping. Toggle on via Actions → Toggle Auto-Fulfillment."
+
+      - name: Commit state
+        if: steps.toggle.outputs.enabled == 'True' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add guard_state.json
+          git diff --cached --quiet || git commit -m "Update guard state [skip ci]"
+          git push

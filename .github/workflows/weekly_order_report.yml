@@ -1,0 +1,34 @@
+name: Weekly Order Report
+
+on:
+  workflow_dispatch:  # Manual trigger
+  schedule:
+    - cron: '0 14 * * 1'  # Monday 2PM UTC (10AM EST) — after scanner runs
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests
+
+      - name: Run weekly_order_report.py
+        env:
+          EBAY_APP_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CERT_ID: ${{ secrets.EBAY_CLIENT_SECRET }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+          BOOKSGOAT_CSV_URL: ${{ secrets.BOOKSGOAT_CSV_URL }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python weekly_order_report.py

@@ -202,6 +202,15 @@ def update_inventory_image(isbn: str, image_url: str, token: str) -> bool:
         item['product'] = {}
     item['product']['imageUrls'] = [image_url]
 
+    # Strip invalid weight/packageWeightAndSize data that causes error 25709
+    for bad_key in ['packageWeightAndSize', 'weight']:
+        if bad_key in item:
+            w = item[bad_key]
+            if isinstance(w, dict):
+                val = w.get('value') or w.get('weight', {}).get('value')
+                if not val or val == 0:
+                    del item[bad_key]
+
     # PUT back
     r2 = requests.put(
         f'https://api.ebay.com/sell/inventory/v1/inventory_item/{isbn}',

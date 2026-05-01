@@ -18,6 +18,7 @@ MIN_QTY_BLOCKLIST = {
     '9780990873853',  # Overcoming Gravity: Gymnastics — min qty 5
     '9781119826798',  # Architect's Studio Companion — PDF only on BooksGoat
     '9780357622957',  # Theory and Practice of Group Counseling — min qty 5
+    '9781466516946',  # American Herbal Botanical Safety Handbook — counterfeit flag
 }
 
 POLICIES = {

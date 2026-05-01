@@ -399,13 +399,11 @@ def run():
 
     posted = shipped_no_tracking = skipped = pending = failed = 0
 
-    # Deduplicate: for each order_id, use the latest email (last occurrence = most recent tracking)
-    # Deduplicate: for each order_id, use the latest email but preserve tracking from earlier emails
-    	by_order = {}
-   	 for e in emails:
+    # Deduplicate: for each order_id, preserve tracking from earlier emails
+    by_order = {}
+    for e in emails:
         existing = by_order.get(e['order_id'])
         if existing and existing.get('tracking') and not e.get('tracking'):
-            # Later email lost the tracking — carry it forward
             e['tracking'] = existing['tracking']
             e['carrier'] = existing.get('carrier', e.get('carrier'))
         by_order[e['order_id']] = e

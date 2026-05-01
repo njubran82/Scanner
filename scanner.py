@@ -41,6 +41,7 @@ BLOCKLIST = {
     '9781118115121',  # Art and Science of Technical Analysis — min qty 5
     '9780393979503',  # C Programming: A Modern Approach — download only
     '9780973501827',  # Back Mechanic — min qty 10
+    "9780357622957",  # Theory and Practice of Group Counseling — 5-qty min
 }
 
 logging.basicConfig(

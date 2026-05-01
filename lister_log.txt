@@ -3545,3 +3545,18 @@
 2026-05-01 18:22:38,287 INFO ============================================================
 2026-05-01 18:22:39,271 INFO Success email sent
 2026-05-01 18:22:40,417 INFO Failure email sent (2 failures)
+2026-05-01 19:05:13,502 INFO ============================================================
+2026-05-01 19:05:13,502 INFO LISTER STARTED — 2026-05-01 19:05:13
+2026-05-01 19:05:13,502 INFO ============================================================
+2026-05-01 19:05:13,502 INFO Processing 2 opportunities...
+2026-05-01 19:05:29,364 WARNING   No image found
+2026-05-01 19:05:32,022 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.
+2026-05-01 19:05:47,311 WARNING   No image found
+2026-05-01 19:05:49,995 ERROR   FAIL 9798670880909: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.
+2026-05-01 19:05:50,500 INFO ============================================================
+2026-05-01 19:05:50,500 INFO LISTER DONE: 0 listed | 2 failed
+2026-05-01 19:05:50,500 INFO FAILED BOOKS:
+2026-05-01 19:05:50,500 INFO   FAILED_DETAIL 9781641950565 | ACI CODE-318-19(22): Building Code Requi | stage=publish | image=False | A user error has occurred. Add at least 1 photo. More photos are better! Show of
+2026-05-01 19:05:50,500 INFO   FAILED_DETAIL 9798670880909 | Study Guide for FE Electrical & Computer | stage=publish | image=False | A user error has occurred. Add at least 1 photo. More photos are better! Show of
+2026-05-01 19:05:50,500 INFO ============================================================
+2026-05-01 19:05:51,652 INFO Failure email sent (2 failures)

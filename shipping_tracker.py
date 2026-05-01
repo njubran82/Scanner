@@ -122,14 +122,15 @@ def _extract_buyer_name(text: str) -> str | None:
       - Multi-word, hyphenated, apostrophe names
     """
     # Best source: "Dear <name>," greeting
-    m = re.search(r'Dear\s+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})\s*,', text)
+    m = re.search(r'Dear\s+([A-Z][A-Za-z\'\-]*(?:\s+[A-Z][A-Za-z\'\-]+){1,4})\s*,', text)
     if m:
         return m.group(1).strip()
 
     # Shipping address — handle name split across lines
+    # First char class uses * not + to allow single-letter first names (e.g. "E Saathoff")
     m = re.search(
         r'[Ss]hipping\s+[Aa]ddress[:\s]+'
-        r'([A-Z][A-Za-z\'\-]+(?:[\s\n]+[A-Z][A-Za-z\'\-]+){1,4})',
+        r'([A-Z][A-Za-z\'\-]*(?:[\s\n]+[A-Z][A-Za-z\'\-]+){1,4})',
         text
     )
     if m:
@@ -143,9 +144,9 @@ def _extract_buyer_name(text: str) -> str | None:
 
     # Other label patterns
     for pattern in [
-        r'[Ss]hip\s*[Tt]o[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
-        r'[Dd]eliver\s*[Tt]o[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
-        r'[Rr]ecipient[:\s]+([A-Z][A-Za-z\'\-]+(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
+        r'[Ss]hip\s*[Tt]o[:\s]+([A-Z][A-Za-z\'\-]*(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
+        r'[Dd]eliver\s*[Tt]o[:\s]+([A-Z][A-Za-z\'\-]*(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
+        r'[Rr]ecipient[:\s]+([A-Z][A-Za-z\'\-]*(?:\s+[A-Z][A-Za-z\'\-]+){1,4})',
     ]:
         m = re.search(pattern, text)
         if m:
@@ -373,6 +374,19 @@ def run():
     log.info('shipping_tracker.py started')
 
     state = load_state()
+
+    # ── State migration: fix stale 'posted' entries from older script versions ──
+    # Older versions set status='posted' even when no tracking was included.
+    # Reset these to 'shipped_no_tracking' so Pass 2 can add tracking properly.
+    migrated = 0
+    for oid, entry in state.items():
+        if entry.get('status') == 'posted' and not entry.get('tracking'):
+            entry['status'] = 'shipped_no_tracking'
+            migrated += 1
+    if migrated:
+        log.info(f'State migration: reset {migrated} stale "posted" entries to "shipped_no_tracking"')
+        save_state(state)
+
     emails = get_shipping_emails()
 
     if not emails:

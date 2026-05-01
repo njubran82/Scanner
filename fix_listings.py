@@ -36,10 +36,10 @@ MIN_PROFIT      = 12.00       # minimum net profit to list
 
 # Minimum-quantity books - cannot be purchased as single units on BooksGoat
 MIN_QTY_BLOCKLIST = {
-    "9781260460445",  # Lange Q&A Radiography Examination
+    "9781260460445",  # Lange Q&A Radiography Examination — min qty 5
     "9780990873853",  # Overcoming Gravity: Gymnastics — min qty 5
     "9781119826798",  # Architect's Studio Companion — PDF only on BooksGoat
-    "9780357622957"
+    "9780357622957",  # Theory and Practice of Group Counseling — min qty 5
 }
 MAX_LISTINGS  = 1000  # upgraded plan         # hard cap on active listings
 COOLDOWN_DAYS   = 14          # days before a delisted book can be relisted
@@ -674,6 +674,10 @@ def run():
         if not sku or len(sku) < 10:
             continue
 
+        # Skip MIN_QTY_BLOCKLIST
+        if sku in MIN_QTY_BLOCKLIST:
+            continue
+
         # Skip cooldown
         if status == "delisted":
             delisted_at = row.get("delisted_at", "")
@@ -881,12 +885,3 @@ def run():
 
 if __name__ == "__main__":
     run()
-
-
-
-
-
-
-
-
-

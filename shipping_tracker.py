@@ -363,9 +363,26 @@ def post_shipped(ebay_order_id: str, token: str, order: dict,
         else:
             log.info(f'  ✅ Marked shipped (no tracking) → eBay order {ebay_order_id}')
         return True
-    else:
-        log.error(f'  ❌ Failed: {r.status_code} {r.text[:300]}')
+
+    # Order already fulfilled from Pass 1 — retry with just tracking, no lineItems
+    if r.status_code == 400 and 'Invalid line item' in r.text and tracking and 'lineItems' in payload:
+        log.info(f'  Retrying without lineItems (order already fulfilled)...')
+        del payload['lineItems']
+        r2 = requests.post(
+            f'https://api.ebay.com/sell/fulfillment/v1/order/{ebay_order_id}/shipping_fulfillment',
+            headers={'Authorization': f'Bearer {token}',
+                     'Content-Type': 'application/json'},
+            json=payload,
+            timeout=15
+        )
+        if r2.status_code in (200, 201):
+            log.info(f'  ✅ Tracking {tracking} added to existing fulfillment → {ebay_order_id}')
+            return True
+        log.error(f'  ❌ Retry also failed: {r2.status_code} {r2.text[:300]}')
         return False
+
+    log.error(f'  ❌ Failed: {r.status_code} {r.text[:300]}')
+    return False
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────

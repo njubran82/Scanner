@@ -39,4 +39,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add booksgoat_enhanced.csv
           git diff --cached --quiet || git commit -m "fix_images: clear thumbnail flags for upgraded images"
+          git pull --rebase origin main || true
           git push

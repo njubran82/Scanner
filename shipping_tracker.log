@@ -1729,3 +1729,100 @@
 2026-05-01 18:54:05,772 INFO ============================================================
 2026-05-01 18:54:05,772 INFO DONE: 0 posted w/tracking | 0 marked shipped (no tracking) | 15 awaiting tracking | 42 already done | 1 failed/no match
 2026-05-01 18:54:05,772 INFO ============================================================
+2026-05-01 22:42:08,137 INFO ============================================================
+2026-05-01 22:42:08,137 INFO shipping_tracker.py started (TRACKING_ENABLED=False)
+2026-05-01 22:42:08,138 INFO Connecting to Gmail IMAP...
+2026-05-01 22:42:09,989 INFO Found 263 BooksGoat Order Update emails in last 14 days
+2026-05-01 22:42:28,820 INFO 119 shipping emails parsed
+2026-05-01 22:42:29,141 INFO eBay token acquired
+2026-05-01 22:42:29,141 INFO Order #26719: already processed — skipping
+2026-05-01 22:42:30,980 INFO   Matched eBay order 08-14508-46084 (isbn=False, name=True)
+2026-05-01 22:42:30,982 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:31,722 INFO   Marked shipped on eBay order 08-14508-46084
+2026-05-01 22:42:32,224 INFO Order #26694: already processed — skipping
+2026-05-01 22:42:32,224 INFO Order #26693: already processed — skipping
+2026-05-01 22:42:32,224 INFO Order #26691: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26752: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26770: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26555: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26805: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26811: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26812: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26813: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26817: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26841: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26840: already processed — skipping
+2026-05-01 22:42:32,225 INFO Order #26833: already processed — skipping
+2026-05-01 22:42:33,881 INFO   Matched eBay order 04-14539-67103 (isbn=True, name=True)
+2026-05-01 22:42:33,882 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:34,442 INFO   Marked shipped on eBay order 04-14539-67103
+2026-05-01 22:42:34,944 INFO Order #26828: already processed — skipping
+2026-05-01 22:42:34,945 INFO Order #26824: already processed — skipping
+2026-05-01 22:42:36,831 INFO   Matched eBay order 13-14523-62661 (isbn=False, name=True)
+2026-05-01 22:42:36,833 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:37,528 INFO   Marked shipped on eBay order 13-14523-62661
+2026-05-01 22:42:38,030 INFO Order #26822: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26879: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26878: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26859: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26857: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26917: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26890: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26899: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26918: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26928: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26947: already processed — skipping
+2026-05-01 22:42:38,031 INFO Order #26993: already processed — skipping
+2026-05-01 22:42:39,807 INFO   Matched eBay order 20-14534-27043 (isbn=True, name=True)
+2026-05-01 22:42:39,809 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:40,474 INFO   Marked shipped on eBay order 20-14534-27043
+2026-05-01 22:42:42,847 INFO   Matched eBay order 01-14563-84803 (isbn=False, name=True)
+2026-05-01 22:42:42,849 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:43,385 INFO   Marked shipped on eBay order 01-14563-84803
+2026-05-01 22:42:43,887 INFO Order #26984: already processed — skipping
+2026-05-01 22:42:43,887 INFO Order #26965: already processed — skipping
+2026-05-01 22:42:45,875 INFO   Matched eBay order 15-14553-42498 (isbn=True, name=False)
+2026-05-01 22:42:45,877 INFO   Tracking 871104870192 available but TRACKING_ENABLED=False — marking shipped only
+2026-05-01 22:42:46,598 INFO   Marked shipped on eBay order 15-14553-42498
+2026-05-01 22:42:47,100 INFO Order #26996: already processed — skipping
+2026-05-01 22:42:47,100 INFO Order #27001: already processed — skipping
+2026-05-01 22:42:48,847 WARNING No eBay order match for ISBN=9781579478889, buyer=None
+2026-05-01 22:42:48,849 INFO Order #27022: already processed — skipping
+2026-05-01 22:42:48,849 INFO Order #27025: already processed — skipping
+2026-05-01 22:42:48,850 INFO Order #27027: already processed — skipping
+2026-05-01 22:42:50,885 INFO   Matched eBay order 19-14541-14756 (isbn=True, name=False)
+2026-05-01 22:42:50,886 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:51,472 INFO   Marked shipped on eBay order 19-14541-14756
+2026-05-01 22:42:52,642 INFO   Matched eBay order 27-14554-62891 (isbn=True, name=False)
+2026-05-01 22:42:52,643 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:53,313 INFO   Marked shipped on eBay order 27-14554-62891
+2026-05-01 22:42:53,815 INFO Order #27040: already processed — skipping
+2026-05-01 22:42:53,815 INFO Order #27041: already processed — skipping
+2026-05-01 22:42:53,815 INFO Order #27039: already processed — skipping
+2026-05-01 22:42:55,891 INFO   Matched eBay order 26-14542-26068 (isbn=True, name=False)
+2026-05-01 22:42:55,892 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:56,542 INFO   Marked shipped on eBay order 26-14542-26068
+2026-05-01 22:42:58,753 INFO   Matched eBay order 15-14553-42498 (isbn=True, name=True)
+2026-05-01 22:42:58,755 INFO   No tracking available — marking shipped only
+2026-05-01 22:42:59,394 INFO   Marked shipped on eBay order 15-14553-42498
+2026-05-01 22:43:01,906 INFO   Matched eBay order 06-14567-28021 (isbn=False, name=True)
+2026-05-01 22:43:01,908 INFO   No tracking available — marking shipped only
+2026-05-01 22:43:02,624 INFO   Marked shipped on eBay order 06-14567-28021
+2026-05-01 22:43:05,250 INFO   Matched eBay order 14-14554-58676 (isbn=True, name=True)
+2026-05-01 22:43:05,252 INFO   No tracking available — marking shipped only
+2026-05-01 22:43:05,887 INFO   Marked shipped on eBay order 14-14554-58676
+2026-05-01 22:43:07,930 INFO   Matched eBay order 09-14568-89487 (isbn=True, name=True)
+2026-05-01 22:43:07,931 INFO   No tracking available — marking shipped only
+2026-05-01 22:43:08,514 INFO   Marked shipped on eBay order 09-14568-89487
+2026-05-01 22:43:09,016 INFO Order #27101: already processed — skipping
+2026-05-01 22:43:10,696 INFO   Matched eBay order 11-14565-54813 (isbn=True, name=True)
+2026-05-01 22:43:10,698 INFO   No tracking available — marking shipped only
+2026-05-01 22:43:11,315 INFO   Marked shipped on eBay order 11-14565-54813
+2026-05-01 22:43:13,727 INFO   Matched eBay order 26-14542-26068 (isbn=True, name=True)
+2026-05-01 22:43:13,729 INFO   No tracking available — marking shipped only
+2026-05-01 22:43:14,376 INFO   Marked shipped on eBay order 26-14542-26068
+2026-05-01 22:43:14,878 INFO Order #27086: already processed — skipping
+2026-05-01 22:43:14,878 INFO Order #27085: already processed — skipping
+2026-05-01 22:43:14,878 INFO ============================================================
+2026-05-01 22:43:14,878 INFO DONE: 15 marked shipped | 42 already done | 1 failed/no match | TRACKING_ENABLED=False
+2026-05-01 22:43:14,878 INFO ============================================================

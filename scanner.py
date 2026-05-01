@@ -42,6 +42,7 @@ BLOCKLIST = {
     '9780393979503',  # C Programming: A Modern Approach — download only
     '9780973501827',  # Back Mechanic — min qty 10
     '9780357622957',  # Theory and Practice of Group Counseling — min qty 5
+    '9781466516946',  # American Herbal Botanical Safety Handbook — counterfeit flag
 }
 
 logging.basicConfig(

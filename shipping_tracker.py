@@ -197,11 +197,11 @@ def get_shipping_emails() -> list[dict]:
         msg = email.message_from_bytes(msg_data[0][1])
         raw, text = extract_raw_and_text(msg)
 
-# Match both "Shipped" emails (Pass 1) and "In Transit" emails (Pass 2 — has tracking)
-    combined = (raw + ' ' + text).upper()
-    status_signals = ['SHIPPED', 'IN TRANSIT', 'TRACKING NUMBER', 'TRACKING:']
-if not any(sig in combined for sig in status_signals):
-    continue
+        # Match both "Shipped" emails (Pass 1) and "In Transit" emails (Pass 2 — has tracking)
+        combined = (raw + ' ' + text).upper()
+        status_signals = ['SHIPPED', 'IN TRANSIT', 'TRACKING NUMBER', 'TRACKING:']
+        if not any(sig in combined for sig in status_signals):
+            continue
 
         parsed = parse_shipping_email(text)
         if parsed.get('order_id'):
@@ -235,14 +235,14 @@ def get_ebay_token() -> str:
 def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
     """
     Find matching eBay order by ISBN or buyer name.
-    
+
     Search strategy (in order):
       1. SKU == ISBN (auto-listed books)
       2. ISBN in line item title
       3. ISBN in line item properties
       4. ISBN in legacyVariationId or customLabel
       5. Buyer name match (fallback)
-    
+
     Fetches unfulfilled orders first (most relevant), then falls back
     to all recent orders. Handles pagination for stores with 200+ orders.
     """

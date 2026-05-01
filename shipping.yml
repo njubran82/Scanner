@@ -1,0 +1,39 @@
+name: Shipping Tracker
+on:
+  schedule:
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Clear unstaged files
+        run: git checkout -- .
+      - name: Pull latest
+        run: git pull --rebase origin main
+      - name: Run shipping tracker
+        env:
+          EBAY_APP_ID:        ${{ secrets.EBAY_APP_ID }}
+          EBAY_CERT_ID:       ${{ secrets.EBAY_CERT_ID }}
+          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
+          SMTP_USER:          ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD:      ${{ secrets.SMTP_PASSWORD }}
+        run: python shipping_tracker.py
+      - name: Commit state
+        run: |
+          git config user.name  "github-actions"
+          git config user.email "actions@github.com"
+          git add shipping_state.json shipping_tracker.log || true
+          git diff --cached --quiet || git commit -m "Shipping tracker state update"
+          git push || true

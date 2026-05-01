@@ -39,6 +39,7 @@ MIN_QTY_BLOCKLIST = {
     "9781260460445",  # Lange Q&A Radiography Examination
     "9780990873853",  # Overcoming Gravity: Gymnastics — min qty 5
     "9781119826798",  # Architect's Studio Companion — PDF only on BooksGoat
+    "9780357622957"
 }
 MAX_LISTINGS  = 1000  # upgraded plan         # hard cap on active listings
 COOLDOWN_DAYS   = 14          # days before a delisted book can be relisted

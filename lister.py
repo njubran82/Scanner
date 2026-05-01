@@ -66,7 +66,10 @@ BLOCKLIST = {
     '9780393979503',  # C Programming: A Modern Approach — download only
     '9780973501827',  # Back Mechanic — min qty 10
     '9780357622957',  # Theory and Practice of Group Counseling — min qty 5
+    '9781466516946',  # American Herbal Products Botanical Safety Handbook — counterfeit flag
 }
+
+INTERNATIONAL_DISCLAIMER = "International edition. Content identical. Lower-cost global printing."
 
 CLOSING_STATEMENT = (
     "This item is sourced internationally to offer significant savings. "
@@ -409,7 +412,7 @@ def ensure_inventory_item(isbn: str, title: str, fmt: str,
         'sku': isbn,
         'product': {
             'title':       title[:80],
-            'description': f"{description}\n\n{CLOSING_STATEMENT}",
+            'description': f"{INTERNATIONAL_DISCLAIMER}\n\n{description}\n\n{CLOSING_STATEMENT}",
             'isbn':        [isbn],
             'aspects': {
                 'Book Title': [title[:65]],

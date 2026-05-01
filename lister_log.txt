@@ -3577,3 +3577,20 @@
 2026-05-01 20:14:02,996 INFO   FAILED_DETAIL 9798670880909 | Study Guide for FE Electrical & Computer | stage=publish | image=False | img_quality=none | A user error has occurred. Add at least 1 photo. More photos are better! Show of
 2026-05-01 20:14:02,996 INFO ============================================================
 2026-05-01 20:14:04,627 INFO Failure email sent (2 failures)
+2026-05-01 20:48:29,590 INFO ============================================================
+2026-05-01 20:48:29,590 INFO LISTER STARTED — 2026-05-01 20:48:29
+2026-05-01 20:48:29,590 INFO ============================================================
+2026-05-01 20:48:29,590 INFO Processing 2 opportunities...
+2026-05-01 20:48:32,071 INFO   No full-size image found — trying thumbnail pass...
+2026-05-01 20:48:33,229 WARNING   No image found
+2026-05-01 20:48:35,707 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.
+2026-05-01 20:48:37,987 INFO   No full-size image found — trying thumbnail pass...
+2026-05-01 20:48:38,563 WARNING   No image found
+2026-05-01 20:48:41,658 ERROR   FAIL 9798670880909: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from every angle and zoom in on details.
+2026-05-01 20:48:42,164 INFO ============================================================
+2026-05-01 20:48:42,164 INFO LISTER DONE: 0 listed | 2 failed
+2026-05-01 20:48:42,164 INFO FAILED BOOKS:
+2026-05-01 20:48:42,164 INFO   FAILED_DETAIL 9781641950565 | ACI CODE-318-19(22): Building Code Requi | stage=publish | image=False | img_quality=none | A user error has occurred. Add at least 1 photo. More photos are better! Show of
+2026-05-01 20:48:42,164 INFO   FAILED_DETAIL 9798670880909 | Study Guide for FE Electrical & Computer | stage=publish | image=False | img_quality=none | A user error has occurred. Add at least 1 photo. More photos are better! Show of
+2026-05-01 20:48:42,164 INFO ============================================================
+2026-05-01 20:48:43,226 INFO Failure email sent (2 failures)

@@ -2412,3 +2412,23 @@
 2026-05-01 20:13:46,903 INFO ============================================================
 2026-05-01 20:13:46,909 INFO CSV saved: 417 rows
 2026-05-01 20:13:46,909 INFO scan_opportunities.json written: 2 entries
+2026-05-01 20:47:16,957 INFO ============================================================
+2026-05-01 20:47:16,957 INFO SCANNER v3 STARTED — 2026-05-01 20:47:16
+2026-05-01 20:47:16,957 INFO ============================================================
+2026-05-01 20:47:16,961 INFO Loaded 417 books from CSV
+2026-05-01 20:47:17,986 INFO Merchant sheet: 89 books (1 skipped)
+2026-05-01 20:47:18,286 INFO eBay app token acquired
+2026-05-01 20:47:18,287 INFO CSV: 417 total books
+2026-05-01 20:47:18,287 INFO Merchant sheet: 89 books (for amazon_price cap only)
+2026-05-01 20:47:19,537 INFO   ✅ ACI CODE-318-19(22): Building Code Requirements fo | Cost: $76.99 | List: $105.6 | Profit: $12.45 | HIGH | EBAY_COMP (HIGH, n=8)
+2026-05-01 20:48:04,869 INFO   ✅ Study Guide for FE Electrical & Computer CBT E... | Cost: $44.99 | List: $78.97 | Profit: $21.9 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-05-01 20:48:29,357 INFO ============================================================
+2026-05-01 20:48:29,357 INFO SCAN COMPLETE: 2 opportunities found
+2026-05-01 20:48:29,357 INFO   Already listed: 338
+2026-05-01 20:48:29,357 INFO   Unprofitable:   49
+2026-05-01 20:48:29,357 INFO   No eBay data:   14
+2026-05-01 20:48:29,357 INFO   Cooldown skip:  0
+2026-05-01 20:48:29,357 INFO   Blocklist skip: 14
+2026-05-01 20:48:29,357 INFO ============================================================
+2026-05-01 20:48:29,363 INFO CSV saved: 417 rows
+2026-05-01 20:48:29,363 INFO scan_opportunities.json written: 2 entries

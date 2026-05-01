@@ -13,7 +13,12 @@ cert_id = os.environ['EBAY_CERT_ID']
 refresh = os.environ['EBAY_REFRESH_TOKEN']
 creds   = base64.b64encode(f'{app_id}:{cert_id}'.encode()).decode()
 
-MIN_QTY_BLOCKLIST = {'9781260460445', '9780990873853'}
+MIN_QTY_BLOCKLIST = {
+    '9781260460445',  # Lange Q&A Radiography Examination — min qty 5
+    '9780990873853',  # Overcoming Gravity: Gymnastics — min qty 5
+    '9781119826798',  # Architect's Studio Companion — PDF only on BooksGoat
+    '9780357622957',  # Theory and Practice of Group Counseling — min qty 5
+}
 
 POLICIES = {
     'fulfillmentPolicyId': '391308514023',

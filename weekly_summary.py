@@ -231,6 +231,15 @@ def run():
             body_lines.append(f"  * {b['title']} (profit was ${b['profit']})")
         body_lines.append("")
 
+    body_lines.append("WORKFLOWS (GitHub Actions):")
+    body_lines.append("  Weekly Scanner     | Mon 9AM EST  | Scan + list + reprice + this email")
+    body_lines.append("  Order Monitor      | Every 2h     | Email fulfillment details on new sales")
+    body_lines.append("  Weekly Order Report| Mon 10AM EST | Order summary with source attribution")
+    body_lines.append("  Fix Images         | Wed 11AM EST | Upgrade missing/thumbnail cover images")
+    body_lines.append("  Fix Descriptions   | Manual       | Generate AI descriptions for listings")
+    body_lines.append("  Shipping Tracker   | DISABLED     | Auto-tracking (disabled for audit)")
+    body_lines.append("  Order Status Report| Manual       | On-demand order snapshot")
+    body_lines.append("")
     body_lines.append("See attachment for full detail.")
     body = "\n".join(body_lines)
 
@@ -320,37 +329,6 @@ def run():
         ))
     else:
         att_lines.append("  No delistings this run.\n")
-
-    # Workflow reference
-    att_lines += ["WORKFLOW REFERENCE", "-" * 70]
-    att_lines.append("""  Workflow              Schedule              Purpose
-  --------              --------              -------
-  Weekly Scanner        Mon 9AM EST (auto)    Scans BooksGoat feed, scores opportunities,
-                                              lists new books, reprices active listings,
-                                              sends this summary email.
-
-  Order Monitor         Every 2h (auto)       Polls eBay Orders API, emails fulfillment
-                                              details (buyer address, ISBN, BooksGoat URL)
-                                              on new sales.
-
-  Weekly Task Report    Weekly (auto)         Emails order summary with source attribution
-                                              (merchant sheet vs category scrape).
-
-  Fix Images            Wed 11AM EST (auto)   Re-scans active listings for missing/thumbnail
-                        + manual trigger      images. Checks eBay API, tries 6-source image
-                                              chain. Emails upgrade report.
-
-  Fix Descriptions      Manual trigger only   Generates AI descriptions for active listings
-                                              missing them. Updates eBay inventory items.
-
-  Shipping Tracker      Daily (auto)          Monitors BooksGoat shipping emails, tracks
-                                              fulfillment status.
-
-  Order Status Report   Manual trigger        On-demand order status snapshot.
-
-  Note: All workflows run in GitHub Actions (njubran82/Scanner).
-  Trigger manually: Actions > workflow name > Run workflow.
-""")
 
     detail = "\n".join(att_lines)
 

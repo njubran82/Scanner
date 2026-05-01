@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-weekly_summary.py v3
+weekly_summary.py v4
 - Parses only the MOST RECENT run block from each log file
 - Short summary in email body
 - Full detail as nicely formatted .txt attachment with tables
+- v4: Added FAILED LISTINGS section with error detail and corrective actions
 """
 
 import os, re, smtplib
@@ -48,7 +49,7 @@ def extract_latest_block(log: str, start_marker: str, end_marker: str) -> str:
 
 def parse_scanner(log: str) -> dict:
     result = {"opportunities": 0, "already_listed": 0, "unprofitable": 0,
-              "amazon_fallbacks": 0, "books": []}
+              "amazon_fallbacks": 0, "blocklist_skip": 0, "books": []}
 
     block = extract_latest_block(log, "SCANNER STARTED", "SCAN COMPLETE")
     if not block:
@@ -67,6 +68,9 @@ def parse_scanner(log: str) -> dict:
         if "Amazon fallbacks:" in line:
             m = re.search(r":\s*(\d+)", line)
             if m: result["amazon_fallbacks"] = int(m.group(1))
+        if "Blocklist skip:" in line:
+            m = re.search(r":\s*(\d+)", line)
+            if m: result["blocklist_skip"] = int(m.group(1))
         if "\u2705" in line and "Cost:" in line and "Profit:" in line:
             m = re.search(r"\u2705\s+(.+?)\s*\|\s*Cost:\s*\$([0-9.]+)\s*\|\s*List:\s*\$([0-9.]+)\s*\|\s*Profit:\s*\$([0-9.]+)\s*\|\s*([\w_]+)", line)
             if m:
@@ -81,7 +85,7 @@ def parse_scanner(log: str) -> dict:
 
 
 def parse_lister(log: str) -> dict:
-    result = {"listed": 0, "failed": 0, "books": []}
+    result = {"listed": 0, "failed": 0, "books": [], "failures": []}
     block = extract_latest_block(log, "LISTER STARTED", "LISTER DONE")
     if not block:
         return result
@@ -97,6 +101,35 @@ def parse_lister(log: str) -> dict:
                 result["books"].append({
                     "price": m.group(1), "profit": m.group(2), "listing_id": m.group(3)
                 })
+        # Parse FAILED_DETAIL lines (v2.4+ format)
+        if "FAILED_DETAIL" in line:
+            m = re.search(
+                r"FAILED_DETAIL\s+(\d{13})\s*\|\s*(.+?)\s*\|\s*stage=(\w+)\s*\|\s*image=(True|False)\s*\|\s*(.+)",
+                line
+            )
+            if m:
+                result["failures"].append({
+                    "isbn":      m.group(1),
+                    "title":     m.group(2).strip(),
+                    "stage":     m.group(3),
+                    "had_image": m.group(4) == "True",
+                    "error":     m.group(5).strip(),
+                })
+        # Also parse old-style FAIL lines for backward compatibility
+        elif "FAIL " in line and "FAILED_DETAIL" not in line and "FAIL:" not in line:
+            m = re.search(r"FAIL\s+(\d{13}):\s*(.+)", line)
+            if m:
+                isbn = m.group(1)
+                err  = m.group(2).strip()
+                # Avoid duplicates if FAILED_DETAIL already captured this ISBN
+                if not any(f["isbn"] == isbn for f in result["failures"]):
+                    result["failures"].append({
+                        "isbn":      isbn,
+                        "title":     "",
+                        "stage":     "unknown",
+                        "had_image": False,
+                        "error":     err,
+                    })
     return result
 
 
@@ -167,7 +200,9 @@ def run():
         f"  Opportunities found : {scanner['opportunities']}",
         f"  Already listed      : {scanner['already_listed']}",
         f"  Unprofitable        : {scanner['unprofitable']}",
+        f"  Blocklist skipped   : {scanner['blocklist_skip']}",
         f"  New listings        : {lister['listed']}",
+        f"  Listing failures    : {lister['failed']}",
         f"  Prices updated      : {repricer['repriced']}",
         f"  Auto-delisted       : {repricer['delisted']}",
         f"  Unchanged           : {repricer['unchanged']}",
@@ -178,14 +213,22 @@ def run():
     if scanner['books']:
         body_lines.append(f"NEW OPPORTUNITIES ({len(scanner['books'])}):")
         for b in scanner['books']:
-            body_lines.append(f"  • {b['title']}")
+            body_lines.append(f"  * {b['title']}")
             body_lines.append(f"    Cost ${b['cost']} | List ${b['price']} | Profit ${b['profit']} | {b['conf']}")
+        body_lines.append("")
+
+    if lister['failures']:
+        body_lines.append(f"LISTING FAILURES ({len(lister['failures'])}) — ACTION NEEDED:")
+        for f in lister['failures']:
+            title_str = f['title'] or f['isbn']
+            body_lines.append(f"  * {title_str}")
+            body_lines.append(f"    ISBN: {f['isbn']} | Stage: {f['stage']} | Error: {f['error'][:80]}")
         body_lines.append("")
 
     if repricer['delisted_books']:
         body_lines.append(f"AUTO-DELISTED ({len(repricer['delisted_books'])}):")
         for b in repricer['delisted_books']:
-            body_lines.append(f"  • {b['title']} (profit was ${b['profit']})")
+            body_lines.append(f"  * {b['title']} (profit was ${b['profit']})")
         body_lines.append("")
 
     body_lines.append("See attachment for full detail.")
@@ -211,6 +254,50 @@ def run():
     else:
         att_lines.append("  No new opportunities this run.\n")
 
+    # New listings table
+    att_lines += ["NEW LISTINGS CREATED", "-" * 70]
+    if lister['books']:
+        rows = [[b['listing_id'], f"${b['price']}", f"${b['profit']}"]
+                for b in lister['books']]
+        att_lines.append(table(
+            ["Listing ID", "Sale Price", "Profit"],
+            rows, [14, 12, 12]
+        ))
+    else:
+        att_lines.append("  No new listings this run.\n")
+
+    # Failed listings table — NEW in v4
+    att_lines += ["FAILED LISTINGS — ACTION NEEDED", "-" * 70]
+    if lister['failures']:
+        rows = [[f['isbn'], (f['title'] or 'N/A')[:35], f['stage'],
+                 'Yes' if f['had_image'] else 'No', f['error'][:40]]
+                for f in lister['failures']]
+        att_lines.append(table(
+            ["ISBN", "Title", "Stage", "Image?", "Error"],
+            rows, [15, 37, 12, 8, 42]
+        ))
+        att_lines.append("")
+        att_lines.append("Corrective actions:")
+        for i, f in enumerate(lister['failures'], 1):
+            title_str = f['title'] or f['isbn']
+            att_lines.append(f"  {i}. {title_str} ({f['isbn']})")
+            err_lower = f['error'].lower()
+            if 'photo' in err_lower or 'picture' in err_lower:
+                if 'resolution' in err_lower:
+                    att_lines.append("     -> Image too low-res. Upload higher-res cover in Seller Hub.")
+                else:
+                    att_lines.append("     -> No image found. Upload cover photo in Seller Hub.")
+                att_lines.append("     -> Search Google Images for ISBN to find suitable cover.")
+            elif 'description' in err_lower:
+                att_lines.append("     -> Run fix_listings.py locally to generate AI description.")
+            elif '25002' in f['error']:
+                att_lines.append("     -> eBay catalog conflict. List manually via Seller Hub.")
+            else:
+                att_lines.append(f"     -> Review error: {f['error'][:80]}")
+            att_lines.append("")
+    else:
+        att_lines.append("  No listing failures this run.\n")
+
     # Repriced table
     att_lines += ["REPRICED LISTINGS", "-" * 70]
     if repricer['repriced_books']:
@@ -234,23 +321,12 @@ def run():
     else:
         att_lines.append("  No delistings this run.\n")
 
-    # New listings table
-    att_lines += ["NEW LISTINGS CREATED", "-" * 70]
-    if lister['books']:
-        rows = [[b['listing_id'], f"${b['price']}", f"${b['profit']}"]
-                for b in lister['books']]
-        att_lines.append(table(
-            ["Listing ID", "Sale Price", "Profit"],
-            rows, [14, 12, 12]
-        ))
-    else:
-        att_lines.append("  No new listings this run.\n")
-
     detail = "\n".join(att_lines)
 
     # ── Send ──────────────────────────────────────────────────────
+    fail_tag = f" | {lister['failed']} FAILED" if lister['failed'] > 0 else ""
     subject = (f"BooksGoat Weekly — {datetime.utcnow().strftime('%Y-%m-%d')} | "
-               f"{scanner['opportunities']} opps | {lister['listed']} listed | "
+               f"{scanner['opportunities']} opps | {lister['listed']} listed{fail_tag} | "
                f"{repricer['repriced']} repriced | {repricer['delisted']} delisted")
 
     msg = MIMEMultipart()
@@ -272,6 +348,7 @@ def run():
         s.sendmail(EMAIL_FROM, [EMAIL_TO], msg.as_string())
 
     print(f"Sent: {scanner['opportunities']} opps | {lister['listed']} listed | "
+          f"{lister['failed']} failed | "
           f"{repricer['repriced']} repriced | {repricer['delisted']} delisted")
 
 

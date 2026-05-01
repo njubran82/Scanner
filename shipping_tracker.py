@@ -12,6 +12,11 @@ Set TRACKING_ENABLED = True after auditing matching logic to re-enable.
 - Marks order as shipped (FULFILLED) on eBay
 - Tracks state in shipping_state.json to avoid duplicates
 - Runs every 2 hours via GitHub Actions
+
+FIX LOG (2026-05-01):
+  - Guard 1: Only match unfulfilled eBay orders (removed fallback to all orders)
+  - Guard 2: Skip eBay orders already claimed in shipping_state.json by a different BG order
+  - Guard 3: Require buyer name match when multiple ISBN matches exist in unfulfilled orders
 """
 
 import os, json, imaplib, email, re, base64, logging, time, requests, unicodedata
@@ -56,6 +61,24 @@ def save_state(state: dict):
     tmp = str(STATE_FILE) + '.tmp'
     Path(tmp).write_text(json.dumps(state, indent=2))
     Path(tmp).replace(STATE_FILE)
+
+
+# ── Claimed-order helper ──────────────────────────────────────────────────────
+def _get_claimed_ebay_orders(state: dict, current_bg_order_id: str) -> set:
+    """Return set of eBay order IDs already claimed by OTHER BooksGoat orders.
+
+    This prevents the duplicate-ISBN bug: if BG orders 27039 and 27048 both
+    match the same ISBN, and 27039 already claimed eBay order 15-14553-42498,
+    then 27048 must NOT match that same eBay order.
+    """
+    claimed = set()
+    for bg_id, entry in state.items():
+        if bg_id == current_bg_order_id:
+            continue  # don't block ourselves
+        ebay_id = entry.get('ebay_order_id')
+        if ebay_id and entry.get('status') in ('shipped', 'posted', 'failed'):
+            claimed.add(ebay_id)
+    return claimed
 
 
 # ── Email helpers ─────────────────────────────────────────────────────────────
@@ -171,6 +194,23 @@ def get_shipping_emails() -> list[dict]:
     return results
 
 
+# ── Name matching helper ──────────────────────────────────────────────────────
+def _normalize_name(name: str) -> str:
+    """Normalize a name for comparison: lowercase, strip accents, ASCII-only."""
+    return unicodedata.normalize('NFKD', name.lower()) \
+        .encode('ascii', 'ignore').decode('ascii').strip()
+
+def _names_match(name_a: str | None, name_b: str) -> bool:
+    """Fuzzy name match: either name contains the other (handles middle names, initials)."""
+    if not name_a:
+        return False
+    a = _normalize_name(name_a)
+    b = _normalize_name(name_b)
+    if not a or not b:
+        return False
+    return a in b or b in a
+
+
 # ── eBay OAuth ─────────────────────────────────────────────────────────────────
 def get_ebay_token() -> str:
     creds = base64.b64encode(f'{EBAY_APP_ID}:{EBAY_CERT_ID}'.encode()).decode()
@@ -191,82 +231,152 @@ def get_ebay_token() -> str:
 
 
 # ── eBay Orders API ───────────────────────────────────────────────────────────
-def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
+def find_ebay_order(isbn: str, buyer_name: str | None, token: str,
+                    state: dict, bg_order_id: str) -> dict | None:
+    """Find the matching eBay order for a BooksGoat shipment.
+
+    Three safety guards (added 2026-05-01 after order #27048 incident):
+
+    Guard 1 — UNFULFILLED ONLY
+        Only search orders with status NOT_STARTED or IN_PROGRESS.
+        Never fall back to searching all orders. An already-fulfilled order
+        should never be matched again.
+
+    Guard 2 — CLAIMED-ORDER CHECK
+        Skip any eBay order that is already mapped to a DIFFERENT BooksGoat
+        order in shipping_state.json. This prevents the duplicate-ISBN bug
+        where BG orders 27039 and 27048 (same ISBN) both matched the same
+        eBay order.
+
+    Guard 3 — BUYER NAME DISAMBIGUATION
+        Collect ALL ISBN matches from unfulfilled orders. If there is exactly
+        one match, accept it (single-match = unambiguous). If there are
+        multiple matches (same ISBN sold to different buyers), require a
+        buyer name match to disambiguate. If no name is available from the
+        email, reject the match as ambiguous.
+    """
     headers = {'Authorization': f'Bearer {token}'}
-    filter_sets = [
-        'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}',
-        None,
-    ]
-    for order_filter in filter_sets:
-        offset = 0
-        while True:
-            params = {'limit': 200, 'offset': offset}
-            if order_filter:
-                params['filter'] = order_filter
-            try:
-                r = requests.get(
-                    'https://api.ebay.com/sell/fulfillment/v1/order',
-                    headers=headers, params=params, timeout=15)
-            except Exception as e:
-                log.error(f'Orders API request failed: {e}')
-                return None
-            if r.status_code != 200:
-                log.error(f'Orders API error: {r.status_code} {r.text[:200]}')
-                return None
-            data = r.json()
-            orders = data.get('orders', [])
-            if not orders:
-                break
-            for order in orders:
-                for item in order.get('lineItems', []):
-                    title = item.get('title', '')
-                    sku = item.get('sku', '')
-                    custom_label = item.get('legacyVariationId', '')
-                    isbn_match = False
-                    if isbn:
-                        if sku == isbn:
+    claimed = _get_claimed_ebay_orders(state, bg_order_id)
+
+    # ── Guard 1: Only search unfulfilled orders ──
+    # No fallback pass. If the order is already fulfilled, we should not
+    # be touching it again.
+    all_isbn_matches = []  # collect all ISBN-matching unfulfilled orders
+    offset = 0
+    while True:
+        params = {
+            'limit': 200,
+            'offset': offset,
+            'filter': 'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}'
+        }
+        try:
+            r = requests.get(
+                'https://api.ebay.com/sell/fulfillment/v1/order',
+                headers=headers, params=params, timeout=15)
+        except Exception as e:
+            log.error(f'Orders API request failed: {e}')
+            return None
+        if r.status_code != 200:
+            log.error(f'Orders API error: {r.status_code} {r.text[:200]}')
+            return None
+        data = r.json()
+        orders = data.get('orders', [])
+        if not orders:
+            break
+
+        for order in orders:
+            ebay_order_id = order['orderId']
+
+            # ── Guard 2: Skip orders already claimed by another BG order ──
+            if ebay_order_id in claimed:
+                log.info(f"  Skipping eBay order {ebay_order_id} — already claimed "
+                         f"by another BooksGoat order")
+                continue
+
+            # Check ISBN match across all line items
+            isbn_match = False
+            for item in order.get('lineItems', []):
+                title = item.get('title', '')
+                sku = item.get('sku', '')
+                custom_label = item.get('legacyVariationId', '')
+                if isbn:
+                    if sku == isbn or isbn in title or custom_label == isbn:
+                        isbn_match = True
+                        break
+                    for prop in item.get('properties', []):
+                        if isinstance(prop, dict) and prop.get('name') == 'ISBN' \
+                                and prop.get('value') == isbn:
                             isbn_match = True
-                        elif isbn in title:
-                            isbn_match = True
-                        elif custom_label == isbn:
-                            isbn_match = True
-                        else:
-                            for prop in item.get('properties', []):
-                                if isinstance(prop, dict) and prop.get('name') == 'ISBN' and prop.get('value') == isbn:
-                                    isbn_match = True
-                                    break
-                    ship_to = (order.get('fulfillmentStartInstructions') or [{}])[0] \
-                        .get('shippingStep', {}).get('shipTo', {})
-                    ebay_name_raw = ship_to.get('fullName', '')
-                    ebay_name_clean = re.sub(r'^(?:eIS|GSP)\s+C/O\s+', '', ebay_name_raw, flags=re.IGNORECASE)
-                    ebay_name_norm = unicodedata.normalize('NFKD', ebay_name_clean.lower()) \
-                        .encode('ascii', 'ignore').decode('ascii')
-                    name_match = False
-                    if buyer_name:
-                        bn = unicodedata.normalize('NFKD', buyer_name.lower()) \
-                            .encode('ascii', 'ignore').decode('ascii')
-                        name_match = bn in ebay_name_norm or ebay_name_norm in bn
-                    if isbn_match or name_match:
-                        # SAFETY: ISBN match is required. Name-only match is too risky
-                        # (caused wrong tracking on order #27048).
-                        # Match hierarchy:
-                        #   1. ISBN + name = best match (highest confidence)
-                        #   2. ISBN only = accepted (ISBN is reliable identifier)
-                        #   3. Name only = REJECTED (too ambiguous with multiple orders)
-                        if not isbn_match:
-                            log.warning(f"  Name-only match for order {order['orderId']} "
-                                        f"— REJECTED (name={buyer_name}, isbn={isbn})")
-                            continue
-                        match_type = 'isbn+name' if name_match else 'isbn_only'
-                        log.info(f"  Matched eBay order {order['orderId']} "
-                                 f"(match_type={match_type}, isbn={isbn_match}, name={name_match})")
-                        return order
-            total = data.get('total', 0)
-            offset += len(orders)
-            if offset >= total:
-                break
-    log.warning(f'No eBay order match for ISBN={isbn}, buyer={buyer_name}')
+                            break
+                    if isbn_match:
+                        break
+
+            if isbn_match:
+                # Extract buyer name from this order for Guard 3
+                ship_to = (order.get('fulfillmentStartInstructions') or [{}])[0] \
+                    .get('shippingStep', {}).get('shipTo', {})
+                ebay_name_raw = ship_to.get('fullName', '')
+                ebay_name_clean = re.sub(r'^(?:eIS|GSP)\s+C/O\s+', '',
+                                         ebay_name_raw, flags=re.IGNORECASE)
+                all_isbn_matches.append({
+                    'order': order,
+                    'ebay_name': ebay_name_clean,
+                    'name_match': _names_match(buyer_name, ebay_name_clean)
+                })
+
+        total = data.get('total', 0)
+        offset += len(orders)
+        if offset >= total:
+            break
+
+    # ── Guard 3: Disambiguate by buyer name if multiple matches ──
+    if not all_isbn_matches:
+        log.warning(f'No unfulfilled eBay order match for ISBN={isbn}, buyer={buyer_name}')
+        return None
+
+    if len(all_isbn_matches) == 1:
+        # Single match — unambiguous, accept regardless of name
+        match = all_isbn_matches[0]
+        oid = match['order']['orderId']
+        log.info(f"  Single ISBN match: eBay order {oid} "
+                 f"(buyer_name_match={match['name_match']}, "
+                 f"ebay_buyer={match['ebay_name']})")
+        return match['order']
+
+    # Multiple ISBN matches — same book sold to multiple buyers.
+    # This is exactly the scenario that caused the #27048 bug.
+    # Require buyer name match to disambiguate.
+    log.info(f"  Multiple ISBN matches ({len(all_isbn_matches)}) for ISBN={isbn} "
+             f"— requiring buyer name match to disambiguate")
+
+    name_matches = [m for m in all_isbn_matches if m['name_match']]
+
+    if len(name_matches) == 1:
+        match = name_matches[0]
+        oid = match['order']['orderId']
+        log.info(f"  Disambiguated by name: eBay order {oid} "
+                 f"(buyer={buyer_name} ↔ ebay_buyer={match['ebay_name']})")
+        return match['order']
+
+    if len(name_matches) > 1:
+        # Multiple name matches too (e.g., same buyer bought same book twice)
+        # Still ambiguous — reject to be safe
+        oids = [m['order']['orderId'] for m in name_matches]
+        log.warning(f"  AMBIGUOUS: {len(name_matches)} orders match both ISBN={isbn} "
+                    f"and buyer={buyer_name}: {oids} — REJECTING")
+        return None
+
+    # No name matches among the multiple ISBN matches
+    if not buyer_name:
+        log.warning(f"  AMBIGUOUS: {len(all_isbn_matches)} ISBN matches but no buyer name "
+                    f"parsed from email — REJECTING")
+    else:
+        ebay_names = [m['ebay_name'] for m in all_isbn_matches]
+        log.warning(f"  AMBIGUOUS: {len(all_isbn_matches)} ISBN matches for ISBN={isbn}, "
+                    f"but buyer '{buyer_name}' doesn't match any eBay buyer: "
+                    f"{ebay_names} — REJECTING")
     return None
+
 
 def post_shipped(ebay_order_id: str, token: str, order: dict,
                  tracking: str = None, carrier: str = None) -> bool:
@@ -366,8 +476,8 @@ def run():
             save_state(state)
             continue
 
-        # Find matching eBay order (requires ISBN match)
-        ebay_order = find_ebay_order(isbn, buyer, token)
+        # Find matching eBay order — passes state + BG order ID for Guard 2
+        ebay_order = find_ebay_order(isbn, buyer, token, state, order_id)
         if not ebay_order:
             state[order_id] = {
                 'status': 'no_match',

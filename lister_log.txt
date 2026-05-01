@@ -3513,3 +3513,16 @@
 2026-04-28 20:03:31,845 INFO ============================================================
 2026-04-28 20:03:31,845 INFO LISTER DONE: 0 listed | 3 failed
 2026-04-28 20:03:31,845 INFO ============================================================
+2026-05-01 16:54:17,373 INFO ============================================================
+2026-05-01 16:54:17,373 INFO LISTER STARTED — 2026-05-01 16:54:17
+2026-05-01 16:54:17,373 INFO ============================================================
+2026-05-01 16:54:17,373 INFO Processing 3 opportunities...
+2026-05-01 16:54:20,831 WARNING   No image found
+2026-05-01 16:54:23,463 ERROR   FAIL 9781641950565: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-05-01 16:54:24,956 WARNING   No image found
+2026-05-01 16:54:27,551 ERROR   FAIL 9798670880909: A user error has occurred. Add at least 1 photo. More photos are better! Show off your item from eve
+2026-05-01 16:54:29,047 INFO   Image found
+2026-05-01 16:54:33,598 ERROR   FAIL 9781609836184: A user error has occurred. The resolution for provided picture(s) does not meet eBay's Picture Polic
+2026-05-01 16:54:34,105 INFO ============================================================
+2026-05-01 16:54:34,105 INFO LISTER DONE: 0 listed | 3 failed
+2026-05-01 16:54:34,105 INFO ============================================================

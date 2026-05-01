@@ -2330,3 +2330,24 @@
 2026-04-28 20:02:56,658 INFO ============================================================
 2026-04-28 20:02:56,665 INFO CSV saved: 417 rows
 2026-04-28 20:02:56,665 INFO scan_opportunities.json written: 3 entries
+2026-05-01 16:53:08,904 INFO ============================================================
+2026-05-01 16:53:08,904 INFO SCANNER v3 STARTED — 2026-05-01 16:53:08
+2026-05-01 16:53:08,904 INFO ============================================================
+2026-05-01 16:53:08,909 INFO Loaded 417 books from CSV
+2026-05-01 16:53:09,759 INFO Merchant sheet: 89 books (1 skipped)
+2026-05-01 16:53:09,980 INFO eBay app token acquired
+2026-05-01 16:53:09,981 INFO CSV: 417 total books
+2026-05-01 16:53:09,981 INFO Merchant sheet: 89 books (for amazon_price cap only)
+2026-05-01 16:53:11,107 INFO   ✅ ACI CODE-318-19(22): Building Code Requirements fo | Cost: $76.99 | List: $105.6 | Profit: $12.45 | HIGH | EBAY_COMP (HIGH, n=8)
+2026-05-01 16:53:52,418 INFO   ✅ Study Guide for FE Electrical & Computer CBT E... | Cost: $44.99 | List: $78.97 | Profit: $21.9 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-05-01 16:54:04,029 INFO   ✅ Concrete Manual: Based on the 2015 IBC and ACI 318 | Cost: $87.99 | List: $154.65 | Profit: $43.0 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-05-01 16:54:16,813 INFO ============================================================
+2026-05-01 16:54:16,814 INFO SCAN COMPLETE: 3 opportunities found
+2026-05-01 16:54:16,814 INFO   Already listed: 337
+2026-05-01 16:54:16,814 INFO   Unprofitable:   49
+2026-05-01 16:54:16,814 INFO   No eBay data:   14
+2026-05-01 16:54:16,814 INFO   Cooldown skip:  0
+2026-05-01 16:54:16,814 INFO   Blocklist skip: 14
+2026-05-01 16:54:16,814 INFO ============================================================
+2026-05-01 16:54:16,820 INFO CSV saved: 417 rows
+2026-05-01 16:54:16,820 INFO scan_opportunities.json written: 3 entries

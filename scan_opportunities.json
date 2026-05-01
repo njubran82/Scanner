@@ -2,25 +2,25 @@
   {
     "isbn13": "9781641950565",
     "title": "ACI CODE-318-19(22): Building Code Requirements fo...",
-    "cost": 73.99,
+    "cost": 76.99,
     "price": 105.6,
-    "profit": 15.45,
-    "method": "HIGH | EBAY_COMP (HIGH, n=7)"
-  },
-  {
-    "isbn13": "9780063390157",
-    "title": "Tiny Humans, Big Emotions: How to Navigate Tantrum...",
-    "cost": 9.99,
-    "price": 25.08,
-    "profit": 11.25,
-    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=1)"
+    "profit": 12.45,
+    "method": "HIGH | EBAY_COMP (HIGH, n=8)"
   },
   {
     "isbn13": "9798670880909",
     "title": "Study Guide for FE Electrical & Computer CBT E...",
     "cost": 44.99,
-    "price": 78.72,
-    "profit": 21.69,
+    "price": 78.97,
+    "profit": 21.9,
+    "method": "MEDIUM | EBAY_COMP (MEDIUM, n=2)"
+  },
+  {
+    "isbn13": "9781609836184",
+    "title": "Concrete Manual: Based on the 2015 IBC and ACI 318...",
+    "cost": 87.99,
+    "price": 154.65,
+    "profit": 43.0,
     "method": "MEDIUM | EBAY_COMP (MEDIUM, n=2)"
   }
 ]

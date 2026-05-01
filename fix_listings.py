@@ -40,6 +40,7 @@ MIN_QTY_BLOCKLIST = {
     "9780990873853",  # Overcoming Gravity: Gymnastics — min qty 5
     "9781119826798",  # Architect's Studio Companion — PDF only on BooksGoat
     "9780357622957",  # Theory and Practice of Group Counseling — min qty 5
+    "9781466516946",  # American Herbal Botanical Safety Handbook — counterfeit flag
 }
 MAX_LISTINGS  = 1000  # upgraded plan         # hard cap on active listings
 COOLDOWN_DAYS   = 14          # days before a delisted book can be relisted
@@ -57,13 +58,17 @@ LOG_PATH   = BASE_DIR / "fix_listings.log"
 
 
 # ISBNs that permanently fail eBay upsert
+# ISBNs that permanently fail eBay upsert (confirmed catalog conflicts)
+# NOTE: 9781609836184 (Concrete Manual) REMOVED — was auto-listed successfully,
+#       recent failure was image resolution, not catalog conflict.
 SKIP_ISBNS = {
-    '9781609836184',
-    '9780763781873',
-    '9781951058067',
-    '9781951058098',
+    '9780763781873',   # NIMS: Principles and Practice
+    '9781951058067',   # ASQ Certified Manager of Quality
+    '9781951058098',   # ASQ Certified Quality Auditor
     '9781597381000',
 }
+
+INTERNATIONAL_DISCLAIMER = "International edition. Content identical. Lower-cost global printing."
 
 DISCLAIMER = (
     "This item is sourced internationally to offer significant savings. "
@@ -408,7 +413,7 @@ def generate_description(title: str, isbn: str) -> str:
     clean = clean_title(title)
 
     if not ANTHROPIC_API_KEY:
-        return f"Brand new {fmt} copy of {clean} (ISBN {isbn}).\n\n{DISCLAIMER}"
+        return f"{INTERNATIONAL_DISCLAIMER}\n\nBrand new {fmt} copy of {clean} (ISBN {isbn}).\n\n{DISCLAIMER}"
 
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     prompt = f"""Write a compelling, specific eBay book listing description.
@@ -440,7 +445,7 @@ Output ONLY the description text, nothing else."""
         log.warning(f"Claude error for {isbn}: {e}")
         body = f"Brand new {fmt} copy of {clean} (ISBN {isbn})."
 
-    return f"{body}\n\n{DISCLAIMER}"
+    return f"{INTERNATIONAL_DISCLAIMER}\n\n{body}\n\n{DISCLAIMER}"
 
 
 # ════════════════════════════════════════════════════════════════

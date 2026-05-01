@@ -1893,3 +1893,70 @@
 2026-05-01 22:53:08,786 INFO ============================================================
 2026-05-01 22:53:08,786 INFO DONE: 0 marked shipped | 57 already done | 1 failed/no match | TRACKING_ENABLED=False
 2026-05-01 22:53:08,786 INFO ============================================================
+2026-05-01 23:49:05,553 INFO ============================================================
+2026-05-01 23:49:05,553 INFO shipping_tracker.py started (TRACKING_ENABLED=False)
+2026-05-01 23:49:05,553 INFO Connecting to Gmail IMAP...
+2026-05-01 23:49:08,495 INFO Found 263 BooksGoat Order Update emails in last 14 days
+2026-05-01 23:50:12,126 INFO 119 shipping emails parsed
+2026-05-01 23:50:12,357 INFO eBay token acquired
+2026-05-01 23:50:12,358 INFO Order #26719: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26704: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26694: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26693: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26691: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26752: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26770: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26555: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26805: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26811: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26812: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26813: already processed — skipping
+2026-05-01 23:50:12,358 INFO Order #26817: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26841: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26840: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26833: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26831: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26828: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26824: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26823: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26822: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26879: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26878: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26859: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26857: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26917: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26890: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26899: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26918: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26928: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26947: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26993: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26989: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26988: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26984: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26965: already processed — skipping
+2026-05-01 23:50:12,359 INFO Order #26960: already processed — skipping
+2026-05-01 23:50:12,360 INFO Order #26996: already processed — skipping
+2026-05-01 23:50:12,360 INFO Order #27001: already processed — skipping
+2026-05-01 23:50:13,075 WARNING No unfulfilled eBay order match for ISBN=9781579478889, buyer=None
+2026-05-01 23:50:13,077 INFO Order #27022: already processed — skipping
+2026-05-01 23:50:13,077 INFO Order #27025: already processed — skipping
+2026-05-01 23:50:13,077 INFO Order #27027: already processed — skipping
+2026-05-01 23:50:13,077 INFO Order #27021: already processed — skipping
+2026-05-01 23:50:13,077 INFO Order #27011: already processed — skipping
+2026-05-01 23:50:13,077 INFO Order #27040: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27041: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27039: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27052: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27048: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27047: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27044: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27100: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27101: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27098: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27095: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27086: already processed — skipping
+2026-05-01 23:50:13,078 INFO Order #27085: already processed — skipping
+2026-05-01 23:50:13,078 INFO ============================================================
+2026-05-01 23:50:13,078 INFO DONE: 0 marked shipped | 57 already done | 1 failed/no match | TRACKING_ENABLED=False
+2026-05-01 23:50:13,078 INFO ============================================================

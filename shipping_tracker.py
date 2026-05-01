@@ -527,26 +527,15 @@ def run():
                 }
                 failed += 1
         else:
-            # No tracking yet — mark shipped anyway (pass 1), tracking comes later
-            ok = post_shipped(ebay_order_id, token, ebay_order)
-            if ok:
-                state[order_id] = {
-                    'status': 'shipped_no_tracking',
-                    'ebay_order_id': ebay_order_id,
-                    'isbn': isbn, 'buyer': buyer,
-                    'shipped_at': datetime.now().isoformat()
-                }
-                shipped_no_tracking += 1
-            else:
-                state[order_id] = {
-                    'status': 'failed',
-                    'ebay_order_id': ebay_order_id,
-                    'isbn': isbn, 'buyer': buyer,
-                    'attempts': existing.get('attempts', 0) + 1,
-                    'last_attempt': datetime.now().isoformat()
-                }
-                failed += 1
-
+            # No tracking yet - record in state only, do NOT call eBay API
+            # Fulfillment will be created in Pass 2 when tracking arrives
+            state[order_id] = {
+                'status': 'shipped_no_tracking',
+                'ebay_order_id': ebay_order_id,
+                'isbn': isbn, 'buyer': buyer,
+                'shipped_at': datetime.now().isoformat()
+            }
+            shipped_no_tracking += 1
         save_state(state)
         time.sleep(0.5)
 

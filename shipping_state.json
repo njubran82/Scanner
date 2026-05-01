@@ -400,8 +400,8 @@
     "tracking": null,
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 9,
-    "last_attempt": "2026-05-01T01:05:44.870046"
+    "attempts": 10,
+    "last_attempt": "2026-05-01T01:19:18.965626"
   },
   "27022": {
     "status": "posted",
@@ -534,13 +534,11 @@
     "shipped_at": "2026-04-30T23:23:16.246561"
   },
   "27086": {
-    "status": "no_match",
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "24-14558-75088",
     "isbn": "9781615373598",
-    "tracking": null,
-    "carrier": "FEDEX",
-    "buyer": null,
-    "attempts": 2,
-    "last_attempt": "2026-05-01T01:05:46.994988"
+    "buyer": "E Saathoff",
+    "shipped_at": "2026-05-01T01:19:20.306258"
   },
   "27085": {
     "status": "shipped_no_tracking",

@@ -197,8 +197,11 @@ def get_shipping_emails() -> list[dict]:
         msg = email.message_from_bytes(msg_data[0][1])
         raw, text = extract_raw_and_text(msg)
 
-        if 'SHIPPED' not in raw.upper() and 'SHIPPED' not in text.upper():
-            continue
+# Match both "Shipped" emails (Pass 1) and "In Transit" emails (Pass 2 — has tracking)
+    combined = (raw + ' ' + text).upper()
+    status_signals = ['SHIPPED', 'IN TRANSIT', 'TRACKING NUMBER', 'TRACKING:']
+if not any(sig in combined for sig in status_signals):
+    continue
 
         parsed = parse_shipping_email(text)
         if parsed.get('order_id'):

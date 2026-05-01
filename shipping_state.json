@@ -400,8 +400,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 17,
-    "last_attempt": "2026-05-01T07:57:49.751952"
+    "attempts": 18,
+    "last_attempt": "2026-05-01T09:27:17.205015"
   },
   "27022": {
     "status": "posted",
@@ -513,11 +513,14 @@
     "shipped_at": "2026-04-30T23:23:09.415509"
   },
   "27101": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "10-14567-52266",
     "isbn": "9781032836072",
     "buyer": "Christopher Shade",
-    "shipped_at": "2026-04-30T23:23:11.401823"
+    "shipped_at": "2026-04-30T23:23:11.401823",
+    "tracking": "871254278070",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-01T09:27:20.380819"
   },
   "27098": {
     "status": "shipped_no_tracking",
@@ -534,17 +537,23 @@
     "shipped_at": "2026-04-30T23:23:16.246561"
   },
   "27086": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "24-14558-75088",
     "isbn": "9781615373598",
     "buyer": "E Saathoff",
-    "shipped_at": "2026-05-01T01:19:20.306258"
+    "shipped_at": "2026-05-01T01:19:20.306258",
+    "tracking": "871254212948",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-01T09:27:24.018825"
   },
   "27085": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "16-14552-95359",
     "isbn": "9780195335286",
     "buyer": "Kevin Mcdowell",
-    "shipped_at": "2026-04-30T23:23:19.543671"
+    "shipped_at": "2026-04-30T23:23:19.543671",
+    "tracking": "871254175777",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-01T09:27:27.243145"
   }
 }

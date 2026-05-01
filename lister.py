@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-lister.py v2.3 — Lists opportunities from scan_opportunities.json
+lister.py v2.4 — Lists opportunities from scan_opportunities.json
 Uses full_publish logic: PUT inventory item → DELETE stale offer →
 POST fresh offer WITH merchantLocationKey → publish.
 Updates booksgoat_enhanced.csv with status=active, offer_id, sell_price.
@@ -11,6 +11,9 @@ Fixes applied:
   v2.2 — create_offer: includeCatalogProductDetails=False
   v2.3 — ensure_inventory_item: add Author aspect (required by eBay Books)
   v2.3 — publish_offer: safe JSON parsing, no crash on empty body
+  v2.4 — Ported full 5-source image fallback chain from fix_listings.py
+  v2.4 — Failure email: detailed report with error cause + corrective action
+  v2.4 — Synced BLOCKLIST with scanner.py
 
 Run: GitHub Actions scanner.yml after scanner.py
 """
@@ -47,10 +50,22 @@ CATEGORY_ID        = '261186'
 CSV_PATH           = Path('booksgoat_enhanced.csv')
 LOG_FILE           = 'lister_log.txt'
 
+# Synced with scanner.py BLOCKLIST
 BLOCKLIST = {
-    '9781260460445',
-    '9780990873853',
-    '9781119826798',
+    '9781119143642',  # Understanding Behaviorism — min qty 5
+    '9781260460445',  # Lange Q&A Radiography — min qty 5
+    '9780990873853',  # Overcoming Gravity — min qty 5
+    '9781119826798',  # Architect's Studio Companion — PDF only
+    '9781628257830',  # Process Groups — min qty 5
+    '9780415708234',  # Healing the Fragmented Selves — min qty 6
+    '9781591264507',  # PPI FE Electrical and Computer — min qty 5
+    '9780091816971',  # Who Moved My Cheese — min qty 50
+    '9781108724265',  # Trustworthy Online Controlled Experiments — min qty 5
+    '9780415898058',  # Even if it Costs Me My Life — min qty 5
+    '9781118115121',  # Art and Science of Technical Analysis — min qty 5
+    '9780393979503',  # C Programming: A Modern Approach — download only
+    '9780973501827',  # Back Mechanic — min qty 10
+    '9780357622957',  # Theory and Practice of Group Counseling — min qty 5
 }
 
 CLOSING_STATEMENT = (
@@ -149,61 +164,120 @@ def generate_description(title: str, isbn: str) -> str:
     return f"{title}\n\nISBN-13: {isbn}"
 
 
-# ── Cover image ────────────────────────────────────────────────────────────
-def get_cover_image(isbn: str):
-    def _valid(url: str, min_bytes: int = 2000) -> bool:
-        try:
-            r = requests.get(url, timeout=8, stream=True,
-                             headers={"User-Agent": "Mozilla/5.0"})
-            if r.status_code != 200:
-                return False
-            chunk = next(r.iter_content(min_bytes + 1), b"")
-            r.close()
-            return len(chunk) >= min_bytes
-        except Exception:
+# ── ISBN-10 conversion ────────────────────────────────────────────────────
+def isbn13_to_isbn10(isbn13: str) -> str:
+    """Convert ISBN-13 (978...) to ISBN-10. Returns '' if not convertible."""
+    if not isbn13 or not isbn13.startswith('978') or len(isbn13) != 13:
+        return ''
+    body = isbn13[3:12]
+    try:
+        total = sum(int(d) * (10 - i) for i, d in enumerate(body))
+        check = (11 - (total % 11)) % 11
+        return body + ('X' if check == 10 else str(check))
+    except (ValueError, IndexError):
+        return ''
+
+
+# ── Cover image — full 5-source fallback chain ────────────────────────────
+def is_real_image(url: str, min_bytes: int = 5000) -> bool:
+    """Validate that URL returns an actual JPEG/PNG image of sufficient size."""
+    try:
+        r = requests.get(url, timeout=12, stream=True,
+                         headers={"User-Agent": "Mozilla/5.0"})
+        if r.status_code != 200:
             return False
+        chunk = next(r.iter_content(chunk_size=min_bytes + 1), b"")
+        r.close()
+        is_jpg = chunk[:2] == b"\xff\xd8"
+        is_png = chunk[:4] == b"\x89PNG"
+        return (is_jpg or is_png) and len(chunk) >= min_bytes
+    except Exception:
+        return False
 
-    # 1. Open Library
-    for size in ("-L", "-M"):
-        url = f"https://covers.openlibrary.org/b/isbn/{isbn}{size}.jpg"
-        if _valid(url):
-            return url
 
-    # 2. Amazon CDN
-    for pattern in (
-        f"https://images-na.ssl-images-amazon.com/images/P/{isbn}.01.LZZZZZZZ.jpg",
-        f"https://m.media-amazon.com/images/P/{isbn}.01.LZZZZZZZ.jpg",
-    ):
-        if _valid(pattern):
-            return pattern
+def get_book_image(isbn13: str, isbn10: str = "") -> str | None:
+    """
+    Full 5-source image fallback chain (ported from fix_listings.py).
+    Validates actual image headers (JPEG/PNG) and minimum resolution.
+    """
+    # 1. Open Library Covers API — try L, M sizes for both ISBN-13 and ISBN-10
+    for isbn in [isbn13, isbn10]:
+        if not isbn:
+            continue
+        for size in ["L", "M"]:
+            url = f"https://covers.openlibrary.org/b/isbn/{isbn}-{size}.jpg"
+            if is_real_image(url, min_bytes=3000):
+                log.info(f"  Image: Open Library ({isbn}-{size})")
+                return url
 
-    # 3. Google Books API
+    # 2. Open Library Works API — sometimes has covers when ISBN endpoint doesn't
     try:
         r = requests.get(
-            f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&maxResults=3",
-            timeout=8)
-        if r.status_code == 200:
-            for item in r.json().get("items", []):
-                links = item.get("volumeInfo", {}).get("imageLinks", {})
-                for size_key in ("extraLarge", "large", "medium", "thumbnail"):
-                    img = links.get(size_key)
-                    if img:
-                        return img.replace("http://", "https://").replace("&edge=curl", "")
+            "https://openlibrary.org/api/books",
+            params={"bibkeys": f"ISBN:{isbn13}", "format": "json", "jscmd": "data"},
+            timeout=8,
+        )
+        data = r.json().get(f"ISBN:{isbn13}", {})
+        cover = data.get("cover", {})
+        for size_key in ["large", "medium", "small"]:
+            cover_url = cover.get(size_key)
+            if cover_url and is_real_image(cover_url, min_bytes=3000):
+                log.info(f"  Image: Open Library Works API ({size_key})")
+                return cover_url
     except Exception:
         pass
 
-    # 4. Open Library search by cover_i
+    # 3. Amazon CDN patterns — 5 URL patterns across ISBN-13 and ISBN-10
+    amazon_patterns = [
+        f"https://images-na.ssl-images-amazon.com/images/P/{isbn13}.01.LZZZZZZZ.jpg",
+        f"https://images-na.ssl-images-amazon.com/images/P/{isbn13}.01._SX500_.jpg",
+        f"https://m.media-amazon.com/images/I/{isbn13}.jpg",
+    ]
+    if isbn10:
+        amazon_patterns += [
+            f"https://images-na.ssl-images-amazon.com/images/P/{isbn10}.01.LZZZZZZZ.jpg",
+            f"https://images-na.ssl-images-amazon.com/images/P/{isbn10}.01._SX500_.jpg",
+        ]
+    for url in amazon_patterns:
+        if is_real_image(url, min_bytes=5000):
+            log.info(f"  Image: Amazon CDN")
+            return url
+
+    # 4. Google Books API — with zoom parameter for higher resolution
     try:
         r = requests.get(
-            f"https://openlibrary.org/search.json?isbn={isbn}&fields=cover_i",
-            timeout=8)
-        if r.status_code == 200:
-            docs = r.json().get("docs", [])
-            if docs and docs[0].get("cover_i"):
-                cid = docs[0]["cover_i"]
-                url = f"https://covers.openlibrary.org/b/id/{cid}-L.jpg"
-                if _valid(url):
-                    return url
+            "https://www.googleapis.com/books/v1/volumes",
+            params={"q": f"isbn:{isbn13}", "maxResults": 3},
+            timeout=8,
+        )
+        for item in r.json().get("items", []):
+            img = item.get("volumeInfo", {}).get("imageLinks", {})
+            for size_key, zoom in [("extraLarge", 3), ("large", 3), ("medium", 2), ("thumbnail", 1)]:
+                src = img.get(size_key)
+                if not src:
+                    continue
+                src = src.replace("http://", "https://")
+                src = re.sub(r"zoom=\d", f"zoom={zoom}", src)
+                if is_real_image(src, min_bytes=3000):
+                    log.info(f"  Image: Google Books ({size_key})")
+                    return src
+    except Exception as e:
+        log.warning(f"  Google Books failed for {isbn13}: {e}")
+
+    # 5. Open Library search by cover ID — last resort
+    try:
+        r = requests.get(
+            "https://openlibrary.org/search.json",
+            params={"isbn": isbn13, "fields": "cover_i", "limit": 1},
+            timeout=8,
+        )
+        docs = r.json().get("docs", [])
+        if docs and docs[0].get("cover_i"):
+            cover_id = docs[0]["cover_i"]
+            url = f"https://covers.openlibrary.org/b/id/{cover_id}-L.jpg"
+            if is_real_image(url, min_bytes=3000):
+                log.info(f"  Image: Open Library cover ID ({cover_id})")
+                return url
     except Exception:
         pass
 
@@ -325,10 +399,108 @@ def publish_offer(offer_id: str, token: str):
     if r.text:
         try:
             errs = r.json().get('errors', [])
-            err  = errs[0].get('message', '')[:100] if errs else r.text[:100]
+            err  = errs[0].get('message', '')[:200] if errs else r.text[:200]
         except Exception:
-            err = r.text[:100]
+            err = r.text[:200]
     return None, err
+
+
+# ── Failure categorization ─────────────────────────────────────────────────
+def categorize_failure(stage: str, error: str, had_image: bool) -> str:
+    """Return a human-readable corrective action based on failure context."""
+    error_lower = error.lower() if error else ''
+
+    if 'photo' in error_lower or 'picture' in error_lower:
+        if 'resolution' in error_lower:
+            return (
+                "Image found but too low resolution for eBay.\n"
+                "    -> Upload a higher-res cover photo manually in Seller Hub.\n"
+                "    -> Search Google Images for the ISBN to find a suitable cover."
+            )
+        else:
+            return (
+                "No cover image found from any of the 5 automated sources.\n"
+                "    -> Upload a cover photo manually in Seller Hub.\n"
+                "    -> Search Google Images for the ISBN to find a suitable cover."
+            )
+
+    if stage == 'inventory':
+        if '25002' in error:
+            return (
+                "eBay catalog conflict on inventory item creation.\n"
+                "    -> Try listing manually via Seller Hub (Sell Similar).\n"
+                "    -> If persistent, add to SKIP_ISBNS and list manually."
+            )
+        return (
+            f"Inventory item creation failed: {error[:100]}\n"
+            "    -> Check eBay API status. Retry on next run."
+        )
+
+    if stage == 'offer':
+        if 'already exists' in error_lower:
+            return (
+                "An offer already exists for this SKU.\n"
+                "    -> Delete stale offer in Seller Hub, then retry."
+            )
+        return (
+            f"Offer creation failed: {error[:100]}\n"
+            "    -> Check for existing offers/listings for this ISBN."
+        )
+
+    if stage == 'publish':
+        if 'description' in error_lower:
+            return (
+                "eBay requires a description but none was generated.\n"
+                "    -> Run fix_listings.py locally to generate AI description, then retry."
+            )
+        return (
+            f"Publish failed: {error[:120]}\n"
+            "    -> Review error in Seller Hub. May need manual intervention."
+        )
+
+    return f"Unknown failure at {stage}: {error[:120]}"
+
+
+# ── Failure email ──────────────────────────────────────────────────────────
+def send_failure_email(failures: list):
+    """Send detailed failure report email with corrective actions."""
+    if not failures or not all([SMTP_USER, SMTP_PASSWORD, EMAIL_TO]):
+        return
+
+    lines = [
+        f"LISTING FAILURES — {len(failures)} book(s) failed",
+        f"Run: {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC}",
+        "=" * 60,
+        "",
+    ]
+
+    for i, f in enumerate(failures, 1):
+        lines.append(f"{i}. {f['title'][:60]}")
+        lines.append(f"   ISBN: {f['isbn']}")
+        lines.append(f"   Price: ${f['price']} | Profit: ${f['profit']}")
+        lines.append(f"   Stage: {f['stage']} | Image found: {'Yes' if f['had_image'] else 'No'}")
+        lines.append(f"   Error: {f['error'][:150]}")
+        lines.append(f"   Action: {f['action']}")
+        lines.append("")
+
+    lines.append("-" * 60)
+    lines.append("These books were found profitable by the scanner but could not")
+    lines.append("be listed automatically. Manual action is needed to capture")
+    lines.append("these sales opportunities.")
+
+    msg = MIMEText('\n'.join(lines))
+    msg['Subject'] = f'[Lister] {len(failures)} listing failure(s) — action needed'
+    msg['From']    = EMAIL_FROM or SMTP_USER
+    msg['To']      = EMAIL_TO
+
+    try:
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
+            s.starttls()
+            s.login(SMTP_USER, SMTP_PASSWORD)
+            s.sendmail(msg['From'], [EMAIL_TO], msg.as_string())
+        log.info(f'Failure email sent ({len(failures)} failures)')
+    except Exception as e:
+        log.error(f'Failure email send error: {e}')
 
 
 # ── Main ───────────────────────────────────────────────────────────────────
@@ -350,7 +522,7 @@ def list_books():
     rows   = load_csv()
     token  = get_user_token()
     listed = []
-    failed = []
+    failed = []   # list of dicts with full failure detail
 
     for i, opp in enumerate(opportunities):
         isbn  = opp['isbn13']
@@ -376,15 +548,23 @@ def list_books():
             if isbn in rows:
                 rows[isbn]['description'] = description
 
-        cover_url = get_cover_image(isbn)
+        # Full 5-source image lookup with ISBN-10 support
+        isbn10 = isbn13_to_isbn10(isbn)
+        cover_url = get_book_image(isbn, isbn10)
         if cover_url:
             log.info(f'  Image found')
         else:
             log.warning(f'  No image found')
 
         if not ensure_inventory_item(isbn, title, fmt, description, cover_url, qty, token):
-            log.error(f'  INV FAIL {isbn}')
-            failed.append(isbn)
+            err_msg = 'Inventory item creation failed'
+            action = categorize_failure('inventory', err_msg, bool(cover_url))
+            log.error(f'  FAIL {isbn}: {err_msg}')
+            failed.append({
+                'isbn': isbn, 'title': title, 'price': price,
+                'profit': opp.get('profit', '?'), 'stage': 'inventory',
+                'error': err_msg, 'had_image': bool(cover_url), 'action': action,
+            })
             time.sleep(0.5)
             continue
 
@@ -393,8 +573,14 @@ def list_books():
 
         offer_id = create_offer(isbn, price, qty, token)
         if not offer_id:
-            log.error(f'  OFFER FAIL {isbn}')
-            failed.append(isbn)
+            err_msg = 'Offer creation failed'
+            action = categorize_failure('offer', err_msg, bool(cover_url))
+            log.error(f'  FAIL {isbn}: {err_msg}')
+            failed.append({
+                'isbn': isbn, 'title': title, 'price': price,
+                'profit': opp.get('profit', '?'), 'stage': 'offer',
+                'error': err_msg, 'had_image': bool(cover_url), 'action': action,
+            })
             time.sleep(0.5)
             continue
 
@@ -409,10 +595,16 @@ def list_books():
                 rows[isbn]['listed_at']  = datetime.now(timezone.utc).isoformat()
             save_csv(rows)
         else:
+            action = categorize_failure('publish', err or '', bool(cover_url))
             log.error(f'  FAIL {isbn}: {err}')
             if isbn in rows:
                 rows[isbn]['offer_id'] = offer_id
-            failed.append(isbn)
+            failed.append({
+                'isbn': isbn, 'title': title, 'price': price,
+                'profit': opp.get('profit', '?'), 'stage': 'publish',
+                'error': err or 'Unknown publish error',
+                'had_image': bool(cover_url), 'action': action,
+            })
 
         time.sleep(0.5)
 
@@ -420,8 +612,13 @@ def list_books():
 
     log.info('=' * 60)
     log.info(f'LISTER DONE: {len(listed)} listed | {len(failed)} failed')
+    if failed:
+        log.info(f'FAILED BOOKS:')
+        for f in failed:
+            log.info(f'  FAILED_DETAIL {f["isbn"]} | {f["title"][:40]} | stage={f["stage"]} | image={f["had_image"]} | {f["error"][:80]}')
     log.info('=' * 60)
 
+    # Success email
     if listed and all([SMTP_USER, SMTP_PASSWORD, EMAIL_TO]):
         try:
             lines = ['New listings created:\n']
@@ -435,9 +632,13 @@ def list_books():
                 s.starttls()
                 s.login(SMTP_USER, SMTP_PASSWORD)
                 s.sendmail(msg['From'], [EMAIL_TO], msg.as_string())
-            log.info('Email alert sent')
+            log.info('Success email sent')
         except Exception as e:
-            log.error(f'Email failed: {e}')
+            log.error(f'Success email failed: {e}')
+
+    # Failure email — separate, with detailed corrective actions
+    if failed:
+        send_failure_email(failed)
 
 
 if __name__ == '__main__':

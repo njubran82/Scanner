@@ -6,12 +6,19 @@ Generates via Anthropic API, updates eBay inventory item, saves to CSV.
 
 Run: GitHub Actions fix_descriptions.yml (manual trigger)
      or locally: python fix_descriptions.py
+
+v1.1 — HTML email reports via email_helpers module
 """
 
-import os, csv, base64, time, logging, requests, re, smtplib
+import os, csv, base64, time, logging, requests, re
 from datetime import datetime, timezone
 from pathlib import Path
-from email.mime.text import MIMEText
+
+try:
+    from email_helpers import build_fix_descriptions_email, send_html_email
+except ImportError:
+    build_fix_descriptions_email = None
+    send_html_email = None
 
 EBAY_CLIENT_ID     = os.getenv('EBAY_CLIENT_ID') or os.getenv('EBAY_APP_ID')
 EBAY_CLIENT_SECRET = os.getenv('EBAY_CLIENT_SECRET') or os.getenv('EBAY_CERT_ID')
@@ -167,7 +174,6 @@ def run():
         log.error('CSV empty or not found')
         return
 
-    # Find active listings with no description
     candidates = []
     for isbn, row in rows.items():
         if row.get('status') != 'active':
@@ -198,7 +204,7 @@ def run():
             updated.append({'isbn': isbn, 'title': title[:50]})
         else:
             log.warning(f'  Description generated but eBay update failed')
-            row['description'] = desc  # Still cache it
+            row['description'] = desc
             failed.append({'isbn': isbn, 'title': title[:50]})
 
         if (i + 1) % 30 == 0:
@@ -212,36 +218,43 @@ def run():
     log.info(f'FIX_DESCRIPTIONS DONE: {len(updated)} updated | {len(failed)} failed')
     log.info('=' * 60)
 
-    # Email report
-    if all([SMTP_USER, SMTP_PASSWORD, EMAIL_TO]):
-        lines = [
-            f'DESCRIPTION FIX REPORT — {datetime.now():%Y-%m-%d %H:%M}',
-            f'Updated: {len(updated)} | Failed: {len(failed)}',
-            '=' * 50, '',
-        ]
-        if updated:
-            lines.append(f'DESCRIPTIONS ADDED ({len(updated)}):')
-            for u in updated:
-                lines.append(f'  {u["isbn"]} — {u["title"]}')
-            lines.append('')
-        if failed:
-            lines.append(f'EBAY UPDATE FAILED ({len(failed)}):')
-            for f_item in failed:
-                lines.append(f'  {f_item["isbn"]} — {f_item["title"]}')
-            lines.append('')
-
-        msg = MIMEText('\n'.join(lines))
-        msg['Subject'] = f'[fix_descriptions] {len(updated)} added, {len(failed)} failed'
-        msg['From'] = EMAIL_FROM or SMTP_USER
-        msg['To'] = EMAIL_TO
-        try:
-            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
-                s.starttls()
-                s.login(SMTP_USER, SMTP_PASSWORD)
-                s.sendmail(msg['From'], [EMAIL_TO], msg.as_string())
-            log.info('Report email sent')
-        except Exception as e:
-            log.error(f'Email failed: {e}')
+    # ── Send HTML email report ───────────────────────────────────────────
+    if updated or failed:
+        subject = f'[fix_descriptions] {len(updated)} added, {len(failed)} failed'
+        if send_html_email and build_fix_descriptions_email:
+            html = build_fix_descriptions_email(updated, failed)
+            send_html_email(subject, html)
+        elif all([SMTP_USER, SMTP_PASSWORD, EMAIL_TO]):
+            # Fallback: plain text
+            import smtplib
+            from email.mime.text import MIMEText
+            lines = [
+                f'DESCRIPTION FIX REPORT — {datetime.now():%Y-%m-%d %H:%M}',
+                f'Updated: {len(updated)} | Failed: {len(failed)}',
+                '=' * 50, '',
+            ]
+            if updated:
+                lines.append(f'DESCRIPTIONS ADDED ({len(updated)}):')
+                for u in updated:
+                    lines.append(f'  {u["isbn"]} — {u["title"]}')
+                lines.append('')
+            if failed:
+                lines.append(f'EBAY UPDATE FAILED ({len(failed)}):')
+                for f_item in failed:
+                    lines.append(f'  {f_item["isbn"]} — {f_item["title"]}')
+                lines.append('')
+            msg = MIMEText('\n'.join(lines))
+            msg['Subject'] = subject
+            msg['From'] = EMAIL_FROM or SMTP_USER
+            msg['To'] = EMAIL_TO
+            try:
+                with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
+                    s.starttls()
+                    s.login(SMTP_USER, SMTP_PASSWORD)
+                    s.sendmail(msg['From'], [EMAIL_TO], msg.as_string())
+                log.info('Report email sent (plain text fallback)')
+            except Exception as e:
+                log.error(f'Email failed: {e}')
 
 
 if __name__ == '__main__':

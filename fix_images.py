@@ -10,12 +10,19 @@ updates the eBay inventory item via PUT.
 
 Run: GitHub Actions fix_images.yml (manual trigger)
      or locally: python fix_images.py
+
+v1.1 — HTML email reports via email_helpers module
 """
 
-import os, csv, json, base64, time, logging, requests, re, smtplib
+import os, csv, json, base64, time, logging, requests, re
 from datetime import datetime, timezone
 from pathlib import Path
-from email.mime.text import MIMEText
+
+try:
+    from email_helpers import build_fix_images_email, send_html_email
+except ImportError:
+    build_fix_images_email = None
+    send_html_email = None
 
 EBAY_CLIENT_ID     = os.getenv('EBAY_CLIENT_ID') or os.getenv('EBAY_APP_ID')
 EBAY_CLIENT_SECRET = os.getenv('EBAY_CLIENT_SECRET') or os.getenv('EBAY_CERT_ID')
@@ -83,7 +90,7 @@ def is_real_image(url: str, min_bytes: int = 5000) -> bool:
         return False
 
 
-# ── Image search (full quality only — we're upgrading, not downgrading) ───
+# ── Image search (full quality only) ──────────────────────────────────────
 def find_full_image(isbn13: str, isbn10: str, title: str) -> str | None:
     """Search all sources for a full-quality image (3000+ bytes)."""
 
@@ -181,14 +188,9 @@ def find_full_image(isbn13: str, isbn10: str, title: str) -> str | None:
 
 # ── eBay inventory update ─────────────────────────────────────────────────
 def update_inventory_image(isbn: str, image_url: str, token: str) -> bool:
-    """
-    Fetch existing inventory item, add/replace image, PUT back.
-    Preserves all existing fields (title, description, aspects, etc).
-    """
     hdrs = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json',
             'Content-Language': 'en-US'}
 
-    # GET existing item
     r = requests.get(
         f'https://api.ebay.com/sell/inventory/v1/inventory_item/{isbn}',
         headers=hdrs, timeout=15)
@@ -197,7 +199,6 @@ def update_inventory_image(isbn: str, image_url: str, token: str) -> bool:
         return False
 
     item = r.json()
-    # Update image
     if 'product' not in item:
         item['product'] = {}
     item['product']['imageUrls'] = [image_url]
@@ -211,7 +212,6 @@ def update_inventory_image(isbn: str, image_url: str, token: str) -> bool:
                 if not val or val == 0:
                     del item[bad_key]
 
-    # PUT back
     r2 = requests.put(
         f'https://api.ebay.com/sell/inventory/v1/inventory_item/{isbn}',
         headers=hdrs, json=item, timeout=15)
@@ -266,12 +266,10 @@ def run():
     for i, (isbn, row) in enumerate(active):
         flag = row.get('image_flag', '').strip()
 
-        # If already flagged as thumbnail or missing, include immediately
         if flag in ('thumbnail', 'missing'):
             candidates.append((isbn, row, flag))
             continue
 
-        # If flag is empty, check eBay inventory API for actual image status
         if flag == '':
             try:
                 r = requests.get(
@@ -285,24 +283,19 @@ def run():
                         log.info(f'  {isbn} — no image on eBay')
                         row['image_flag'] = 'missing'
                         candidates.append((isbn, row, 'missing'))
-                    # else: has image, skip
-                elif r.status_code == 404:
-                    # No inventory item — skip
-                    pass
             except Exception:
                 pass
 
-        # Token refresh every 50 checks
         if (i + 1) % 50 == 0:
             token = get_user_token()
             log.info(f'  Checked {i+1}/{len(active)} — token refreshed')
 
-        time.sleep(0.15)  # light rate limiting for GET calls
+        time.sleep(0.15)
 
     log.info(f'Found {len(candidates)} candidates for image upgrade')
     if not candidates:
         log.info('No image upgrades needed')
-        save_csv(rows)  # Save any new flags
+        save_csv(rows)
         return
 
     upgraded = []
@@ -320,17 +313,15 @@ def run():
             still_missing.append({'isbn': isbn, 'title': title[:50], 'flag': flag})
             continue
 
-        # Update eBay
         ok = update_inventory_image(isbn, image_url, token)
         if ok:
             log.info(f'  UPGRADED — full image applied')
-            row['image_flag'] = ''  # Clear the flag
+            row['image_flag'] = ''
             upgraded.append({'isbn': isbn, 'title': title[:50], 'url': image_url})
         else:
             log.warning(f'  Image found but eBay update failed')
             still_missing.append({'isbn': isbn, 'title': title[:50], 'flag': flag})
 
-        # Token refresh every 30
         if (i + 1) % 30 == 0:
             token = get_user_token()
 
@@ -342,36 +333,43 @@ def run():
     log.info(f'FIX_IMAGES DONE: {len(upgraded)} upgraded | {len(still_missing)} still missing')
     log.info('=' * 60)
 
-    # Email report
-    if all([SMTP_USER, SMTP_PASSWORD, EMAIL_TO]) and (upgraded or still_missing):
-        lines = [
-            f'IMAGE FIX REPORT — {datetime.now():%Y-%m-%d %H:%M}',
-            f'Upgraded: {len(upgraded)} | Still missing: {len(still_missing)}',
-            '=' * 50, '',
-        ]
-        if upgraded:
-            lines.append('UPGRADED TO FULL IMAGE:')
-            for u in upgraded:
-                lines.append(f'  {u["isbn"]} — {u["title"]}')
-            lines.append('')
-        if still_missing:
-            lines.append('STILL NEED MANUAL PHOTO:')
-            for m in still_missing:
-                lines.append(f'  {m["isbn"]} — {m["title"]} (was: {m["flag"]})')
-            lines.append('')
-
-        msg = MIMEText('\n'.join(lines))
-        msg['Subject'] = f'[fix_images] {len(upgraded)} upgraded, {len(still_missing)} still missing'
-        msg['From'] = EMAIL_FROM or SMTP_USER
-        msg['To'] = EMAIL_TO
-        try:
-            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
-                s.starttls()
-                s.login(SMTP_USER, SMTP_PASSWORD)
-                s.sendmail(msg['From'], [EMAIL_TO], msg.as_string())
-            log.info('Report email sent')
-        except Exception as e:
-            log.error(f'Email failed: {e}')
+    # ── Send HTML email report ───────────────────────────────────────────
+    if (upgraded or still_missing):
+        subject = f'[fix_images] {len(upgraded)} upgraded, {len(still_missing)} still missing'
+        if send_html_email and build_fix_images_email:
+            html = build_fix_images_email(upgraded, still_missing)
+            send_html_email(subject, html)
+        elif all([SMTP_USER, SMTP_PASSWORD, EMAIL_TO]):
+            # Fallback: plain text
+            import smtplib
+            from email.mime.text import MIMEText
+            lines = [
+                f'IMAGE FIX REPORT — {datetime.now():%Y-%m-%d %H:%M}',
+                f'Upgraded: {len(upgraded)} | Still missing: {len(still_missing)}',
+                '=' * 50, '',
+            ]
+            if upgraded:
+                lines.append('UPGRADED TO FULL IMAGE:')
+                for u in upgraded:
+                    lines.append(f'  {u["isbn"]} — {u["title"]}')
+                lines.append('')
+            if still_missing:
+                lines.append('STILL NEED MANUAL PHOTO:')
+                for m in still_missing:
+                    lines.append(f'  {m["isbn"]} — {m["title"]} (was: {m["flag"]})')
+                lines.append('')
+            msg = MIMEText('\n'.join(lines))
+            msg['Subject'] = subject
+            msg['From'] = EMAIL_FROM or SMTP_USER
+            msg['To'] = EMAIL_TO
+            try:
+                with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
+                    s.starttls()
+                    s.login(SMTP_USER, SMTP_PASSWORD)
+                    s.sendmail(msg['From'], [EMAIL_TO], msg.as_string())
+                log.info('Report email sent (plain text fallback)')
+            except Exception as e:
+                log.error(f'Email failed: {e}')
 
 
 if __name__ == '__main__':

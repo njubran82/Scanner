@@ -368,15 +368,22 @@ def build_shipping_tracker_email(shipped, skipped, failed, tracking_enabled):
         ("Failed", str(len(failed)), "red" if failed else "gray"),
     ])
 
+    if not tracking_enabled:
+        banner_bg = "#ffebee"
+        banner_border = "#ffcdd2"
+        banner_color = "#c62828"
+        banner_text = "&#9888;&#65039; TRACKING DISABLED &#8212; Marking shipped without tracking numbers. Re-enable after auditing matching logic."
+    else:
+        banner_bg = "#e8f5e9"
+        banner_border = "#c8e6c9"
+        banner_color = "#2e7d32"
+        banner_text = "&#10003; Tracking enabled &#8212; posting tracking numbers to eBay."
+
     tracking_banner = (
         f'<div style="padding:10px 14px;border-radius:6px;margin-bottom:12px;'
-        f'background:{"#ffebee" if not tracking_enabled else "#e8f5e9"};'
-        f'border:1px solid {"#ffcdd2" if not tracking_enabled else "#c8e6c9"};'
-        f'font-size:13px;color:{"#c62828" if not tracking_enabled else "#2e7d32"};font-weight:600;">'
-        f'{"&#9888;&#65039; TRACKING DISABLED — Marking shipped without tracking numbers. "
-           "Re-enable after auditing matching logic." if not tracking_enabled
-           else "&#10003; Tracking enabled — posting tracking numbers to eBay."}'
-        f'</div>'
+        f'background:{banner_bg};border:1px solid {banner_border};'
+        f'font-size:13px;color:{banner_color};font-weight:600;">'
+        f'{banner_text}</div>'
     )
 
     parts = [tracking_banner]

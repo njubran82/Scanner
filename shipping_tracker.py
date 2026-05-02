@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
 """
-shipping_tracker.py — Automated BooksGoat shipping email → eBay shipped status.
+shipping_tracker.py — Automated BooksGoat shipping email → eBay tracking update.
 
-TRACKING DISABLED after order #27048 wrong-tracking incident (2026-05-01).
-Currently: marks orders as shipped on eBay (no tracking).
-Set TRACKING_ENABLED = True after auditing matching logic to re-enable.
+Two-pass flow:
+  Pass 1: BooksGoat confirms shipment → mark eBay order as shipped (no tracking yet)
+  Pass 2: Tracking number appears in email → update eBay order with tracking
 
 - Polls Gmail via IMAP for BooksGoat shipping emails
-- Parses order ID, ISBN, buyer name
+- Parses order ID, tracking number, carrier, ISBN, buyer name
 - Finds matching eBay order via Orders API
-- Marks order as shipped (FULFILLED) on eBay
+- POSTs shipment tracking to eBay Fulfillment API
+- Retries on subsequent runs if tracking not yet available
 - Tracks state in shipping_state.json to avoid duplicates
 - Runs every 2 hours via GitHub Actions
 
-FIX LOG (2026-05-01):
-  - Guard 1: Only match unfulfilled eBay orders (removed fallback to all orders)
-  - Guard 2: Skip eBay orders already claimed in shipping_state.json by a different BG order
-  - Guard 3: Require buyer name match when multiple ISBN matches exist in unfulfilled orders
+v2.1 — HTML email reports via email_helpers module
 """
 
 import os, json, imaplib, email, re, base64, logging, time, requests, unicodedata
@@ -24,17 +22,18 @@ from email.header import decode_header as _dh
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 
-# ── Config ────────────────────────────────────────────────────────────────────
+try:
+    from email_helpers import build_shipping_tracker_email, send_html_email
+except ImportError:
+    build_shipping_tracker_email = None
+    send_html_email = None
+
+# ── Config ───────────────────────────────────────────────────────────────────
 EBAY_APP_ID        = os.environ['EBAY_APP_ID']
 EBAY_CERT_ID       = os.environ['EBAY_CERT_ID']
 EBAY_REFRESH_TOKEN = os.environ['EBAY_REFRESH_TOKEN']
 SMTP_USER          = os.environ['SMTP_USER']
 SMTP_PASSWORD      = os.environ['SMTP_PASSWORD']
-
-# ── Safety toggle ─────────────────────────────────────────────────────────────
-# TRACKING DISABLED after order #27048 wrong-tracking incident.
-# Set to True ONLY after auditing tracking-to-order matching logic.
-TRACKING_ENABLED = False
 
 IMAP_HOST          = 'imap.gmail.com'
 IMAP_PORT          = 993
@@ -42,6 +41,11 @@ LOOKBACK_DAYS      = 14
 
 STATE_FILE         = Path('shipping_state.json')
 LOG_FILE           = 'shipping_tracker.log'
+
+# ── Safety toggle ────────────────────────────────────────────────────────────
+# TRACKING DISABLED after order #27048 wrong-tracking incident.
+# Set to True ONLY after auditing tracking-to-order matching logic.
+TRACKING_ENABLED = False
 
 logging.basicConfig(
     level=logging.INFO,
@@ -51,7 +55,7 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
-# ── State ─────────────────────────────────────────────────────────────────────
+# ── State ────────────────────────────────────────────────────────────────────
 def load_state() -> dict:
     if STATE_FILE.exists():
         return json.loads(STATE_FILE.read_text())
@@ -63,25 +67,7 @@ def save_state(state: dict):
     Path(tmp).replace(STATE_FILE)
 
 
-# ── Claimed-order helper ──────────────────────────────────────────────────────
-def _get_claimed_ebay_orders(state: dict, current_bg_order_id: str) -> set:
-    """Return set of eBay order IDs already claimed by OTHER BooksGoat orders.
-
-    This prevents the duplicate-ISBN bug: if BG orders 27039 and 27048 both
-    match the same ISBN, and 27039 already claimed eBay order 15-14553-42498,
-    then 27048 must NOT match that same eBay order.
-    """
-    claimed = set()
-    for bg_id, entry in state.items():
-        if bg_id == current_bg_order_id:
-            continue  # don't block ourselves
-        ebay_id = entry.get('ebay_order_id')
-        if ebay_id and entry.get('status') in ('shipped', 'posted', 'failed'):
-            claimed.add(ebay_id)
-    return claimed
-
-
-# ── Email helpers ─────────────────────────────────────────────────────────────
+# ── Email helpers ────────────────────────────────────────────────────────────
 def decode_header(val: str) -> str:
     parts = _dh(val or '')
     result = ''
@@ -173,45 +159,33 @@ def get_shipping_emails() -> list[dict]:
     mail = imaplib.IMAP4_SSL(IMAP_HOST, IMAP_PORT)
     mail.login(SMTP_USER, SMTP_PASSWORD)
     mail.select('inbox')
+
     since = (datetime.now() - timedelta(days=LOOKBACK_DAYS)).strftime('%d-%b-%Y')
     _, msg_ids = mail.search(None, 'SINCE', since, 'FROM', 'booksgoat', 'SUBJECT', '"Order Update"')
     ids = msg_ids[0].split()
     log.info(f'Found {len(ids)} BooksGoat Order Update emails in last {LOOKBACK_DAYS} days')
+
     results = []
     for msg_id in ids:
         _, msg_data = mail.fetch(msg_id, '(RFC822)')
         msg = email.message_from_bytes(msg_data[0][1])
         raw, text = extract_raw_and_text(msg)
+
         combined = (raw + ' ' + text).upper()
         status_signals = ['SHIPPED', 'IN TRANSIT', 'TRACKING NUMBER', 'TRACKING:']
         if not any(sig in combined for sig in status_signals):
             continue
+
         parsed = parse_shipping_email(text)
         if parsed.get('order_id'):
             results.append(parsed)
+
     mail.logout()
     log.info(f'{len(results)} shipping emails parsed')
     return results
 
 
-# ── Name matching helper ──────────────────────────────────────────────────────
-def _normalize_name(name: str) -> str:
-    """Normalize a name for comparison: lowercase, strip accents, ASCII-only."""
-    return unicodedata.normalize('NFKD', name.lower()) \
-        .encode('ascii', 'ignore').decode('ascii').strip()
-
-def _names_match(name_a: str | None, name_b: str) -> bool:
-    """Fuzzy name match: either name contains the other (handles middle names, initials)."""
-    if not name_a:
-        return False
-    a = _normalize_name(name_a)
-    b = _normalize_name(name_b)
-    if not a or not b:
-        return False
-    return a in b or b in a
-
-
-# ── eBay OAuth ─────────────────────────────────────────────────────────────────
+# ── eBay OAuth ───────────────────────────────────────────────────────────────
 def get_ebay_token() -> str:
     creds = base64.b64encode(f'{EBAY_APP_ID}:{EBAY_CERT_ID}'.encode()).decode()
     r = requests.post(
@@ -230,157 +204,89 @@ def get_ebay_token() -> str:
     return data['access_token']
 
 
-# ── eBay Orders API ───────────────────────────────────────────────────────────
-def find_ebay_order(isbn: str, buyer_name: str | None, token: str,
-                    state: dict, bg_order_id: str) -> dict | None:
-    """Find the matching eBay order for a BooksGoat shipment.
-
-    Three safety guards (added 2026-05-01 after order #27048 incident):
-
-    Guard 1 — UNFULFILLED ONLY
-        Only search orders with status NOT_STARTED or IN_PROGRESS.
-        Never fall back to searching all orders. An already-fulfilled order
-        should never be matched again.
-
-    Guard 2 — CLAIMED-ORDER CHECK
-        Skip any eBay order that is already mapped to a DIFFERENT BooksGoat
-        order in shipping_state.json. This prevents the duplicate-ISBN bug
-        where BG orders 27039 and 27048 (same ISBN) both matched the same
-        eBay order.
-
-    Guard 3 — BUYER NAME DISAMBIGUATION
-        Collect ALL ISBN matches from unfulfilled orders. If there is exactly
-        one match, accept it (single-match = unambiguous). If there are
-        multiple matches (same ISBN sold to different buyers), require a
-        buyer name match to disambiguate. If no name is available from the
-        email, reject the match as ambiguous.
-    """
+# ── eBay Orders API ──────────────────────────────────────────────────────────
+def find_ebay_order(isbn: str, buyer_name: str, token: str) -> dict | None:
     headers = {'Authorization': f'Bearer {token}'}
-    claimed = _get_claimed_ebay_orders(state, bg_order_id)
 
-    # ── Guard 1: Only search unfulfilled orders ──
-    # No fallback pass. If the order is already fulfilled, we should not
-    # be touching it again.
-    all_isbn_matches = []  # collect all ISBN-matching unfulfilled orders
-    offset = 0
-    while True:
-        params = {
-            'limit': 200,
-            'offset': offset,
-            'filter': 'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}'
-        }
-        try:
-            r = requests.get(
-                'https://api.ebay.com/sell/fulfillment/v1/order',
-                headers=headers, params=params, timeout=15)
-        except Exception as e:
-            log.error(f'Orders API request failed: {e}')
-            return None
-        if r.status_code != 200:
-            log.error(f'Orders API error: {r.status_code} {r.text[:200]}')
-            return None
-        data = r.json()
-        orders = data.get('orders', [])
-        if not orders:
-            break
+    filter_sets = [
+        'orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}',
+        None,
+    ]
 
-        for order in orders:
-            ebay_order_id = order['orderId']
+    for order_filter in filter_sets:
+        offset = 0
+        while True:
+            params = {'limit': 200, 'offset': offset}
+            if order_filter:
+                params['filter'] = order_filter
 
-            # ── Guard 2: Skip orders already claimed by another BG order ──
-            if ebay_order_id in claimed:
-                log.info(f"  Skipping eBay order {ebay_order_id} — already claimed "
-                         f"by another BooksGoat order")
-                continue
+            try:
+                r = requests.get(
+                    'https://api.ebay.com/sell/fulfillment/v1/order',
+                    headers=headers,
+                    params=params,
+                    timeout=15
+                )
+            except Exception as e:
+                log.error(f'Orders API request failed: {e}')
+                return None
 
-            # Check ISBN match across all line items
-            isbn_match = False
-            for item in order.get('lineItems', []):
-                title = item.get('title', '')
-                sku = item.get('sku', '')
-                custom_label = item.get('legacyVariationId', '')
-                if isbn:
-                    if sku == isbn or isbn in title or custom_label == isbn:
-                        isbn_match = True
-                        break
-                    for prop in item.get('properties', []):
-                        if isinstance(prop, dict) and prop.get('name') == 'ISBN' \
-                                and prop.get('value') == isbn:
+            if r.status_code != 200:
+                log.error(f'Orders API error: {r.status_code} {r.text[:200]}')
+                return None
+
+            data = r.json()
+            orders = data.get('orders', [])
+            if not orders:
+                break
+
+            for order in orders:
+                for item in order.get('lineItems', []):
+                    title       = item.get('title', '')
+                    sku         = item.get('sku', '')
+                    custom_label = item.get('legacyVariationId', '')
+
+                    isbn_match = False
+                    if isbn:
+                        if sku == isbn:
                             isbn_match = True
-                            break
-                    if isbn_match:
-                        break
+                        elif isbn in title:
+                            isbn_match = True
+                        elif custom_label == isbn:
+                            isbn_match = True
+                        else:
+                            for prop in item.get('properties', []):
+                                if isinstance(prop, dict) and prop.get('name') == 'ISBN' and prop.get('value') == isbn:
+                                    isbn_match = True
+                                    break
 
-            if isbn_match:
-                # Extract buyer name from this order for Guard 3
-                ship_to = (order.get('fulfillmentStartInstructions') or [{}])[0] \
-                    .get('shippingStep', {}).get('shipTo', {})
-                ebay_name_raw = ship_to.get('fullName', '')
-                ebay_name_clean = re.sub(r'^(?:eIS|GSP)\s+C/O\s+', '',
-                                         ebay_name_raw, flags=re.IGNORECASE)
-                all_isbn_matches.append({
-                    'order': order,
-                    'ebay_name': ebay_name_clean,
-                    'name_match': _names_match(buyer_name, ebay_name_clean)
-                })
+                    ship_to = (order.get('fulfillmentStartInstructions') or [{}])[0] \
+                        .get('shippingStep', {}).get('shipTo', {})
+                    ebay_name_raw = ship_to.get('fullName', '')
+                    ebay_name_clean = re.sub(r'^(?:eIS|GSP)\s+C/O\s+', '', ebay_name_raw, flags=re.IGNORECASE)
+                    ebay_name_norm = unicodedata.normalize('NFKD', ebay_name_clean.lower()) \
+                        .encode('ascii', 'ignore').decode('ascii')
+                    name_match = False
+                    if buyer_name:
+                        bn = unicodedata.normalize('NFKD', buyer_name.lower()) \
+                            .encode('ascii', 'ignore').decode('ascii')
+                        name_match = bn in ebay_name_norm or ebay_name_norm in bn
 
-        total = data.get('total', 0)
-        offset += len(orders)
-        if offset >= total:
-            break
+                    if isbn_match or name_match:
+                        log.info(f"  Matched eBay order {order['orderId']} "
+                                 f"(isbn={isbn_match}, name={name_match})")
+                        return order
 
-    # ── Guard 3: Disambiguate by buyer name if multiple matches ──
-    if not all_isbn_matches:
-        log.warning(f'No unfulfilled eBay order match for ISBN={isbn}, buyer={buyer_name}')
-        return None
+            total = data.get('total', 0)
+            offset += len(orders)
+            if offset >= total:
+                break
 
-    if len(all_isbn_matches) == 1:
-        # Single match — unambiguous, accept regardless of name
-        match = all_isbn_matches[0]
-        oid = match['order']['orderId']
-        log.info(f"  Single ISBN match: eBay order {oid} "
-                 f"(buyer_name_match={match['name_match']}, "
-                 f"ebay_buyer={match['ebay_name']})")
-        return match['order']
-
-    # Multiple ISBN matches — same book sold to multiple buyers.
-    # This is exactly the scenario that caused the #27048 bug.
-    # Require buyer name match to disambiguate.
-    log.info(f"  Multiple ISBN matches ({len(all_isbn_matches)}) for ISBN={isbn} "
-             f"— requiring buyer name match to disambiguate")
-
-    name_matches = [m for m in all_isbn_matches if m['name_match']]
-
-    if len(name_matches) == 1:
-        match = name_matches[0]
-        oid = match['order']['orderId']
-        log.info(f"  Disambiguated by name: eBay order {oid} "
-                 f"(buyer={buyer_name} ↔ ebay_buyer={match['ebay_name']})")
-        return match['order']
-
-    if len(name_matches) > 1:
-        # Multiple name matches too (e.g., same buyer bought same book twice)
-        # Still ambiguous — reject to be safe
-        oids = [m['order']['orderId'] for m in name_matches]
-        log.warning(f"  AMBIGUOUS: {len(name_matches)} orders match both ISBN={isbn} "
-                    f"and buyer={buyer_name}: {oids} — REJECTING")
-        return None
-
-    # No name matches among the multiple ISBN matches
-    if not buyer_name:
-        log.warning(f"  AMBIGUOUS: {len(all_isbn_matches)} ISBN matches but no buyer name "
-                    f"parsed from email — REJECTING")
-    else:
-        ebay_names = [m['ebay_name'] for m in all_isbn_matches]
-        log.warning(f"  AMBIGUOUS: {len(all_isbn_matches)} ISBN matches for ISBN={isbn}, "
-                    f"but buyer '{buyer_name}' doesn't match any eBay buyer: "
-                    f"{ebay_names} — REJECTING")
+    log.warning(f'No eBay order match for ISBN={isbn}, buyer={buyer_name}')
     return None
-
 
 def post_shipped(ebay_order_id: str, token: str, order: dict,
                  tracking: str = None, carrier: str = None) -> bool:
-    """Mark order as shipped on eBay. Only includes tracking if TRACKING_ENABLED."""
     carrier_map = {'FEDEX': 'FedEx', 'UPS': 'UPS', 'USPS': 'USPS'}
     line_items = [
         {'lineItemId': item['lineItemId']}
@@ -391,17 +297,9 @@ def post_shipped(ebay_order_id: str, token: str, order: dict,
         'shippedDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.000Z'),
         'lineItems': line_items
     }
-
-    # Only add tracking if TRACKING_ENABLED flag is True
-    if TRACKING_ENABLED and tracking:
+    if tracking:
         payload['trackingNumber'] = tracking
         payload['shippingCarrierCode'] = carrier_map.get(carrier, 'FedEx')
-        log.info(f'  Posting shipped + tracking {tracking}')
-    else:
-        if tracking:
-            log.info(f'  Tracking {tracking} available but TRACKING_ENABLED=False — marking shipped only')
-        else:
-            log.info(f'  No tracking available — marking shipped only')
 
     r = requests.post(
         f'https://api.ebay.com/sell/fulfillment/v1/order/{ebay_order_id}/shipping_fulfillment',
@@ -411,24 +309,50 @@ def post_shipped(ebay_order_id: str, token: str, order: dict,
         timeout=15
     )
     if r.status_code in (200, 201):
-        log.info(f'  Marked shipped on eBay order {ebay_order_id}')
+        if tracking:
+            log.info(f'  ✅ Marked shipped + tracking {tracking} → eBay order {ebay_order_id}')
+        else:
+            log.info(f'  ✅ Marked shipped (no tracking) → eBay order {ebay_order_id}')
         return True
 
-    # Already fulfilled — not an error
-    if r.status_code == 409 or (r.status_code == 400 and 'already' in r.text.lower()):
-        log.info(f'  Order {ebay_order_id} already fulfilled — skipping')
-        return True
+    if r.status_code == 400 and 'Invalid line item' in r.text and tracking and 'lineItems' in payload:
+        log.info(f'  Retrying without lineItems (order already fulfilled)...')
+        del payload['lineItems']
+        r2 = requests.post(
+            f'https://api.ebay.com/sell/fulfillment/v1/order/{ebay_order_id}/shipping_fulfillment',
+            headers={'Authorization': f'Bearer {token}',
+                     'Content-Type': 'application/json'},
+            json=payload,
+            timeout=15
+        )
+        if r2.status_code in (200, 201):
+            log.info(f'  ✅ Tracking {tracking} added to existing fulfillment → {ebay_order_id}')
+            return True
+        log.error(f'  ❌ Retry also failed: {r2.status_code} {r2.text[:300]}')
+        return False
 
-    log.error(f'  Failed: {r.status_code} {r.text[:300]}')
+    log.error(f'  ❌ Failed: {r.status_code} {r.text[:300]}')
     return False
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ── Main ─────────────────────────────────────────────────────────────────────
 def run():
     log.info('=' * 60)
-    log.info(f'shipping_tracker.py started (TRACKING_ENABLED={TRACKING_ENABLED})')
+    log.info('shipping_tracker.py started')
+    log.info(f'TRACKING_ENABLED = {TRACKING_ENABLED}')
 
     state = load_state()
+
+    # ── State migration ──
+    migrated = 0
+    for oid, entry in state.items():
+        if entry.get('status') == 'posted' and not entry.get('tracking'):
+            entry['status'] = 'shipped_no_tracking'
+            migrated += 1
+    if migrated:
+        log.info(f'State migration: reset {migrated} stale "posted" entries to "shipped_no_tracking"')
+        save_state(state)
+
     emails = get_shipping_emails()
 
     if not emails:
@@ -439,9 +363,13 @@ def run():
     token = get_ebay_token()
     log.info('eBay token acquired')
 
-    marked_shipped = skipped = failed = 0
+    # Track results for email report
+    shipped_list = []
+    skipped_list = []
+    failed_list  = []
 
-    # Deduplicate by order_id
+    posted = shipped_no_tracking = skipped = pending = failed = 0
+
     by_order = {}
     for e in emails:
         existing = by_order.get(e['order_id'])
@@ -451,33 +379,72 @@ def run():
         by_order[e['order_id']] = e
 
     for order_id, parsed in by_order.items():
-        tracking = parsed['tracking']
-        carrier  = parsed['carrier']
-        isbn     = parsed['isbn']
-        buyer    = parsed['buyer_name']
-        existing = state.get(order_id, {})
+        tracking   = parsed['tracking']
+        carrier    = parsed['carrier']
+        isbn       = parsed['isbn']
+        buyer      = parsed['buyer_name']
+        existing   = state.get(order_id, {})
 
-        # Already processed — skip
-        if existing.get('status') in ('shipped', 'posted'):
-            log.info(f'Order #{order_id}: already processed — skipping')
+        # ── FULLY DONE ──
+        if existing.get('status') == 'posted':
+            log.info(f'Order #{order_id}: fully complete — skipping')
             skipped += 1
+            skipped_list.append({
+                'isbn': isbn or '', 'title': f'Order #{order_id}',
+                'reason': 'Already fully posted',
+            })
             continue
 
-        # ISBN is required for matching (name-only matching disabled for safety)
-        if not isbn:
-            log.warning(f'Order #{order_id}: no ISBN parsed from email — cannot match safely, skipping')
-            state[order_id] = {
-                'status': 'no_isbn',
-                'isbn': isbn, 'tracking': tracking, 'carrier': carrier,
-                'buyer': buyer,
-                'last_attempt': datetime.now().isoformat()
-            }
-            failed += 1
+        # ── PASS 2: tracking now available ──
+        if existing.get('status') == 'shipped_no_tracking':
+            if not tracking:
+                log.info(f'Order #{order_id}: shipped, still no tracking — waiting')
+                pending += 1
+                skipped_list.append({
+                    'isbn': isbn or '', 'title': f'Order #{order_id}',
+                    'reason': 'Awaiting tracking number',
+                })
+                continue
+
+            ebay_order_id = existing.get('ebay_order_id')
+            if ebay_order_id:
+                ebay_order = find_ebay_order(isbn, buyer, token)
+                if ebay_order:
+                    ok = post_shipped(ebay_order_id, token, ebay_order,
+                                      tracking=tracking, carrier=carrier)
+                    if ok:
+                        state[order_id]['status'] = 'posted'
+                        state[order_id]['tracking'] = tracking
+                        state[order_id]['carrier'] = carrier
+                        state[order_id]['tracking_posted_at'] = datetime.now().isoformat()
+                        posted += 1
+                        shipped_list.append({
+                            'isbn': isbn or '', 'title': f'Order #{order_id}',
+                            'order_id': ebay_order_id, 'tracking': tracking,
+                        })
+                    else:
+                        log.warning(f'Order #{order_id}: tracking update failed — will retry')
+                        pending += 1
+                        failed_list.append({
+                            'isbn': isbn or '', 'title': f'Order #{order_id}',
+                            'order_id': ebay_order_id, 'error': 'Tracking POST failed',
+                        })
+                else:
+                    log.warning(f'Order #{order_id}: could not re-match eBay order for tracking update')
+                    pending += 1
+                    failed_list.append({
+                        'isbn': isbn or '', 'title': f'Order #{order_id}',
+                        'order_id': '', 'error': 'Could not re-match eBay order',
+                    })
+            else:
+                log.warning(f'Order #{order_id}: no stored ebay_order_id — cannot add tracking')
+                pending += 1
             save_state(state)
+            time.sleep(0.5)
             continue
 
-        # Find matching eBay order — passes state + BG order ID for Guard 2
-        ebay_order = find_ebay_order(isbn, buyer, token, state, order_id)
+        # ── PASS 1: new order ──
+        ebay_order = find_ebay_order(isbn, buyer, token)
         if not ebay_order:
             state[order_id] = {
                 'status': 'no_match',
@@ -487,46 +454,74 @@ def run():
                 'last_attempt': datetime.now().isoformat()
             }
             failed += 1
+            failed_list.append({
+                'isbn': isbn or '', 'title': f'Order #{order_id}',
+                'order_id': '', 'error': 'No matching eBay order found',
+            })
             save_state(state)
             continue
 
         ebay_order_id = ebay_order['orderId']
 
-        # Mark as shipped (tracking only included if TRACKING_ENABLED)
-        ok = post_shipped(ebay_order_id, token, ebay_order,
-                          tracking=tracking, carrier=carrier)
-
-        if ok:
+        if tracking and TRACKING_ENABLED:
+            ok = post_shipped(ebay_order_id, token, ebay_order,
+                              tracking=tracking, carrier=carrier)
+            if ok:
+                state[order_id] = {
+                    'status': 'posted',
+                    'ebay_order_id': ebay_order_id,
+                    'isbn': isbn, 'tracking': tracking, 'carrier': carrier,
+                    'buyer': buyer,
+                    'shipped_at': datetime.now().isoformat(),
+                    'tracking_posted_at': datetime.now().isoformat()
+                }
+                posted += 1
+                shipped_list.append({
+                    'isbn': isbn or '', 'title': f'Order #{order_id}',
+                    'order_id': ebay_order_id, 'tracking': tracking,
+                })
+            else:
+                state[order_id] = {
+                    'status': 'failed',
+                    'ebay_order_id': ebay_order_id,
+                    'isbn': isbn, 'tracking': tracking, 'carrier': carrier,
+                    'buyer': buyer,
+                    'attempts': existing.get('attempts', 0) + 1,
+                    'last_attempt': datetime.now().isoformat()
+                }
+                failed += 1
+                failed_list.append({
+                    'isbn': isbn or '', 'title': f'Order #{order_id}',
+                    'order_id': ebay_order_id, 'error': 'Fulfillment POST failed',
+                })
+        else:
+            # No tracking yet (or tracking disabled) — record in state only
             state[order_id] = {
-                'status': 'shipped',
+                'status': 'shipped_no_tracking',
                 'ebay_order_id': ebay_order_id,
-                'isbn': isbn,
-                'tracking': tracking,  # stored but not posted to eBay
-                'tracking_posted': TRACKING_ENABLED and bool(tracking),
-                'carrier': carrier,
-                'buyer': buyer,
+                'isbn': isbn, 'buyer': buyer,
                 'shipped_at': datetime.now().isoformat()
             }
-            marked_shipped += 1
-        else:
-            state[order_id] = {
-                'status': 'failed',
-                'ebay_order_id': ebay_order_id,
-                'isbn': isbn, 'tracking': tracking, 'carrier': carrier,
-                'buyer': buyer,
-                'attempts': existing.get('attempts', 0) + 1,
-                'last_attempt': datetime.now().isoformat()
-            }
-            failed += 1
-
+            shipped_no_tracking += 1
+            shipped_list.append({
+                'isbn': isbn or '', 'title': f'Order #{order_id}',
+                'order_id': ebay_order_id, 'tracking': '',
+            })
         save_state(state)
         time.sleep(0.5)
 
     log.info('=' * 60)
-    log.info(f'DONE: {marked_shipped} marked shipped | '
-             f'{skipped} already done | {failed} failed/no match | '
-             f'TRACKING_ENABLED={TRACKING_ENABLED}')
+    log.info(f'DONE: {posted} posted w/tracking | {shipped_no_tracking} marked shipped (no tracking) | '
+             f'{pending} awaiting tracking | {skipped} already done | {failed} failed/no match')
     log.info('=' * 60)
+
+    # ── Send HTML email report ───────────────────────────────────────────────
+    if (shipped_list or skipped_list or failed_list) and send_html_email and build_shipping_tracker_email:
+        subject = (f'[shipping_tracker] {len(shipped_list)} shipped, '
+                   f'{len(skipped_list)} skipped, {len(failed_list)} failed')
+        html = build_shipping_tracker_email(shipped_list, skipped_list, failed_list, TRACKING_ENABLED)
+        send_html_email(subject, html)
+
 
 if __name__ == '__main__':
     run()

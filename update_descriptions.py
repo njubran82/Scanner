@@ -246,7 +246,7 @@ def upsert_description(
         "Content-Language": "en-US",
     }
 
-    clean_title = title[:80]
+    clean_title = title[:65]
     fmt = extract_format(title)
 
     product = {
@@ -451,4 +451,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

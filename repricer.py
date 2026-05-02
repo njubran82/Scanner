@@ -41,7 +41,7 @@ MODE = os.getenv('REPRICER_MODE', 'report_only').lower()
 if MODE not in ('live', 'report_only', 'dry_run'):
     raise ValueError(f"REPRICER_MODE must be live|report_only|dry_run, got: {MODE}")
 
-MIN_PROFIT     = 12.00
+MIN_PROFIT      = 5.00
 EBAY_FEE_RATE  = 0.153
 UNDERCUT_PCT   = 0.12
 AMAZON_CAP     = 0.95

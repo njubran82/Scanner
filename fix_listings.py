@@ -32,7 +32,7 @@ ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
 
 EBAY_FEE_RATE   = 0.153
 UNDERCUT_PCT    = 0.12
-MIN_PROFIT      = 12.00       # minimum net profit to list
+MIN_PROFIT      = 5.00       # minimum net profit to list
 
 # Minimum-quantity books - cannot be purchased as single units on BooksGoat
 MIN_QTY_BLOCKLIST = {

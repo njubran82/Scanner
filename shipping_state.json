@@ -365,11 +365,14 @@
     "last_attempt": "2026-04-28T20:02:51.137350"
   },
   "26960": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "15-14553-42498",
     "isbn": "9781466516946",
     "buyer": "Cody Hahn",
-    "shipped_at": "2026-05-02T06:03:24.153533"
+    "shipped_at": "2026-05-02T06:03:24.153533",
+    "tracking": "871104870192",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T08:59:24.516746"
   },
   "26996": {
     "status": "posted",
@@ -397,8 +400,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 27,
-    "last_attempt": "2026-05-02T06:03:26.175470"
+    "attempts": 28,
+    "last_attempt": "2026-05-02T08:59:26.675316"
   },
   "27022": {
     "status": "posted",

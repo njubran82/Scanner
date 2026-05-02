@@ -400,8 +400,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 29,
-    "last_attempt": "2026-05-02T10:43:51.232857"
+    "attempts": 30,
+    "last_attempt": "2026-05-02T12:53:54.896976"
   },
   "27022": {
     "status": "posted",
@@ -566,46 +566,64 @@
     "tracking_posted_at": "2026-05-01T09:27:27.243145"
   },
   "27150": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "23-14552-92389",
     "isbn": "9780071818773",
     "buyer": "Lowell Harris",
-    "shipped_at": "2026-05-02T10:44:02.558780"
+    "shipped_at": "2026-05-02T10:44:02.558780",
+    "tracking": "871297107331",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T12:53:56.774360"
   },
   "27153": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "15-14567-01922",
     "isbn": "9780471433347",
     "buyer": "Patrick Harvey",
-    "shipped_at": "2026-05-02T10:44:03.659993"
+    "shipped_at": "2026-05-02T10:44:03.659993",
+    "tracking": "871297587958",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T12:53:58.951374"
   },
   "27154": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "17-14564-31716",
     "isbn": null,
     "buyer": "Garland Poon",
-    "shipped_at": "2026-05-02T10:44:04.871092"
+    "shipped_at": "2026-05-02T10:44:04.871092",
+    "tracking": "871297507593",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T12:54:01.205280"
   },
   "27159": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "27-14549-97752",
     "isbn": "9780470584927",
     "buyer": "Eric Weinberger",
-    "shipped_at": "2026-05-02T10:44:06.023554"
+    "shipped_at": "2026-05-02T10:44:06.023554",
+    "tracking": "871297066051",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T12:54:03.764595"
   },
   "27160": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "06-14582-21469",
     "isbn": "9781951058067",
     "buyer": "Kari Vondracek",
-    "shipped_at": "2026-05-02T10:44:07.100192"
+    "shipped_at": "2026-05-02T10:44:07.100192",
+    "tracking": "871297329776",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T12:54:06.124074"
   },
   "27161": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "25-14553-65185",
     "isbn": "9780134513416",
     "buyer": "Paul Spark",
-    "shipped_at": "2026-05-02T10:44:08.458938"
+    "shipped_at": "2026-05-02T10:44:08.458938",
+    "tracking": "871297029241",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T12:54:08.818606"
   },
   "27111": {
     "status": "shipped_no_tracking",

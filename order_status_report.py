@@ -164,6 +164,13 @@ def parse_ebay_order(order: dict) -> dict:
     created = order.get("creationDate", "")
     status = order.get("orderFulfillmentStatus", "")
 
+    # Cancel/refund detection
+    cancel_status = order.get("cancelStatus", {})
+    cancel_state = cancel_status.get("cancelState", "NONE_REQUESTED")
+    payment_status = order.get("orderPaymentStatus", "")
+    is_canceled = cancel_state in ("CANCELED", "CANCEL_PENDING", "CANCEL_REQUESTED")
+    is_refunded = payment_status in ("REFUNDED", "PARTIALLY_REFUNDED")
+
     # Buyer info
     ship_to = (order.get("fulfillmentStartInstructions") or [{}])[0] \
         .get("shippingStep", {}).get("shipTo", {})
@@ -186,6 +193,8 @@ def parse_ebay_order(order: dict) -> dict:
         "created_dt": created_dt,
         "status": status,
         "buyer_name": buyer_name,
+        "is_canceled": is_canceled or is_refunded,
+        "cancel_detail": cancel_state if is_canceled else ("REFUNDED" if is_refunded else ""),
     }
 
 
@@ -657,10 +666,12 @@ def classify_orders(ebay_orders: list[dict],
             hours_ago = (now - o["created_dt"]).total_seconds() / 3600
 
         # Classification priority:
-        # 1. CANCEL — blocklisted ISBN
-        if isbn and isbn in BLOCKLIST:
-            o["category"] = "CANCEL"
-            o["category_detail"] = BLOCKLIST[isbn]
+
+        # 1. CANCELED/REFUNDED — eBay order was canceled or refunded
+        #    Skip these entirely — no action needed
+        if o.get("is_canceled"):
+            o["category"] = "CANCELED"
+            o["category_detail"] = o.get("cancel_detail", "Canceled")
             o["hours_ago"] = hours_ago
             results.append(o)
             continue
@@ -712,7 +723,17 @@ def classify_orders(ebay_orders: list[dict],
             results.append(o)
             continue
 
-        # 5. URGENT or AWAITING — no BG signal found
+        # 5. CANCEL — blocklisted ISBN (only for unfulfilled, non-shipped orders)
+        #    Checked AFTER fulfillment signals so orders already placed on BG
+        #    don't get incorrectly flagged
+        if isbn and isbn in BLOCKLIST:
+            o["category"] = "CANCEL"
+            o["category_detail"] = BLOCKLIST[isbn]
+            o["hours_ago"] = hours_ago
+            results.append(o)
+            continue
+
+        # 6. URGENT or AWAITING — no BG signal found
         if hours_ago is not None and hours_ago > URGENT_HOURS:
             o["category"] = "URGENT"
             o["category_detail"] = f"{hours_ago:.0f}h since eBay sale, no BG order found"
@@ -759,10 +780,14 @@ def generate_html_report(classified: list[dict]) -> tuple[str, str]:
     shipped = cats.get("SHIPPED", [])
     fulfilled = cats.get("FULFILLED", [])
     cancel = cats.get("CANCEL", [])
+    canceled = cats.get("CANCELED", [])
 
     # Sort urgent by hours_ago descending (oldest first = most urgent)
     urgent.sort(key=lambda x: -(x.get("hours_ago") or 0))
     awaiting.sort(key=lambda x: -(x.get("hours_ago") or 0))
+
+    # Active orders = everything except canceled
+    active_count = len(classified) - len(canceled)
 
     # ── HTML ──
     h = []
@@ -775,7 +800,7 @@ def generate_html_report(classified: list[dict]) -> tuple[str, str]:
     h.append(f"""
 <div style="background: #1a1a2e; color: white; padding: 20px 24px; border-radius: 8px 8px 0 0;">
   <h1 style="margin: 0; font-size: 20px; font-weight: 600;">📋 Order Status Report</h1>
-  <p style="margin: 4px 0 0; font-size: 13px; color: #a0a0c0;">{date_str} | Lookback: {LOOKBACK_DAYS} days | {len(classified)} orders</p>
+  <p style="margin: 4px 0 0; font-size: 13px; color: #a0a0c0;">{date_str} | Lookback: {LOOKBACK_DAYS} days | {active_count} active orders ({len(canceled)} canceled)</p>
 </div>
 """)
 
@@ -798,9 +823,13 @@ def generate_html_report(classified: list[dict]) -> tuple[str, str]:
     <div style="font-size: 22px; font-weight: 700; color: #1565c0;">{len(shipped) + len(fulfilled)}</div>
     <div style="font-size: 10px; color: #1565c0;">✅ Shipped</div>
   </div>
-  <div style="flex: 1; padding: 10px; text-align: center; background: #fce4ec;">
+  <div style="flex: 1; padding: 10px; text-align: center; background: #fce4ec; border-right: 1px solid #e0e0e0;">
     <div style="font-size: 22px; font-weight: 700; color: #880e4f;">{len(cancel)}</div>
     <div style="font-size: 10px; color: #880e4f;">🚫 Cancel</div>
+  </div>
+  <div style="flex: 1; padding: 10px; text-align: center; background: #f5f5f5;">
+    <div style="font-size: 22px; font-weight: 700; color: #999;">{len(canceled)}</div>
+    <div style="font-size: 10px; color: #999;">⊘ Canceled</div>
   </div>
 </div>
 """)
@@ -849,6 +878,8 @@ def generate_html_report(classified: list[dict]) -> tuple[str, str]:
              "#e8f5e9", "#c8e6c9", "#2e7d32")
     _section("Shipped / Fulfilled", "✅", shipped + fulfilled,
              "#e3f2fd", "#bbdefb", "#1565c0")
+    _section("Canceled / Refunded", "⊘", canceled,
+             "#f5f5f5", "#e0e0e0", "#999")
 
     # Footer
     h.append(f"""
@@ -886,6 +917,7 @@ def generate_html_report(classified: list[dict]) -> tuple[str, str]:
     _text_section("🟡 Awaiting BG order (recent)", awaiting)
     _text_section("📦 BG Ordered", bg_ordered)
     _text_section("✅ Shipped/Fulfilled", shipped + fulfilled)
+    _text_section("⊘ Canceled/Refunded", canceled)
 
     t.append("=" * 60)
     t.append("Action: Place BG orders for URGENT. Cancel eBay orders for CANCEL.")
@@ -935,6 +967,8 @@ def main() -> int:
     # Subject with urgency count
     urgent_count = sum(1 for o in classified if o["category"] == "URGENT")
     cancel_count = sum(1 for o in classified if o["category"] == "CANCEL")
+    canceled_count = sum(1 for o in classified if o["category"] == "CANCELED")
+    active_count = len(classified) - canceled_count
 
     urgency = ""
     if cancel_count:
@@ -943,7 +977,7 @@ def main() -> int:
         urgency += f" | {urgent_count} URGENT"
 
     emoji = "🔴" if urgent_count > 0 or cancel_count > 0 else "✅"
-    subject = (f"{emoji} Order Status: {len(classified)} orders{urgency} — "
+    subject = (f"{emoji} Order Status: {active_count} active orders{urgency} — "
                f"{datetime.now().strftime('%a %b %d')}")
 
     send_report(subject, html, text)

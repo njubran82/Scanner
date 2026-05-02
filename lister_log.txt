@@ -3611,3 +3611,15 @@
 2026-05-01 22:35:05,346 INFO   FAILED_DETAIL 9798670880909 | Study Guide for FE Electrical & Computer | stage=publish | image=False | img_quality=none | A user error has occurred. Add at least 1 photo. More photos are better! Show of
 2026-05-01 22:35:05,346 INFO ============================================================
 2026-05-01 22:35:07,405 INFO Failure email sent (2 failures)
+2026-05-02 19:05:16,365 INFO ============================================================
+2026-05-02 19:05:16,365 INFO LISTER STARTED — 2026-05-02 19:05:16
+2026-05-02 19:05:16,365 INFO ============================================================
+2026-05-02 19:05:16,365 INFO Processing 2 opportunities...
+2026-05-02 19:05:27,260 WARNING   No image found
+2026-05-02 19:05:29,653 ERROR   FAIL 9780826943729: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-05-02 19:05:33,790 WARNING   No image found
+2026-05-02 19:05:36,519 ERROR   FAIL 9798670880909: A user error has occurred. The item specific Book Title is missing. Add Book Title to this listing, 
+2026-05-02 19:05:37,026 INFO ============================================================
+2026-05-02 19:05:37,026 INFO LISTER DONE: 0 listed | 2 failed
+2026-05-02 19:05:37,026 INFO ============================================================
+2026-05-02 19:05:37,868 INFO Email sent: [Lister] 🔴 2 books FAILED to list

@@ -2452,3 +2452,23 @@
 2026-05-01 22:34:55,356 INFO ============================================================
 2026-05-01 22:34:55,366 INFO CSV saved: 417 rows
 2026-05-01 22:34:55,366 INFO scan_opportunities.json written: 2 entries
+2026-05-02 19:04:45,673 INFO ============================================================
+2026-05-02 19:04:45,673 INFO SCANNER v3 STARTED — 2026-05-02 19:04:45
+2026-05-02 19:04:45,673 INFO ============================================================
+2026-05-02 19:04:45,679 INFO Loaded 417 books from CSV
+2026-05-02 19:04:46,260 INFO Merchant sheet: 89 books (1 skipped)
+2026-05-02 19:04:46,450 INFO eBay app token acquired
+2026-05-02 19:04:46,451 INFO CSV: 417 total books
+2026-05-02 19:04:46,451 INFO Merchant sheet: 89 books (for amazon_price cap only)
+2026-05-02 19:04:55,118 INFO   ✅ Low Pressure Boilers, 5th Edition by Frederick M.  | Cost: $59.99 | List: $79.2 | Profit: $7.09 | HIGH | EBAY_COMP (HIGH, n=3)
+2026-05-02 19:05:06,602 INFO   ✅ Study Guide for FE Electrical & Computer CBT E... | Cost: $44.99 | List: $78.97 | Profit: $21.9 | MEDIUM | EBAY_COMP (MEDIUM, n=2)
+2026-05-02 19:05:16,107 INFO ============================================================
+2026-05-02 19:05:16,108 INFO SCAN COMPLETE: 2 opportunities found
+2026-05-02 19:05:16,108 INFO   Already listed: 375
+2026-05-02 19:05:16,108 INFO   Unprofitable:   14
+2026-05-02 19:05:16,108 INFO   No eBay data:   11
+2026-05-02 19:05:16,108 INFO   Cooldown skip:  0
+2026-05-02 19:05:16,108 INFO   Blocklist skip: 15
+2026-05-02 19:05:16,108 INFO ============================================================
+2026-05-02 19:05:16,114 INFO CSV saved: 417 rows
+2026-05-02 19:05:16,114 INFO scan_opportunities.json written: 2 entries

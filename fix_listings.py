@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-fix_listings.py — Scored, Capped eBay Lister
+fix_listings.py â€” Scored, Capped eBay Lister
 Location : E:\\Book\\Lister\\fix_listings.py
 
 Pipeline:
@@ -22,9 +22,9 @@ from math import log as mlog
 from pathlib import Path
 from datetime import datetime, timedelta
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # CONFIG
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 EBAY_APP_ID        = os.environ["EBAY_APP_ID"]
 EBAY_CERT_ID       = os.environ["EBAY_CERT_ID"]
 EBAY_REFRESH_TOKEN = os.environ["EBAY_REFRESH_TOKEN"]
@@ -36,11 +36,11 @@ MIN_PROFIT      = 12.00       # minimum net profit to list
 
 # Minimum-quantity books - cannot be purchased as single units on BooksGoat
 MIN_QTY_BLOCKLIST = {
-    "9781260460445",  # Lange Q&A Radiography Examination — min qty 5
-    "9780990873853",  # Overcoming Gravity: Gymnastics — min qty 5
-    "9781119826798",  # Architect's Studio Companion — PDF only on BooksGoat
-    "9780357622957",  # Theory and Practice of Group Counseling — min qty 5
-    "9781466516946",  # American Herbal Botanical Safety Handbook — counterfeit flag
+    "9781260460445",  # Lange Q&A Radiography Examination â€” min qty 5
+    "9780990873853",  # Overcoming Gravity: Gymnastics â€” min qty 5
+    "9781119826798",  # Architect's Studio Companion â€” PDF only on BooksGoat
+    "9780357622957",  # Theory and Practice of Group Counseling â€” min qty 5
+    "9781466516946",  # American Herbal Botanical Safety Handbook â€” counterfeit flag
 }
 MAX_LISTINGS  = 1000  # upgraded plan         # hard cap on active listings
 COOLDOWN_DAYS   = 14          # days before a delisted book can be relisted
@@ -59,7 +59,7 @@ LOG_PATH   = BASE_DIR / "fix_listings.log"
 
 # ISBNs that permanently fail eBay upsert
 # ISBNs that permanently fail eBay upsert (confirmed catalog conflicts)
-# NOTE: 9781609836184 (Concrete Manual) REMOVED — was auto-listed successfully,
+# NOTE: 9781609836184 (Concrete Manual) REMOVED â€” was auto-listed successfully,
 #       recent failure was image resolution, not catalog conflict.
 SKIP_ISBNS = {
     '9780763781873',   # NIMS: Principles and Practice
@@ -76,9 +76,9 @@ DISCLAIMER = (
     "All books are brand new, in mint condition, and carefully inspected before shipment."
 )
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # LOGGING
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -90,9 +90,9 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # SCORING
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 def score_book(
     profit: float,
     cost: float,
@@ -125,7 +125,7 @@ def score_book(
         std  = statistics.stdev(comps)
         spread_pen = max(0.7, 1.0 - (std / mean)) if mean > 0 else 0.7
     else:
-        spread_pen = 0.85  # single comp — mild penalty
+        spread_pen = 0.85  # single comp â€” mild penalty
 
     # Seasonal multiplier
     month = datetime.now().month
@@ -147,9 +147,9 @@ def score_book(
     return profit_s * roi * demand * conf_w * spread_pen * seasonal * decay
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # AUTH
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 def get_user_token() -> str:
     creds = base64.b64encode(f"{EBAY_APP_ID}:{EBAY_CERT_ID}".encode()).decode()
     r = requests.post(
@@ -185,9 +185,9 @@ def get_app_token() -> str:
     return r.json()["access_token"]
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # FULFILLMENT POLICY
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 def update_handling_time(user_token: str):
     headers = {
         "Authorization": f"Bearer {user_token}",
@@ -203,7 +203,7 @@ def update_handling_time(user_token: str):
     policy = r.json()
     current_ht = policy.get("handlingTime", {}).get("value")
     if current_ht == HANDLING_DAYS:
-        log.info(f"Handling time already {HANDLING_DAYS}d — no change needed")
+        log.info(f"Handling time already {HANDLING_DAYS}d â€” no change needed")
         return
     policy["handlingTime"] = {"unit": "DAY", "value": HANDLING_DAYS}
     r2 = requests.put(
@@ -216,9 +216,9 @@ def update_handling_time(user_token: str):
         log.warning(f"PUT fulfillment policy failed: {r2.status_code} {r2.text[:150]}")
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # IMAGE
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 def is_real_image(url: str, min_bytes: int = 5000) -> bool:
     try:
         r = requests.get(url, timeout=12, stream=True)
@@ -234,7 +234,7 @@ def is_real_image(url: str, min_bytes: int = 5000) -> bool:
 
 
 def get_book_image(isbn13: str, isbn10: str = "") -> str | None:
-    # 1. Open Library Covers API — try L, M sizes for both ISBN-13 and ISBN-10
+    # 1. Open Library Covers API â€” try L, M sizes for both ISBN-13 and ISBN-10
     for isbn in [isbn13, isbn10]:
         if not isbn:
             continue
@@ -244,7 +244,7 @@ def get_book_image(isbn13: str, isbn10: str = "") -> str | None:
                 log.info(f"  Image: Open Library ({isbn}-{size})")
                 return url
 
-    # 2. Open Library Works API — sometimes has covers when ISBN endpoint doesn't
+    # 2. Open Library Works API â€” sometimes has covers when ISBN endpoint doesn't
     try:
         r = requests.get(
             f"https://openlibrary.org/api/books",
@@ -318,9 +318,9 @@ def get_book_image(isbn13: str, isbn10: str = "") -> str | None:
     return None
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # COMPETITOR PRICING
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 def get_comps(sku: str, app_token: str) -> tuple[list[float], str]:
     headers = {"Authorization": f"Bearer {app_token}"}
     try:
@@ -348,13 +348,13 @@ def get_comps(sku: str, app_token: str) -> tuple[list[float], str]:
     return sorted(prices), conf
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # AI DESCRIPTION
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 def clean_title(title: str) -> str:
-    title = re.sub(r"\s*[-–]\s*(Hardcover|Paperback|Spiral Bound|Loose Leaf)\s*$", "", title, flags=re.I)
+    title = re.sub(r"\s*[-â€“]\s*(Hardcover|Paperback|Spiral Bound|Loose Leaf)\s*$", "", title, flags=re.I)
     title = re.sub(r"\s*[\(\[{]?\s*ISBN[:\s]*[\d\-X]+\s*[\)\]}]?", "", title, flags=re.I)
-    return title.strip(" –-")
+    return title.strip(" â€“-")
 
 
 def extract_format(title: str) -> str:
@@ -388,10 +388,10 @@ def extract_aspects(title: str, fmt: str, isbn: str) -> dict:
     Required fields vary by subcategory but including all of these
     prevents the most common 25002 errors.
     """
-    clean = clean_title(title)[:80]
+    clean = clean_title(title)[:65]
     author = extract_author(title)
 
-    # Subject/Type — infer from title keywords
+    # Subject/Type â€” infer from title keywords
     subject = "Nonfiction"
     if re.search(r"novel|fiction|story|stories", title, re.I):
         subject = "Fiction"
@@ -409,38 +409,81 @@ def extract_aspects(title: str, fmt: str, isbn: str) -> dict:
 
 
 def generate_description(title: str, isbn: str) -> str:
+    """
+    Generate a concise, non-repetitive eBay listing description.
+    Uses a strict constrained prompt to prevent wall-of-text output.
+    Falls back to plain title if API key is missing or call fails.
+    """
     fmt   = extract_format(title)
     clean = clean_title(title)
 
     if not ANTHROPIC_API_KEY:
         return f"{INTERNATIONAL_DISCLAIMER}\n\nBrand new {fmt} copy of {clean} (ISBN {isbn}).\n\n{DISCLAIMER}"
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    prompt = f"""Write a compelling, specific eBay book listing description.
+    # Strip publisher marketing suffixes before sending to Haiku
+    prompt_title = clean[:120]
 
-Book: {clean}
+    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    prompt = f"""Write an eBay listing description for this textbook.
+
+Title: {prompt_title}
 ISBN: {isbn}
 Format: {fmt}
 
-Rules:
-- 3-4 sentences ONLY
-- Be specific about the subject and who benefits
-- Mention it is a brand-new {fmt}
-- Reference edition/year if obvious from title
-- Do NOT start with the book title verbatim
-- Do NOT use vague filler like "comprehensive", "essential", "thorough"
-- Do NOT add any disclaimer or shipping note
-- Plain text only, no markdown
+STRICT RULES -- violating any rule means the description is rejected:
+1. Exactly 2-3 sentences. No more.
+2. First sentence: what the book covers and who it is for.
+3. Second sentence: one standout feature (e.g., edition highlights, page count, practice questions).
+4. Optional third sentence: only if genuinely adding new info.
+5. DO NOT list chapter names, division names, or feature bullet points.
+6. DO NOT repeat any phrase or idea -- every sentence must say something new.
+7. DO NOT use marketing language like "must-have", "comprehensive", "essential", "trusted".
+8. DO NOT mention price, condition, shipping, or seller info.
+9. Plain text only. No bullet points, no headers, no special formatting.
+10. Total length: 40-80 words maximum.
 
-Output ONLY the description text, nothing else."""
+Write the description now:"""
 
     try:
         resp = client.messages.create(
             model="claude-haiku-4-5-20251001",
-            max_tokens=300,
+            max_tokens=200,
             messages=[{"role": "user", "content": prompt}],
         )
         body = resp.content[0].text.strip()
+
+        # Post-processing: strip quotes and preamble Haiku sometimes adds
+        body = body.replace('"', '').strip('" \n')
+        for prefix in ["Here's", "Here is", "Sure,", "Sure!"]:
+            if body.startswith(prefix):
+                body = body[len(prefix):].lstrip(" :,\n")
+
+        # Truncate if too long
+        word_count = len(body.split())
+        if word_count > 100:
+            sentences = body.split(". ")
+            body = ". ".join(sentences[:3])
+            if not body.endswith("."):
+                body += "."
+            log.warning(f"  Description was {word_count} words -- truncated to 3 sentences")
+
+        # Detect repetition: if two sentences share >50% of words, keep only first
+        sentences = [s.strip() for s in body.split(". ") if s.strip()]
+        if len(sentences) >= 2:
+            clean_sentences = [sentences[0]]
+            for k in range(1, len(sentences)):
+                words_prev = set(sentences[k - 1].lower().split())
+                words_curr = set(sentences[k].lower().split())
+                if len(words_prev) > 3 and len(words_curr) > 3:
+                    overlap = len(words_prev & words_curr) / min(len(words_prev), len(words_curr))
+                    if overlap > 0.5:
+                        log.warning(f"  Repetition detected ({overlap:.0%}) -- dropping sentence {k + 1}")
+                        continue
+                clean_sentences.append(sentences[k])
+            body = ". ".join(clean_sentences)
+            if not body.endswith("."):
+                body += "."
+
     except Exception as e:
         log.warning(f"Claude error for {isbn}: {e}")
         body = f"Brand new {fmt} copy of {clean} (ISBN {isbn})."
@@ -448,9 +491,9 @@ Output ONLY the description text, nothing else."""
     return f"{INTERNATIONAL_DISCLAIMER}\n\n{body}\n\n{DISCLAIMER}"
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # INVENTORY API
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 def upsert_inventory_item(
     sku: str, title: str, description: str, fmt: str,
     user_token: str, image_url: str | None = None
@@ -460,7 +503,7 @@ def upsert_inventory_item(
         "Content-Type": "application/json",
         "Content-Language": "en-US",
     }
-    clean = clean_title(title)[:80]
+    clean = clean_title(title)[:65]
     product = {
         "title": clean,
         "description": description,
@@ -504,7 +547,7 @@ def get_or_create_offer(sku: str, price: float, user_token: str) -> tuple[str | 
         offer_id = offers[0]["offerId"]
         existing_location = offers[0].get("merchantLocationKey", "")
         if existing_location == "home1":
-            # Offer already has correct merchantLocationKey — just update price
+            # Offer already has correct merchantLocationKey â€” just update price
             r2 = requests.put(
                 f"https://api.ebay.com/sell/inventory/v1/offer/{offer_id}",
                 headers=headers,
@@ -537,15 +580,16 @@ def get_or_create_offer(sku: str, price: float, user_token: str) -> tuple[str | 
         "format": "FIXED_PRICE",
         "availableQuantity": 20,
         "categoryId": "261186",
+        "merchantLocationKey": "home1",
         "listingPolicies": {
             "fulfillmentPolicyId": FULFILLMENT_POLICY,
             "paymentPolicyId":     PAYMENT_POLICY,
             "returnPolicyId":      RETURN_POLICY,
-            "merchantLocationKey": "home1",
         },
         "pricingSummary": {
             "price": {"value": str(round(price, 2)), "currency": "USD"}
         },
+        "includeCatalogProductDetails": False,
     }
     r2 = requests.post(
         "https://api.ebay.com/sell/inventory/v1/offer",
@@ -580,9 +624,9 @@ def end_listing(offer_id: str, user_token: str) -> bool:
     return r.status_code in (200, 204)
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # CSV HELPERS
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 CSV_FIELDS = [
     "isbn13", "title", "format", "cost", "product_url", "category_path",
     "sell_price", "status", "score", "listed_at", "sold_at",
@@ -611,9 +655,9 @@ def save_csv(rows: list[dict]):
         w.writerows(rows)
 
 
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 # MAIN
-# ════════════════════════════════════════════════════════════════
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 AMAZON_CAP_PCT = 0.95         # never list above 95% of Amazon list price
 
@@ -621,7 +665,7 @@ def build_amazon_lookup() -> dict:
     """Fetch BooksGoat feed and return isbn13 -> amazon_price mapping."""
     url = os.environ.get("BOOKSGOAT_CSV_URL", "")
     if not url:
-        log.warning("BOOKSGOAT_CSV_URL not set — Amazon cap disabled")
+        log.warning("BOOKSGOAT_CSV_URL not set â€” Amazon cap disabled")
         return {}
     try:
         import io
@@ -666,7 +710,7 @@ def run():
     now = datetime.now()
     now_iso = now.isoformat()
 
-    # ── PHASE 1: Score all candidates ──────────────────────────
+    # â”€â”€ PHASE 1: Score all candidates â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     log.info("Phase 1: Scoring all candidates...")
     scored = []  # (score, sku, comps, conf, new_price, net_profit)
 
@@ -732,7 +776,7 @@ def run():
     # Sort all candidates by score descending
     scored.sort(key=lambda x: x[0], reverse=True)
 
-    # ── PHASE 2: Determine active set ──────────────────────────
+    # â”€â”€ PHASE 2: Determine active set â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     currently_active = [r for r in rows if r.get("status") == "active"]
     active_count = len(currently_active)
     log.info(f"Currently active: {active_count} / {MAX_LISTINGS}")
@@ -742,7 +786,7 @@ def run():
     entry_threshold = statistics.median(active_scores) if active_scores else 0.0
     log.info(f"Entry threshold (median active score): {entry_threshold:.4f}")
 
-    # ── PHASE 3: Replacement logic ──────────────────────────────
+    # â”€â”€ PHASE 3: Replacement logic â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     # Find lowest-scoring active listing for replacement comparisons
     if currently_active:
         lowest_active = min(currently_active, key=lambda r: float(r.get("score", 0) or 0))
@@ -761,12 +805,12 @@ def run():
         status = row.get("status", "")
 
         if status == "active":
-            # Already active — will be repriced/refreshed
+            # Already active â€” will be repriced/refreshed
             to_list.append(sku)
             continue
 
-        # New candidate — check if it qualifies
-        if False:  # SCORING DISABLED — 1000-listing plan, list all profitable
+        # New candidate â€” check if it qualifies
+        if False:  # SCORING DISABLED â€” 1000-listing plan, list all profitable
             log.info(f"  SKIP {sku} score={s:.4f} <= threshold={entry_threshold:.4f}")
             continue
 
@@ -789,7 +833,7 @@ def run():
 
     log.info(f"To list: {len(to_list)} | To delist: {len(to_delist)}")
 
-    # ── PHASE 4: Delist replaced books ─────────────────────────
+    # â”€â”€ PHASE 4: Delist replaced books â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     for sku in to_delist:
         row = row_index.get(sku, {})
         offer_id = row.get("offer_id", "")
@@ -801,7 +845,7 @@ def run():
         row["delist_reason"] = "replaced_by_higher_score"
         time.sleep(0.3)
 
-    # ── PHASE 5: List/update selected books ────────────────────
+    # â”€â”€ PHASE 5: List/update selected books â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     listed  = 0
     updated = 0
     errors  = 0
@@ -861,7 +905,7 @@ def run():
         else:
             updated += 1
 
-        log.info(f"  OK — ${new_price:.2f} | profit=${net_profit:.2f} | conf={conf}")
+        log.info(f"  OK â€” ${new_price:.2f} | profit=${net_profit:.2f} | conf={conf}")
 
         # Update row
         row["status"]     = "active"
@@ -874,7 +918,7 @@ def run():
 
         time.sleep(0.8)
 
-    # ── PHASE 6: Save CSV ───────────────────────────────────────
+    # â”€â”€ PHASE 6: Save CSV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     # Clean up temp keys
     for row in rows:
         for k in ["_score", "_comps", "_conf", "_new_price", "_net_profit"]:
@@ -890,3 +934,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+

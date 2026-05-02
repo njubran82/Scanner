@@ -70,14 +70,11 @@
     "last_attempt": "2026-04-25T12:02:57.760769"
   },
   "26704": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "08-14508-46084",
     "isbn": "9781948558396",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Code Red Hvac Code Red",
-    "shipped_at": "2026-05-01T22:42:31.723746"
+    "shipped_at": "2026-05-02T06:03:14.067927"
   },
   "26752": {
     "status": "posted",
@@ -180,14 +177,11 @@
     "last_attempt": "2026-04-25T12:03:19.612624"
   },
   "26831": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "04-14539-67103",
     "isbn": "9780521431460",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Musstafa Hani",
-    "shipped_at": "2026-05-01T22:42:34.443941"
+    "shipped_at": "2026-05-02T06:03:16.015762"
   },
   "26828": {
     "status": "posted",
@@ -210,14 +204,11 @@
     "last_attempt": "2026-04-25T12:03:24.999866"
   },
   "26823": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "13-14523-62661",
     "isbn": "9781119460985",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Paula Schuerer",
-    "shipped_at": "2026-05-01T22:42:37.529853"
+    "shipped_at": "2026-05-02T06:03:17.970343"
   },
   "26822": {
     "status": "posted",
@@ -340,24 +331,18 @@
     "last_attempt": "2026-04-28T20:02:48.345639"
   },
   "26989": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "20-14534-27043",
     "isbn": "9781884989117",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Harsha Reddy",
-    "shipped_at": "2026-05-01T22:42:40.476061"
+    "shipped_at": "2026-05-02T06:03:19.897235"
   },
   "26988": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "01-14563-84803",
     "isbn": "9781119460985",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Zdenek Klima",
-    "shipped_at": "2026-05-01T22:42:43.386711"
+    "shipped_at": "2026-05-02T06:03:21.933662"
   },
   "26984": {
     "status": "posted",
@@ -380,14 +365,11 @@
     "last_attempt": "2026-04-28T20:02:51.137350"
   },
   "26960": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "15-14553-42498",
     "isbn": "9781466516946",
-    "tracking": "871104870192",
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Cody Hahn",
-    "shipped_at": "2026-05-01T22:42:46.599575"
+    "shipped_at": "2026-05-02T06:03:24.153533"
   },
   "26996": {
     "status": "posted",
@@ -415,8 +397,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 26,
-    "last_attempt": "2026-05-02T02:03:12.359343"
+    "attempts": 27,
+    "last_attempt": "2026-05-02T06:03:26.175470"
   },
   "27022": {
     "status": "posted",
@@ -449,24 +431,18 @@
     "tracking_posted_at": "2026-04-28T20:23:56.818140"
   },
   "27021": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "19-14541-14756",
     "isbn": "9780071769679",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": null,
-    "shipped_at": "2026-05-01T22:42:51.473545"
+    "shipped_at": "2026-05-02T06:03:27.583647"
   },
   "27011": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "27-14554-62891",
     "isbn": "9780240818269",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Jeremy Denouden",
-    "shipped_at": "2026-05-01T22:42:53.314544"
+    "shipped_at": "2026-05-02T06:03:29.594655"
   },
   "27040": {
     "status": "posted",
@@ -499,54 +475,39 @@
     "tracking_posted_at": "2026-04-29T10:42:26.626238"
   },
   "27052": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "26-14542-26068",
     "isbn": "9781118431436",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Andrew Flythe",
-    "shipped_at": "2026-05-01T22:42:56.543249"
+    "shipped_at": "2026-05-02T06:03:31.645486"
   },
   "27048": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "15-14553-42498",
     "isbn": "9781466516946",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Daniel Cramlett",
-    "shipped_at": "2026-05-01T22:42:59.395002"
+    "shipped_at": "2026-05-02T06:03:33.602409"
   },
   "27047": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "06-14567-28021",
     "isbn": "9788350705218",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Oleksandr Hladkykh",
-    "shipped_at": "2026-05-01T22:43:02.625861"
+    "shipped_at": "2026-05-02T06:03:35.650236"
   },
   "27044": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "14-14554-58676",
     "isbn": "9781591266808",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Esteban Garces",
-    "shipped_at": "2026-05-01T22:43:05.888843"
+    "shipped_at": "2026-05-02T06:03:37.597277"
   },
   "27100": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "09-14568-89487",
     "isbn": "9781943378210",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Milan Anderson",
-    "shipped_at": "2026-05-01T22:43:08.515801"
+    "shipped_at": "2026-05-02T06:03:39.699902"
   },
   "27101": {
     "status": "posted",
@@ -559,24 +520,18 @@
     "tracking_posted_at": "2026-05-01T09:27:20.380819"
   },
   "27098": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "11-14565-54813",
     "isbn": "9781609836184",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "John Montague",
-    "shipped_at": "2026-05-01T22:43:11.317091"
+    "shipped_at": "2026-05-02T06:03:41.730825"
   },
   "27095": {
-    "status": "shipped",
+    "status": "shipped_no_tracking",
     "ebay_order_id": "26-14542-26068",
     "isbn": "9781118431436",
-    "tracking": null,
-    "tracking_posted": false,
-    "carrier": "FEDEX",
     "buyer": "Andrew Batticks",
-    "shipped_at": "2026-05-01T22:43:14.377267"
+    "shipped_at": "2026-05-02T06:03:43.760754"
   },
   "27086": {
     "status": "posted",

@@ -400,8 +400,8 @@
     "tracking": "871105480188",
     "carrier": "FEDEX",
     "buyer": null,
-    "attempts": 28,
-    "last_attempt": "2026-05-02T08:59:26.675316"
+    "attempts": 29,
+    "last_attempt": "2026-05-02T10:43:51.232857"
   },
   "27022": {
     "status": "posted",
@@ -499,18 +499,24 @@
     "shipped_at": "2026-05-02T06:03:35.650236"
   },
   "27044": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "14-14554-58676",
     "isbn": "9781591266808",
     "buyer": "Esteban Garces",
-    "shipped_at": "2026-05-02T06:03:37.597277"
+    "shipped_at": "2026-05-02T06:03:37.597277",
+    "tracking": "871297144347",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T10:43:54.163940"
   },
   "27100": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "09-14568-89487",
     "isbn": "9781943378210",
     "buyer": "Milan Anderson",
-    "shipped_at": "2026-05-02T06:03:39.699902"
+    "shipped_at": "2026-05-02T06:03:39.699902",
+    "tracking": "871297428187",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T10:43:57.936907"
   },
   "27101": {
     "status": "posted",
@@ -523,11 +529,14 @@
     "tracking_posted_at": "2026-05-01T09:27:20.380819"
   },
   "27098": {
-    "status": "shipped_no_tracking",
+    "status": "posted",
     "ebay_order_id": "11-14565-54813",
     "isbn": "9781609836184",
     "buyer": "John Montague",
-    "shipped_at": "2026-05-02T06:03:41.730825"
+    "shipped_at": "2026-05-02T06:03:41.730825",
+    "tracking": "871297245920",
+    "carrier": "FEDEX",
+    "tracking_posted_at": "2026-05-02T10:44:01.230866"
   },
   "27095": {
     "status": "shipped_no_tracking",
@@ -555,5 +564,54 @@
     "tracking": "871254175777",
     "carrier": "FEDEX",
     "tracking_posted_at": "2026-05-01T09:27:27.243145"
+  },
+  "27150": {
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "23-14552-92389",
+    "isbn": "9780071818773",
+    "buyer": "Lowell Harris",
+    "shipped_at": "2026-05-02T10:44:02.558780"
+  },
+  "27153": {
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "15-14567-01922",
+    "isbn": "9780471433347",
+    "buyer": "Patrick Harvey",
+    "shipped_at": "2026-05-02T10:44:03.659993"
+  },
+  "27154": {
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "17-14564-31716",
+    "isbn": null,
+    "buyer": "Garland Poon",
+    "shipped_at": "2026-05-02T10:44:04.871092"
+  },
+  "27159": {
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "27-14549-97752",
+    "isbn": "9780470584927",
+    "buyer": "Eric Weinberger",
+    "shipped_at": "2026-05-02T10:44:06.023554"
+  },
+  "27160": {
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "06-14582-21469",
+    "isbn": "9781951058067",
+    "buyer": "Kari Vondracek",
+    "shipped_at": "2026-05-02T10:44:07.100192"
+  },
+  "27161": {
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "25-14553-65185",
+    "isbn": "9780134513416",
+    "buyer": "Paul Spark",
+    "shipped_at": "2026-05-02T10:44:08.458938"
+  },
+  "27111": {
+    "status": "shipped_no_tracking",
+    "ebay_order_id": "18-14557-81719",
+    "isbn": "9781462543755",
+    "buyer": "Helen Bloom",
+    "shipped_at": "2026-05-02T10:44:09.577286"
   }
 }
